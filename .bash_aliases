@@ -1,5 +1,6 @@
-alias e='emacsclient -t -a='
-alias edit='emacsclient -t -a='
+alias v='vim'
+alias V='SUDO_EDITOR="vim" sudo -e'
+alias edit='vim'
 
 alias c='xclip' # primary (^Insert)
 alias xc='xclip -selection c' # clipboard (^C)

@@ -19,3 +19,4 @@ nc='\[\e[0m\]' # no color
 PS1="$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)') \$$nc "
 
 DOTFILES="$HOME/Projects/dotfiles"
+
