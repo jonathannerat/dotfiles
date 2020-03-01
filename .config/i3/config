@@ -56,7 +56,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $i3lock_riced --nofork
 exec --no-startup-id xrandr --output $mainMonitor --primary --auto --output $rightMonitor --auto --right-of $mainMonitor
 
 
-
 # Keyboard Bindings
 # -------- --------
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -166,7 +165,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-
+bindsym $mod+Shift+x exec $i3lock_riced
 
 # Modes
 # -----
