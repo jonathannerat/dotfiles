@@ -6,8 +6,8 @@ URxvt.scrollBar: false
 
 ! Base16 Atelier Dune
 ! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/dune)
-
-URxvt.background:                     #20201d
+URxvt.depth:                          32
+URxvt.background:                     [95]#20201d
 URxvt.foreground:                     #a6a28c
 URxvt.cursorColor:                    #a6a28c
 
