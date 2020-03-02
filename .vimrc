@@ -100,9 +100,9 @@ set tm=500
 
 " enable syntax highlighting
 syntax enable
-
 set background=dark
 colorscheme palenight
+highlight Normal guibg=NONE ctermbg=NONE
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
 
