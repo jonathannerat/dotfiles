@@ -4,8 +4,9 @@
 
 
 
-# Miscelaneous
-# ------------
+# ==================
+# >> Miscelaneous <<
+# ==================
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -14,18 +15,20 @@ font pango:Noto Sans Mono 10
 
 
 
-# Variables
-# ---------
+# ===============
+# >> Variables <<
+# ===============
 
 # use Win key as modifier
 set $mod Mod4
 
 # custom lock screen that scales a screenshot of each monitor, blurs it, and
 # sets it as a bgimg
-set $i3lock_riced "~/Projects/scripts/system/i3lock-riced.sh"
+set $i3lock_riced "i3lock-riced.sh"
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
+set $home "/home/jonathan"
 # define names for default workspaces for which we configure key bindings later on.
 set $ws1 "1"
 set $ws2 "2"
@@ -42,7 +45,11 @@ set $ws10 "10"
 set $mainMonitor "HDMI-0"
 set $rightMonitor "VGA1"
 
-# Startup Apps
+
+
+# ==================
+# >> Startup Apps <<
+# ==================
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -53,18 +60,26 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $i3lock_riced --nofork
 # exec --no-startup-id nm-applet
 
 # setup monitors
-exec --no-startup-id xrandr --output $mainMonitor --primary --auto --output $rightMonitor --auto --right-of $mainMonitor
+# exec --no-startup-id xrandr --output $mainMonitor --primary --auto --output $rightMonitor --auto --right-of $mainMonitor
 
+# wallpaper
+exec --no-startup-id feh --bg-fill "$home/.wallpaper"
 
-# Keyboard Bindings
-# -------- --------
+# window transparency
+exec --no-startup-id picom
+
+# =======================
+# >> Keyboard Bindings <<
+# =======================
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume --max=50 +5 && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pa-limit-volume --max=50 -5 && $refresh_i3status
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume +5 && $refresh_i3status
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pa-limit-volume -5 && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pa-limit-volume --toggle && $refresh_i3status
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -167,8 +182,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym $mod+Shift+x exec $i3lock_riced
 
-# Modes
-# -----
+
+
+# ===========
+# >> Modes <<
+# ===========
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -178,22 +196,28 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 2 ppt
+        bindsym j resize grow height 5 px or 2 ppt
+        bindsym k resize shrink height 5 px or 2 ppt
+        bindsym l resize grow width 5 px or 2 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 2 ppt
+        bindsym Down resize grow height 5 px or 2 ppt
+        bindsym Up resize shrink height 5 px or 2 ppt
+        bindsym Right resize grow width 5 px or 2 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+
+
+# ===========
+# >> Other <<
+# ===========
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -202,3 +226,20 @@ bar {
     tray_output primary
     status_command i3status
 }
+
+#                       border    bg        text      ind       child_border
+client.focused          #30c0a5   #20201d   #a6a28c   #ffffff   #30c0a5 
+client.focused_inactive #289b86   #20201d   #a6a28c   #ffffff   #289b86 
+client.unfocused        #3a3a39   #20201d   #a6a28c   #ffffff   #3a3a39 
+client.urgent           #eae748   #20201d   #a6a28c   #ffffff   #eae748 
+client.placeholder      #ffffff   #20201d   #a6a28c   #ffffff   #ffffff 
+
+
+
+# ==========
+# >> Gaps <<
+# ==========
+smart_borders on
+# disable titlebars for i3-gaps to work
+for_window [class=".*"] border pixel 3
+gaps inner 20
