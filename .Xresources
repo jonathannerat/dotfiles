@@ -4,10 +4,17 @@
 URxvt.font: xft:Fantasque Sans Mono:size=12
 URxvt.scrollBar: false
 
+URxvt.perl-ext: default,url-select,resize-font
+
+! handle urls
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+
 ! Base16 Atelier Dune
 ! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/dune)
 URxvt.depth:                          32
-URxvt.background:                     [95]#20201d
+URxvt.background:                     [85]#20201d
 URxvt.foreground:                     #a6a28c
 URxvt.cursorColor:                    #a6a28c
 
