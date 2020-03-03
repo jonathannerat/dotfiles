@@ -9,3 +9,7 @@ if [ -f "$HOME/.bash_aliases" ]; then
     . "$HOME/.bash_aliases"
 fi
 
+function mkcdir {
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
