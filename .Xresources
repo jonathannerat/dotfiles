@@ -4,7 +4,11 @@
 URxvt.font: xft:Fantasque Sans Mono:size=12
 URxvt.scrollBar: false
 
-URxvt.perl-ext: default,url-select,resize-font
+URxvt.perl-ext: default,url-select,resize-font,xim-onthespot
+
+! japanese ime in terminal
+URxvt.inputMethod: fcitx
+URxvt.preeditType: OnTheSpot
 
 ! handle urls
 URxvt.keysym.M-u: perl:url-select:select_next
