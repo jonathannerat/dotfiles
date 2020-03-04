@@ -24,17 +24,20 @@ set $mod Mod4
 
 # custom lock screen that scales a screenshot of each monitor, blurs it, and
 # sets it as a bgimg
-set $i3lock_riced "i3lock-riced.sh"
+# set $i3lock_riced "i3lock-riced.sh"
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
-set $home "/home/jonathan"
 # define names for default workspaces for which we configure key bindings later on.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+# 1. Firefox
+# 2. Terminals
+# 3. Coding
+# 4. Music
+set $ws1 "1. " 
+set $ws2 "2. 龜"
+set $ws3 "3. "
+set $ws4 "4. "
+set $ws5 "5. 􏄈"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -45,6 +48,10 @@ set $ws10 "10"
 set $mainMonitor "HDMI-0"
 set $rightMonitor "VGA1"
 
+set $home /home/jonathan
+
+# pa volume control
+set $paLimitVol ~/.local/bin/pa-limit-volume
 
 
 # ==================
@@ -53,20 +60,28 @@ set $rightMonitor "VGA1"
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $i3lock_riced --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # exec --no-startup-id nm-applet
 
 # setup monitors
-# exec --no-startup-id xrandr --output $mainMonitor --primary --auto --output $rightMonitor --auto --right-of $mainMonitor
+exec --no-startup-id xrandr --output $mainMonitor --primary --auto 
+# --output $rightMonitor --auto --right-of $mainMonitor
 
 # wallpaper
 exec --no-startup-id feh --bg-fill "$home/.wallpaper"
 
 # window transparency
 exec --no-startup-id picom
+
+# im
+exec --no-startup-id fcitx 
+
+# network manager applet
+exec --no-startup-id nm-applet
+
 
 # =======================
 # >> Keyboard Bindings <<
@@ -75,11 +90,16 @@ exec --no-startup-id picom
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume --max=50 +5 && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pa-limit-volume --max=50 -5 && $refresh_i3status
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume +5 && $refresh_i3status
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pa-limit-volume -5 && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pa-limit-volume --toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id "$paLimitVol --max 50 +5"
+bindsym XF86AudioLowerVolume exec --no-startup-id "$paLimitVol --max 50 -5"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "$paLimitVol +5"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "$paLimitVol -5"
+bindsym XF86AudioMute exec --no-startup-id "$paLimitVol --toggle"
+
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPause exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -131,20 +151,13 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
+# change fcitx input method
+bindsym $mod+space exec --no-startup-id fcitx-remote -t
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+c focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 
 # switch to workspace
@@ -171,8 +184,17 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+Shift+a focus child
+
+
+# change focus between tiling / floating windows
+bindsym $mod+c focus mode_toggle
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -180,9 +202,11 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+Shift+x exec $i3lock_riced
+bindsym $mod+Shift+x exec i3lock
 
-
+# start surf on duckduckgo.com
+bindsym $mod+w exec surf ddg.gg
+bindsym $mod+Shift+w exec firefox 
 
 # ===========
 # >> Modes <<
@@ -229,7 +253,7 @@ bar {
 
 #                       border    bg        text      ind       child_border
 client.focused          #30c0a5   #20201d   #a6a28c   #ffffff   #30c0a5 
-client.focused_inactive #289b86   #20201d   #a6a28c   #ffffff   #289b86 
+client.focused_inactive #289b86   #20201d   #a6a28c   #ffffff   #077863
 client.unfocused        #3a3a39   #20201d   #a6a28c   #ffffff   #3a3a39 
 client.urgent           #eae748   #20201d   #a6a28c   #ffffff   #eae748 
 client.placeholder      #ffffff   #20201d   #a6a28c   #ffffff   #ffffff 
