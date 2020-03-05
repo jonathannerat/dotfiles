@@ -13,9 +13,8 @@ general {
 
 order += "ethernet _first_"
 order += "battery all"
-order += "disk /"
-order += "disk /home"
 order += "memory"
+order += "volume master"
 order += "tztime local"
 
 ethernet _first_ {
@@ -23,18 +22,15 @@ ethernet _first_ {
         format_down = "E: down"
 }
 
-disk "/" {
-     format = "/: %avail / %total"
-}
-
-disk "/home" {
-     format = "/home: %avail / %total"
-}
-
 memory {
         format = "M: %free / %total"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
+}
+
+volume master {
+    format = "V: %volume"
+    format_muted = "V: muted (%volume)"
 }
 
 tztime local {
