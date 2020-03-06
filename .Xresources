@@ -1,5 +1,24 @@
-! URxvt settings
-! ----- --------
+! ============
+! >> Global <<
+! ============
+
+*depth: 32
+*background: [85]#20201d
+*foreground: #a6a28c
+*cursorColor: #a6a28c
+
+
+
+! ==========
+! >> Sxiv <<
+! ==========
+Sxiv.background: #20201d
+
+
+
+! ===========
+! >> URxvt <<
+! ===========
 
 URxvt.font: xft:Fantasque Sans Mono:size=12
 URxvt.scrollBar: false
@@ -50,5 +69,4 @@ URxvt.color18:                        #292824
 URxvt.color19:                        #6e6b5e
 URxvt.color20:                        #999580
 URxvt.color21:                        #e8e4cf
-
 
