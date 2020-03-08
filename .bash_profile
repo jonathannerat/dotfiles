@@ -32,6 +32,7 @@ PS1=$(make_ps1)
 
 # ignore bitwarden from bash_history
 HISTIGNORE="bw *:$HISTIGNORE"
+HISTCONTROL="ignoreboth"
 
 # location of my dotfiles
 DOTFILES="$HOME/Projects/dotfiles"
