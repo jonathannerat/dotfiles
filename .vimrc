@@ -6,11 +6,11 @@
 set history=500
 
 " reload file when changed from outside
-set autoread 
+set autoread
 au FocusGained,BufEnter * checktime
 
 " for extra keybinds
-let mapleader="," 
+let mapleader=","
 
 " fast save
 nmap <leader>w :w!<cr>
@@ -26,6 +26,8 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 call plug#begin('~/.vim/plugged')
 
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -43,7 +45,7 @@ set wildmenu
 
 " ignore compiled files and git files
 set wildignore=*.o,*~,*.pyc,*.class
-set wildignore+=*/.git/* 
+set wildignore+=*/.git/*
 
 " always show current position
 set ruler
@@ -105,7 +107,7 @@ colorscheme palenight
 highlight Normal guibg=NONE ctermbg=NONE
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
-
+let g:airline_powerline_fonts = 1
 set encoding=utf8
 
 " unix as standard file type
@@ -187,8 +189,8 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -207,9 +209,6 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Always show the status line
 set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
 
@@ -259,7 +258,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
