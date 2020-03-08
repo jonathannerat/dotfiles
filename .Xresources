@@ -3,7 +3,7 @@
 
 URxvt.font: xft:Fantasque Sans Mono:size=12
 URxvt.scrollBar: false
-URxvt.scrollTtyOutput: false
+! URxvt.scrollTtyOutput: false
 
 URxvt.perl-ext: default,url-select,resize-font,xim-onthespot
 
