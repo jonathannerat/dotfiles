@@ -26,7 +26,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-"Plug 'drewtempelmeyer/palenight.vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
