@@ -25,7 +25,9 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " =============
 call plug#begin('~/.vim/plugged')
 
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'tpope/vim-fugitive'
+"Plug 'drewtempelmeyer/palenight.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -103,10 +105,10 @@ set tm=500
 " enable syntax highlighting
 syntax enable
 set background=dark
-colorscheme palenight
+colorscheme onedark
 highlight Normal guibg=NONE ctermbg=NONE
-let g:lightline = { 'colorscheme': 'palenight' }
-let g:airline_theme = "palenight"
+let g:lightline = { 'colorscheme': 'onedark' }
+let g:airline_theme = "onedark"
 let g:airline_powerline_fonts = 1
 set encoding=utf8
 
@@ -217,10 +219,10 @@ set laststatus=2
 " ===================
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <Esc>j mz:m+<cr>`z
+nmap <Esc>k mz:m-2<cr>`z
+vmap <Esc>j :m'>+<cr>`<my`>mzgv`yo`z
+vmap <Esc>k :m'<-2<cr>`>my`<mzgv`yo`z
 
 
 
