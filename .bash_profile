@@ -2,6 +2,10 @@ if [ -z "$_BASH_SOURCE_ENTRY_POINT" ]; then
     _BASH_SOURCE_ENTRY_POINT=.bash_profile
 fi
 
+if [ -f "$HOME/.secrets" ]; then
+    . "$HOME/.secrets"
+fi
+
 make_ps1() {
     # lowercase -> normal
     # UPPERCASE -> bold
