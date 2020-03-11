@@ -6,11 +6,11 @@
 set history=500
 
 " reload file when changed from outside
-set autoread 
+set autoread
 au FocusGained,BufEnter * checktime
 
 " for extra keybinds
-let mapleader="," 
+let mapleader=","
 
 " fast save
 nmap <leader>w :w!<cr>
@@ -47,7 +47,7 @@ set wildmenu
 
 " ignore compiled files and git files
 set wildignore=*.o,*~,*.pyc,*.class
-set wildignore+=*/.git/* 
+set wildignore+=*/.git/*
 
 " always show current position
 set ruler
@@ -108,8 +108,11 @@ set background=dark
 colorscheme onedark
 highlight Normal guibg=NONE ctermbg=NONE
 let g:airline_theme="onedark"
-let g:airline_powerline_fonts=1
-set encoding=utf8
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+set encoding=utf-8
 
 " unix as standard file type
 set ffs=unix,dos,mac
@@ -186,8 +189,8 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -260,7 +263,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
