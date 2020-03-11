@@ -23,9 +23,13 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " =============
 " >> Plugins <<
 " =============
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -101,11 +105,10 @@ set tm=500
 " enable syntax highlighting
 syntax enable
 set background=dark
-colorscheme palenight
+colorscheme onedark
 highlight Normal guibg=NONE ctermbg=NONE
-let g:lightline = { 'colorscheme': 'palenight' }
-let g:airline_theme = "palenight"
-
+let g:airline_theme="onedark"
+let g:airline_powerline_fonts=1
 set encoding=utf8
 
 " unix as standard file type
@@ -160,10 +163,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " ====================================
 " >> Moving, tabs, windows, buffers <<
 " ====================================
-
-" <space> => 'search & C^<space> to 'backwards-search
-map <space> /
-map <C-space> ?
 
 " disable highlight on <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
