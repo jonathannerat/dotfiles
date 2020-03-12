@@ -58,5 +58,5 @@ if [ "$_BASH_SOURCE_ENTRY_POINT" == ".bash_profile" ]; then
 fi
 
 # fcitx fix fot st
-XMODIFIERS=@im=fcitx 
+export XMODIFIERS=@im=fcitx 
 
