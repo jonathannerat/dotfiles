@@ -36,6 +36,7 @@ PS1=$(make_ps1)
 
 # ignore bitwarden from bash_history
 HISTIGNORE="bw *:$HISTIGNORE"
+HISTCONTROL="ignoreboth"
 
 # location of my dotfiles
 DOTFILES="$HOME/Projects/dotfiles"
@@ -55,3 +56,7 @@ if [ "$_BASH_SOURCE_ENTRY_POINT" == ".bash_profile" ]; then
         . "$HOME/.bashrc"
     fi
 fi
+
+# fcitx fix fot st
+XMODIFIERS=@im=fcitx 
+
