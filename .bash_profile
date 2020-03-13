@@ -41,7 +41,7 @@ HISTCONTROL="ignoreboth"
 DOTFILES="$HOME/Projects/dotfiles"
 
 # local scripts / programs
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
 
 # needs jreXX-openjdk package installed
 # default can be changed by symlinking or archlinux-java command

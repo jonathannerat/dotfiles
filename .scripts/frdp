@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# freerdp connection launcher with dmenu
+
+# NOTE: For this to work, you either need the dmenu 
+# [password patch](https://tools.suckless.org/dmenu/patches/password/)
+# is needed, or just store the plain text password in the connection file.
+
+# The script looks for files in $XDG_CONFIG_HOME/frdp/connections folder
+# and prompts the user to select one. Each connection file is simply a 
+# list of arguments to pass to xfreerdp. If no /p: (password) argument
+# is found, the user is prompted by using dmenu's -P option for password
+
+connfolder="$HOME/.config/frdp/connections"
+conn=$(ls -1 "$connfolder" | dmenu -i -p "Choose a connection: ")
+options=$(cat "$connfolder/$conn")
+pass=$(echo "$options" | sed -n 's|.* \?/p:\([^ ]*\) \?.*|\1|p')
+user=$(echo "$options" | sed -n 's|.* \?/u:\([^ ]*\) \?.*|\1|p')
+
+if [[ -z "$pass" ]]; then
+    pass=$(dmenu -p "Password for $user" -P)
+    st -e xfreerdp $(cat "$connfolder/$conn") "/p:$pass"
+else
+    st -e xfreerdp $(cat "$connfolder/$conn")
+fi
+
