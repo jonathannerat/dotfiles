@@ -30,7 +30,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'ap/vim-css-color'
+Plug 'lilydjwg/colorizer'
 
 call plug#end()
 
@@ -228,6 +228,8 @@ nmap <Esc>k mz:m-2<cr>`z
 vmap <Esc>j :m'>+<cr>`<my`>mzgv`yo`z
 vmap <Esc>k :m'<-2<cr>`>my`<mzgv`yo`z
 
+" toggle colorizer to preview hex colors
+nmap <leader>ct <Plug>Colorizer
 
 
 " ===================
