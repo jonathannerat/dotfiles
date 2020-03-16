@@ -11,6 +11,7 @@ alias l.='ls -d .*'
 
 alias cd..='cd ..'
 alias ..='cd ..'
+alias mkdir='mkdir -p'
 alias dot="cd $DOTFILES"
 
 alias grep='grep --color=auto'

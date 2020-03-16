@@ -1,54 +1,15 @@
-! URxvt settings
-! ----- --------
+! ============
+! >> Global <<
+! ============
 
-URxvt.font: xft:Fantasque Sans Mono:size=12
-URxvt.scrollBar: false
-! URxvt.scrollTtyOutput: false
-
-URxvt.perl-ext: default,url-select,resize-font,xim-onthespot
-
-! japanese ime in terminal
-URxvt.inputMethod: fcitx
-URxvt.preeditType: OnTheSpot
-
-! handle urls
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/xdg-open
-URxvt.url-select.underline: true
-
-! Base16 Atelier Dune
-! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/dune)
-URxvt.depth:                          32
-URxvt.background:                     [85]#20201d
-URxvt.foreground:                     #a6a28c
-URxvt.cursorColor:                    #a6a28c
-
-URxvt.scrollColor:                    #a6a28c
-URxvt.highlightColor:                 #6e6b5e
-URxvt.highlightTextColor:             #999580
-
-URxvt.color0:                         #20201d
-URxvt.color1:                         #d73737
-URxvt.color2:                         #60ac39
-URxvt.color3:                         #ae9513
-URxvt.color4:                         #6684e1
-URxvt.color5:                         #b854d4
-URxvt.color6:                         #1fad83
-URxvt.color7:                         #a6a28c
-URxvt.color8:                         #7d7a68
-URxvt.color9:                         #d73737
-URxvt.color10:                        #60ac39
-URxvt.color11:                        #ae9513
-URxvt.color12:                        #6684e1
-URxvt.color13:                        #b854d4
-URxvt.color14:                        #1fad83
-URxvt.color15:                        #fefbec
-
-URxvt.color16:                        #b65611
-URxvt.color17:                        #d43552
-URxvt.color18:                        #292824
-URxvt.color19:                        #6e6b5e
-URxvt.color20:                        #999580
-URxvt.color21:                        #e8e4cf
+*depth: 32
+*background: [85]#20201d
+*foreground: #a6a28c
+*cursorColor: #a6a28c
 
 
+
+! ==========
+! >> Sxiv <<
+! ==========
+Sxiv.background: #20201d

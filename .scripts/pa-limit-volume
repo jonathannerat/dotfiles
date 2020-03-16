@@ -1,0 +1,67 @@
+#!/usr/bin/env perl
+# Manage volume with custom max / min values
+
+# Sometimes I forget to turn down the volume after connecting my headphones
+# and manage to considerably hurt my ears by doing so. This script helps me
+# by limiting the max / min values the volume can reach.
+#   Bind your media +Vol and -Vol keys (and Mute if you want) to call this
+# script with appropiate options. For example, my setup is like this:
+# * +Vol         > pavolume --max=50 +5 (prevents from going beyond 50% vol)
+# * -Vol         > pavolume --max=50 -5 (if volume is > 50 after decreasing,
+#                                        it goes back to 50) 
+# * Shift + +Vol > pavolume +5 (unrestricted volume increase)
+
+use warnings;
+use strict;
+use Getopt::Long;
+Getopt::Long::Configure("pass_through");
+
+# defaults
+my $max = 100;
+my $min = 0;
+my $toggle = 0; # false: don't toggle
+
+GetOptions ("max:i" => \$max,
+            "min:i" => \$min,
+            "toggle" => \$toggle);
+	    
+# search for current sink and volume
+my $sinks = qx/pacmd list-sinks/;
+my ($sink, $vol) = $sinks =~ /(?:^|\n)\h*\* index: (\S+).*?\n\h*volume:[^\n]*?(\d+)%/s;
+
+if ($toggle && scalar @ARGV == 0) {
+	system "pactl set-sink-mute $sink toggle";
+} elsif (!$toggle && scalar @ARGV == 1) {
+	my ($sign, $delta) = $ARGV[-1] =~ /^(-|\+)?(\d+)$/x;
+
+	if (!$sign) {
+		$vol = $delta;
+	} elsif ($sign eq '-') {
+		$vol -= $delta; 
+	} elsif ($sign eq '+') {
+		$vol += $delta;
+	}
+
+	$vol = $min if $vol < $min;
+	$vol = $max if $vol > $max;
+
+	system "pactl set-sink-volume $sink $vol%"
+} else {
+	my $filename = $0 =~ s|.*/||r;
+    die <<END;
+Usage: $filename [ --toggle | [--min MIN] [--max MAX] [-|+]VOL ]
+PulseAudio volume manager script with custom max / min volume values
+
+Options: 
+	--toggle 		mute / unmute
+	--max MAX 		sets the maximum possible volume to MAX% (default 100)
+	--min MIN 		sets the minimum possible volume to MIN% (default 0)
+	[-|+]VOL 		increases (+VOL%) / decreases (-VOL%) / sets (VOL%) volume
+
+Ex.: $filename --toggle 
+     $filename --max 70 +5
+     $filename --min 20 -10
+     $filename +5
+     $filename 60
+END
+}

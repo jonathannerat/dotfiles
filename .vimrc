@@ -23,13 +23,15 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " =============
 " >> Plugins <<
 " =============
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-fugitive'
-Plug 'sheerun/vim-polyglot'
-Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+Plug 'lilydjwg/colorizer'
 
 call plug#end()
 
@@ -107,10 +109,12 @@ syntax enable
 set background=dark
 colorscheme onedark
 highlight Normal guibg=NONE ctermbg=NONE
-let g:lightline = { 'colorscheme': 'onedark' }
-let g:airline_theme = "onedark"
+let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
-set encoding=utf8
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+set encoding=utf-8
 
 " unix as standard file type
 set ffs=unix,dos,mac
@@ -165,10 +169,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " >> Moving, tabs, windows, buffers <<
 " ====================================
 
-" <space> => 'search & C^<space> to 'backwards-search
-map <space> /
-map <C-space> ?
-
 " disable highlight on <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
@@ -219,11 +219,15 @@ set laststatus=2
 " ===================
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
+" Using <Esc>_key_ instead of <M-_key_> because of some problem with urxvt:
+" Read more [here](https://unix.stackexchange.com/questions/199683/alt-mappings-for-vim-in-urxvt)
 nmap <Esc>j mz:m+<cr>`z
 nmap <Esc>k mz:m-2<cr>`z
 vmap <Esc>j :m'>+<cr>`<my`>mzgv`yo`z
 vmap <Esc>k :m'<-2<cr>`>my`<mzgv`yo`z
 
+" toggle colorizer to preview hex colors
+nmap <leader>ct <Plug>Colorizer
 
 
 " ===================

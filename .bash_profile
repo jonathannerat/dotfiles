@@ -1,6 +1,8 @@
-if [ -z "$_BASH_SOURCE_ENTRY_POINT" ]; then
-    _BASH_SOURCE_ENTRY_POINT=.bash_profile
-fi
+[ -z "$_BASH_SOURCE_ENTRY_POINT" ] && _BASH_SOURCE_ENTRY_POINT=.bash_profile
+
+# file where I keep my secret environment variables for scripts
+# such ass github's personal access tokens and the like
+[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
 
 make_ps1() {
     # lowercase -> normal
@@ -27,28 +29,33 @@ make_ps1() {
 # includes bash functions to get git properties (like __git_ps1) used below
 [ -f "$HOME/.git_prompt" ] && source "$HOME/.git_prompt"
 
-# bash prompt
+# bash prompt (use function to keep color variables local)
 PS1=$(make_ps1)
 
-# ignore bitwarden from bash_history
+# ignore bitwarden-cli from history
 HISTIGNORE="bw *:$HISTIGNORE"
+# ignore commands starting with a space and duplicates from history
 HISTCONTROL="ignoreboth"
 
 # location of my dotfiles
 DOTFILES="$HOME/Projects/dotfiles"
 
 # local scripts / programs
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
 
-if [ -d "/usr/lib/jvm/default" ]; then
-    JAVA_HOME="/usr/lib/jvm/default"
-fi
+# needs jreXX-openjdk package installed
+# default can be changed by symlinking or archlinux-java command
+[ -d "/usr/lib/jvm/default" ] && JAVA_HOME="/usr/lib/jvm/default"
 
 # fixes "sourcing flow", bash_profile should be sourced before bashrc
 if [ "$_BASH_SOURCE_ENTRY_POINT" == ".bash_profile" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
+    [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 fi
+
+# fcitx fix fot st
+export XMODIFIERS=@im=fcitx 
+
+# default apps
+export TERMINAL=st
+export BROWSER=surf
+export EDITOR=vim

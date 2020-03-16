@@ -1,0 +1,32 @@
+[general]
+framerate = 60
+
+
+
+[input]
+# use mpd fifo file for visualizer
+method = fifo
+source = /tmp/mpd.fifo
+
+
+
+[output]
+method = ncurses
+channels = mono
+
+
+
+[color]
+gradient = 1
+gradient_color_1 = '#004040'
+gradient_color_2 = '#77dddd'
+
+
+
+[smoothing]
+# 0-100; bigger = smoother but less precise
+integral = 30
+gravity = 100
+monstercat = 1
+waves = 0
+

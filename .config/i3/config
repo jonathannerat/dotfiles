@@ -50,8 +50,6 @@ set $rightMonitor "VGA1"
 
 set $home /home/jonathan
 
-# pa volume control
-set $paLimitVol ~/.local/bin/pa-limit-volume
 
 
 # ==================
@@ -90,11 +88,11 @@ exec --no-startup-id nm-applet
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id "$paLimitVol --max 50 +5"
-bindsym XF86AudioLowerVolume exec --no-startup-id "$paLimitVol --max 50 -5"
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "$paLimitVol +5"
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "$paLimitVol -5"
-bindsym XF86AudioMute exec --no-startup-id "$paLimitVol --toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pa-limit-volume --max 50 +5"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pa-limit-volume --max 50 -5"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "pa-limit-volume +5"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "pa-limit-volume -5"
+bindsym XF86AudioMute exec --no-startup-id "pa-limit-volume --toggle"
 
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioPause exec --no-startup-id mpc toggle
