@@ -25,7 +25,8 @@ gradient_color_2 = '#77dddd'
 
 [smoothing]
 # 0-100; bigger = smoother but less precise
-integral = 80
+integral = 30
+gravity = 100
 monstercat = 1
-waves = 1
+waves = 0
 
