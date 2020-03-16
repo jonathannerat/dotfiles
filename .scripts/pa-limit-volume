@@ -1,4 +1,4 @@
-#!/bin/perl
+#!/usr/bin/env perl
 # Manage volume with custom max / min values
 
 # Sometimes I forget to turn down the volume after connecting my headphones
