@@ -32,7 +32,7 @@ endpoint="$host${port:+:$port}"
 
 # -K: don't override i3 keybindings
 # -k es-ar: use this keyboard layout
-options="-K -k es-ar"
+options="-K -k es"
 
 rdesktop $options "$endpoint" -u "$user" -d "$domain"
 
