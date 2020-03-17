@@ -42,6 +42,8 @@ DOTFILES="$HOME/Projects/dotfiles"
 
 # local scripts / programs
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
+# local binaries and utilities
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 # needs jreXX-openjdk package installed
 # default can be changed by symlinking or archlinux-java command
@@ -57,5 +59,4 @@ export XMODIFIERS=@im=fcitx
 
 # default apps
 export TERMINAL=st
-export BROWSER=surf
 export EDITOR=vim
