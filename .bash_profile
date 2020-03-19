@@ -38,7 +38,7 @@ HISTIGNORE="bw *:$HISTIGNORE"
 HISTCONTROL="ignoreboth"
 
 # location of my dotfiles
-DOTFILES="$HOME/Projects/dotfiles"
+DOTFILES="$HOME/proj/dotfiles"
 
 # local scripts / programs
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
