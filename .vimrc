@@ -231,6 +231,9 @@ vmap <Esc>k :m'<-2<cr>`>my`<mzgv`yo`z
 " toggle colorizer to preview hex colors
 nmap <leader>ct <Plug>Colorizer
 
+" fuck ex mode
+nnoremap Q <Nop>
+
 
 " ===================
 " >> Helper functions
