@@ -1,5 +1,1 @@
-# if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bash_profile" ]; then
-        . "$HOME/.bash_profile"
-    fi
-# fi
+[ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
