@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# rdesktop connection launcher with dmenu
+# xfreerdp connection launcher with dmenu
 
 # NOTE: For this to work, you either need the dmenu 
 # [password patch](https://tools.suckless.org/dmenu/patches/password/)
@@ -8,31 +8,45 @@
 
 # The script looks for files in $XDG_CONFIG_HOME/dmrdp/connections folder
 # and prompts the user to select one. Each connection file is simply a 
-# list of arguments to pass to rdesktop. If no /p: (password) argument
+# list of arguments to pass to xfreerdp. If no /p: (password) argument
 # is found, the user is prompted by using dmenu's -P option for password
 
-errcho() {
-    1>&2 echo $@
-    exit 1
-}
-
-if ! command -v rdesktop > /dev/null; then 
-    errcho "rdesktop was not found."
+if ! command -v xfreerdp > /dev/null; then 
+    errcho "freerdp was not found."
 fi
 
-connfolder="$HOME/.config/dmrdp/connections"
-[ -d "$connfolder" ] || errcho "No connections folder found at $connfolder"
+_connf="$HOME/.config/dmrdp/connections"
+[ -d "$_connf" ] || errcho "No connections folder found at $_connf"
 
-conn=$(ls -1 "$connfolder" | dmenu -i -p "Choose a connection: ")
-[ -n "$conn" ] || errcho "No connection selected"
+# check if connections folder is empty
+[ $(ls -1 "$_connf" | wc -l) -eq 0 ]  && errcho "No connections found in $_connf"
 
-source "$connfolder/$conn"
+_conn=$(ls -1 "$_connf" | dmenu -i -p "Choose a connection: ")
+[ -n "$_conn" ] || errcho "No connection selected"
 
-endpoint="$host${port:+:$port}"
+while IFS='=' read -r prop value; do
+    case "$prop" in
+        user|username)
+            _user=$value ;;
+        pass|password)
+            _pass=$value ;;
+        domain)
+            _domain=$value ;;
+        host)
+            _host=$value ;;
+        port)
+            _port=$value ;;
+    esac
+done < trimconf "$_conn"
 
-# -K: don't override i3 keybindings
-# -k es-ar: use this keyboard layout
-options="-K -k es"
+_endpoint="$_host${_port:+:$_port}"
 
-rdesktop $options "$endpoint" -u "$user" -d "$domain"
+# -grab-keyboard: DON'T grab keyboard
+# /dynamic-resolution: update resolution on window resize
+_options="-grab-keyboard /dynamic-resolution"
+
+# ask for password if not in config file
+_pass=${_pass:-$(dmenu -p "Password for $_user${_domain:+@$_domain}" -P)}
+
+xfreerdp $_options "/v:$_endpoint" "/u:$_user" "/d:$_domain" "/p:$_pass"
 
