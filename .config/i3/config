@@ -4,12 +4,14 @@
 
 
 
+
+
 # ==========
 # >> Font <<
 # ==========
 
 # font for window titles and bar (can be changed in bar config block below)
-font pango:FantasqueSansMono Nerd Font 11
+font pango:Hack Nerd Font 11
 
 
 
@@ -24,18 +26,18 @@ set $mod Mod4
 set $refresh_i3status killall -SIGUSR1 i3status
 
 # define names for default workspaces for which we configure key bindings later on.
-set $ws1 "1.  " 
-set $ws2 "2.  "
-set $ws3 "3.  "
-set $ws4 "4.  "
-set $ws5 "5.  "
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1: " 
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: I"
+set $ws6 "6: II"
+set $ws7 "7:?"
+set $ws8 "8:?"
+set $ws9 "9:?"
+set $ws10 "10: "
 
-
+set $term st
 
 # ==================
 # >> Startup Apps <<
@@ -68,19 +70,17 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 
 # increase volume by 5 (if result volume was > 50, set vol = 50)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume --max 50 +5
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --max-volume 50 -i 5
 # increase volume by 5
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pa-limit-volume +5
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
 
 # decrease volume by 5 (if result volume was > 50, set vol = 50)
-bindsym XF86AudioLowerVolume exec --no-startup-id pa-limit-volume --max 50 -5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --max-volume 50 -d 5
 # decrease volume by 5
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pa-limit-volume -5
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
 
 # mute audio
-bindsym XF86AudioMute exec --no-startup-id pa-limit-volume --toggle
-# set volume to 0 and mute
-bindsym Shift+XF86AudioMute exec --no-startup-id pa-limit-volume 0; exec --no-startup-id pa-limit-volume --toggle
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
 # previous song
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
@@ -167,6 +167,9 @@ bindsym $mod+l focus right
 # move focused window to the right
 bindsym $mod+Shift+l move right
 
+# launch music player
+bindsym $mod+m workspace number $ws10; exec --no-startup-id "$term -n ncmpcpp -e ncmpcpp"
+
 # TODO: change with dmenu script
 bindsym $mod+p exec arandr
 # kill focused window
@@ -187,6 +190,11 @@ bindsym $mod+t layout tabbed
 
 # lockscreen
 bindsym $mod+Shift+x exec i3lock
+
+# jump to next workspace
+bindsym $mod+Prior workspace prev
+# jump to next workspace
+bindsym $mod+Next workspace next
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id st
@@ -224,6 +232,10 @@ bar {
     position top
     tray_output primary
     status_command i3blocks
+
+    # workspace button settings
+    workspace_min_width 50
+    strip_workspace_numbers yes
 }
 
 
