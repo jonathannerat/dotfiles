@@ -1,10 +1,15 @@
 #!/bin/sh
 
-shopt -s expand_aliases
-
-_opt=$(echo -e "logout\nsuspend\nhibernate\nreboot\nshutdowb" | dmenu -p "Power Menu: ")
+_opt=$(echo -e "logout\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -p "Power Menu: ")
 
 if [ $_opt ]; then
+    _sel=$(echo $_opt | tr "[:lower:]" "[:upper:]")
+    _sure=$(echo -e "no\nyes" | dmenu -p "$_sel. Proceed? (y/N)")
+
+    echo "$_sel, proceed $_sure" >powermenu.log 2>&1
+
+    [ "$_sure" != "yes" ] && exit 0
+
     if [ "$_opt" = "logout" ]; then
         i3-msg exit
     else
