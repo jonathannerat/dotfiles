@@ -9,6 +9,8 @@ export UD_PICTURES="$HOME/pics"
 export UD_VIDEOS="$HOME/vids"
 export UD_MUSIC="$HOME/music"
 
+export MPD_HOST="$HOME/.mpd/socket"
+
 make_ps1() {
     # lowercase -> normal
     # UPPERCASE -> bold
