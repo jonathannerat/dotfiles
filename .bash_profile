@@ -4,6 +4,11 @@
 # such ass github's personal access tokens and the like
 [ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
 
+# user directories
+export UD_PICTURES="$HOME/pics"
+export UD_VIDEOS="$HOME/vids"
+export UD_MUSIC="$HOME/music"
+
 make_ps1() {
     # lowercase -> normal
     # UPPERCASE -> bold
