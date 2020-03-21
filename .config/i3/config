@@ -39,6 +39,8 @@ set $ws10 "10: "
 
 set $term st
 
+set $scrot_fmt "%Y%m%d-%H%M%S-\$wx\$h.png"
+
 # ==================
 # >> Startup Apps <<
 # ==================
@@ -94,6 +96,14 @@ bindsym Shift+XF86AudioPause exec --no-startup-id mpc stop
 
 # next song
 bindsym XF86AudioNext exec --no-startup-id mpc next
+
+# take ss of whole screen
+bindsym --release Print exec --no-startup-id scrot "$scrot_fmt" -e "mv \$f $UD_PICTURES/screenshots/"
+# take ss of rectangle section | window
+bindsym --release Ctrl+Print exec --no-startup-id scrot --select "$scrot_fmt" -e "mv \$f $UD_PICTURES/screenshots/"
+# take ss of focused windows
+bindsym --release Shift+Print exec --no-startup-id scrot --focused "$scrot_fmt" -e "mv \$f $UD_PICTURES/screenshots/"
+
 
 # switch to workspace
 # move focused container to workspace
