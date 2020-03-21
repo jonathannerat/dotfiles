@@ -1,0 +1,16 @@
+#!/bin/sh
+
+shopt -s expand_aliases
+
+_opt=$(echo -e "logout\nsuspend\nhibernate\nreboot\nshutdowb" | dmenu -p "Power Menu: ")
+
+if [ $_opt ]; then
+    if [ "$_opt" = "logout" ]; then
+        i3-msg exit
+    else
+        systemctl "$_opt"
+    fi
+else 
+    errcho -e "No option selected"
+fi
+
