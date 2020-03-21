@@ -41,6 +41,13 @@ set $term st
 
 set $scrot_fmt "%Y%m%d-%H%M%S-\$wx\$h.png"
 
+# i3blocks signals
+# volume
+set $i3bs_vol "pkill -SIGRTMIN+1 i3blocks"
+# brightness
+set $i3bs_bri "pkill -SIGRTMIN+2 i3blocks"
+
+
 # ==================
 # >> Startup Apps <<
 # ==================
@@ -67,22 +74,26 @@ exec --no-startup-id fcitx
 floating_modifier $mod
 
 # increase brightness by 10%
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10; exec --no-startup-id $i3bs_bri
 # decrease brightness by 10%
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10; exec --no-startup-id $i3bs_bri
 
 # increase volume by 5 (if result volume was > 50, set vol = 50)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --max-volume 50 -i 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --max-volume 50 -i 5; exec --no-startup-id $i3bs_vol
 # increase volume by 5
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5; exec --no-startup-id $i3bs_vol
+
 
 # decrease volume by 5 (if result volume was > 50, set vol = 50)
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --max-volume 50 -d 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --max-volume 50 -d 5; exec --no-startup-id $i3bs_vol
+
 # decrease volume by 5
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec --no-startup-id $i3bs_vol
+
 
 # mute audio
-bindsym XF86AudioMute exec --no-startup-id pamixer -t
+bindsym XF86AudioMute exec --no-startup-id pamixer -t; exec --no-startup-id $i3bs_vol
+
 
 # previous song
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
