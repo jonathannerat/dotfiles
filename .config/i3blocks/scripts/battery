@@ -1,3 +1,39 @@
 #!/bin/sh
 
-# see https://www.nerdfonts.com/cheat-sheet?set=charging
+# be sure to have a nerd-fonts font with material-esign-icons
+_bat=$(cat /sys/class/power_supply/BAT0/capacity)
+_status=$(cat /sys/class/power_supply/BAT0/status)
+_add=0
+[ "$_status" = "Charging" ] && _add=11
+_complete_color="#2ecc40"
+_warning_color="#ffdc00"
+_critical_color="#ff4136"
+
+# some icons from nerd-fonts mdi are missing, the "charging" ones in particular
+# refer to this issue for nerd-fonts: https://github.com/ryanoasis/nerd-fonts/issues/279
+_icons=( " " " " " " " " " " " " " " " " " " " " " " \
+         " " " " " " " " " " " " " " " " " " " " " " )  # charging (11-21)
+
+_icon=${_icons[$((_bat / 10 + _add))]}
+
+if [ "$_status" = "Charging" ]; then
+    echo "$_icon $_bat% (charging)"     # full text
+    echo "$_icon $_bat%"                # short text
+elif [ "$_status" = "Full" ]; then
+    echo "$_icon $_bat% (full)"
+    echo "$_icon $_bat%"
+    echo "$_complete_color"
+else
+    if [ $_bat -gt 30 ]; then
+        echo "$_icon $_bat%"
+        echo "$_icon $_bat%"
+    elif [ $_bat -gt 10 ]; then
+        echo "$_icon $_bat%"
+        echo "$_icon $_bat%"
+        echo "$_warning_color"
+    else
+        echo "$_icon $_bat% ( )"
+        echo "$_icon $_bat% ( )"
+        echo "$_critical_color"
+    fi
+fi

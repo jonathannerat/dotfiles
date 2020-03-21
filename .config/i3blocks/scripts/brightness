@@ -2,13 +2,9 @@
 
 _level=$(xbacklight -get)
 
-# change icon based on brightness level
-if [ $_level -gt 80 ]; then _icon=" "
-elif [ $_level -gt 60 ]; then _icon=" "
-elif [ $_level -gt 40 ]; then _icon=" "
-elif [ $_level -gt 20 ]; then _icon=" "
-else _icon=" "
-fi
+_icons=(" " " " " " " " " " " ")
+_index=
+_icon=${_icons[$((_level / 20))]}
 
 # for better alignment
 [ $_level -eq 100 ] && echo "$_icon$_level%" || echo "$_icon $_level%"

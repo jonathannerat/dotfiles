@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# more about %- notation at https://github.com/chubin/wttr.in
+_format="%l:%C:%t"
+# <short_location>:<long_location>
+IFS=: read -r _locs _locl < scripts/weather.data
+_reachable=$(ping -q -c 1 -W 1 wttr.in >/dev/null 2>&1 && echo true)
+_warning_color="#ffdc00"
+
+if [ $_reachable ]; then
+    _weather=$(curl -s "wttr.in/$_locl?format=$_format")
+    _weather_cond=$(echo "$_weather" | cut -d':' -f2 | tr "[:upper:]" "[:lower:]")
+    _temp=${_weather##*:}
+
+    case "$_weather_cond" in
+        sunny)    _icon=" " ;;
+        fog)      _icon=" " ;;
+        thunderyshowers) _icon=" " ;;
+        *cloudy)  _icon=" " ;;
+        *showers) _icon=" " ;;
+        *sleet)   _icon=" " ;;
+        *snow)    _icon=" " ;;
+        *rain)    _icon=" " ;;
+    esac
+
+    echo "$_locl: $_icon ($_temp)"
+    echo "$_locs: $_icon ($_temp)"
+else
+    echo "  wttr.in unreachable"
+    echo "  wttr.in"
+    echo "$_warning_color"
+fi
+
