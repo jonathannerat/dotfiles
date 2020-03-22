@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# wait for network manager to establish internet connection
+sleep 10
+
 # more about %- notation at https://github.com/chubin/wttr.in
 _format="%l:%C:%t"
 # <short_location>:<long_location>
@@ -16,6 +19,7 @@ if [ $_reachable ]; then
         sunny)    _icon=" " ;;
         fog)      _icon=" " ;;
         thunderyshowers) _icon=" " ;;
+        clear)     _icon=" " ;;
         *cloudy)  _icon=" " ;;
         *showers) _icon=" " ;;
         *sleet)   _icon=" " ;;
