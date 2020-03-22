@@ -5,10 +5,6 @@ fi
 
 [ -f "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases"
 
-# vi mode with <Escape>
-set -o vi
-bind -m vi-command ".":insert-last-argument # or insert-last-argument
-
 # start only one ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
         ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
@@ -16,13 +12,6 @@ fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
 fi
-
-function errcho() {
-    1>&2 echo $@
-    return 1
-}
-
-export -f errcho
 
 function mkcdir() {
     [ "$#" -eq 1 ] || errcho "too many arguments, only 1 is accepted"
