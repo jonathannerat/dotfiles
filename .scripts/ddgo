@@ -3,22 +3,33 @@
 
 # number of lines to show of history: 0 to disable
 _histlines=3
-_histfile=$HOME/.cache/ddgo.hist
+_histfile="$HOME/.cache/ddgo.hist"
 _prompt="DuckDuckGo:"
 
+preppend() {
+    text="$1"
+    file="$2"
+
+    echo "$text" | cat - "$file" > "$file@" && mv "$file@" "$file"
+}
+
 if [ $_histlines -ne 0 ]; then
-    # create if not available 
+    # create if not available
     [ -f "$_histfile" ] || touch $_histfile
 
-    _search=$(head -n $_histlines $_histfile | dmenu -l $_histlines -p "$_prompt")
+    _search=$(head -n $_histlines $_histfile | \
+              dmenu -l $_histlines -p "$_prompt")
 else
     _search=$(echo -n | dmenu -p "$_prompt")
 fi
 
 if [ "$_search" ]; then
-    # preppend to histfile
-    echo "$_search" | cat - "$_histfile" > "$_histfile~" && mv "$_histfile~" "$_histfile"
+    # prevents repeated consecutive searches to appear multiple times in
+    # history
+    if ! (head -n1 "$_histfile" | grep -q "$_search"); then
+        preppend "$_search" "$_histfile"
+    fi
 
     # use xdg-settings to set prefered default browser
-    xdg-open "https://ddg.gg/?q=$_search"
+    xdg-open "https://duckduckgo.com/?q=$_search"
 fi
