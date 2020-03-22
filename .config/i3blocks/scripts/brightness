@@ -1,10 +1,15 @@
 #!/bin/sh
 
-_level=$(xbacklight -get)
+nth() {
+    local _n="$1"
 
-_icons=(" " " " " " " " " " " ")
-_index=
-_icon=${_icons[$((_level / 20))]}
+    tail -n+$_n | head -n1
+}
+
+_level=$(xbacklight -get)
+_icons=" \n \n \n \n \n "
+_icon=$(echo -n "$_icons" | nth $((_level / 20)))
 
 # for better alignment
 [ $_level -eq 100 ] && echo "$_icon$_level%" || echo "$_icon $_level%"
+

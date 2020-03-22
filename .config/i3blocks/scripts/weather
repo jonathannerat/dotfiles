@@ -1,14 +1,17 @@
 #!/bin/sh
 
-# wait for network manager to establish internet connection
-sleep 10
-
 # more about %- notation at https://github.com/chubin/wttr.in
 _format="%l:%C:%t"
+
 # <short_location>:<long_location>
 IFS=: read -r _locs _locl < scripts/weather.data
-_reachable=$(ping -q -c 1 -W 1 wttr.in >/dev/null 2>&1 && echo true)
-_warning_color="#ffdc00"
+
+# try to ping host repeatedly for 10s until it either reaches it or times out
+_reachable=$(timeout 10 scripts/is_reachable.sh "wttr.in" && echo true)
+
+_ft="  wttr.in unreachable"
+_st="  wttr.in"
+_fg="$_cyellow"
 
 if [ $_reachable ]; then
     _weather=$(curl -s "wttr.in/$_locl?format=$_format")
@@ -16,22 +19,27 @@ if [ $_reachable ]; then
     _temp=${_weather##*:}
 
     case "$_weather_cond" in
-        sunny)    _icon=" " ;;
-        fog)      _icon=" " ;;
+        sunny)           _icon=" " ;;
+        fog)             _icon=" " ;;
         thunderyshowers) _icon=" " ;;
-        clear)     _icon=" " ;;
-        *cloudy)  _icon=" " ;;
-        *showers) _icon=" " ;;
-        *sleet)   _icon=" " ;;
-        *snow)    _icon=" " ;;
-        *rain)    _icon=" " ;;
+        clear)           _icon=" " ;;
+        *cloudy)         _icon=" " ;;
+        *showers)        _icon=" " ;;
+        *sleet)          _icon=" " ;;
+        *snow)           _icon=" " ;;
+        *rain)           _icon=" " ;;
     esac
 
-    echo "$_locl: $_icon ($_temp)"
-    echo "$_locs: $_icon ($_temp)"
-else
-    echo "  wttr.in unreachable"
-    echo "  wttr.in"
-    echo "$_warning_color"
+    _ft="$_locl: $_weather_cond ($_temp)"
+    _st="$_locs: $_icon ($_temp)"
+    _fg=
+fi
+
+echo "$_ft"
+echo "$_st"
+if [ "$_fg" ]; then
+    echo "$_fg"
+
+    [ "$_bg" ] && echo "$_bg"
 fi
 

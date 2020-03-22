@@ -1,39 +1,64 @@
 #!/bin/sh
 
-# be sure to have a nerd-fonts font with material-esign-icons
-_bat=$(cat /sys/class/power_supply/BAT0/capacity)
-_status=$(cat /sys/class/power_supply/BAT0/status)
-_add=0
-[ "$_status" = "Charging" ] && _add=11
-_complete_color="#2ecc40"
-_warning_color="#ffdc00"
-_critical_color="#ff4136"
+nth() {
+    local _n=$1
+    tail -n+$_n | head -n1
+}
 
-# some icons from nerd-fonts mdi are missing, the "charging" ones in particular
-# refer to this issue for nerd-fonts: https://github.com/ryanoasis/nerd-fonts/issues/279
-_icons=( " " " " " " " " " " " " " " " " " " " " " " \
-         " " " " " " " " " " " " " " " " " " " " " " )  # charging (11-21)
+errcho() {
+    local _e=0
+    [ "$1" = "-e" ] && _e=1 && shift
 
-_icon=${_icons[$((_bat / 10 + _add))]}
+    2>&1 echo "$*"
+    
+    [ "$_e" = 1 ] && exit 1
+}
 
-if [ "$_status" = "Charging" ]; then
-    echo "$_icon $_bat% (charging)"     # full text
-    echo "$_icon $_bat%"                # short text
-elif [ "$_status" = "Full" ]; then
-    echo "$_icon $_bat% (full)"
-    echo "$_icon $_bat%"
-    echo "$_complete_color"
-else
+# some charging icons are missing, refer to 
+# https://github.com/ryanoasis/nerd-fonts/issues/279
+# not charging (00 - 10)
+# charging     (11 - 21)
+_batdir=/sys/class/power_supply/BAT0
+[ -d "$_batdir" ] || errcho -e "No battery folder at $_batdir"
+
+_icons=" \n \n \n \n \n \n \n \n \n \n\n\
+ \n \n \n \n \n \n \n \n \n \n "
+
+_bat=$(cat $_batdir/capacity)
+_status=$(tr "[:upper:]" "[:lower:]" < $_batdir/status)
+
+_charging=0
+[ "$_status" = charging ] && _charging=1
+
+# Relies on echo being able to interpret escape secuences (which is the case
+# in dash, but not in bash), Use echo -e instead
+_icon=$(echo "$_icons" | nth $((_bat / 10 + 11*_charging + 1)))
+
+# full text
+_ft="$_icon $_bat% ($_status)"
+# short text
+_st="$_icon $_bat%"
+# foreground color
+#_fg
+# background color
+#_bg
+if [ "$_status" = full ]; then
+    _fg="$_cgreen"
+elif [ "$_status" = discharging ]; then
     if [ $_bat -gt 30 ]; then
-        echo "$_icon $_bat%"
-        echo "$_icon $_bat%"
-    elif [ $_bat -gt 10 ]; then
-        echo "$_icon $_bat%"
-        echo "$_icon $_bat%"
-        echo "$_warning_color"
+        _ft="$_st"
+    elif  [ $_bat -gt 15 ]; then
+        _fg="$_cyellow"
     else
-        echo "$_icon $_bat% ( )"
-        echo "$_icon $_bat% ( )"
-        echo "$_critical_color"
+        _fg="$_cred"
     fi
 fi
+
+echo "$_ft"
+echo "$_st"
+if [ "$_fg" ]; then
+    echo "$_fg"
+
+    [ "$_bg" ] && echo "$_bg"
+fi
+
