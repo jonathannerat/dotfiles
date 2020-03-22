@@ -168,6 +168,9 @@ bindsym $mod+f fullscreen toggle
 # toggle floating window
 bindsym $mod+Shift+f floating toggle
 
+# search with duckduckgo
+bindsym $mod+g exec --no-startup-id ddgo
+
 # change focus to window on the left
 bindsym $mod+h focus left
 # move focused window to the left

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# quick dmenu search
+
+_search=$(echo -n | dmenu -p "DuckDuckGo: ")
+surf-open.sh "ddg.gg/?q=$_search"
