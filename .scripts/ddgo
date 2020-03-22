@@ -1,6 +1,24 @@
 #!/bin/sh
+# quick dmenu duckduckgo search
 
-# quick dmenu search
+# number of lines to show of history: 0 to disable
+_histlines=3
+_histfile=$HOME/.cache/ddgo.hist
+_prompt="DuckDuckGo:"
 
-_search=$(echo -n | dmenu -p "DuckDuckGo: ")
-surf-open.sh "ddg.gg/?q=$_search"
+if [ $_histlines -ne 0 ]; then
+    # create if not available 
+    [ -f "$_histfile" ] || touch $_histfile
+
+    _search=$(head -n $_histlines $_histfile | dmenu -l $_histlines -p "$_prompt")
+else
+    _search=$(echo -n | dmenu -p "$_prompt")
+fi
+
+if [ "$_search" ]; then
+    # preppend to histfile
+    echo "$_search" | cat - "$_histfile" > "$_histfile~" && mv "$_histfile~" "$_histfile"
+
+    # use xdg-settings to set prefered default browser
+    xdg-open "https://ddg.gg/?q=$_search"
+fi
