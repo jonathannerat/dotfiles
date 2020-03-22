@@ -1,12 +1,10 @@
 #!/bin/sh
 
-_opt=$(echo -e "logout\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -p "Power Menu: ")
+_opt=$(echo "logout\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -p "Power Menu: ")
 
 if [ $_opt ]; then
-    _sel=$(echo $_opt | tr "[:lower:]" "[:upper:]")
-    _sure=$(echo -e "no\nyes" | dmenu -p "$_sel. Proceed? (y/N)")
-
-    echo "$_sel, proceed $_sure" >powermenu.log 2>&1
+    _sel=$(echo -n $_opt | tr "[:lower:]" "[:upper:]")
+    _sure=$(echo -n "no\nyes" | dmenu -p "$_sel. Proceed? ")
 
     [ "$_sure" != "yes" ] && exit 0
 
