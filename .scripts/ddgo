@@ -13,12 +13,16 @@ preppend() {
     echo "$text" | cat - "$file" > "$file@" && mv "$file@" "$file"
 }
 
+cleanhist() {
+    sort "$_histfile" | uniq > "$_histfile@"
+    mv "$_histfile@" "$_histfile"
+}
+
 if [ $_histlines -ne 0 ]; then
     # create if not available
     [ -f "$_histfile" ] || touch $_histfile
 
-    _search=$(head -n $_histlines $_histfile | \
-              dmenu -l $_histlines -p "$_prompt")
+    _search=$(dmenu -l $_histlines -p "$_prompt" < $_histfile)
 else
     _search=$(echo -n | dmenu -p "$_prompt")
 fi
@@ -29,6 +33,8 @@ if [ "$_search" ]; then
     if ! (head -n1 "$_histfile" | grep -q "$_search"); then
         preppend "$_search" "$_histfile"
     fi
+
+    [ $(wc -l "$_histfile") -gt 100 ] && cleanhist
 
     # use xdg-settings to set prefered default browser
     xdg-open "https://duckduckgo.com/?q=$_search"
