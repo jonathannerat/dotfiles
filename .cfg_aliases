@@ -1,0 +1,12 @@
+# file that defines aliases to edit various config files
+# parsed by .bash_aliases
+
+a        .cfg_aliases
+b        .bashrc
+bp       .bash_profile
+ba       .bash_aliases
+v        .vimrc
+i        .config/i3/config
+ib       .config/i3blocks/config
+mpb      .config/ncmpcpp/bindings
+
