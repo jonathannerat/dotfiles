@@ -1,0 +1,23 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: ${0##*/} [FILE]"
+    echo "Remove comments (anything from # to the end of the line) and empty"
+    echo "lines (whitespace filled lines) from FILE, or from stdin if FILE"
+    echo "was not specified."
+}
+
+if [ $# -gt 1 ]; then
+    >&2 echo "ERROR: too many arguments\n"
+    usage
+    exit 1
+fi
+
+_sedcmds="s/\s*#.*//;/^\s*$/d"
+
+if [ "$1" ]; then
+    sed "$_sedcmds" "$1"
+else
+    sed "$_sedcmds"
+fi
+

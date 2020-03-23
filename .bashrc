@@ -17,9 +17,4 @@ mkcdir() {
       cd -P -- "$1"
 }
 
-trimconf() {
-    [ "$#" -eq 1 ] || errcho "too many arguments, only 1 is accepted"
-    sed "s/\s*#.*//;/^\s*$/d" "$1"
-}
-
 [ -f "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases"
