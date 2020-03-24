@@ -212,6 +212,9 @@ bindsym $mod+Shift+s layout stacking
 # use tabbed layout
 bindsym $mod+t layout tabbed
 
+# switch to mode "windows" to leave Win key free
+bindsym $mod+w mode "windows"
+
 # lockscreen
 bindsym $mod+Shift+x exec i3lock
 
@@ -242,6 +245,11 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+}
+
+# temporarily unbinds all keys to leave Windows key available for RDP sessions
+mode "windows" {
+    bindsym $mod+Escape mode "default"
 }
 
 
