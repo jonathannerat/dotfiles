@@ -1,7 +1,6 @@
 alias v='vim'
 alias V='SUDO_EDITOR="vim" sudo -e'
 alias edit='vim'
-alias vi3="vim $HOME/.config/i3/config"
 
 alias c='xclip' # primary (^Insert)
 alias xc='xclip -selection c' # clipboard (^C)
