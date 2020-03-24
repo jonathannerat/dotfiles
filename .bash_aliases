@@ -23,5 +23,5 @@ alias info='info --vi-keys'
 if [ -f "$HOME/.cfg_aliases" ]; then
     while read -r cfg file; do
         alias cfg$cfg="vim $HOME/$file"
-    done < <(trimconf "$HOME/.cfg_aliases")
+    done < <(trim-conf "$HOME/.cfg_aliases")
 fi
