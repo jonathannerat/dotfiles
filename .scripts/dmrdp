@@ -8,22 +8,36 @@
 
 # The script looks for files in $XDG_CONFIG_HOME/dmrdp/connections folder
 # and prompts the user to select one. Each connection file is simply a 
-# list of arguments to pass to xfreerdp. If no /p: (password) argument
+# list of assignments in "name=value" fashion. If no password property
 # is found, the user is prompted by using dmenu's -P option for password
 
+# connections folder
+_connf="$HOME/.config/dmrdp/connections"
+
+errcho() {
+    >&2 echo"$*"
+}
+
+_fifo=$HOME/.cache/dmrdp.fifo
+
 if ! command -v xfreerdp > /dev/null; then 
-    errcho "freerdp was not found."
+    errcho "freerdp was not found"
+elif  [ ! -d "$_connf" ]; then
+    errcho "No connections folder found at $_connf"
+# check if connections folder is empty (yes, parsing ls, so no fancy names)
+elif [ $(ls -1 "$_connf" | wc -l) -eq 0 ]; then
+    errcho "No connections found in $_connf"
+fi 
+
+_conn=$(ls -1 "$_connf" | dmenu -i -p "Choose a connection:")
+if [ -z "$_conn" ]; then 
+    errcho "No connection selected"
 fi
 
-_connf="$HOME/.config/dmrdp/connections"
-[ -d "$_connf" ] || errcho "No connections folder found at $_connf"
-
-# check if connections folder is empty
-[ $(ls -1 "$_connf" | wc -l) -eq 0 ]  && errcho "No connections found in $_connf"
-
-_conn=$(ls -1 "$_connf" | dmenu -i -p "Choose a connection: ")
-[ -n "$_conn" ] || errcho "No connection selected"
-
+# use fifo to be posix compliant (as a substitute for process substitution in
+# bash). this is needed because of pipe's subshell nature
+mkfifo $_fifo
+trim-conf "$_connf/$_conn" > $_fifo &
 while IFS='=' read -r prop value; do
     case "$prop" in
         user|username)
@@ -36,17 +50,17 @@ while IFS='=' read -r prop value; do
             _host=$value ;;
         port)
             _port=$value ;;
+        options)
+            _opts=$value ;;
     esac
-done < trimconf "$_conn"
+done < $_fifo
+rm $_fifo
 
+# add port at the end if it was specified
 _endpoint="$_host${_port:+:$_port}"
-
-# -grab-keyboard: DON'T grab keyboard
-# /dynamic-resolution: update resolution on window resize
-_options="-grab-keyboard /dynamic-resolution"
 
 # ask for password if not in config file
 _pass=${_pass:-$(dmenu -p "Password for $_user${_domain:+@$_domain}" -P)}
 
-xfreerdp $_options "/v:$_endpoint" "/u:$_user" "/d:$_domain" "/p:$_pass"
+xfreerdp $_opts "/v:$_endpoint" "/u:$_user" "/d:$_domain" "/p:$_pass"
 
