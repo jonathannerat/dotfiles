@@ -121,6 +121,9 @@ set encoding=utf-8
 " unix as standard file type
 set ffs=unix,dos,mac
 
+set list
+set listchars=eol:¬,tab:>·,trail:·
+
 
 
 " =========================
