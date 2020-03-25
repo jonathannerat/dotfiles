@@ -2,14 +2,14 @@
 
 _vol=$(pamixer --get-volume)
 _muted=$(pamixer --get-mute)
-_warning_color="#ffdc00"
+
 
 # set icon based on volume level
 if [ "$_muted" = "true" ]; then 
     _icon="婢"
-    echo "$_icon $_vol% (muted)"
-    echo "$_icon $_vol%"
-    echo $_warning_color
+    _ft="$_icon $_vol% (muted)"
+    _st="$_icon $_vol%"
+    _fg="$_cyellow"
 else
     if [ $_vol -gt 66 ]; then 
         _icon="墳"
@@ -19,7 +19,20 @@ else
         _icon="奄"
     fi
 
-    echo "$_icon $_vol%"
-    echo "$_icon $_vol%"
+    _ft="$_icon $_vol%"
+    _st="$_icon $_vol%"
+fi
+
+
+if [ "$_use_short" = yes ]; then
+    echo "$_st"
+else
+    echo "$_ft"
+fi
+echo "$_st"
+if [ "$_fg" ]; then
+    echo "$_fg"
+
+    [ "$_bg" ] && echo "$_bg"
 fi
 

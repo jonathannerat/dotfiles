@@ -37,8 +37,17 @@ if [ "$_search" ]; then
     _lines=$(wc -l "$_histfile")
     # remove file name from output
     _lines=${_lines%% *}
-    [ $_lines -gt 100 ] && cleanhist
 
-    # use xdg-settings to set prefered default browser
-    xdg-open "https://duckduckgo.com/?q=$_search"
+    # only clean from time to time
+    [ $((_lines % 100)) -eq 0 ] && cleanhist
+
+
+    # open link
+    case "$_search" in
+        \#*)
+            # open as link
+            xdg-open "${_search#\#}" ;;
+        *)
+            xdg-open "https://duckduckgo.com/?q=$_search" ;;
+    esac
 fi

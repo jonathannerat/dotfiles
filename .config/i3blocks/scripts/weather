@@ -23,6 +23,7 @@ if [ $_reachable ]; then
         fog)             _icon=" " ;;
         thunderyshowers) _icon=" " ;;
         clear)           _icon=" " ;;
+        overcast)        _icon=" " ;;
         *cloudy)         _icon=" " ;;
         *showers)        _icon=" " ;;
         *sleet)          _icon=" " ;;
@@ -35,7 +36,11 @@ if [ $_reachable ]; then
     _fg=
 fi
 
-echo "$_ft"
+if [ "$_use_short" = yes ]; then
+    echo "$_st"
+else
+    echo "$_ft"
+fi
 echo "$_st"
 if [ "$_fg" ]; then
     echo "$_fg"

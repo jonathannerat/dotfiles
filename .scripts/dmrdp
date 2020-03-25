@@ -15,7 +15,13 @@
 _connf="$HOME/.config/dmrdp/connections"
 
 errcho() {
-    >&2 echo"$*"
+    if [ -t 0 ]; then
+        >&2 echo"$*"
+    else
+        notify-send "dmrdp" "$*"
+    fi
+
+    exit 1
 }
 
 _fifo=$HOME/.cache/dmrdp.fifo
@@ -30,8 +36,9 @@ elif [ $(ls -1 "$_connf" | wc -l) -eq 0 ]; then
 fi 
 
 _conn=$(ls -1 "$_connf" | dmenu -i -p "Choose a connection:")
-if [ -z "$_conn" ]; then 
-    errcho "No connection selected"
+# check if selected connection exists
+if [ ! -f "$_connf/$_conn" ]; then 
+    errcho "No connection \"$_conn\" found"
 fi
 
 # use fifo to be posix compliant (as a substitute for process substitution in

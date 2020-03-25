@@ -10,18 +10,18 @@ errcho() {
     [ "$1" = "-e" ] && _e=1 && shift
 
     2>&1 echo "$*"
-    
+
     [ "$_e" = 1 ] && exit 1
 }
 
-# some charging icons are missing, refer to 
+# some charging icons are missing, refer to
 # https://github.com/ryanoasis/nerd-fonts/issues/279
 # not charging (00 - 10)
 # charging     (11 - 21)
 _batdir=/sys/class/power_supply/BAT0
 [ -d "$_batdir" ] || errcho -e "No battery folder at $_batdir"
 
-_icons=" \n \n \n \n \n \n \n \n \n \n\n\
+_icons="\n\n\n\n\n\n\n\n\n\n\n\
  \n \n \n \n \n \n \n \n \n \n "
 
 _bat=$(cat $_batdir/capacity)
@@ -39,9 +39,9 @@ _ft="$_icon $_bat% ($_status)"
 # short text
 _st="$_icon $_bat%"
 # foreground color
-#_fg
+#_fg=
 # background color
-#_bg
+#_bg=
 if [ "$_status" = full ]; then
     _fg="$_cgreen"
 elif [ "$_status" = discharging ]; then
@@ -54,7 +54,11 @@ elif [ "$_status" = discharging ]; then
     fi
 fi
 
-echo "$_ft"
+if [ "$_use_short" = yes ]; then
+    echo "$_st"
+else
+    echo "$_ft"
+fi
 echo "$_st"
 if [ "$_fg" ]; then
     echo "$_fg"
