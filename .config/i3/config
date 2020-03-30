@@ -21,6 +21,7 @@ font pango:Hack Nerd Font 11
 
 # use Win key as modifier
 set $mod Mod4
+set $alt Mod1
 
 # command to force i3status update
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -175,24 +176,35 @@ bindsym $mod+g exec --no-startup-id ddgo
 bindsym $mod+h focus left
 # move focused window to the left
 bindsym $mod+Shift+h move left
+# decrease window width
+bindsym $mod+$alt+h resize shrink width 5 px or 2 ppt
 
 # change focus to window below
 bindsym $mod+j focus down
 # move focused window down
 bindsym $mod+Shift+j move down
+# increase window height
+bindsym $mod+$alt+j resize grow height 5 px or 2 ppt
 
 # change focus to window above
 bindsym $mod+k focus up
 # move focused window up
 bindsym $mod+Shift+k move up
+# decrease window height
+bindsym $mod+$alt+k resize shrink height 5 px or 2 ppt
 
 # change focus to window on the right
 bindsym $mod+l focus right
 # move focused window to the right
 bindsym $mod+Shift+l move right
+# increase window width
+bindsym $mod+$alt+l resize grow width 5 px or 2 ppt
+
 
 # launch music player
 bindsym $mod+m workspace number $ws10; exec --no-startup-id "$term -n ncmpcpp -e ncmpcpp"
+# launch mail client
+bindsym $mod+Shift+m exec --no-startup-id "$term -n neomutt -e neomutt"
 
 # TODO: change with dmenu script
 bindsym $mod+p exec arandr
