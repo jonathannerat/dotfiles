@@ -16,7 +16,7 @@ _connf="$HOME/.config/dmrdp/connections"
 
 errcho() {
     if [ -t 0 ]; then
-        >&2 echo"$*"
+        >&2 echo "$*"
     else
         notify-send "dmrdp" "$*"
     fi
