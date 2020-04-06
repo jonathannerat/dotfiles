@@ -27,8 +27,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 call plug#begin('~/.vim/plugged')
 
 Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'lilydjwg/colorizer'
