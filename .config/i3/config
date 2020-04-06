@@ -31,8 +31,8 @@ set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
 set $ws4 "4: "
-set $ws5 "5: I"
-set $ws6 "6: II"
+set $ws5 "5: "
+set $ws6 "6:?"
 set $ws7 "7:?"
 set $ws8 "8:?"
 set $ws9 "9:?"
@@ -77,10 +77,20 @@ floating_modifier $mod
 # power menu
 bindsym $mod+F4 exec --no-startup-id power-menu
 
-# increase brightness by 10%
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10; exec --no-startup-id $i3bs_bri
-# decrease brightness by 10%
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10; exec --no-startup-id $i3bs_bri
+# increase brightness by 5%
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5; exec --no-startup-id $i3bs_bri
+# decrease brightness by 5%
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5; exec --no-startup-id $i3bs_bri
+
+# increase brightness by 10
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10; exec --no-startup-id $i3bs_bri
+# decrease brightness by 10
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10; exec --no-startup-id $i3bs_bri
+
+# increase brightness by 10
+bindsym Control+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1; exec --no-startup-id $i3bs_bri
+# decrease brightness by 10
+bindsym Control+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 1; exec --no-startup-id $i3bs_bri
 
 # increase volume by 5 (if result volume was > 50, set vol = 50)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --max-volume 50 -i 5; exec --no-startup-id $i3bs_vol
