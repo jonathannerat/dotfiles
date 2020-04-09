@@ -5,8 +5,8 @@ a        .cfg_aliases
 b        .bashrc
 bp       .bash_profile
 ba       .bash_aliases
-v        .vimrc
+v        .config/nvim/init.vim
 i        .config/i3/config
 ib       .config/i3blocks/config
 mpb      .config/ncmpcpp/bindings
-
+mpc      .config/ncmpcpp/config

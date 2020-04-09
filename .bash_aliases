@@ -1,6 +1,6 @@
-alias v='vim'
-alias V='SUDO_EDITOR="vim" sudo -e'
-alias edit='vim'
+alias v='nvim'
+alias V='SUDO_EDITOR="nvim" sudo -e'
+alias edit='nvim'
 
 alias c='xclip' # primary (^Insert)
 alias xc='xclip -selection c' # clipboard (^C)
@@ -22,6 +22,6 @@ alias info='info --vi-keys'
 
 if [ -f "$HOME/.cfg_aliases" ]; then
     while read -r cfg file; do
-        alias cfg$cfg="vim $HOME/$file"
+        alias cfg$cfg="v $HOME/$file"
     done < <(trim-conf "$HOME/.cfg_aliases")
 fi
