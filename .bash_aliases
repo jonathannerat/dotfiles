@@ -19,6 +19,9 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias info='info --vi-keys'
+alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local/share/irssi\""
+
+alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
 
 if [ -f "$HOME/.cfg_aliases" ]; then
     while read -r cfg file; do

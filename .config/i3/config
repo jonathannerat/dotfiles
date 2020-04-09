@@ -49,6 +49,7 @@ set $i3bs_vol "pkill -SIGRTMIN+1 i3blocks"
 set $i3bs_bri "pkill -SIGRTMIN+2 i3blocks"
 
 
+
 # ==================
 # >> Startup Apps <<
 # ==================
@@ -60,7 +61,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id "$HOME/.screenlayout/default"
 
 # keep wallpapers as symlinks in ~/.wallpaper.d 
-exec_always --no-startup-id feh --bg-fill "$HOME/.wallpaper.d/1" --bg-fill "$HOME/.wallpaper.d/2"
+exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/.local/share/wallpapers/1" --bg-fill "$HOME/.local/share/wallpapers/2"
 
 # start fcitx as daemon
 exec --no-startup-id fcitx

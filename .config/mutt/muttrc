@@ -20,6 +20,8 @@ set sidebar_indent_string="  "
 
 set rfc2047_parameters = yes
 
+set mailcap_path=$XDG_CONFIG_HOME/mutt/mailcap
+
 source key-bindings.muttrc
 
 # here I setup multiple accounts using account-hooks

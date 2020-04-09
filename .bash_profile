@@ -67,3 +67,11 @@ export XMODIFIERS=@im=fcitx
 # default apps
 export TERMINAL=st
 export EDITOR=vim
+
+export ELINKS_CONFDIR="$HOME/.config/elinks"
+export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
+export MPLAYER_HOME="$HOME/.config/mplayer"
+export LESSKEY="$HOME/.cache/less/lesskey"
+export LESSHISTFILE="$HOME/.cache/less/history"
+export SQLITE_HISTORY="$HOME/.local/share/sqlite_history"
+export TIMEWARRIORDB="$HOME/.local/share/timewarrior"
