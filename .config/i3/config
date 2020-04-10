@@ -239,7 +239,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+w mode "windows"
 
 # lockscreen
-bindsym $mod+Shift+x exec i3lock
+bindsym --release $mod+Shift+x exec --no-startup-id slock
 
 # jump to next workspace
 bindsym $mod+Prior workspace prev
