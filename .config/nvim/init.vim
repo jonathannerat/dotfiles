@@ -11,6 +11,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'lilydjwg/colorizer'
 Plug 'asciidoc/vim-asciidoc'
 Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+Plug 'chriskempson/base16-vim'
+Plug 'mike-hearn/base16-vim-lightline'
 
 call plug#end()
 
@@ -21,8 +24,10 @@ call plug#end()
 " ============
 
 syntax enable
+set termguicolors
 set background=dark
-colorscheme onedark
+colorscheme base16-tomorrow-night
+let g:lightline = { 'colorscheme' : 'base16_tomorrow_night' }
 
 
 
@@ -55,6 +60,8 @@ set history=100
 " >> TAB INDENT WRAP <<
 " =====================
 
+" use spaces instead of tab
+set expandtab
 " spaces for autoindent
 set shiftwidth=2
 " tab = 2 spaces
