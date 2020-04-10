@@ -34,7 +34,7 @@ make_ps1() {
 }
 
 # includes bash functions to get git properties (like __git_ps1) used below
-[ -f "$HOME/.git_prompt" ] && source "$HOME/.git_prompt"
+[ -f "$HOME/.local/share/bash/gitprompt" ] && source "$HOME/.local/share/bash/gitprompt"
 
 # bash prompt (use function to keep color variables local)
 PS1=$(make_ps1)
@@ -75,3 +75,4 @@ export LESSKEY="$HOME/.cache/less/lesskey"
 export LESSHISTFILE="$HOME/.cache/less/history"
 export SQLITE_HISTORY="$HOME/.local/share/sqlite_history"
 export TIMEWARRIORDB="$HOME/.local/share/timewarrior"
+export HISTFILE="$HOME/.local/share/bash/history"
