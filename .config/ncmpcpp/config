@@ -1,1 +1,11 @@
-mpd_host = ~/.mpd/socket
+# vi: filetype=conf
+mpd_host = ~/.local/share/mpd/socket
+
+# directories
+ncmpcpp_directory = ~/.local/share/ncmpcpp
+lyrics_directory = ~/.local/share/ncmpcpp/lyrics
+
+
+progressbar_look = ▰∕▱
+media_library_primary_tag = album_artist
+visualizer_fifo_path = ~/.cache/mpd.fifo
