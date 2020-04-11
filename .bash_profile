@@ -66,7 +66,7 @@ export XMODIFIERS=@im=fcitx
 
 # default apps
 export TERMINAL=st
-export EDITOR=vim
+export EDITOR=nvim
 
 export ELINKS_CONFDIR="$HOME/.config/elinks"
 export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
