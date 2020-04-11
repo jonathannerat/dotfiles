@@ -20,15 +20,21 @@ call plug#end()
 
 
 " ============
+" >> CUSTOM <<
+" ============
+
+" move settings likely to change regurlarly here (such as colorscheme and the
+" like, to keep git history clean)
+exe 'source' stdpath('config').'/custom.vim'
+
+
+
+" ============
 " >> COLORS <<
 " ============
 
 syntax enable
 set termguicolors
-set background=dark
-colorscheme base16-tomorrow-night
-let g:lightline = { 'colorscheme' : 'base16_tomorrow_night' }
-
 
 
 " =============
