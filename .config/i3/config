@@ -57,6 +57,8 @@ set $i3bs_bri "pkill -SIGRTMIN+2 i3blocks"
 # start a network manager applet
 exec --no-startup-id nm-applet
 
+exec --no-startup-id pasystray
+
 # setup monitors
 exec --no-startup-id "$HOME/.screenlayout/default"
 
