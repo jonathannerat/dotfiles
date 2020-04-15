@@ -9,7 +9,8 @@ export UD_PICTURES="$HOME/pics"
 export UD_VIDEOS="$HOME/vids"
 export UD_MUSIC="$HOME/music"
 
-export MPD_HOST="$HOME/.local/share/mpd/socket"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 make_ps1() {
     # lowercase -> normal
@@ -34,7 +35,7 @@ make_ps1() {
 }
 
 # includes bash functions to get git properties (like __git_ps1) used below
-[ -f "$HOME/.local/share/bash/gitprompt" ] && source "$HOME/.local/share/bash/gitprompt"
+[ -f "$XDG_DATA_HOME/bash/gitprompt" ] && . "$XDG_DATA_HOME/bash/gitprompt"
 
 # bash prompt (use function to keep color variables local)
 PS1=$(make_ps1)
@@ -68,13 +69,16 @@ export XMODIFIERS=@im=fcitx
 export TERMINAL=st
 export EDITOR=nvim
 
-export ELINKS_CONFDIR="$HOME/.config/elinks"
+export GOPATH="$HOME/workspace/go"
+export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
+export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
-export MPLAYER_HOME="$HOME/.config/mplayer"
+export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export LESSKEY="$HOME/.cache/less/lesskey"
 export LESSHISTFILE="$HOME/.cache/less/history"
-export SQLITE_HISTORY="$HOME/.local/share/sqlite_history"
-export TIMEWARRIORDB="$HOME/.local/share/timewarrior"
-export HISTFILE="$HOME/.local/share/bash/history"
-export GNUPGHOME="$HOME/.local/share/gnupg"
-export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
