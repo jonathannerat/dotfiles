@@ -1,5 +1,5 @@
 # default editor to compose
-set editor=vim
+set editor=$EDITOR
 
 set sidebar_visible=yes
 
