@@ -1,0 +1,42 @@
+# check if already sourced
+_this=bash_aliases
+case "$__SOURCED" in 
+  *:$_this:*) return ;;
+  *)          export __SOURCED=":$_this${__SOURCED:-:}" ;;
+esac
+
+alias v='nvim'
+alias vim='nvim'
+alias vimdiff='nvim -d'
+alias V='SUDO_EDITOR="nvim" sudo -e'
+alias edit='nvim'
+
+alias c='xclip' # primary (^Insert)
+alias xc='xclip -selection c' # clipboard (^C)
+
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias l.='ls -d .*'
+
+alias cd..='cd ..'
+alias ..='cd ..'
+alias mkdir='mkdir -p'
+alias dot="cd $DOTS"
+alias suckde="cd $HOME/proj/suckde/rocks"
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias info='info --vi-keys'
+alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local/share/irssi\""
+
+alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
+
+if [ -f "$XDG_CONFIG_HOME/bash/config_aliases" ]; then
+  while read -r cfg file; do
+    alias cf$cfg="v $HOME/$file"
+  done < <(trim-conf "$XDG_CONFIG_HOME/bash/config_aliases")
+fi
+
+# vi: filetype=sh
