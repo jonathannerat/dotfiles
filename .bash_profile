@@ -8,6 +8,9 @@ esac
 # source profile if available
 [ -f "$HOME/.profile" ] && . "$HOME/.profile"
 
+# taken from /usr/share/git/git-prompt.sh
+[ -f "$XDG_CONFIG_HOME/bash/git-prompt.sh" ] && . "$XDG_CONFIG_HOME/bash/git-prompt.sh" 
+
 make_ps1() {
     # lowercase -> normal
     # UPPERCASE -> bold
@@ -27,7 +30,11 @@ make_ps1() {
     local WHITE='\[\e[1;39m\]'
     local nc='\[\e[0m\]' # no color
 
-    echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE \$$nc "
+    if [ "$(type -t __git_ps1)" ]; then
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)')\n\$$nc "
+    else
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n\$$nc "
+    fi
 }
 
 # bash prompt (use function to keep color variables local)
