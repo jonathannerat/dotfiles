@@ -14,6 +14,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
