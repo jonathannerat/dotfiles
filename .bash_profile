@@ -1,15 +1,15 @@
-[ -z "$_BASH_SOURCE_ENTRY_POINT" ] && _BASH_SOURCE_ENTRY_POINT=.bash_profile
+# check if already sourced
+_this=bash_profile
+case "$__SOURCED" in 
+  *:$_this:*) return ;;
+  *)           export __SOURCED=":$_this${__SOURCED:-:}" ;;
+esac
 
-# file where I keep my secret environment variables for scripts
-# such ass github's personal access tokens and the like
-[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
+# source profile if available
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
 
-# user directories
-export UD_PICTURES="$HOME/pics"
-export UD_VIDEOS="$HOME/vids"
-export UD_MUSIC="$HOME/music"
-
-export MPD_HOST="$HOME/.mpd/socket"
+# taken from /usr/share/git/git-prompt.sh
+[ -f "$XDG_CONFIG_HOME/bash/git-prompt.sh" ] && . "$XDG_CONFIG_HOME/bash/git-prompt.sh" 
 
 make_ps1() {
     # lowercase -> normal
@@ -30,40 +30,12 @@ make_ps1() {
     local WHITE='\[\e[1;39m\]'
     local nc='\[\e[0m\]' # no color
 
-    echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)') \$$nc "
+    if [ "$(type -t __git_ps1)" ]; then
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)')\n\$$nc "
+    else
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n\$$nc "
+    fi
 }
-
-# includes bash functions to get git properties (like __git_ps1) used below
-[ -f "$HOME/.git_prompt" ] && source "$HOME/.git_prompt"
 
 # bash prompt (use function to keep color variables local)
 PS1=$(make_ps1)
-
-# ignore bitwarden-cli from history
-HISTIGNORE="bw *:$HISTIGNORE"
-# ignore commands starting with a space and duplicates from history
-HISTCONTROL="ignoreboth"
-
-# location of my dotfiles
-DOTFILES="$HOME/proj/dotfiles"
-
-# local scripts / programs
-[ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
-# local binaries and utilities
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-
-# needs jreXX-openjdk package installed
-# default can be changed by symlinking or archlinux-java command
-[ -d "/usr/lib/jvm/default" ] && JAVA_HOME="/usr/lib/jvm/default"
-
-# fixes "sourcing flow", bash_profile should be sourced before bashrc
-if [ "$_BASH_SOURCE_ENTRY_POINT" == ".bash_profile" ]; then
-    [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
-fi
-
-# fcitx fix fot st
-export XMODIFIERS=@im=fcitx 
-
-# default apps
-export TERMINAL=st
-export EDITOR=vim
