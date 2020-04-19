@@ -22,10 +22,10 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 
 mkcdir() {
-  if [ "$#" -eq 1 ]; then
+  if [ "$#" -ne 1 ]; then
     1>&2 echo "error: too many arguments"
-    echo "usage: ${0##*/} DIRECTORY"
-    exit 1
+    echo "usage: mkcdir DIRECTORY"
+    return 1
   fi
 
   mkdir -p -- "$1" && cd -P -- "$1"
