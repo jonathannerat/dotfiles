@@ -13,6 +13,9 @@ fi
 # source aliases if available
 [ -f "$XDG_CONFIG_HOME/bash/aliases" ] && . "$XDG_CONFIG_HOME/bash/aliases"
 
+[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+
+
 # start only one ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"

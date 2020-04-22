@@ -3,8 +3,7 @@
 " =============
 
 call plug#begin(stdpath('data').'/plugged')
-
-Plug 'joshdick/onedark.vim'
+3
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -15,14 +14,15 @@ Plug 'mbbill/undotree'
 Plug 'chriskempson/base16-vim'
 Plug 'mike-hearn/base16-vim-lightline'
 Plug 'tpope/vim-fugitive'
+Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
-
-
-" ============
-" >> CUSTOM <<
-" ============
+" Plugins configuration
+exe 'source' stdpath('config').'/plugins.vim'
+"
+exe 'source' stdpath('config').'/functions.vim'
 
 " move settings likely to change regurlarly here (such as colorscheme and the
 " like, to keep git history clean)
@@ -107,6 +107,8 @@ set fileformats=unix,dos,mac
 " (ms) time to wait for mapped sequences
 set timeoutlen=500
 
+let mapleader=','
+
 nmap <M-j> mz:m+<CR>`z
 nmap <M-k> mz:m-2<CR>`z
 vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
@@ -114,3 +116,9 @@ vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
 " disable exmode
 nnoremap Q <NOP>
+
+map <leader>cd :lcd %:h<CR>
+
+
+autocmd FileType tex,latex set textwidth=78
+autocmd BufWritePost,FileWritePost *.tex,*.latex call CompileLatex()

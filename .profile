@@ -44,6 +44,7 @@ export HISTFILE="$XDG_DATA_HOME/bash/history"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 
 # use fcitx as IM
 export XMODIFIERS=@im=fcitx 

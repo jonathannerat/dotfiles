@@ -32,6 +32,7 @@ alias info='info --vi-keys'
 alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local/share/irssi\""
 
 alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
+alias tmux="env __SOURCED= tmux -f .config/tmux/config"
 
 if [ -f "$XDG_CONFIG_HOME/bash/config_aliases" ]; then
   while read -r cfg file; do
