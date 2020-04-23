@@ -3,7 +3,7 @@
 " =============
 
 call plug#begin(stdpath('data').'/plugged')
-3
+
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -108,6 +108,7 @@ set fileformats=unix,dos,mac
 set timeoutlen=500
 
 let mapleader=','
+let maplocalleader='¿'
 
 nmap <M-j> mz:m+<CR>`z
 nmap <M-k> mz:m-2<CR>`z
@@ -119,6 +120,5 @@ nnoremap Q <NOP>
 
 map <leader>cd :lcd %:h<CR>
 
-
-autocmd FileType tex,latex set textwidth=78
+autocmd FileType tex,latex,mail set textwidth=78
 autocmd BufWritePost,FileWritePost *.tex,*.latex call CompileLatex()
