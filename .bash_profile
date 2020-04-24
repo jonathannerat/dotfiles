@@ -11,6 +11,10 @@ esac
 # taken from /usr/share/git/git-prompt.sh
 [ -f "$XDG_CONFIG_HOME/bash/git-prompt.sh" ] && . "$XDG_CONFIG_HOME/bash/git-prompt.sh" 
 
+if [[ "$-" == *i* ]]; then
+  [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+fi
+
 make_ps1() {
     # lowercase -> normal
     # UPPERCASE -> bold
