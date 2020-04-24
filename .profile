@@ -28,8 +28,7 @@ export BROWSER=surf-open.sh
 # home cleaning
 # the variables keep many programs from creating dot-{filtes/folders} in
 # $HOME. Taken from XDG_Base_Directory's Arch Wiki
-export GOPATH="$HOME/workspace/go"
-export GOPATH="$HOME/workspace/go"
+export GOPATH="$XDG_DATA_HOME/go"
 export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
