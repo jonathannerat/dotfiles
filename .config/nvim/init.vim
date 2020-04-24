@@ -5,7 +5,6 @@
 call plug#begin(stdpath('data').'/plugged')
 
 Plug 'itchyny/lightline.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'lilydjwg/colorizer'
 Plug 'asciidoc/vim-asciidoc'
@@ -120,5 +119,6 @@ nnoremap Q <NOP>
 
 map <leader>cd :lcd %:h<CR>
 
-autocmd FileType tex,latex,mail set textwidth=78
-autocmd BufWritePost,FileWritePost *.tex,*.latex call CompileLatex()
+autocmd FileType tex,latex,mail set textwidth=78 
+  \ | set spell
+  \ | set spelllang=es,en
