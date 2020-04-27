@@ -4,17 +4,25 @@
 
 call plug#begin(stdpath('data').'/plugged')
 
+" fancy and light status line
 Plug 'itchyny/lightline.vim'
+" base16 themes for lightline
+Plug 'mike-hearn/base16-vim-lightline'
+" git integration
 Plug 'tpope/vim-fugitive'
+" show hex colors
 Plug 'lilydjwg/colorizer'
+" base16 themes for vim
+Plug 'chriskempson/base16-vim'
+" latex integration
+Plug 'lervag/vimtex'
+" awesome snippets
+Plug 'SirVer/ultisnips'
+Plug 'xavierd/clang_complete'
+" self explanatory
 Plug 'asciidoc/vim-asciidoc'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
-Plug 'chriskempson/base16-vim'
-Plug 'mike-hearn/base16-vim-lightline'
-Plug 'tpope/vim-fugitive'
-Plug 'lervag/vimtex'
-Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -41,6 +49,8 @@ set termguicolors
 " >> GENERAL <<
 " =============
 
+" hide "-- INSERT --" from status line, use lightline instead
+set noshowmode
 " show line number
 set number
 " any other line besides curren as a relative number
@@ -118,6 +128,11 @@ vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 nnoremap Q <NOP>
 
 map <leader>cd :lcd %:h<CR>
+
+map <leader>h :noh<CR>
+map <leader>w :w<CR>
+map <leader>cfg :exe 'edit' stdpath('config').'/init.vim'<CR>
+map <leader>so :so %<CR>
 
 autocmd FileType tex,latex,mail set textwidth=78 
   \ | set spell
