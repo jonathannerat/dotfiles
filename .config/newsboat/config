@@ -10,7 +10,8 @@ unbind-key A
 unbind-key C
 unbind-key ^K
 
-bind-key ^U pageup
+
+bind-key ^D pagedown
 
 bind-key g home
 bind-key G end
@@ -20,26 +21,27 @@ bind-key h quit articlelist
 
 bind-key j down
 bind-key j next articlelist
+bind-key J next article
 bind-key J next-unread articlelist
 
 bind-key k up
 bind-key k prev articlelist
+bind-key K prev article
 bind-key K prev-unread articlelist
 
 bind-key l open feedlist
 bind-key l open articlelist 
 
-bind-key ^D pagedown
+bind-key ^U pageup
 
 bind-key ^R random-unread
-
-bind-key c toggle-article-read articlelist
 
 
 
 # ┌────────┐
 # │ Colors │
 # └────────┘
+
 #     element             foreground     background
 color listnormal          color7         color0
 color listnormal_unread   color3         color0
@@ -55,7 +57,9 @@ color article             color15        color0
 # │ Formats │
 # └─────────┘
 
+datetime-format             "%Y/%m/%d"
 feedlist-format             "%4i | %n | %11u | %?d? %-40t | %d& %-40t | %T?"
+articlelist-format          "%4i %f %D   %?T?| %T |?%t"
 feedlist-title-format       "Feeds [%u unread / %t total]%?T? - \#%T&?"
 articlelist-title-format    "Articles in '%T' [%u unread / %t total] > %U"
 searchresult-title-format   "Search: [%u unread / %t total]"
@@ -67,6 +71,6 @@ itemview-title-format       "%T [%F]"
 # │ podboat config │
 # └────────────────┘
 
-download-path ~/dl/podcasts/%n/
+download-path ~/files/audio/podcasts/%n/
 player "mpv --no-video"
 
