@@ -22,8 +22,6 @@ export UD_MUSIC="$HOME/music"
 # default apps
 export TERMINAL=st
 export EDITOR=nvim
-# open in a tabbed surf session
-export BROWSER=surf-open.sh
 
 # home cleaning
 # the variables keep many programs from creating dot-{filtes/folders} in

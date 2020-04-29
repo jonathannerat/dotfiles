@@ -33,3 +33,17 @@ mkcdir() {
 
   mkdir -p -- "$1" && cd -P -- "$1"
 }
+
+# yank path to file / folder
+ypath() {
+  if [ "$#" -gt 1 ]; then
+    1>&2 echo "error: too many arguments"
+    echo "usage: ypath [FILE|DIRECTORY]"
+    return 1
+  fi
+
+  case "$1" in 
+    /*) echo "$1" | xclip ;;
+    *)  echo "$PWD/$1" | xclip ;;
+  esac
+}
