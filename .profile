@@ -31,7 +31,8 @@ export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
 export LESSKEY="$XDG_DATA_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
