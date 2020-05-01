@@ -72,5 +72,6 @@ itemview-title-format       "%T [%F]"
 # └────────────────┘
 
 download-path ~/files/audio/podcasts/%n/
+download-filename-format "%n %t.%e"
 player "mpv --no-video"
 
