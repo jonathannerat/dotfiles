@@ -1,3 +1,11 @@
+# ┌─────────┐
+# │ General │
+# └─────────┘
+
+browser "qutebrowser"
+
+
+
 # ┌──────────────┐
 # │ key bindgins │
 # └──────────────┘
@@ -67,10 +75,12 @@ filebrowser-title-format    "%?O?Open directory&Save file? - %f"
 itemview-title-format       "%T [%F]"
 
 
+
 # ┌────────────────┐
 # │ podboat config │
 # └────────────────┘
 
 download-path ~/files/audio/podcasts/%n/
+
 player "mpv --no-video"
 
