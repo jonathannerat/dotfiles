@@ -1,16 +1,3 @@
-! ============
-! >> Global <<
-! ============
-
-*depth: 32
-*background: [85]#20201d
-*foreground: #a6a28c
-*cursorColor: #a6a28c
-
-
-
-! ==========
-! >> Sxiv <<
-! ==========
 Sxiv.background: #20201d
+Sxiv.foreground: #d0d0d0
 Sxiv.font: Hack Nerd Font:size=12:style=Regular
