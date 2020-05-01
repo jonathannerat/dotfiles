@@ -27,5 +27,7 @@ source key-bindings.muttrc
 # here I setup multiple accounts using account-hooks
 source accounts.muttrc
 
+set sort=threads
+
 # personal aliases
 source aliases.muttrc
