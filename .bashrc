@@ -43,7 +43,12 @@ ypath() {
   fi
 
   case "$1" in 
-    /*) echo "$1" | xclip ;;
-    *)  echo "$PWD/$1" | xclip ;;
+    /*) _out="$1";;
+    *)  _out="$PWD/$1";;
   esac
+
+  # quote if path has spaces
+  [[ "$_out" == *\ * ]] && _out=\""$_out"\"
+
+  echo "$_out" | xclip
 }
