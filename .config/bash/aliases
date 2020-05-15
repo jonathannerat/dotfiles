@@ -22,7 +22,7 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias mkdir='mkdir -p'
 alias dot="cd $DOTS"
-alias suckde="cd $HOME/proj/suckde/rocks"
+alias suckde="cd $HOME/proj/suckde"
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'

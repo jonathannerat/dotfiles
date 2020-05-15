@@ -18,11 +18,14 @@ Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
 " awesome snippets
 Plug 'SirVer/ultisnips'
-Plug 'xavierd/clang_complete'
 " self explanatory
 Plug 'asciidoc/vim-asciidoc'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
+" file prompt using nnn
+Plug 'mcchrish/nnn.vim'
+" per projet configuration
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
