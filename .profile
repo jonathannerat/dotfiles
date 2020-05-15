@@ -58,3 +58,6 @@ export QT_IM_MODULE=fcitx
 
 # local programs
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+
+# go binaries
+[ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
