@@ -131,6 +131,8 @@ map <leader>cd :lcd %:h<CR>
 
 map <leader>h :noh<CR>
 map <leader>w :w<CR>
+map <leader>q :q<CR>
+map <leader>Q :q!<CR>
 map <leader>cfg :exe 'edit' stdpath('config').'/init.vim'<CR>
 map <leader>so :so %<CR>
 
