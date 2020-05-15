@@ -23,6 +23,9 @@ export UD_MUSIC="$HOME/music"
 export TERMINAL=st
 export EDITOR=nvim
 
+# nnn config
+export NNN_PLUG='o:nuke'
+
 # home cleaning
 # the variables keep many programs from creating dot-{filtes/folders} in
 # $HOME. Taken from XDG_Base_Directory's Arch Wiki
