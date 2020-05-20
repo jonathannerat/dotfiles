@@ -34,6 +34,8 @@ alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local
 alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
 alias tmux="env __SOURCED= tmux -f \"$HOME\"/.config/tmux/config"
 
+alias yv="youtube-viewer"
+
 if command -v megatools > /dev/null; then
   _megarc="\"$HOME\"/.config/megatools/megarc"
   _tools="copy df dl export get ls mkdir put reg rm test tools"
