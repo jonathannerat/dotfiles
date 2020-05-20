@@ -1,1 +1,21 @@
-set-option -g default-command /bin/bash
+set -g default-command /bin/bash
+set -g prefix C-a
+
+setw -g mode-keys vi
+setw -g mode-style bg=black 
+setw -g automatic-rename
+
+unbind l
+unbind %
+unbind \"
+
+bind r source-file ~/.config/tmux/config
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind | split-window -h
+bind - split-window -v
+
