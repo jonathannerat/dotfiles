@@ -139,6 +139,6 @@ map <leader>Q :q!<CR>
 map <leader>cfg :exe 'edit' stdpath('config').'/init.vim'<CR>
 map <leader>so :so %<CR>
 
-autocmd FileType tex,latex,mail set textwidth=78 
+autocmd FileType tex,latex,mail,markdown set textwidth=78
   \ | set spell
   \ | set spelllang=es,en
