@@ -5,9 +5,12 @@ setw -g mode-keys vi
 setw -g mode-style bg=black 
 setw -g automatic-rename
 
+unbind C-b
 unbind l
 unbind %
 unbind \"
+
+bind C-a send-prefix
 
 bind r source-file ~/.config/tmux/config
 
