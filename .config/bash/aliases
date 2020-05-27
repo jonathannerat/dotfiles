@@ -33,6 +33,7 @@ alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local
 
 alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
 alias tmux="env __SOURCED= tmux -f \"$HOME\"/.config/tmux/config"
+alias tt="tmux new -A -s"
 
 alias yv="youtube-viewer"
 
