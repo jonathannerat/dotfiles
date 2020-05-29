@@ -132,7 +132,12 @@ nnoremap Q <NOP>
 
 map <leader>cd :lcd %:h<CR>
 
-map <leader>h :noh<CR>
+" clear highlighting
+map <leader>hh :noh<CR>
+" highlight trailing spaces
+map <leader>ht /\s\+$<CR>
+" reload file
+map <leader>r :e %<CR>
 map <leader>w :w<CR>
 map <leader>q :q<CR>
 map <leader>Q :q!<CR>
