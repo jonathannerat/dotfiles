@@ -1,4 +1,5 @@
 set -g default-command /bin/bash
+set -g default-terminal "st-256color"
 set -g prefix C-a
 
 setw -g mode-keys vi
