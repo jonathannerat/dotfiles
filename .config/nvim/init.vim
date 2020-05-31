@@ -80,7 +80,7 @@ set history=100
 " =====================
 
 " use spaces instead of tab
-set expandtab
+set noexpandtab
 " spaces for autoindent
 set shiftwidth=2
 " tab = 2 spaces
