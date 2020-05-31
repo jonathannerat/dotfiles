@@ -148,6 +148,6 @@ nmap <leader>n <Plug>VimwikiIndex 0<CR>
 nmap <leader>e :NnnPicker<CR>
 nmap <leader>f :Files<CR>
 
-autocmd FileType tex,latex,mail,markdown set textwidth=78
+autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
   \ | set spell
   \ | set spelllang=es,en
