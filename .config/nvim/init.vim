@@ -142,8 +142,11 @@ map <leader>r :e %<CR>
 map <leader>w :w<CR>
 map <leader>q :q<CR>
 map <leader>Q :q!<CR>
-map <leader>cfg :exe 'edit' stdpath('config').'/init.vim'<CR>
+map <leader>cf :exe 'edit' stdpath('config').'/init.vim'<CR>
 map <leader>so :so %<CR>
+nmap <leader>n <Plug>VimwikiIndex 0<CR>
+nmap <leader>e :NnnPicker<CR>
+nmap <leader>f :Files<CR>
 
 autocmd FileType tex,latex,mail,markdown set textwidth=78
   \ | set spell
