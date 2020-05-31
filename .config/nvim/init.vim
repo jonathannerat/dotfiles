@@ -26,7 +26,8 @@ Plug 'mbbill/undotree'
 Plug 'mcchrish/nnn.vim'
 " per projet configuration
 Plug 'editorconfig/editorconfig-vim'
-
+" personal wiki for vim
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Plugins configuration
