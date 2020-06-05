@@ -6,6 +6,7 @@ call plug#begin(stdpath('data').'/plugged')
 
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " git integration
