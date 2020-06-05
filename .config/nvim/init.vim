@@ -6,6 +6,7 @@ call plug#begin(stdpath('data').'/plugged')
 
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " git integration
@@ -28,6 +29,10 @@ Plug 'mcchrish/nnn.vim'
 Plug 'editorconfig/editorconfig-vim'
 " personal wiki for vim
 Plug 'vimwiki/vimwiki'
+" comments
+Plug 'tpope/vim-commentary'
+" c/c++ completion
+Plug 'xavierd/clang_complete'
 call plug#end()
 
 " Plugins configuration
