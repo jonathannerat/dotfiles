@@ -38,3 +38,24 @@ let g:vimwiki_list = [{'path': '~/proj/notes/', 'path_html': '~/proj/notes/_html
 
 " nnn
 let g:nnn#set_default_mappings = 0
+
+
+
+" lightline
+let g:lightline = {}
+let lightline#trailing_whitespace#indicator = '•'
+let g:lightline.component_expand = { 'trailing': 'lightline#trailing_whitespace#component' }
+let g:lightline.component_type = { 'trailing': 'error' }
+let g:lightline.active = {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'filename', 'modified' ] ],
+    \ 'right': [ [ 'trailing', 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+let g:lightline.inactive = {
+    \ 'left': [ [ 'filename' ] ],
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ] ] }
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ],
+    \ 'right': [ [ 'close' ] ] }
