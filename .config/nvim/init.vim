@@ -109,6 +109,7 @@ set linebreak
 " ===========
 
 " use git instead
+set undofile
 set nobackup
 set nowritebackup
 set noswapfile
