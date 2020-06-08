@@ -6,7 +6,7 @@ call plug#begin(stdpath('data').'/plugged')
 
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-trailing-whitespace'
+Plug 'jonathannerat/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " git integration
@@ -33,6 +33,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-commentary'
 " c/c++ completion
 Plug 'xavierd/clang_complete'
+" python ide
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
 
 " Plugins configuration
@@ -66,8 +68,10 @@ set number
 set relativenumber
 " lines between cursor and top-bottom borders
 set scrolloff=5
+" highlight current line
+set cursorline
 
-" while searching: 
+" while searching:
 set ignorecase
 set smartcase  " override ignorecase if uppercase chars present
 " show matching bracket
