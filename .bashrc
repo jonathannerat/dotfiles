@@ -36,9 +36,15 @@ mkcdir() {
 
 # yank path to file / folder
 ypath() {
+	opts=
+	if [ "$1" = "--clipboard" ]; then
+		opts="-selection c" # use X clipboard
+		shift
+	fi
+
   if [ "$#" -gt 1 ]; then
     1>&2 echo "error: too many arguments"
-    echo "usage: ypath [FILE|DIRECTORY]"
+    echo "usage: ypath [--clipboard] [FILE|DIRECTORY]"
     return 1
   fi
 
@@ -50,7 +56,7 @@ ypath() {
   # quote if path has spaces
   [[ "$_out" == *\ * ]] && _out=\""$_out"\"
 
-  echo "$_out" | xclip
+  echo "$_out" | xclip $opts
 }
 
 n () {
