@@ -1,6 +1,6 @@
 # check if already sourced
 _this=profile
-case "$__SOURCED" in 
+case "$__SOURCED" in
   *:$_this:*) return ;;
   *)           export __SOURCED=":$_this${__SOURCED:-:}" ;;
 esac
@@ -49,7 +49,7 @@ export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 export _Z_DATA="$XDG_DATA_HOME/z"
 
 # use fcitx as IM
-export XMODIFIERS=@im=fcitx 
+export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 
