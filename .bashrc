@@ -24,6 +24,8 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
   eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
 fi
 
+set -o vi
+
 mkcdir() {
   if [ "$#" -ne 1 ]; then
     1>&2 echo "error: too many arguments"
