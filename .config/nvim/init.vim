@@ -35,6 +35,8 @@ Plug 'tpope/vim-commentary'
 Plug 'xavierd/clang_complete'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" auto close/delete brackets/quotes/etc
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " Plugins configuration
