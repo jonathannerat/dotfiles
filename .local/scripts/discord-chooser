@@ -39,6 +39,7 @@
 
 configdir="$HOME/.config"
 profiledir="$configdir/discord.profiles"
+cancel=
 
 if [ -d "$profiledir" ] && ! pgrep Discord; then
   default="$(readlink "$configdir/discord")"
@@ -48,7 +49,9 @@ if [ -d "$profiledir" ] && ! pgrep Discord; then
   if [ -n "$profile" ]; then
     [ -L "$configdir/discord" ] && rm "$configdir/discord"
     ln -s "discord.profiles/$profile" "$configdir/discord"
+	else
+		cancel=yes
   fi
 fi
 
-exec discord
+[ -z "$cancel" ] && exec discord
