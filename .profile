@@ -10,6 +10,7 @@ export DOTS="$HOME/proj/dotfiles"
 
 # XDG specification
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # user directories
@@ -29,8 +30,7 @@ export NNN_PLUG='o:nuke'
 # home cleaning
 # the variables keep many programs from creating dot-{filtes/folders} in
 # $HOME. Taken from XDG_Base_Directory's Arch Wiki
-
-export _GL_SHADER_DISK_CACHE_PATH="$HOME/.cache/nv" # nvidia drivers cache
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv 
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
