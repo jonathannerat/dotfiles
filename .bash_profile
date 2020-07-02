@@ -35,9 +35,9 @@ make_ps1() {
     local nc='\[\e[0m\]' # no color
 
     if [ "$(type -t __git_ps1)" ]; then
-      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)')\n\$$nc "
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)')\n$WHITE\$$nc "
     else
-      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n\$$nc "
+      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n$WHITE\$$nc "
     fi
 }
 
