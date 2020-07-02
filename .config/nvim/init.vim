@@ -31,8 +31,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
-" c/c++ completion
-Plug 'xavierd/clang_complete'
+Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " auto close/delete brackets/quotes/etc
