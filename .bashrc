@@ -39,7 +39,7 @@ mkcdir() {
 # yank path to file / folder
 ypath() {
 	opts=
-	if [ "$1" = "--clipboard" ]; then
+	if [ "$1" = "--clipboard" ] || [ "$1" = "-c" ]; then
 		opts="-selection c" # use X clipboard
 		shift
 	fi
