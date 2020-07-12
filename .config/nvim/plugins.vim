@@ -35,10 +35,10 @@ let g:tex_conceal='abdmg'
 
 
 " ultisnips
-"
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsExpandTrigger = '<C-Space>'
+let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+let g:UltiSnipsEditSplit="context"
 
 
 

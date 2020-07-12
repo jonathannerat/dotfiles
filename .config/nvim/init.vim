@@ -9,6 +9,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'jonathannerat/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
+" redredesigned mksession
+Plug 'tpope/vim-obsession'
 " git integration
 Plug 'tpope/vim-fugitive'
 " show hex colors
@@ -21,7 +23,6 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 " self explanatory
 Plug 'asciidoc/vim-asciidoc'
-Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 " file prompt using nnn
 Plug 'mcchrish/nnn.vim'
@@ -31,11 +32,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
+" A code completition engine for Vim
 Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" auto close/delete brackets/quotes/etc
-Plug 'jiangmiao/auto-pairs'
+" Auto close parentheses and repeat by dot dot dot...
+Plug 'cohama/lexima.vim'
 call plug#end()
 
 " Plugins configuration
@@ -83,6 +85,10 @@ set lazyredraw
 
 " 10000 default is too much
 set history=100
+
+" window splitting rules
+set splitbelow
+set splitright
 
 
 
@@ -153,11 +159,10 @@ map <leader>r :e %<CR>
 map <leader>w :w<CR>
 map <leader>q :q<CR>
 map <leader>Q :q!<CR>
-map <leader>cf :exe 'edit' stdpath('config').'/init.vim'<CR>
-map <leader>so :so %<CR>
-nmap <leader>n <Plug>VimwikiIndex 0<CR>
-nmap <leader>e :NnnPicker<CR>
-nmap <leader>f :Files<CR>
+map <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+map <leader>s :so %<CR>
+map <leader>n <Plug>VimwikiIndex 0<CR>
+map <leader>e :NnnPicker<CR>
 
 autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
   \ | set spell
