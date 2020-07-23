@@ -1,6 +1,6 @@
 # check if already sourced
 _this=bashrc
-case "$__SOURCED" in 
+case "$__SOURCED" in
   *:$_this:*) return ;;
   *)          export __SOURCED=":$_this${__SOURCED:-:}" ;;
 esac
@@ -39,7 +39,7 @@ mkcdir() {
 # yank path to file / folder
 ypath() {
 	opts=
-	if [ "$1" = "--clipboard" ]; then
+	if [ "$1" = "--clipboard" ] || [ "$1" == "-c" ]; then
 		opts="-selection c" # use X clipboard
 		shift
 	fi
@@ -50,7 +50,7 @@ ypath() {
     return 1
   fi
 
-  case "$1" in 
+  case "$1" in
     /*) _out="$1";;
     *)  _out="$PWD/$1";;
   esac
