@@ -6,7 +6,6 @@ case "$__SOURCED" in
 esac
 
 alias v='nvim'
-alias vim='nvim'
 alias vimdiff='nvim -d'
 alias V='SUDO_EDITOR="nvim" sudo -e'
 alias edit='nvim'
