@@ -29,6 +29,8 @@ let g:vimtex_quickfix_latexlog = {
 \ },
 \}
 
+let g:vimtex_imaps_leader = '¿'
+
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
@@ -36,9 +38,9 @@ let g:tex_conceal='abdmg'
 
 " ultisnips
 "
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsExpandTrigger = '<c-Space>'
+let g:UltiSnipsJumpForwardTrigger = '<c-Space>'
 
 
 
@@ -70,3 +72,17 @@ let g:lightline.inactive = {
 let g:lightline.tabline = {
     \ 'left': [ [ 'tabs' ] ],
     \ 'right': [ [ 'close' ] ] }
+
+
+
+" lexima
+let g:lexima_map_escape = 'jj'
+let b:custom_lexima_rules = [
+\ {'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': ['tex', 'latex']},
+\ {'char': '$', 'input_after': '$', 'filetype': ['tex', 'latex']},
+\ {'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': ['tex', 'latex']}
+\]
+
+for rule in b:custom_lexima_rules
+	call lexima#add_rule(rule)
+endfor

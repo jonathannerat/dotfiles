@@ -21,7 +21,6 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 " self explanatory
 Plug 'asciidoc/vim-asciidoc'
-Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 " file prompt using nnn
 Plug 'mcchrish/nnn.vim'
@@ -31,18 +30,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
+" quoting/parenthesizinv made simple
+Plug 'tpope/vim-surround'
+" auto completition engine
 Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" auto close/delete brackets/quotes/etc
-Plug 'jiangmiao/auto-pairs'
+" auto close/delete parentheses/brackets/quotes/etc
+Plug 'cohama/lexima.vim'
 call plug#end()
 
 " Plugins configuration
 exe 'source' stdpath('config').'/plugins.vim'
 "
-exe 'source' stdpath('config').'/functions.vim'
-
 " move settings likely to change regurlarly here (such as colorscheme and the
 " like, to keep git history clean)
 exe 'source' stdpath('config').'/custom.vim'
@@ -63,6 +63,8 @@ set termguicolors
 
 " hide "-- INSERT --" from status line, use lightline instead
 set noshowmode
+" open splits below if horizontal, or right if vertical
+set splitbelow splitright
 " show line number
 set number
 " any other line besides curren as a relative number
@@ -149,15 +151,20 @@ map <leader>hh :noh<CR>
 " highlight trailing spaces
 map <leader>ht /\s\+$<CR>
 " reload file
-map <leader>r :e %<CR>
-map <leader>w :w<CR>
-map <leader>q :q<CR>
-map <leader>Q :q!<CR>
-map <leader>cf :exe 'edit' stdpath('config').'/init.vim'<CR>
-map <leader>so :so %<CR>
-nmap <leader>n <Plug>VimwikiIndex 0<CR>
-nmap <leader>e :NnnPicker<CR>
-nmap <leader>f :Files<CR>
+nnoremap <leader>r :e %<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
+nnoremap <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>s :so %<CR>
+nnoremap <leader>n <Plug>VimwikiIndex 0<CR>
+nnoremap <leader>e :NnnPicker<CR>
+nnoremap <leader>f :Files<CR>
+
+
+inoremap jj <Esc>
+inoremap kk <Esc>:
+
 
 autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
   \ | set spell
