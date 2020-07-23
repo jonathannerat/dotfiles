@@ -9,6 +9,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'jonathannerat/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
+" redredesigned mksession
+Plug 'tpope/vim-obsession'
 " git integration
 Plug 'tpope/vim-fugitive'
 " show hex colors
@@ -32,11 +34,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-commentary'
 " quoting/parenthesizinv made simple
 Plug 'tpope/vim-surround'
-" auto completition engine
+" A code completition engine for Vim
 Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" auto close/delete parentheses/brackets/quotes/etc
+" Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 call plug#end()
 
@@ -85,6 +87,10 @@ set lazyredraw
 
 " 10000 default is too much
 set history=100
+
+" window splitting rules
+set splitbelow
+set splitright
 
 
 

@@ -34,12 +34,14 @@ make_ps1() {
     local WHITE='\[\e[1;39m\]'
     local nc='\[\e[0m\]' # no color
 
-    if [ "$(type -t __git_ps1)" ]; then
+    export PS1_NOGIT="$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n$WHITE\$$nc "
+    if [ "$(type -t __git_ps1)" ] && [ ! "$1" = "--nogit" ]; then
       echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\$(__git_ps1 ' (%s)')\n$WHITE\$$nc "
     else
-      echo "$RED[$GREEN\u$WHITE@$BLUE\H $PURPLE\w$RED]$WHITE\n$WHITE\$$nc "
+      echo "$PS1_NOGIT"
     fi
 }
 
 # bash prompt (use function to keep color variables local)
 PS1=$(make_ps1)
+PS1_NOGIT=$(make_ps1 --nogit)
