@@ -30,13 +30,17 @@ export NNN_PLUG='o:nuke'
 # home cleaning
 # the variables keep many programs from creating dot-{filtes/folders} in
 # $HOME. Taken from XDG_Base_Directory's Arch Wiki
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv 
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+export ANDROID_ROOT_HOME="$XDG_CONFIG_HOME"/android
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export GEM_HOME="$XDG_DATA_HOME"/gem
 
 export GOPATH="$XDG_DATA_HOME/go"
 export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
@@ -50,8 +54,11 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 export _Z_DATA="$XDG_DATA_HOME/z"
+export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android/
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/
 
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 
 # use fcitx as IM
 export XMODIFIERS=@im=fcitx
@@ -63,6 +70,9 @@ export QT_IM_MODULE=fcitx
 
 # local programs
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+
+# gem binaries
+[ -d "$XDG_DATA_HOME/gem/bin" ] && PATH="$XDG_DATA_HOME/gem/bin:$PATH"
 
 # go binaries
 [ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
