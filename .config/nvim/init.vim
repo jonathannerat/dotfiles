@@ -40,6 +40,8 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Plugins configuration
