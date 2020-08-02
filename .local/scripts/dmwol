@@ -1,0 +1,11 @@
+#!/bin/sh
+
+_wolf="$HOME/.config/wol.list" # wol file. syntac: "<name> <mac>"
+_subnet="192.168.0.0"
+
+_devn=$(cut -d" " -f1 "$_wolf" | dmenu -i) # choose device by name
+_devi=$(grep -F "$_devn" "$_wolf" | cut -d" " -f2) # get mac address filtering by name
+
+_msg=$(wol -h "$_subnet" "$_devi" 2>&1)
+
+notify-send -u low WakeOnLan "$_msg"
