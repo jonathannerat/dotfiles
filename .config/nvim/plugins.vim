@@ -70,3 +70,9 @@ let g:lightline.inactive = {
 let g:lightline.tabline = {
     \ 'left': [ [ 'tabs' ] ],
     \ 'right': [ [ 'close' ] ] }
+
+
+
+" YouCompleteMe
+let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+let g:ycm_always_populate_location_list = 1

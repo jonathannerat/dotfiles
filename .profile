@@ -6,7 +6,9 @@ case "$__SOURCED" in
 esac
 
 # custom variables
-export DOTS="$HOME/proj/dotfiles"
+export DOTS="$HOME/.local/src/dotfiles"
+# for artix
+export SVDIR="$HOME/.config/runit/runsvdir"
 
 # XDG specification
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -43,7 +45,7 @@ export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
 export GEM_HOME="$XDG_DATA_HOME"/gem
 
 export GOPATH="$XDG_DATA_HOME/go"
-export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
+export MPD_HOST="$XDG_DATA_HOME/mpd/soclet"
 export LESSKEY="$XDG_DATA_HOME/less/lesskey"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
@@ -76,3 +78,6 @@ export QT_IM_MODULE=fcitx
 
 # go binaries
 [ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
+
+# untracked overrides for this profile
+[ -f "$XDG_CONFIG_HOME"/custom.profile ] && source "$XDG_CONFIG_HOME"/custom.profile

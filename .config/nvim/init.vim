@@ -32,12 +32,17 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
+" surround text with quotes / parenthesis / brackets / etc
+Plug 'tpope/vim-surround'
 " A code completition engine for Vim
 Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
+" fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Plugins configuration
@@ -148,21 +153,25 @@ vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 " disable exmode
 nnoremap Q <NOP>
 
-map <leader>cd :lcd %:h<CR>
+nnoremap <leader>cd :lcd %:h<CR>
 
 " clear highlighting
-map <leader>hh :noh<CR>
+nnoremap <leader>hh :noh<CR>
 " highlight trailing spaces
-map <leader>ht /\s\+$<CR>
-" reload file
-map <leader>r :e %<CR>
-map <leader>w :w<CR>
-map <leader>q :q<CR>
-map <leader>Q :q!<CR>
-map <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
-map <leader>s :so %<CR>
-map <leader>n <Plug>VimwikiIndex 0<CR>
-map <leader>e :NnnPicker<CR>
+nnoremap <leader>ht /\s\+$<CR>
+
+nnoremap <leader>r :e %<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa!<CR>
+nnoremap <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>s :so %<CR>
+nnoremap <leader>n <Plug>VimwikiIndex 0<CR>
+nnoremap <leader>e :NnnPicker<CR>
+nnoremap <leader>f :Files<CR>
+
+inoremap jj <Esc>
+inoremap kk <Esc>:
 
 autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
   \ | set spell
