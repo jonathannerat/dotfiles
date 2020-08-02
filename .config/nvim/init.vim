@@ -32,7 +32,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
-" surround text with quotes / parenthesis / brackets / etc
+" quoting/parenthesizinv made simple
 Plug 'tpope/vim-surround'
 " A code completition engine for Vim
 Plug 'ycm-core/YouCompleteMe'
@@ -48,8 +48,6 @@ call plug#end()
 " Plugins configuration
 exe 'source' stdpath('config').'/plugins.vim'
 "
-exe 'source' stdpath('config').'/functions.vim'
-
 " move settings likely to change regurlarly here (such as colorscheme and the
 " like, to keep git history clean)
 exe 'source' stdpath('config').'/custom.vim'
@@ -70,6 +68,8 @@ set termguicolors
 
 " hide "-- INSERT --" from status line, use lightline instead
 set noshowmode
+" open splits below if horizontal, or right if vertical
+set splitbelow splitright
 " show line number
 set number
 " any other line besides curren as a relative number
@@ -160,6 +160,7 @@ nnoremap <leader>hh :noh<CR>
 " highlight trailing spaces
 nnoremap <leader>ht /\s\+$<CR>
 
+" reload file
 nnoremap <leader>r :e %<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>

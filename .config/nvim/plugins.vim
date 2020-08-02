@@ -29,16 +29,19 @@ let g:vimtex_quickfix_latexlog = {
 \ },
 \}
 
+let g:vimtex_imaps_leader = '¿'
+
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
 
 
 " ultisnips
+"
+let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsExpandTrigger = '<C-Space>'
 let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
-let g:UltiSnipsEditSplit="context"
 
 
 
@@ -76,3 +79,17 @@ let g:lightline.tabline = {
 " YouCompleteMe
 let g:ycm_clangd_binary_path = "/usr/bin/clangd"
 let g:ycm_always_populate_location_list = 1
+
+
+
+" lexima
+let g:lexima_map_escape = 'jj'
+let b:custom_lexima_rules = [
+\ {'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': ['tex', 'latex']},
+\ {'char': '$', 'input_after': '$', 'filetype': ['tex', 'latex']},
+\ {'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': ['tex', 'latex']}
+\]
+
+for rule in b:custom_lexima_rules
+	call lexima#add_rule(rule)
+endfor
