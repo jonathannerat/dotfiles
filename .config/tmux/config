@@ -1,10 +1,12 @@
-set -g default-command /bin/bash
-set -g default-terminal "st-256color"
+set -g default-terminal "tmux-256color"
 set -g prefix C-a
+set -sg escape-time 10
 
 setw -g mode-keys vi
 setw -g mode-style bg=black
 setw -g automatic-rename
+
+setenv -g TERM "tmux-256color"
 
 unbind C-b
 unbind l
