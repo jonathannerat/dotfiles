@@ -1,10 +1,13 @@
-set -g default-command /bin/bash
-set -g default-terminal "st-256color"
+# vi: syntax=tmux
+set -g default-terminal "tmux-256color"
 set -g prefix C-a
+set -g status-keys vi
+set -g mode-style bg=black
+set -g automatic-rename on
 
-setw -g mode-keys vi
-setw -g mode-style bg=black
-setw -g automatic-rename
+set -sg escape-time 10
+
+setenv -g TERM "tmux-256color"
 
 unbind C-b
 unbind l
@@ -25,24 +28,27 @@ bind - split-window -v
 
 # status bar theme
 
-set -g status 'on'
-set -g status-position bottom
-set -g status-bg 'colour235'
-set -g status-justify 'centre'
-set -g status-left-length '100'
-set -g status-right-length '100'
-set -g message-style fg='colour222',bg='colour238'
-set -g message-command-style fg='colour222',bg='colour238'
-set -g pane-border-style fg='colour238'
-set -g pane-active-border-style fg='colour154'
-setw -g window-status-activity-style fg='colour154',bg='colour235',none
-setw -g window-status-separator ''
-setw -g window-status-style fg='colour121',bg='colour235',none
+set -g status on
+set -g status-position top
+set -g status-justify centre
+set -g status-left-length 200
+set -g status-right-length 200
+set -g status-style fg=white,bg=black
 
-set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami)  #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
+set -g message-style fg=yellow,bg=black
+set -g message-command-style fg=yellow,bg=black
 
-set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] %H:%M  %a  %Y #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]'
+set -g pane-border-style fg=white
+set -g pane-active-border-style fg=yellow
 
-setw -g window-status-format '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[default] #I  #W #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
+set -g window-status-style fg=magenta,bg=black
+set -g window-status-activity-style bg=magenta,fg=black
+set -g window-status-bell-style bg=magenta,fg=black
+set -g window-status-separator ' | '
 
-setw -g window-status-current-format '#[fg=colour235,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I  #W  #F #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]'
+set -g status-right '#[fg=green,bold]#(whoami)#[fg=white]@#[fg=blue]#H '
+set -g status-left '#[fg=red,bold][#S] '
+
+set -g window-status-format ' #I:[ #W ] #F '
+set -g window-status-current-format ' #[bold]#I:[ #W ] #F '
+
