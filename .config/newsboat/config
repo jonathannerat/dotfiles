@@ -1,15 +1,7 @@
-# ┌─────────┐
-# │ General │
-# └─────────┘
+# General
+browser "xdg-open"
 
-browser "qutebrowser"
-
-
-
-# ┌──────────────┐
-# │ key bindgins │
-# └──────────────┘
-
+# Key-bindings
 unbind-key j
 unbind-key J
 unbind-key k
@@ -17,7 +9,6 @@ unbind-key K
 unbind-key A
 unbind-key C
 unbind-key ^K
-
 
 bind-key ^D pagedown
 
@@ -44,11 +35,7 @@ bind-key ^U pageup
 
 bind-key ^R random-unread
 
-
-
-# ┌────────┐
-# │ Colors │
-# └────────┘
+# Colors
 
 #     element             foreground     background
 color listnormal          color7         color0
@@ -59,11 +46,7 @@ color info                color0         color14
 color background          color7         color0
 color article             color15        color0
 
-
-
-# ┌─────────┐
-# │ Formats │
-# └─────────┘
+# Formats
 
 datetime-format             "%Y/%m/%d"
 feedlist-format             "%4i | %n | %11u | %?d? %-40t | %d& %-40t | %T?"
@@ -74,14 +57,9 @@ searchresult-title-format   "Search: [%u unread / %t total]"
 filebrowser-title-format    "%?O?Open directory&Save file? - %f"
 itemview-title-format       "%T [%F]"
 
-
-
-# ┌────────────────┐
-# │ podboat config │
-# └────────────────┘
+# Podboat config
 
 podlist-format "%3i [%4dM/%4tM] (%4k) | %-11S (%4p) | %b"
 download-path ~/files/audio/podcasts/%n/
 download-filename-format "%N - %t.%e"
 player "mpv --no-video"
-
