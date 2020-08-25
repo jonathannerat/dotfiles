@@ -1,7 +1,68 @@
-" Plugins configuration
+" PLUGINS
+" =======
 
-" vimtex
+" List of installed plugins
+" -------------------------
 
+call plug#begin(stdpath('data').'/plugged')
+" fancy and light status line
+Plug 'itchyny/lightline.vim'
+Plug 'jonathannerat/lightline-trailing-whitespace'
+" base16 themes for lightline
+Plug 'mike-hearn/base16-vim-lightline'
+" redredesigned mksession
+Plug 'tpope/vim-obsession'
+" git integration
+Plug 'tpope/vim-fugitive'
+" show hex colors
+Plug 'lilydjwg/colorizer'
+" base16 themes for vim
+Plug 'chriskempson/base16-vim'
+" latex integration
+Plug 'lervag/vimtex'
+" awesome snippets
+Plug 'SirVer/ultisnips'
+" self explanatory
+Plug 'asciidoc/vim-asciidoc'
+Plug 'mbbill/undotree'
+" file prompt using nnn
+Plug 'mcchrish/nnn.vim'
+" per projet configuration
+Plug 'editorconfig/editorconfig-vim'
+" personal wiki for vim
+Plug 'vimwiki/vimwiki'
+" comments
+Plug 'tpope/vim-commentary'
+" quoting/parenthesizinv made simple
+Plug 'tpope/vim-surround'
+" A code completition engine for Vim
+Plug 'ycm-core/YouCompleteMe'
+" python ide
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Auto close parentheses and repeat by dot dot dot...
+Plug 'jiangmiao/auto-pairs'
+" fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'neomutt/neomutt.vim'
+call plug#end()
+
+
+
+" Plugin Configuration
+" --------------------
+
+" AUTOPAIRS
+augroup vim_fix_autopairs
+	autocmd!
+	autocmd FileType vim let b:AutoPairs = AutoPairsDefine({}, [ '"' ])
+augroup END
+
+
+
+" VIMTEX
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=1
@@ -20,7 +81,6 @@ let g:vimtex_compiler_latexmk = {
 \   '-interaction=nonstopmode',
 \ ],
 \}
-
 let g:vimtex_quickfix_latexlog = {
 \ 'overfull' : 0,
 \ 'underfull' : 0,
@@ -28,68 +88,61 @@ let g:vimtex_quickfix_latexlog = {
 \   'default' : 0,
 \ },
 \}
-
 let g:vimtex_imaps_leader = '¿'
-
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
 
-
-" ultisnips
-"
+" ULTISNIPS
 let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsExpandTrigger = '<C-Space>'
 let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
 
+" VIMWIKI
+
+let default_vimwiki = {
+\	'name': 'notes',
+\	'path': '~/proj/notes',
+\	'path_html': '~/proj/notes/_html',
+\	'nested_syntaxes': {
+\		'java': 'java',
+\	}
+\}
+
+let g:vimwiki_list = [default_vimwiki]
 
 
-" vimwiki
-let g:vimwiki_list = [{'path': '~/proj/notes/', 'path_html': '~/proj/notes/_html'}]
 
-
-
-" nnn
+" NNN
 let g:nnn#set_default_mappings = 0
 
 
-
-" lightline
+" LIGHTLINE
 let g:lightline = {}
 let lightline#trailing_whitespace#indicator = '•'
 let g:lightline.component_expand = { 'trailing': 'lightline#trailing_whitespace#component' }
 let g:lightline.component_type = { 'trailing': 'error' }
 let g:lightline.active = {
-    \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'readonly', 'filename', 'modified' ] ],
-    \ 'right': [ [ 'trailing', 'lineinfo' ],
-    \            [ 'percent' ],
-    \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+\ 'left': [ [ 'mode', 'paste' ],
+\           [ 'readonly', 'filename', 'modified' ] ],
+\ 'right': [ [ 'trailing', 'lineinfo' ],
+\            [ 'percent' ],
+\            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 let g:lightline.inactive = {
-    \ 'left': [ [ 'filename' ] ],
-    \ 'right': [ [ 'lineinfo' ],
-    \            [ 'percent' ] ] }
+\ 'left': [ [ 'filename' ] ],
+\ 'right': [ [ 'lineinfo' ],
+\            [ 'percent' ] ] }
 let g:lightline.tabline = {
-    \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ [ 'close' ] ] }
+\ 'left': [ [ 'tabs' ] ],
+\ 'right': [ [ 'close' ] ] }
 
 
-
-" YouCompleteMe
+" YOUCOMPLETEME
 let g:ycm_clangd_binary_path = "/usr/bin/clangd"
 let g:ycm_always_populate_location_list = 1
+let g:ycm_semantic_triggers = {
+\ 'css': [ 're!^', 're!^\s+', ': ' ],
+\ 'scss': [ 're!^', 're!^\s+', ': ' ],
+\}
 
-
-
-" lexima
-let g:lexima_map_escape = 'jj'
-let b:custom_lexima_rules = [
-\ {'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': ['tex', 'latex']},
-\ {'char': '$', 'input_after': '$', 'filetype': ['tex', 'latex']},
-\ {'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': ['tex', 'latex']}
-\]
-
-for rule in b:custom_lexima_rules
-	call lexima#add_rule(rule)
-endfor
