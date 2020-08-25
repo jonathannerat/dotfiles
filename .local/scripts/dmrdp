@@ -18,7 +18,7 @@ errcho() {
     if [ -t 0 ]; then
         >&2 echo "$*"
     else
-        notify-send "dmrdp" "$*"
+        notify-send -u low "dmrdp" "$*"
     fi
 
     exit 1
@@ -36,8 +36,11 @@ elif [ $(ls -1 "$_connf" | wc -l) -eq 0 ]; then
 fi 
 
 _conn=$(ls -1 "$_connf" | dmenu -i -p "Choose a connection:")
+
 # check if selected connection exists
-if [ ! -f "$_connf/$_conn" ]; then 
+if [ -z "$_conn" ]; then
+    exit 0
+elif [ ! -f "$_connf/$_conn" ]; then 
     errcho "No connection \"$_conn\" found"
 fi
 
