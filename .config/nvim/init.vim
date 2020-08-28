@@ -2,50 +2,6 @@
 " >> PLUGINS <<
 " =============
 
-call plug#begin(stdpath('data').'/plugged')
-
-" fancy and light status line
-Plug 'itchyny/lightline.vim'
-Plug 'jonathannerat/lightline-trailing-whitespace'
-" base16 themes for lightline
-Plug 'mike-hearn/base16-vim-lightline'
-" redredesigned mksession
-Plug 'tpope/vim-obsession'
-" git integration
-Plug 'tpope/vim-fugitive'
-" show hex colors
-Plug 'lilydjwg/colorizer'
-" base16 themes for vim
-Plug 'chriskempson/base16-vim'
-" latex integration
-Plug 'lervag/vimtex'
-" awesome snippets
-Plug 'SirVer/ultisnips'
-" self explanatory
-Plug 'asciidoc/vim-asciidoc'
-Plug 'mbbill/undotree'
-" file prompt using nnn
-Plug 'mcchrish/nnn.vim'
-" per projet configuration
-Plug 'editorconfig/editorconfig-vim'
-" personal wiki for vim
-Plug 'vimwiki/vimwiki'
-" comments
-Plug 'tpope/vim-commentary'
-" quoting/parenthesizinv made simple
-Plug 'tpope/vim-surround'
-" A code completition engine for Vim
-Plug 'ycm-core/YouCompleteMe'
-" python ide
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Auto close parentheses and repeat by dot dot dot...
-Plug 'cohama/lexima.vim'
-" fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-call plug#end()
-
-" Plugins configuration
 exe 'source' stdpath('config').'/plugins.vim'
 "
 " move settings likely to change regurlarly here (such as colorscheme and the
@@ -160,16 +116,23 @@ nnoremap <leader>hh :noh<CR>
 " highlight trailing spaces
 nnoremap <leader>ht /\s\+$<CR>
 
-" reload file
-nnoremap <leader>r :e %<CR>
-nnoremap <leader>w :w<CR>
+nmap <leader>n <Plug>VimwikiIndex 0
+
+nnoremap <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :Files
+nnoremap <leader>gf :e <cfile><cr>
+nnoremap <leader>wgf :split <cfile><cr>
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pc :PlugClean<CR>
+nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
-nnoremap <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>r :e %<CR>
 nnoremap <leader>s :so %<CR>
-nnoremap <leader>n <Plug>VimwikiIndex 0<CR>
-nnoremap <leader>e :NnnPicker<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>y :YcmCompleter 
 
 inoremap jj <Esc>
 inoremap kk <Esc>:
