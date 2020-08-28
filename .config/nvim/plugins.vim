@@ -42,25 +42,17 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'jiangmiao/auto-pairs'
 " fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neomutt/neomutt.vim'
+Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 
 
 
 " Plugin Configuration
 " --------------------
-
-" AUTOPAIRS
-augroup vim_fix_autopairs
-	autocmd!
-	autocmd FileType vim let b:AutoPairs = AutoPairsDefine({}, [ '"' ])
-augroup END
-
-
 
 " VIMTEX
 let g:tex_flavor='latex'

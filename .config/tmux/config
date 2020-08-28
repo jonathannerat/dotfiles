@@ -18,12 +18,14 @@ unbind \"
 
 bind C-a send-prefix
 
-bind r source-file ~/.config/tmux/config
 
+bind b command-prompt -p "(swap-pane-with)" "swap-pane -d -t %%"
+bind B command-prompt -p "(swap-window-with)" "swap-window -d -t %%"
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+bind r source-file ~/.config/tmux/config
 
 bind | split-window -h
 bind - split-window -v

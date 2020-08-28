@@ -118,20 +118,24 @@ nnoremap <leader>ht /\s\+$<CR>
 
 nmap <leader>n <Plug>VimwikiIndex 0
 
-nnoremap <leader>c :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>ci :exe 'edit' stdpath('config').'/init.vim'<CR>
+nnoremap <leader>cp :exe 'edit' stdpath('config').'/plugins.vim'<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>F :Files
 nnoremap <leader>gf :e <cfile><cr>
-nnoremap <leader>wgf :split <cfile><cr>
+nnoremap <leader>p :Plug
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pc :PlugClean<CR>
 nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qa!<CR>
+nnoremap <leader>qa :qa<CR>
+nnoremap <leader>Q :q!<CR>
+nnoremap <leader>Qa :qa!<CR>
 nnoremap <leader>r :e %<CR>
 nnoremap <leader>s :so %<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>Wf :split <cfile><cr>
 nnoremap <leader>y :YcmCompleter 
 
 inoremap jj <Esc>
