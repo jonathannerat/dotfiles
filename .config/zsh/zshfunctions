@@ -1,0 +1,10 @@
+cdgr() {
+	_isgit=$(git rev-parse --is-inside-work-tree 2>/dev/null)
+
+	if [ "$_isgit" = true ]; then
+		cd $(git rev-parse --show-toplevel)
+	else
+		2>&1 echo "cdgr: bad working directory: not inside a git repository"
+		return 1
+	fi
+}

@@ -1,0 +1,41 @@
+# shut up
+unsetopt beep
+# for gitbranch on prompt
+setopt prompt_subst
+# use vi key-bindings
+bindkey -v
+# awesome completion
+autoload -Uz compinit
+compinit
+# run when zsh vi mode is changed shows different indicators for each mode
+zle-keymap-select() {
+	case $KEYMAP in
+		vicmd)      echo -ne "\e[2 q";; # block cursor
+		viins|main) echo -ne "\e[6 q";; # pipe cursor
+	esac
+}
+zle -N zle-keymap-select
+
+# default to insert mode on start
+zle-line-init() {
+	zle -K viins
+	echo -ne "\e[6 q"
+}
+zle -N zle-line-init
+
+# start only one ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+  eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
+fi
+
+# z to jump between directories
+[ -r "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
+
+# for aliases
+[ -f "$ZDOTDIR"/zshaliases ] && source "$ZDOTDIR"/zshaliases
+
+# for functions
+[ -f "$ZDOTDIR"/zshfunctions ] && source "$ZDOTDIR"/zshfunctions

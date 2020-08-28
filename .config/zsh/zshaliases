@@ -1,0 +1,26 @@
+# force XDG compliance
+alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local/share/irssi\""
+alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
+alias tmux="tmux -f \"$HOME\"/.config/tmux/config"
+
+# overrides
+alias ls='ls --color=auto'
+alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
+alias info='info --vi-keys'
+alias vimdiff='nvim -d'
+
+# convinient aliases
+alias c='xclip'
+alias cx='xclip -selection clipboard'
+
+alias ll='ls -al'
+
+alias v='nvim'
+alias V='SUDO_EDITOR="nvim" sudo -e'
+
+alias tt='tmux new -A -s'
+
+alias yv='youtube-viewer'
+alias yvn='youtube-viewer -n --autoplay'
+
