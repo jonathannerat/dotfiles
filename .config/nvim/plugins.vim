@@ -42,7 +42,6 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'jiangmiao/auto-pairs'
 " fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
