@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_wolf="$HOME/.config/wol.list" # wol file. syntac: "<name> <mac>"
+_wolf="$HOME/.config/dwol.list" # wol file. syntac: "<name> <mac>"
 _subnet="192.168.0.0"
 
 _devn=$(cut -d" " -f1 "$_wolf" | dmenu -i) # choose device by name
