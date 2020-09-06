@@ -13,20 +13,34 @@ unbind C-b
 unbind l
 unbind %
 unbind \"
+unbind up
+unbind down
+unbind left
+unbind right
+unbind C-up
+unbind C-down
+unbind C-left
+unbind C-right
 
 bind C-a send-prefix
 
+bind -N "swap current pane"    b  command-prompt -1 -p "(swap-pane-with)" "swap-pane -d -t %%"
+bind -N "swap current window"  B  command-prompt -1 -p "(swap-window-with)" "swap-window -d -t %%"
 
-bind b command-prompt -p "(swap-pane-with)" "swap-pane -d -t %%"
-bind B command-prompt -p "(swap-window-with)" "swap-window -d -t %%"
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-bind r source-file ~/.config/tmux/config
+bind -N "select pane left"    h    select-pane -L
+bind -N "select pane below"   j    select-pane -D
+bind -N "select pane above"   k    select-pane -U
+bind -N "select pane right"   l    select-pane -R
+bind -rN "resize pane left"   C-k  resize-pane -U 5
+bind -rN "resize pane down"   C-j  resize-pane -D 5
+bind -rN "resize pane up"     C-h  resize-pane -L 5
+bind -rN "resize pane right"  C-l  resize-pane -R 5
 
-bind | split-window -h
-bind - split-window -v
+bind -N "reload config" r source-file ~/.config/tmux/config
+
+
+bind -N "vertical split"    |  split-window -h
+bind -N "horizontal split"  -  split-window -v
 
 # status bar theme
 
