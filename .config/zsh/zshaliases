@@ -1,7 +1,8 @@
 # force XDG compliance
-alias irssi="irssi --config=\"$HOME/.config/irssi/config\" --home=\"$HOME/.local/share/irssi\""
-alias gpg="gpg --homedir \"$HOME/.local/share/gnupg\""
-alias tmux="tmux -f \"$HOME\"/.config/tmux/config"
+alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
+alias gpg="gpg --homedir $HOME/.local/share/gnupg"
+alias tmux="tmux -f $HOME/.config/tmux/config"
+alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
 
 # overrides
 alias ls='ls --color=auto'

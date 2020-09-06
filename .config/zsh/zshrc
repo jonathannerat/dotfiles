@@ -6,6 +6,9 @@ setopt prompt_subst
 setopt appendhistory
 # use vi key-bindings
 bindkey -v
+bindkey "^?" backward-delete-char
+bindkey "^W" backward-delete-word
+
 # awesome completion
 autoload -Uz compinit
 compinit
@@ -43,3 +46,4 @@ fi
 
 # for functions
 [ -f "$ZDOTDIR"/zshfunctions ] && source "$ZDOTDIR"/zshfunctions
+
