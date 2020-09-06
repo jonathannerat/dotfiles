@@ -2,11 +2,15 @@
 unsetopt beep
 # for gitbranch on prompt
 setopt prompt_subst
+# zsh history
+setopt appendhistory
 # use vi key-bindings
 bindkey -v
 # awesome completion
 autoload -Uz compinit
 compinit
+# enable ./ ../ completion
+zstyle ':completion:*' special-dirs true
 # run when zsh vi mode is changed shows different indicators for each mode
 zle-keymap-select() {
 	case $KEYMAP in
