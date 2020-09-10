@@ -1,0 +1,11 @@
+# use vi key-bindings
+bindkey -v
+
+bindkey "jj" vi-cmd-mode
+bindkey "^?" backward-delete-char
+bindkey "^W" backward-delete-word
+bindkey "^[[3~" delete-char
+
+bindkey -M vicmd v edit-command-line
+bindkey -M vicmd "/" history-incremental-search-forward
+bindkey -M vicmd "?" history-incremental-search-backward

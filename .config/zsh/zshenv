@@ -16,3 +16,5 @@ export PROMPT="$(make-ps1)"
 
 export HISTFILE="$HOME/.local/share/zsh/histfile"
 export HISTSIZE=1000
+export SAVEHIST=1000
+export WORDCHARS=${WORDCHARS/\/}
