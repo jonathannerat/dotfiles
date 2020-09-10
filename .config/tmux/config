@@ -31,10 +31,10 @@ bind -N "select pane left"    h    select-pane -L
 bind -N "select pane below"   j    select-pane -D
 bind -N "select pane above"   k    select-pane -U
 bind -N "select pane right"   l    select-pane -R
-bind -rN "resize pane left"   C-k  resize-pane -U 5
-bind -rN "resize pane down"   C-j  resize-pane -D 5
-bind -rN "resize pane up"     C-h  resize-pane -L 5
-bind -rN "resize pane right"  C-l  resize-pane -R 5
+bind -rN "resize pane left"   C-k  resize-pane -U 2
+bind -rN "resize pane down"   C-j  resize-pane -D 2
+bind -rN "resize pane up"     C-h  resize-pane -L 2
+bind -rN "resize pane right"  C-l  resize-pane -R 2
 
 bind -N "reload config" r source-file ~/.config/tmux/config
 
