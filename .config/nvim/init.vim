@@ -98,7 +98,8 @@ set fileformats=unix,dos,mac
 " (ms) time to wait for mapped sequences
 set timeoutlen=500
 
-let mapleader=','
+nnoremap <Space> <nop>
+let mapleader=' '
 let maplocalleader='¿'
 
 nmap <M-j> mz:m+<CR>`z
@@ -106,37 +107,34 @@ nmap <M-k> mz:m-2<CR>`z
 vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
-" disable exmode
-nnoremap Q <NOP>
+nnoremap Q <nop>
 
-nnoremap <leader>cd :lcd %:h<CR>
-
-" clear highlighting
-nnoremap <leader>hh :noh<CR>
-" highlight trailing spaces
-nnoremap <leader>ht /\s\+$<CR>
-
-nmap <leader>n <Plug>VimwikiIndex 0
-
-nnoremap <leader>ci :exe 'edit' stdpath('config').'/init.vim'<CR>
-nnoremap <leader>cp :exe 'edit' stdpath('config').'/plugins.vim'<CR>
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>F :Files
-nnoremap <leader>gf :e <cfile><cr>
-nnoremap <leader>p :Plug
-nnoremap <leader>pi :PlugInstall<CR>
-nnoremap <leader>pc :PlugClean<CR>
-nnoremap <leader>pu :PlugUpdate<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>qa :qa<CR>
-nnoremap <leader>Q :q!<CR>
-nnoremap <leader>Qa :qa!<CR>
-nnoremap <leader>r :e %<CR>
-nnoremap <leader>s :so %<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>Wf :split <cfile><cr>
-nnoremap <leader>y :YcmCompleter 
+nnoremap <leader>cd   :lcd %:h<cr>
+nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<cr>
+nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
+nnoremap <leader>f    :Files<cr>
+nnoremap <leader>F    :Files 
+nnoremap <leader>gf   :e <cfile><cr>
+nnoremap <leader>h    :Helptags<cr>
+nnoremap <leader>hh   :nohlsearch<cr>
+nnoremap <leader>ht   /\s\+$<cr>
+nmap     <leader>n    <Plug>VimwikiIndex 0
+nnoremap <leader>nn   :NnnPicker<cr>
+nnoremap <leader>pi   :PlugInstall<cr>
+nnoremap <leader>pc   :PlugClean<cr>
+nnoremap <leader>pu   :PlugUpdate<cr>
+nnoremap <leader>P    :Plug
+nnoremap <leader>q    :q<cr>
+nnoremap <leader>qa   :qa<cr>
+nnoremap <leader>Q    :q!<cr>
+nnoremap <leader>Qa   :qa!<cr>
+nnoremap <leader>r    :e %<cr>
+nnoremap <leader>s    :so %<cr>
+nnoremap <leader>u    :UltiSnipsEdit<cr>
+nnoremap <leader>U    :UltiSnipsEdit 
+nnoremap <leader>w    :w<cr>
+nnoremap <leader>Wf   :split <cfile><cr>
+nnoremap <leader>y    :YcmCompleter 
 
 inoremap jj <Esc>
 inoremap kk <Esc>:
