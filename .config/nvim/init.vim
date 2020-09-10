@@ -51,6 +51,9 @@ set history=100
 set splitbelow
 set splitright
 
+" save taboo tab names
+set sessionoptions+=tabpages,globals
+
 
 
 " =====================
@@ -60,7 +63,7 @@ set splitright
 " use spaces instead of tab
 set noexpandtab
 " spaces for autoindent
-set shiftwidth=2
+set shiftwidth=0
 " tab = 2 spaces
 set tabstop=2
 " show whitespace
@@ -68,7 +71,8 @@ set list
 set listchars=eol:¬,tab:>·,trail:·
 " indent
 set autoindent
-set smartindent
+set copyindent
+set preserveindent
 " wrap line
 set wrap
 " break long lines
@@ -98,47 +102,59 @@ set fileformats=unix,dos,mac
 " (ms) time to wait for mapped sequences
 set timeoutlen=500
 
-nnoremap <Space> <nop>
 let mapleader=' '
 let maplocalleader='¿'
 
-nmap <M-j> mz:m+<CR>`z
-nmap <M-k> mz:m-2<CR>`z
-vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+inoremap jj <Esc>
+inoremap kk <Esc>:
 
-nnoremap Q <nop>
+vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
+vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
+nmap <leader>n <Plug>VimwikiIndex 0
+
+nnoremap <Space>      <nop>
+nnoremap  Q           <nop>
 nnoremap <leader>cd   :lcd %:h<cr>
 nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<cr>
 nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
 nnoremap <leader>f    :Files<cr>
-nnoremap <leader>F    :Files 
+nnoremap <leader>F    :Files
 nnoremap <leader>gf   :e <cfile><cr>
 nnoremap <leader>h    :Helptags<cr>
-nnoremap <leader>hh   :nohlsearch<cr>
+nnoremap <leader>hh   :noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
-nmap     <leader>n    <Plug>VimwikiIndex 0
-nnoremap <leader>nn   :NnnPicker<cr>
+nnoremap <leader>p    :Plug
 nnoremap <leader>pi   :PlugInstall<cr>
 nnoremap <leader>pc   :PlugClean<cr>
 nnoremap <leader>pu   :PlugUpdate<cr>
-nnoremap <leader>P    :Plug
 nnoremap <leader>q    :q<cr>
 nnoremap <leader>qa   :qa<cr>
 nnoremap <leader>Q    :q!<cr>
 nnoremap <leader>Qa   :qa!<cr>
 nnoremap <leader>r    :e %<cr>
 nnoremap <leader>s    :so %<cr>
+nnoremap <leader>to   :TabooOpen 
+nnoremap <leader>tr   :TabooRename 
+nnoremap <leader>tR   :TabooReset<cr>
 nnoremap <leader>u    :UltiSnipsEdit<cr>
 nnoremap <leader>U    :UltiSnipsEdit 
 nnoremap <leader>w    :w<cr>
 nnoremap <leader>Wf   :split <cfile><cr>
 nnoremap <leader>y    :YcmCompleter 
+nnoremap <leader>yd   :YcmDiags<cr>
 
-inoremap jj <Esc>
-inoremap kk <Esc>:
+nnoremap <M-j>        mz:m+<cr>`z
+nnoremap <M-k>        mz:m-2<cr>`z
 
-autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
-  \ | set spell
-  \ | set spelllang=es,en
+cnoremap <c-k> <Up>
+cnoremap <c-j> <Down>
+
+
+
+augroup writing_file_rules
+	autocmd!
+	autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
+		\ | set spell
+		\ | set spelllang=es,en
+augroup end

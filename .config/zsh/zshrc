@@ -4,16 +4,17 @@ unsetopt beep
 setopt prompt_subst
 # zsh history
 setopt appendhistory
-# use vi key-bindings
-bindkey -v
-bindkey "^?" backward-delete-char
-bindkey "^W" backward-delete-word
 
 # awesome completion
 autoload -Uz compinit
-compinit
+zle -N compinit
 # enable ./ ../ completion
 zstyle ':completion:*' special-dirs true
+
+# edit command in vim
+autoload -z edit-command-line
+zle -N edit-command-line
+
 # run when zsh vi mode is changed shows different indicators for each mode
 zle-keymap-select() {
 	case $KEYMAP in
@@ -47,3 +48,5 @@ fi
 # for functions
 [ -f "$ZDOTDIR"/zshfunctions ] && source "$ZDOTDIR"/zshfunctions
 
+# for key bindings
+[ -f "$ZDOTDIR"/zshkeybinds ] && source "$ZDOTDIR"/zshkeybinds

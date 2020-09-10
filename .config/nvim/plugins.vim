@@ -7,6 +7,7 @@
 call plug#begin(stdpath('data').'/plugged')
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
+" like original but adds first ocurrence line no to ststua line
 Plug 'jonathannerat/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
@@ -24,9 +25,8 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 " self explanatory
 Plug 'asciidoc/vim-asciidoc'
+" shows undos in a tree
 Plug 'mbbill/undotree'
-" file prompt using nnn
-Plug 'mcchrish/nnn.vim'
 " per projet configuration
 Plug 'editorconfig/editorconfig-vim'
 " personal wiki for vim
@@ -39,16 +39,24 @@ Plug 'tpope/vim-surround'
 Plug 'ycm-core/YouCompleteMe'
 " python ide
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Auto close parentheses and repeat by dot dot dot...
-Plug 'jiangmiao/auto-pairs'
+" auto close parenthesis / brackets / etc
+Plug 'Townk/vim-autoclose'
 " fuzzy finder
 Plug 'junegunn/fzf.vim'
+" better javascript support (+jsx)
 Plug 'pangloss/vim-javascript'
+" better typescript support (+tsx)
 Plug 'HerringtonDarkholme/yats.vim'
+" neomut config syntax support
 Plug 'neomutt/neomutt.vim'
+" better support for scss syntax
 Plug 'cakebaker/scss-syntax.vim'
 " fast file explorer
 Plug 'mcchrish/nnn.vim'
+" rename tabs
+Plug 'gcmt/taboo.vim'
+" livescript syntax support
+Plug 'gkz/vim-ls'
 call plug#end()
 
 
