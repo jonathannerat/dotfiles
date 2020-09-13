@@ -54,6 +54,9 @@ set splitright
 " save taboo tab names
 set sessionoptions+=tabpages,globals
 
+" languages
+set spelllang=en,es
+
 
 
 " =====================
@@ -157,5 +160,4 @@ augroup writing_file_rules
 	autocmd!
 	autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
 		\ | set spell
-		\ | set spelllang=es,en
 augroup end
