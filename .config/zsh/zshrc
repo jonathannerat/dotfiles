@@ -6,6 +6,7 @@ setopt prompt_subst
 # awesome completion
 autoload -Uz compinit
 zle -N compinit
+compinit
 zstyle ':completion:*' special-dirs true
 
 # edit command in vim
