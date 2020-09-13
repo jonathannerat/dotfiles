@@ -8,6 +8,8 @@ setopt appendhistory
 # awesome completion
 autoload -Uz compinit
 zle -N compinit
+compinit
+
 # enable ./ ../ completion
 zstyle ':completion:*' special-dirs true
 

@@ -54,6 +54,9 @@ set splitright
 " save taboo tab names
 set sessionoptions+=tabpages,globals
 
+" languages
+set spelllang=en,es
+
 
 
 " =====================
@@ -113,11 +116,12 @@ vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
 nmap <leader>n <Plug>VimwikiIndex 0
 
-nnoremap <Space>      <nop>
 nnoremap  Q           <nop>
+nnoremap <Space>      <nop>
 nnoremap <leader>cd   :lcd %:h<cr>
 nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<cr>
 nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
+nnoremap <leader>e    :NnnPicker %:h<cr>
 nnoremap <leader>f    :Files<cr>
 nnoremap <leader>F    :Files
 nnoremap <leader>gf   :e <cfile><cr>
@@ -143,6 +147,8 @@ nnoremap <leader>w    :w<cr>
 nnoremap <leader>Wf   :split <cfile><cr>
 nnoremap <leader>y    :YcmCompleter 
 nnoremap <leader>yd   :YcmDiags<cr>
+nnoremap <leader>yk   :YcmCompleter GetDoc<cr>
+nnoremap <leader>yf   :YcmCompleter FixIt<cr>
 
 nnoremap <M-j>        mz:m+<cr>`z
 nnoremap <M-k>        mz:m-2<cr>`z
@@ -156,5 +162,4 @@ augroup writing_file_rules
 	autocmd!
 	autocmd FileType tex,latex,mail,markdown,vimwiki set textwidth=78
 		\ | set spell
-		\ | set spelllang=es,en
 augroup end

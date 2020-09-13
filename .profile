@@ -12,6 +12,7 @@ export EDITOR=nvim
 
 # nnn config
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
+export NNN_TRASH=1
 export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui'
 
 export FZF_DEFAULT_COMMAND='fd --type f'
