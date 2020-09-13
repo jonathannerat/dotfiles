@@ -118,6 +118,11 @@ let g:vimwiki_list = [default_vimwiki]
 
 " NNN
 let g:nnn#set_default_mappings = 0
+let g:nnn#action = {
+	\ '<c-t>': 'tab split',
+	\ '<c-x>': 'split',
+	\ '<c-v>': 'vsplit' }
+
 
 
 " LIGHTLINE

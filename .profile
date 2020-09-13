@@ -11,6 +11,7 @@ export TERMINAL=st
 export EDITOR=nvim
 
 # nnn config
+export NNN_TRASH=1
 export NNN_PLUG='o:nuke'
 
 export FZF_DEFAULT_COMMAND='fd --type f'

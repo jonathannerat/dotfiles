@@ -116,37 +116,38 @@ vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
 nmap <leader>n <Plug>VimwikiIndex 0
 
-nnoremap  Q           <NOP>
-nnoremap <Space>      <NOP>
-nnoremap <leader>cd   :lcd %:h<CR>
-nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<CR>
-nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<CR>
-nnoremap <leader>f    :Files<CR>
+nnoremap  Q           <nop>
+nnoremap <Space>      <nop>
+nnoremap <leader>cd   :lcd %:h<cr>
+nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<cr>
+nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
+nnoremap <leader>e    :NnnPicker %:h<cr>
+nnoremap <leader>f    :Files<cr>
 nnoremap <leader>F    :Files
-nnoremap <leader>h    :Helptags<CR>
-nnoremap <leader>hh   :noh<CR>
-nnoremap <leader>ht   /\s\+$<CR>
+nnoremap <leader>h    :Helptags<cr>
+nnoremap <leader>hh   :noh<cr>
+nnoremap <leader>ht   /\s\+$<cr>
 nnoremap <leader>gf   :e <cfile><cr>
 nnoremap <leader>p    :Plug
-nnoremap <leader>pi   :PlugInstall<CR>
-nnoremap <leader>pc   :PlugClean<CR>
-nnoremap <leader>pu   :PlugUpdate<CR>
-nnoremap <leader>q    :q<CR>
-nnoremap <leader>qa   :qa<CR>
-nnoremap <leader>Q    :q!<CR>
-nnoremap <leader>Qa   :qa!<CR>
-nnoremap <leader>r    :e %<CR>
-nnoremap <leader>s    :so %<CR>
+nnoremap <leader>pi   :PlugInstall<cr>
+nnoremap <leader>pc   :PlugClean<cr>
+nnoremap <leader>pu   :PlugUpdate<cr>
+nnoremap <leader>q    :q<cr>
+nnoremap <leader>qa   :qa<cr>
+nnoremap <leader>Q    :q!<cr>
+nnoremap <leader>Qa   :qa!<cr>
+nnoremap <leader>r    :e %<cr>
+nnoremap <leader>s    :so %<cr>
 nnoremap <leader>to   :TabooOpen 
 nnoremap <leader>tr   :TabooRename 
-nnoremap <leader>tR   :TabooReset<CR>
-nnoremap <leader>u    :UndotreeToggle<CR>
-nnoremap <leader>w    :w<CR>
-nnoremap <leader>Wf   :split <cfile><CR>
+nnoremap <leader>tR   :TabooReset<cr>
+nnoremap <leader>u    :UndotreeToggle<cr>
+nnoremap <leader>w    :w<cr>
+nnoremap <leader>Wf   :split <cfile><cr>
 nnoremap <leader>y    :YcmCompleter 
-nnoremap <leader>yd   :YcmDiags<CR>
-nnoremap <leader>yk   :YcmCompleter GetDoc<CR>
-nnoremap <leader>yf   :YcmCompleter FixIt<CR>
+nnoremap <leader>yd   :YcmDiags<cr>
+nnoremap <leader>yk   :YcmCompleter GetDoc<cr>
+nnoremap <leader>yf   :YcmCompleter FixIt<cr>
 
 nnoremap <M-j>        mz:m+<CR>`z
 nnoremap <M-k>        mz:m-2<CR>`z
