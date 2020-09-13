@@ -1,3 +1,4 @@
+# vi: syntax=neomuttrc
 # default editor to compose
 set editor=$EDITOR
 
@@ -7,27 +8,53 @@ set sidebar_visible=yes
 ignore *
 unignore from: to: subject: cc: bcc: date: x-mailer: x-url: user-agent:
 
+set charset="utf-8"
 # directories to store header and message body caches.
 # should be a directory if we're using a multiple account setup
 set header_cache=~/.cache/mutt
 set message_cachedir=~/.cache/mutt
 
+# wrap lines but don't show + markers for newlines
+set markers=no
+set smart_wrap
+
+# extended mailbox mode (calculates total, new and flagged counts)
+set mail_check_stats
 # show folder structure as a tree
 set sidebar_short_path
 set sidebar_delim_chars="/" # folder delimiter char
 set sidebar_folder_indent
 set sidebar_indent_string="  "
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
-set rfc2047_parameters = yes
+# tell mutt to suggest better attachment filenames
+set rfc2047_parameters=yes
 
+# these are generally the same as those defined for xdg-open, but
+# I execute them as background jobs with no output ('command 2>&1 >/dev/null &')
+# which lets me keep using mutt instead of blocking while the file is open
 set mailcap_path=$XDG_CONFIG_HOME/mutt/mailcap
+
+# refer to [this section](optionalfeatures.html#cond-date) in the manual
+# basically displays different date formats depending on the date of the message:
+set my_conditional_date="%<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>"
+set index_format="%5C %Z $my_conditional_date %-15.15L (%?l?%4l&%4c?) %s"
+
+# warn if attach string present but no attachment included
+set abort_noattach_regex="\\<(attach(|ed|ments?)|adjunto)\\>"
+set abort_noattach=ask-yes
+
+# hide help line
+set help=no
+
+set sort=threads
 
 source key-bindings.muttrc
 
 # here I setup multiple accounts using account-hooks
 source accounts.muttrc
 
-set sort=threads
+source theme.muttrc
 
 # personal aliases
 source aliases.muttrc

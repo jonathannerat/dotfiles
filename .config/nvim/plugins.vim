@@ -27,8 +27,6 @@ Plug 'SirVer/ultisnips'
 Plug 'asciidoc/vim-asciidoc'
 " shows undos in a tree
 Plug 'mbbill/undotree'
-" file prompt using nnn
-Plug 'mcchrish/nnn.vim'
 " per projet configuration
 Plug 'editorconfig/editorconfig-vim'
 " personal wiki for vim
@@ -53,6 +51,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neomutt/neomutt.vim'
 " better support for scss syntax
 Plug 'cakebaker/scss-syntax.vim'
+" fast file explorer
+Plug 'mcchrish/nnn.vim'
 " rename tabs
 Plug 'gcmt/taboo.vim'
 " livescript syntax support
@@ -83,13 +83,6 @@ let g:vimtex_compiler_latexmk = {
 \   '-interaction=nonstopmode',
 \ ],
 \}
-let g:vimtex_quickfix_latexlog = {
-\ 'overfull' : 0,
-\ 'underfull' : 0,
-\ 'packages' : {
-\   'default' : 0,
-\ },
-\}
 let g:vimtex_imaps_leader = '¿'
 set conceallevel=1
 let g:tex_conceal='abdmg'
@@ -112,16 +105,20 @@ let default_vimwiki = {
 \	}
 \}
 
+let g:vimwiki_key_mappings = { 'global': 0, }
+
 let g:vimwiki_list = [default_vimwiki]
 
 
 
 " NNN
+" Disable default mappings
 let g:nnn#set_default_mappings = 0
 let g:nnn#action = {
 	\ '<c-t>': 'tab split',
 	\ '<c-x>': 'split',
 	\ '<c-v>': 'vsplit' }
+
 
 
 

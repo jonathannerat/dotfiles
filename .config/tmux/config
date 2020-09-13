@@ -9,6 +9,8 @@ set -sg escape-time 10
 
 setenv -g TERM "tmux-256color"
 
+setenv -g TERM "tmux-256color"
+
 unbind C-b
 unbind l
 unbind %

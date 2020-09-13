@@ -2,11 +2,15 @@
 unsetopt beep
 # for gitbranch on prompt
 setopt prompt_subst
+# zsh history
+setopt appendhistory
 
 # awesome completion
 autoload -Uz compinit
 zle -N compinit
 compinit
+
+# enable ./ ../ completion
 zstyle ':completion:*' special-dirs true
 
 # edit command in vim

@@ -124,10 +124,10 @@ nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
 nnoremap <leader>e    :NnnPicker %:h<cr>
 nnoremap <leader>f    :Files<cr>
 nnoremap <leader>F    :Files
+nnoremap <leader>gf   :e <cfile><cr>
 nnoremap <leader>h    :Helptags<cr>
 nnoremap <leader>hh   :noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
-nnoremap <leader>gf   :e <cfile><cr>
 nnoremap <leader>p    :Plug
 nnoremap <leader>pi   :PlugInstall<cr>
 nnoremap <leader>pc   :PlugClean<cr>
@@ -141,7 +141,8 @@ nnoremap <leader>s    :so %<cr>
 nnoremap <leader>to   :TabooOpen 
 nnoremap <leader>tr   :TabooRename 
 nnoremap <leader>tR   :TabooReset<cr>
-nnoremap <leader>u    :UndotreeToggle<cr>
+nnoremap <leader>u    :UltiSnipsEdit<cr>
+nnoremap <leader>U    :UltiSnipsEdit 
 nnoremap <leader>w    :w<cr>
 nnoremap <leader>Wf   :split <cfile><cr>
 nnoremap <leader>y    :YcmCompleter 
@@ -149,8 +150,8 @@ nnoremap <leader>yd   :YcmDiags<cr>
 nnoremap <leader>yk   :YcmCompleter GetDoc<cr>
 nnoremap <leader>yf   :YcmCompleter FixIt<cr>
 
-nnoremap <M-j>        mz:m+<CR>`z
-nnoremap <M-k>        mz:m-2<CR>`z
+nnoremap <M-j>        mz:m+<cr>`z
+nnoremap <M-k>        mz:m-2<cr>`z
 
 cnoremap <c-k> <Up>
 cnoremap <c-j> <Down>
