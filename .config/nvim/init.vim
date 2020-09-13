@@ -142,6 +142,8 @@ nnoremap <leader>w    :w<CR>
 nnoremap <leader>Wf   :split <cfile><CR>
 nnoremap <leader>y    :YcmCompleter 
 nnoremap <leader>yd   :YcmDiags<CR>
+nnoremap <leader>yk   :YcmCompleter GetDoc<CR>
+nnoremap <leader>yf   :YcmCompleter FixIt<CR>
 
 nnoremap <M-j>        mz:m+<CR>`z
 nnoremap <M-k>        mz:m-2<CR>`z
