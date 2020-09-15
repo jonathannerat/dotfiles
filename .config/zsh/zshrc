@@ -5,13 +5,14 @@ setopt prompt_subst
 # zsh history
 setopt appendhistory
 
+# enable ./ ../ completion
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' completer _expand _complete
+
 # awesome completion
 autoload -Uz compinit
 zle -N compinit
 compinit
-
-# enable ./ ../ completion
-zstyle ':completion:*' special-dirs true
 
 # edit command in vim
 autoload -z edit-command-line
