@@ -38,7 +38,9 @@ bind -rN "resize pane down"   C-j  resize-pane -D 2
 bind -rN "resize pane up"     C-h  resize-pane -L 2
 bind -rN "resize pane right"  C-l  resize-pane -R 2
 
-bind -N "reload config" r source-file ~/.config/tmux/config
+bind -N "switch to last window"           tab  last-window
+bind -N "kill current pane (no prompt)"   X    kill-pane
+bind -N "reload config"                   r    source-file ~/.config/tmux/config
 
 
 bind -N "vertical split"    |  split-window -h
