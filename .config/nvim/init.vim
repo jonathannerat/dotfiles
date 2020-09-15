@@ -128,6 +128,7 @@ nnoremap <leader>gf   :e <cfile><cr>
 nnoremap <leader>h    :Helptags<cr>
 nnoremap <leader>hh   :noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
+nnoremap <leader>o    :Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
 nnoremap <leader>pi   :PlugInstall<cr>
 nnoremap <leader>pc   :PlugClean<cr>
