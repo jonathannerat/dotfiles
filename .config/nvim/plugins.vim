@@ -123,14 +123,20 @@ let g:nnn#action = {
 
 
 " LIGHTLINE
+function LightlineObsession()
+	return '%{ObsessionStatus(''session:  '', ''session:  '')}'
+endfunction
+
 let g:lightline = {}
 let lightline#trailing_whitespace#indicator = '•'
-let g:lightline.component_expand = { 'trailing': 'lightline#trailing_whitespace#component' }
-let g:lightline.component_type = { 'trailing': 'error' }
+let g:lightline.component_expand = {
+\	'trailing': 'lightline#trailing_whitespace#component',
+\	'obsession': 'LightlineObsession' }
+let g:lightline.component_type = { 'trailing': 'error', 'obsession': 'warning' }
 let g:lightline.active = {
 \ 'left': [ [ 'mode', 'paste' ],
 \           [ 'readonly', 'filename', 'modified' ] ],
-\ 'right': [ [ 'trailing', 'lineinfo' ],
+\ 'right': [ [ 'obsession', 'trailing', 'lineinfo' ],
 \            [ 'percent' ],
 \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 let g:lightline.inactive = {
