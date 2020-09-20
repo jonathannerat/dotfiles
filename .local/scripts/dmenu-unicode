@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+# dmenu-unicode
+# usage: dmenu-unicode [window-id]
+
+# Read a UnicodeData.txt file and present every [*] unicode character in dmenu to
+# search by name. Selected char is copied to system clipboard
+
+# [*] Only caveat is that some characters can't be displayed because of GNU's
+# printf. See comments below
+
+# Optional parameter, an X window id which will contain dmenu's instance
+_wid=$1
+# File containing unicode data
+_data_file="${XDG_DATA_HOME:-$HOME/.local/share}/UnicodeData.txt"
+# Cache with preprocessed data
+_cache_data="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-unicode"
+# UnicodeData file url
+_url="http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt"
+
+dialog() {
+	if [ -t 0 ]; then
+		echo "$*"
+	else
+		notify-send -u low "${0##*/}" "$*"
+	fi
+}
+
+input() {
+	local _prompt="$1"
+	local _input
+
+	if [ -t 0 ]; then
+		echo -n "$_prompt"
+		read -r _input
+	else
+		_input=$(dmenu ${_wid:+-W $_wid} -p "$_prompt")
+	fi
+
+	echo "$_input"
+}
+
+if ! [ -f "$_cache_data" ]; then
+	if ! [ -f "$_data_file" ]; then
+		dialog "Error: No data file found at $_data_file"
+		if command -v wget >/dev/null || command -v curl >/dev/null; then
+			_reply=$(echo -e "y\nn" | input "Download UnicodeData.txt from '$_url'?")
+		else
+			dialog "Neither wget nor curl were found on the system. Download the file manully from: '$_url' and save it to: '$_data_file'"
+			exit 1
+		fi
+
+		if [ "$_reply" = "y" ]; then
+			if command -v wget >/dev/null; then
+				wget -P "${_data_file%/*}" "$_url"
+			else
+				curl -Lo "$_data_file" "$_url"
+			fi
+		else
+			dialog "${0##*/} won't work without UnicodeData.txt. Please download it manually."
+			exit 1
+		fi
+	fi
+
+	dialog "Generating cache file at '$_cache_data'. This will take a while the first time."
+
+	cut -d\; -f 1,2,11 "$_data_file" | while IFS=\; read -r code name altname; do
+		# skip these codepoints. read more about why here
+		# https://lists.gnu.org/archive/html/bug-coreutils/2008-05/msg00067.html
+		if [[ "$code" < 00A0 ]] || [[ D7FF < "$code" && "$code" < E000 ]]; then
+			continue
+		# use original unicode 1.0 name for control characters that don't have a very
+		# descriptive name (not that we'll ever need to copy those)
+		elif [ "$name" = "<control>" ]; then
+			env printf "\u$code : $altname\n"
+		else
+			env printf "\u$code : $name\n"
+		fi
+	done > "$_cache_data"
+
+	dialog "Cache file generated. Try running ${0##*/} one more time."
+	exit 0
+fi
+
+_selected=$(dmenu -i -l 5 ${_wid:+-W $_wid} < "$_cache_data")
+
+if [ "$_selected" ]; then
+	# delete everything after the character
+	_code=${_selected% :*}
+	>&2 echo "debug: copying $_code to system clipboard"
+	echo -n "$_code" | xclip -selection clipboard
+fi

@@ -1,0 +1,94 @@
+# vi: ft=conf
+def_key "mouse"
+	dummy
+
+# replace with vim keybinds
+
+def_key "k"
+	scroll_up
+def_key "j"
+	scroll_down
+def_key "K"
+	select_item
+	scroll_up
+def_key "J"
+	select_item
+	scroll_down
+
+def_key "alt-k"
+	move_selected_items_up
+def_key "alt-j"
+	move_selected_items_down
+
+def_key "P"
+	stop
+
+def_key "ctrl-u"
+	page_up
+
+def_key "ctrl-d"
+	page_down
+
+def_key "g"
+	move_home
+
+def_key "G"
+	move_end
+
+def_key "l"
+	enter_directory
+
+def_key "h"
+	jump_to_parent_directory
+
+def_key "a"
+	add_item_to_playlist
+
+def_key "d"
+	delete_playlist_items
+
+def_key "d"
+	delete_browser_items
+
+def_key "d"
+	delete_stored_playlist
+
+def_key "l"
+	next_column
+
+def_key "l"
+	slave_screen
+
+def_key "h"
+	previous_column
+
+def_key "h"
+	master_screen
+
+def_key "space"
+	select_item
+
+def_key "ctrl-l"
+	seek_forward
+
+def_key "ctrl-h"
+	seek_backward
+
+def_key "u"
+	dummy
+
+def_key "U"
+	update_database
+
+def_key "n"
+	next_found_item
+
+def_key "N"
+	previous_found_item
+
+def_key "ctrl-v"
+	reverse_selection
+def_key "v"
+	select_range
+def_key "escape"
+	remove_selection

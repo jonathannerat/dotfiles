@@ -22,31 +22,25 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 
 ## formats
 song_list_format         = {{$(red)%a$(end){ $(blue)"%b"$(end)} - }{$(green)%t$(end)}}|{%f}
-song_status_format       = {{$(red)%a$(end){ $(blue)"%b"$(end){ $(magenta)(%y)}$(end)} - }{$(green)%t$(end)}}|{%f}
+song_status_format       = {{$b%a$/b{ "%b"{ (%y)}} - }{$b%t$/b}}|{%f}
 song_library_format      = {$(yellow)%n$(end) - }{$(green)%t$(end)}|{%f}
 song_window_title_format = {%a {"%b"{ (%y)}} - }{%t}|{%f}
 song_columns_list_format = (20)[red]{a} (6f)[yellow]{NE} (50)[green]{t|f:Title} (20)[blue]{b} (7f)[magenta]{l}
 
 current_item_prefix = $b
 current_item_suffix = $/b
+now_playing_prefix = $u
+now_playing_suffix = $/u
 
 current_item_inactive_column_prefix = $r
 current_item_inactive_column_suffix = $/r
 
-now_playing_prefix = $r
-now_playing_suffix = $/r
-
 selected_item_prefix = $r
 selected_item_suffix = $/r
 
-modified_item_prefix = $(magenta)> $(end)
+modified_item_prefix = $(magenta)* $(end)
 
 browser_playlist_prefix = "$(yellow)$uplaylist$/u$(end) "
-
-## alternative layour formats
-user_interface = alternative
-alternative_header_first_line_format = $b$(black)$aqqu$/a$(end) $(yellow){%t}|{%f}$(end) $(black)$atqq$/a$(end)$/b
-alternative_header_second_line_format = {{$(red)$b%a$/b$(end)}{ - $(blue)%b$(end)}{ $(magenta)(%y)$(end)}}|{%D}
 
 ## browser sort order
 browser_sort_mode = format
@@ -59,3 +53,8 @@ execute_on_song_change = notify-send -u low -i music "Now Playing" "$(mpc --form
 progressbar_look = ▒█░
 progressbar_color = black:b
 progressbar_elapsed_color = white:b
+
+# various
+mouse_support = no
+external_editor = nvim
+use_console_editor = yes

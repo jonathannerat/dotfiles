@@ -26,7 +26,8 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
-	jsonls = {}
+	jsonls = {},
+	rust_analyzer = {}
 }
 
 for lsp, config in pairs(servers) do
