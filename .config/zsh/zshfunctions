@@ -62,3 +62,11 @@ n() {
 		rm -f "$NNN_TMPFILE" > /dev/null
 	fi
 }
+
+# fzf powered man search
+fman() {
+	[ -z $1 ] && 2>&1 echo "fman what?" && return
+	local _line=$(apropos -l $1 | fzf)
+	local _name=${_line%% \(*} # cut everything after the manpage name
+	[ $_name ] && man $_name
+}
