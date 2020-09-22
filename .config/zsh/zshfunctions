@@ -13,17 +13,24 @@ cdgr() {
 # copy arguments to clipboard. useful to copy a path since the arguments
 # can be completed using zsh's completion system
 yargs() {
-	local clipboard
-	case "$1" in
-		-c|--clipboard)
-			clipboard=true
-			shift ;;
-	esac
+	local _opts _absolute
+	while [[  "$1" ==  -* ]]; do
+		case "$1" in
+			-c|--clipboard) # copy to system clipboard instead of primary
+				_opts="-selection clipboard"
+				shift ;;
+			-a|--absolute) # if arg is a relative path, copy the absolute path
+				_absolute="true"
+				shift ;;
+		esac
+	done
 
-	args=$(echo $* | tr -d '\n')
-	if [ "$clipboard" = true ]; then
-		echo $args | xclip -selection clipboard
-	else
-		echo $args | xclip
+
+	args=$(echo -n $@ | tr -d '\n')
+
+	if [ "$_absolute" = true -a $# = 1 ]; then
+		args="$PWD/$args"
 	fi
+
+	echo -n $args | xclip ${=_opts}
 }
