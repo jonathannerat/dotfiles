@@ -15,7 +15,7 @@ export NNN_TRASH=1
 export NNN_COLORS=1234
 export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui'
 
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS='--type f --hidden'
 
 # home cleaning
 # these variables keep many programs from creating dot-{files/folders} in
