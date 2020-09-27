@@ -5,7 +5,8 @@ alias tmux="tmux -f $HOME/.config/tmux/config"
 alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
 
 # overrides
-alias ls='ls --color=auto'
+alias l='exa'
+alias ls='l --group-directories-first'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
