@@ -4,6 +4,7 @@ set -g prefix C-a
 set -g status-keys vi
 set -g mode-style bg=black
 set -g automatic-rename on
+set -g focus-events on
 
 set -sg escape-time 10
 
