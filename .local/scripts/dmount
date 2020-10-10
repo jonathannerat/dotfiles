@@ -23,7 +23,7 @@ elif [ $(ls -1 "$_mountf" | wc -l) -eq 0 ]; then
 	errcho "No mounts found in $_mountf"
 fi
 
-_mount="$(ls -1 "$_mountf" | dmenu -i -p "Choose a mount")"
+_mount="$(ls -1 "$_mountf" | dmenu -i -c -B -l 10 -p "Choose a mount")"
 
 # check if selected connection exists
 if [ -z "$_mount" ]; then
