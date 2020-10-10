@@ -7,46 +7,45 @@
 call plug#begin(stdpath('data').'/plugged')
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
-" like original but adds first ocurrence line no to ststua line
+" fork that adds first occurrence line no to status line
 Plug 'jonathannerat/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
-" redredesigned mksession
+" futuristic theme
+Plug 'embark-theme/vim'
+" redesigned mksession
 Plug 'tpope/vim-obsession'
 " git integration
 Plug 'tpope/vim-fugitive'
 " show hex colors
-Plug 'lilydjwg/colorizer'
-" base16 themes for vim
+Plug 'norcalli/nvim-colorizer.lua'
+" base16 colorschemes for vim
 Plug 'chriskempson/base16-vim'
 " latex integration
 Plug 'lervag/vimtex'
-" awesome snippets
-Plug 'SirVer/ultisnips'
 " self explanatory
 Plug 'asciidoc/vim-asciidoc'
-" shows undos in a tree
-Plug 'mbbill/undotree'
-" per projet configuration
+" per project configuration
 Plug 'editorconfig/editorconfig-vim'
 " personal wiki for vim
 Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
-" quoting/parenthesizinv made simple
+" quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
-" A code completition engine for Vim
-Plug 'ycm-core/YouCompleteMe'
-" python ide
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" lua development plugin¬
+Plug 'tjdevries/nlua.nvim'
+" nvim lsp starter config¬
+Plug 'neovim/nvim-lspconfig'
+" async completion framework written in lua¬
+Plug 'nvim-lua/completion-nvim'
+" wrapper for nvim's lsp diagnostics
+Plug 'nvim-lua/diagnostic-nvim'
 " auto close parenthesis / brackets / etc
-Plug 'Townk/vim-autoclose'
-" fuzzy finder
+Plug 'cohama/lexima.vim'
+" fuzzy file finder¬
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" better javascript support (+jsx)
-Plug 'pangloss/vim-javascript'
-" better typescript support (+tsx)
-Plug 'HerringtonDarkholme/yats.vim'
 " neomut config syntax support
 Plug 'neomutt/neomutt.vim'
 " better support for scss syntax
@@ -57,6 +56,12 @@ Plug 'mcchrish/nnn.vim'
 Plug 'gcmt/taboo.vim'
 " livescript syntax support
 Plug 'gkz/vim-ls'
+" a starter page for vim/neovim
+Plug 'mhinz/vim-startify'
+" treesitter hightlighting¬
+Plug 'nvim-treesitter/nvim-treesitter'
+" betterer lua syntax
+Plug 'tbastos/vim-lua'
 call plug#end()
 
 
@@ -83,16 +88,15 @@ let g:vimtex_compiler_latexmk = {
 \   '-interaction=nonstopmode',
 \ ],
 \}
-let g:vimtex_imaps_leader = '¿'
+let g:vimtex_imaps_leader = '\'
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
-
 " ULTISNIPS
-let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsExpandTrigger = '<C-Space>'
-let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+" let g:UltiSnipsEditSplit = 'context'
+" let g:UltiSnipsExpandTrigger = '<C-Space>'
+" let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
+" let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
 
 " VIMWIKI
 
@@ -102,24 +106,22 @@ let default_vimwiki = {
 \	'path_html': '~/proj/notes/_html',
 \	'nested_syntaxes': {
 \		'java': 'java',
+\		'viml': 'vim',
 \	}
 \}
-
 let g:vimwiki_key_mappings = { 'global': 0, }
-
 let g:vimwiki_list = [default_vimwiki]
-
-
 
 " NNN
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
+let g:nnn#layout = { 'left': '~20%' }
+" [nvim only] floating window
+" let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:nnn#action = {
 	\ '<c-t>': 'tab split',
 	\ '<c-x>': 'split',
 	\ '<c-v>': 'vsplit' }
-
-
 
 
 " LIGHTLINE
@@ -130,29 +132,40 @@ endfunction
 let g:lightline = {}
 let lightline#trailing_whitespace#indicator = '•'
 let g:lightline.component_expand = {
-\	'trailing': 'lightline#trailing_whitespace#component',
-\	'obsession': 'LightlineObsession' }
+\ 'trailing': 'lightline#trailing_whitespace#component',
+\ 'obsession': 'LightlineObsession' }
 let g:lightline.component_type = { 'trailing': 'error', 'obsession': 'warning' }
 let g:lightline.active = {
 \ 'left': [ [ 'mode', 'paste' ],
 \           [ 'readonly', 'filename', 'modified' ] ],
-\ 'right': [ [ 'obsession', 'trailing', 'lineinfo' ],
-\            [ 'percent' ],
-\            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+\ 'right': [ [ 'trailing', 'lineinfo' ],
+\            [ 'percent' ]]
+\ }
 let g:lightline.inactive = {
 \ 'left': [ [ 'filename' ] ],
 \ 'right': [ [ 'lineinfo' ],
 \            [ 'percent' ] ] }
 let g:lightline.tabline = {
 \ 'left': [ [ 'tabs' ] ],
-\ 'right': [ [ 'close' ] ] }
+\ 'right': [ [ 'close', 'obsession' ] ] }
 
+" TABOO
+let g:taboo_tab_format = ' %m%N:[%d %f] '
+let g:taboo_renamed_tab_format = ' %m%N:[%l] '
 
-" YOUCOMPLETEME
-let g:ycm_clangd_binary_path = "/usr/bin/clangd"
-let g:ycm_always_populate_location_list = 1
-let g:ycm_semantic_triggers = {
-\ 'css': [ 're!^', 're!^\s+', ': ' ],
-\ 'scss': [ 're!^', 're!^\s+', ': ' ],
-\}
+" diagnostic-nvim
+let g:diagnostic_insert_delay = 1
+let g:diagnostic_virtual_text_prefix = ' '
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_enable_underline = 0
 
+" vim-startify
+let g:startify_lists = [
+\ { 'type': 'sessions',  'header': ['  Sessions']       },
+\ { 'type': 'files',     'header': ['  MRU']            },
+\ { 'type': 'dir',       'header': ['  MRU '. getcwd()] },
+\ ]
+
+" completion-nvim
+let g:completion_confirm_key = "\<c-y>"
+let g:completion_enable_snippet = 'UltiSnips'
