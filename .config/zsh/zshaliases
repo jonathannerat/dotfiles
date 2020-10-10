@@ -25,3 +25,11 @@ alias tt='tmux new -A -s'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
 
+
+if command -v megatools > /dev/null; then
+  _megarc="$HOME/.config/megatools/megarc"
+  _tools=(copy df dl export get ls mkdir put reg rm test tools)
+  for _megatool in $_tools; do
+    alias mega${_megatool}="mega${_megatool} --config=$_megarc"
+  done
+fi
