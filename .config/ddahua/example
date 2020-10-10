@@ -1,0 +1,16 @@
+## ip of your dahua host
+host=192.168.0.100
+
+## rts port. default: 554
+# port=554
+
+## username. default: admin
+# user=admin
+
+## password
+pass=my_pass1234
+
+## list of channels
+## format: "<channel1>;<channel2>;..."
+## where <channeln>=<channeln_descripion>:<channeln_number>
+channels=Reja Calle:1;Puerta:2;Techo Garaje:3

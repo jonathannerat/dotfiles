@@ -4,6 +4,7 @@ set -g prefix C-a
 set -g status-keys vi
 set -g mode-style bg=black
 set -g automatic-rename on
+set -g focus-events on
 
 set -sg escape-time 10
 
@@ -26,8 +27,9 @@ unbind C-right
 
 bind C-a send-prefix
 
-bind -N "swap current pane"    b  command-prompt -1 -p "(swap-pane-with)" "swap-pane -d -t %%"
-bind -N "swap current window"  B  command-prompt -1 -p "(swap-window-with)" "swap-window -d -t %%"
+bind -N "swap current pane"    b  command-prompt -1 -p "swap pane with:" "swap-pane -d -t %%"
+bind -N "swap current window"  B  command-prompt -1 -p "swap window with:" "swap-window -d -t %%"
+bind -N "create new session"   C  command-prompt -p "new session:" "new-session -As %%"
 
 bind -N "select pane left"    h    select-pane -L
 bind -N "select pane below"   j    select-pane -D
@@ -38,7 +40,9 @@ bind -rN "resize pane down"   C-j  resize-pane -D 2
 bind -rN "resize pane up"     C-h  resize-pane -L 2
 bind -rN "resize pane right"  C-l  resize-pane -R 2
 
-bind -N "reload config" r source-file ~/.config/tmux/config
+bind -N "switch to last window"           tab  last-window
+bind -N "kill current pane (no prompt)"   X    kill-pane
+bind -N "reload config"                   r    source-file ~/.config/tmux/config
 
 
 bind -N "vertical split"    |  split-window -h

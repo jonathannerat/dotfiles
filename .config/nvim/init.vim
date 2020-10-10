@@ -38,6 +38,7 @@ set cursorline
 " while searching:
 set ignorecase
 set smartcase  " override ignorecase if uppercase chars present
+set inccommand=split
 " show matching bracket
 set showmatch
 
@@ -46,10 +47,6 @@ set lazyredraw
 
 " 10000 default is too much
 set history=100
-
-" window splitting rules
-set splitbelow
-set splitright
 
 " save taboo tab names
 set sessionoptions+=tabpages,globals
@@ -65,13 +62,14 @@ set spelllang=en,es
 
 " use spaces instead of tab
 set noexpandtab
-" spaces for autoindent
-set shiftwidth=0
 " tab = 2 spaces
 set tabstop=2
+set shiftwidth=2
 " show whitespace
 set list
-set listchars=eol:¬,tab:>·,trail:·
+set listchars=eol:↵,tab:\|\ ,trail:·,extends:…,precedes:…,nbsp:␣
+set fillchars=eob:~
+
 " indent
 set autoindent
 set copyindent
@@ -105,29 +103,51 @@ set fileformats=unix,dos,mac
 " (ms) time to wait for mapped sequences
 set timeoutlen=500
 
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
 let mapleader=' '
-let maplocalleader='¿'
+let maplocalleader='\'
 
 inoremap jj <Esc>
 inoremap kk <Esc>:
 
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+
+" move highlighted lines up and down
 vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
 vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
-nmap <leader>n <Plug>VimwikiIndex 0
+nmap <leader>vm <Plug>VimwikiIndex 0
 
 nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
-nnoremap <leader>cd   :lcd %:h<cr>
-nnoremap <leader>ci   :exe 'edit' stdpath('config').'/init.vim'<cr>
-nnoremap <leader>cp   :exe 'edit' stdpath('config').'/plugins.vim'<cr>
-nnoremap <leader>e    :NnnPicker %:h<cr>
-nnoremap <leader>f    :Files<cr>
-nnoremap <leader>F    :Files
+nnoremap <leader>cd   <cmd>lcd %:h<cr>
+nnoremap <leader>cg   <cmd>Gcd<cr>
+nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
+nnoremap <leader>cp   <cmd>edit ~/.local/src/dotfiles/.config/nvim/plugins.vim<cr>
+nnoremap <leader>dd   <cmd>OpenDiagnostic<cr>
+nnoremap <leader>dn   <cmd>NextDiagnosticCycle<cr>
+nnoremap <leader>dp   <cmd>PrevDiagnosticCycle<cr>
+nnoremap <leader>e    <cmd>NnnPicker<cr>
+nnoremap <leader>f    <cmd>Files<cr>
+nnoremap <leader>F    :Files<space>
 nnoremap <leader>gf   :e <cfile><cr>
-nnoremap <leader>h    :Helptags<cr>
+nnoremap <leader>h    <cmd>Helptags<cr>
 nnoremap <leader>hh   :noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
+nnoremap <leader>n    :NERDTreeToggle<cr>
+nnoremap <leader>ng   :NERDTreeVCS<cr>
+nnoremap <leader>nc   :NERDTreeCWD<cr>
+nnoremap <leader>o    :Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
 nnoremap <leader>pi   :PlugInstall<cr>
 nnoremap <leader>pc   :PlugClean<cr>
@@ -138,25 +158,19 @@ nnoremap <leader>Q    :q!<cr>
 nnoremap <leader>Qa   :qa!<cr>
 nnoremap <leader>r    :e %<cr>
 nnoremap <leader>s    :so %<cr>
-nnoremap <leader>to   :TabooOpen 
-nnoremap <leader>tr   :TabooRename 
+nnoremap <leader>S    <cmd>Startify<cr>
+nnoremap <leader>to   :TabooOpen<space>
+nnoremap <leader>tr   :TabooRename<space>
 nnoremap <leader>tR   :TabooReset<cr>
-nnoremap <leader>u    :UltiSnipsEdit<cr>
-nnoremap <leader>U    :UltiSnipsEdit 
 nnoremap <leader>w    :w<cr>
 nnoremap <leader>Wf   :split <cfile><cr>
-nnoremap <leader>y    :YcmCompleter 
-nnoremap <leader>yd   :YcmDiags<cr>
-nnoremap <leader>yk   :YcmCompleter GetDoc<cr>
-nnoremap <leader>yf   :YcmCompleter FixIt<cr>
 
+" move curren line up and down
 nnoremap <M-j>        mz:m+<cr>`z
 nnoremap <M-k>        mz:m-2<cr>`z
 
-cnoremap <c-k> <Up>
-cnoremap <c-j> <Down>
-
-
+exe 'luafile' stdpath('config') . '/lua/init.lua'
+exe 'luafile' stdpath('config') . '/lua/plugins.lua'
 
 augroup writing_file_rules
 	autocmd!
