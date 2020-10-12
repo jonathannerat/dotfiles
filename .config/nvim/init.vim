@@ -67,7 +67,7 @@ set tabstop=2
 set shiftwidth=2
 " show whitespace
 set list
-set listchars=eol:↵,tab:\|\ ,trail:·,extends:…,precedes:…,nbsp:␣
+set listchars=eol:↵,tab:\|\ ,trail:·,extends:…,precedes:…,nbsp:☠
 set fillchars=eob:~
 
 " indent
