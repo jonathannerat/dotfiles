@@ -27,14 +27,12 @@ Plug 'lervag/vimtex'
 Plug 'asciidoc/vim-asciidoc'
 " per project configuration
 Plug 'editorconfig/editorconfig-vim'
-" personal wiki for vim
-Plug 'vimwiki/vimwiki'
 " comments
 Plug 'tpope/vim-commentary'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 " lua development plugin¬
-Plug 'tjdevries/nlua.nvim'
+Plug 'jonathannerat/nlua.nvim'
 " nvim lsp starter config¬
 Plug 'neovim/nvim-lspconfig'
 " async completion framework written in lua¬
@@ -169,3 +167,6 @@ let g:startify_lists = [
 " completion-nvim
 let g:completion_confirm_key = "\<c-y>"
 let g:completion_enable_snippet = 'UltiSnips'
+
+" lexima.vim
+let g:lexima_accept_pum_with_enter = 0
