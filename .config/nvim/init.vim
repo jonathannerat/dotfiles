@@ -130,6 +130,7 @@ nmap <leader>vm <Plug>VimwikiIndex 0
 
 nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
+nnoremap <leader>b    <cmd>Buffers<cr>
 nnoremap <leader>cd   <cmd>lcd %:h<cr>
 nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
