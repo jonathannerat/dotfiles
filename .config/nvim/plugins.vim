@@ -32,7 +32,7 @@ Plug 'tpope/vim-commentary'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 " lua development plugin¬
-Plug 'jonathannerat/nlua.nvim'
+Plug '~/proj/nlua.nvim'
 " nvim lsp starter config¬
 Plug 'neovim/nvim-lspconfig'
 " async completion framework written in lua¬
