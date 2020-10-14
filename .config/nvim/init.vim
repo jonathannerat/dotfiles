@@ -113,7 +113,7 @@ let mapleader=' '
 let maplocalleader='\'
 
 inoremap jj <Esc>
-inoremap kk <Esc>:
+inoremap kk <Esc>
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
