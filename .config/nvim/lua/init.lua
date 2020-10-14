@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', '<cmd>lua vim.lsp.util.show_line_diagnostics()<cr>', opts)
 end
 
-local servers = {'tsserver', 'cssls', 'vimls', 'ccls'}
+local servers = {'tsserver', 'cssls', 'vimls', 'ccls', 'bashls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -30,7 +30,8 @@ end
 -- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
 require'nlua.lsp.nvim'.setup(nvim_lsp, {
 	on_attach = on_attach,
-	lsp_path = '/home/jonathan/.local/src/lua-language-server'
+	lsp_path = '~/.local/src/lua-language-server',
+	runtime_paths = { '~/.cache/yay/neovim-git/src/neovim-git/src/nvim/lua' }
 })
 
 require'nvim-treesitter.configs'.setup {

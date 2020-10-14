@@ -67,7 +67,7 @@ set tabstop=2
 set shiftwidth=2
 " show whitespace
 set list
-set listchars=eol:↵,tab:\|\ ,trail:·,extends:…,precedes:…,nbsp:␣
+set listchars=eol:↵,tab:\|\ ,trail:·,extends:…,precedes:…,nbsp:☠
 set fillchars=eob:~
 
 " indent
@@ -113,7 +113,7 @@ let mapleader=' '
 let maplocalleader='\'
 
 inoremap jj <Esc>
-inoremap kk <Esc>:
+inoremap kk <Esc>
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -130,6 +130,7 @@ nmap <leader>vm <Plug>VimwikiIndex 0
 
 nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
+nnoremap <leader>b    <cmd>Buffers<cr>
 nnoremap <leader>cd   <cmd>lcd %:h<cr>
 nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
