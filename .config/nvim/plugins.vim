@@ -8,7 +8,7 @@ call plug#begin(stdpath('data').'/plugged')
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
 " fork that adds first occurrence line no to status line
-Plug 'jonathannerat/lightline-trailing-whitespace'
+Plug '~/proj/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " futuristic theme
