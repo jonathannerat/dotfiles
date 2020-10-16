@@ -8,7 +8,7 @@ call plug#begin(stdpath('data').'/plugged')
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
 " fork that adds first occurrence line no to status line
-Plug 'jonathannerat/lightline-trailing-whitespace'
+Plug '~/proj/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " futuristic theme
@@ -32,7 +32,7 @@ Plug 'tpope/vim-commentary'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 " lua development plugin¬
-Plug 'jonathannerat/nlua.nvim'
+Plug '~/proj/nlua.nvim'
 " nvim lsp starter config¬
 Plug 'neovim/nvim-lspconfig'
 " async completion framework written in lua¬

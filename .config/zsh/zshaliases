@@ -10,7 +10,7 @@ alias ls='l --group-directories-first'
 alias less='less -R'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
-alias info='info --vi-keys --init-file ~/.config/info/infokey'
+alias info="info --vi-keys --init-file $XDG_CONFIG_HOME/info/infokey"
 alias ip='ip -color=auto'
 alias vimdiff='nvim -d'
 
