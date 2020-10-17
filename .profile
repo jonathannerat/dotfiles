@@ -46,6 +46,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export _Z_DATA="$XDG_DATA_HOME/z"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
