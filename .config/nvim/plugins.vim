@@ -60,6 +60,8 @@ Plug 'mhinz/vim-startify'
 Plug 'nvim-treesitter/nvim-treesitter'
 " betterer lua syntax
 Plug 'tbastos/vim-lua'
+" markdown preview plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
 
