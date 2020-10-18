@@ -5,8 +5,7 @@ alias tmux="tmux -f $HOME/.config/tmux/config"
 alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
 
 # overrides
-alias l='exa'
-alias ls='l --group-directories-first'
+alias ls='exa --group-directories-first'
 alias less='less -R'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
@@ -18,7 +17,10 @@ alias vimdiff='nvim -d'
 alias c='xclip'
 alias cx='xclip -selection clipboard'
 
+alias l='ls'
+alias la='ls -a'
 alias ll='ls -al'
+alias tree='ls -T'
 
 alias v='nvim'
 alias V='SUDO_EDITOR="nvim" sudo -e'
