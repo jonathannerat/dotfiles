@@ -26,8 +26,7 @@ export ANDROID_ROOT_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
-export GEM_HOME="$XDG_DATA_HOME/gem"
-export GTK2_RC_FILES="$XDG_CACHE_HOME/gtk-2.0/gtkrc"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
@@ -50,9 +49,9 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export _Z_DATA="$XDG_DATA_HOME/z"
 
-export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 
 # use fcitx as IM
 export XMODIFIERS=@im=fcitx
