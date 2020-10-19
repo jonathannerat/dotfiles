@@ -18,20 +18,35 @@ _cache_data="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-unicode"
 # UnicodeData file url
 _url="http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt"
 
+dialog() {
+	if [ -t 0 ]; then
+		echo "$*"
+	else
+		notify-send -u low "${0##*/}" "$*"
+	fi
+}
 
+input() {
+	local _prompt="$1"
+	local _input
+
+	if [ -t 0 ]; then
+		echo -n "$_prompt"
+		read -r _input
+	else
+		_input=$(dmenu ${_wid:+-W $_wid} -p "$_prompt")
+	fi
+
+	echo "$_input"
+}
 
 if ! [ -f "$_cache_data" ]; then
 	if ! [ -f "$_data_file" ]; then
-		>&2 echo "Error: No data file found at $_data_file"
+		dialog "Error: No data file found at $_data_file"
 		if command -v wget >/dev/null || command -v curl >/dev/null; then
-			echo -n "Do you want to download it from '$_url'? (y/n) "
-			read -r _reply
+			_reply=$(echo -e "y\nn" | input "Download UnicodeData.txt from '$_url'?")
 		else
-			>&2 echo "Neither wget nor curl were found on the system. Download the file"
-			>&2 echo "manully from:"
-			>&2 echo "$_url"
-			>&2 echo "and save it to:"
-			>&2 echo "$_data_file"
+			dialog "Neither wget nor curl were found on the system. Download the file manully from: '$_url' and save it to: '$_data_file'"
 			exit 1
 		fi
 
@@ -42,12 +57,12 @@ if ! [ -f "$_cache_data" ]; then
 				curl -Lo "$_data_file" "$_url"
 			fi
 		else
+			dialog "${0##*/} won't work without UnicodeData.txt. Please download it manually."
 			exit 1
 		fi
 	fi
 
-	echo "Generating cache file at '$_cache_data'."
-	echo "This will take a while the first time."
+	dialog "Generating cache file at '$_cache_data'. This will take a while the first time."
 
 	cut -d\; -f 1,2,11 "$_data_file" | while IFS=\; read -r code name altname; do
 		# skip these codepoints. read more about why here
@@ -62,6 +77,9 @@ if ! [ -f "$_cache_data" ]; then
 			env printf "\u$code : $name\n"
 		fi
 	done > "$_cache_data"
+
+	dialog "Cache file generated. Try running ${0##*/} one more time."
+	exit 0
 fi
 
 _selected=$(dmenu -i -l 5 ${_wid:+-W $_wid} < "$_cache_data")
