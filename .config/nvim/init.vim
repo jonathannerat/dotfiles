@@ -170,6 +170,8 @@ nnoremap <leader>Wf   :split <cfile><cr>
 nnoremap <M-j>        mz:m+<cr>`z
 nnoremap <M-k>        mz:m-2<cr>`z
 
+tnoremap <C-M-q> <C-\><C-n>
+
 exe 'luafile' stdpath('config') . '/lua/init.lua'
 exe 'luafile' stdpath('config') . '/lua/plugins.lua'
 
