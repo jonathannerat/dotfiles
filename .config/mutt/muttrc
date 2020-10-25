@@ -35,6 +35,8 @@ set rfc2047_parameters=yes
 # which lets me keep using mutt instead of blocking while the file is open
 set mailcap_path=$XDG_CONFIG_HOME/mutt/mailcap
 
+set attach_save_dir=$HOME/dl/
+
 # refer to [this section](optionalfeatures.html#cond-date) in the manual
 # basically displays different date formats depending on the date of the message:
 set my_conditional_date="%<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>"
