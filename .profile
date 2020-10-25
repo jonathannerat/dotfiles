@@ -53,10 +53,10 @@ export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 
-# use fcitx as IM
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+# use ibus as IM
+export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
 
 # custom scripts
 [ -d "$HOME/.local/scripts" ] && PATH="$HOME/.local/scripts:$PATH"
