@@ -6,7 +6,7 @@ alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $
 
 # overrides
 alias ls='exa --group-directories-first'
-alias less='less -R'
+alias less='less -FRi'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias info="info --vi-keys --init-file $XDG_CONFIG_HOME/info/infokey"
