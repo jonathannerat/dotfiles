@@ -62,6 +62,8 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'tbastos/vim-lua'
 " markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" TOML syntax highlighting
+Plug 'cespare/vim-toml'
 call plug#end()
 
 
