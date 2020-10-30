@@ -64,6 +64,8 @@ Plug 'tbastos/vim-lua'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " TOML syntax highlighting
 Plug 'cespare/vim-toml'
+" write on the browser from nvim
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 call plug#end()
 
 
