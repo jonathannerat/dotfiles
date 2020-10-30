@@ -173,6 +173,7 @@ let g:startify_lists = [
 " completion-nvim
 let g:completion_confirm_key = "\<c-y>"
 let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
 " lexima.vim
 let g:lexima_accept_pum_with_enter = 0
