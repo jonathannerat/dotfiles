@@ -27,6 +27,7 @@ local servers = {
 	ccls = {},
 	bashls = {},
 	jsonls = {},
+	pyls = {},
 	rust_analyzer = {}
 }
 
