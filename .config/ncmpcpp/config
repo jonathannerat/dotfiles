@@ -42,6 +42,9 @@ modified_item_prefix = $(magenta)* $(end)
 
 browser_playlist_prefix = "$(yellow)$uplaylist$/u$(end) "
 
+# library
+media_library_primary_tag = album_artist
+
 ## browser sort order
 browser_sort_mode = format
 browser_sort_format = {%a-}{{(%y)}%b}|{%f} {(%l)}
