@@ -1,10 +1,9 @@
 -- colors in buffer
 require'colorizer'.setup(nil, { css=true })
 
-local nvim_lsp = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
 
 	-- Mappings
@@ -17,7 +16,6 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', '<cmd>lua vim.lsp.util.show_line_diagnostics()<cr>', opts)
 end
 
 local servers = {
@@ -32,24 +30,29 @@ local servers = {
 
 for lsp, config in pairs(servers) do
 	if not config.on_attach then config.on_attach = on_attach end
-  nvim_lsp[lsp].setup(config)
+  lspconfig[lsp].setup(config)
 end
 
 -- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
-require'nlua.lsp.nvim'.setup(nvim_lsp, {
+require'nlua.lsp.nvim'.setup(lspconfig, {
 	on_attach = on_attach,
-	lsp_path = '~/.local/src/lua-language-server',
-	runtime_paths = { '~/.cache/yay/neovim-git/src/neovim-git/src/nvim/lua' }
+	runtime_paths = { '~/.local/src/neovim' }
 })
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true,
+		virtual_text = false,
+	}
+)
+
 require'nvim-treesitter.configs'.setup {
-	-- Modules and its options go here
-	highlight = { enable = true },
-	-- textobjects = { enable = true },
-	-- incremental_selection = { enable = true },
-	-- refactor = {
-	-- 	highlight_definitions = { enable = true },
-	-- 	smart_rename = { enable = true },
-	-- 	navigation = { enable = true },
-	-- }
+	ensure_installed = "maintained",
+	-- Modules
+	highlight = {
+		enable = true,
+	},
+	incremental_selection = {
+		enable = true,
+	}
 }
