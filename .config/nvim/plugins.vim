@@ -37,8 +37,6 @@ Plug '~/proj/nlua.nvim'
 Plug 'neovim/nvim-lspconfig'
 " async completion framework written in lua¬
 Plug 'nvim-lua/completion-nvim'
-" wrapper for nvim's lsp diagnostics
-Plug 'nvim-lua/diagnostic-nvim'
 " auto close parenthesis / brackets / etc
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
@@ -156,12 +154,6 @@ let g:lightline.tabline = {
 " TABOO
 let g:taboo_tab_format = ' %m%N:[%d %f] '
 let g:taboo_renamed_tab_format = ' %m%N:[%l] '
-
-" diagnostic-nvim
-let g:diagnostic_insert_delay = 1
-let g:diagnostic_virtual_text_prefix = ' '
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_enable_underline = 0
 
 " vim-startify
 let g:startify_lists = [

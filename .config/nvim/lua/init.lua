@@ -4,7 +4,6 @@ require'colorizer'.setup(nil, { css=true })
 local nvim_lsp = require'nvim_lsp'
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
 
 	-- Mappings
@@ -17,7 +16,6 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', '<cmd>lua vim.lsp.util.show_line_diagnostics()<cr>', opts)
 end
 
 local servers = {
@@ -54,3 +52,9 @@ require'nvim-treesitter.configs'.setup {
 	-- 	navigation = { enable = true },
 	-- }
 }
+
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true
+	}
+)
