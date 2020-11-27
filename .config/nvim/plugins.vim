@@ -60,6 +60,9 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'tbastos/vim-lua'
 " markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" pandoc integration
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " TOML syntax highlighting
 Plug 'cespare/vim-toml'
 " write on the browser from nvim
@@ -169,3 +172,7 @@ let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
 " lexima.vim
 let g:lexima_accept_pum_with_enter = 0
+
+" pandoc-vim
+let g:pandoc#formatting#mode = 'h'
+let g:pandoc#formatting#textwidth = 100
