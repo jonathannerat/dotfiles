@@ -49,7 +49,11 @@ set abort_noattach=ask-yes
 # hide help line
 set help=no
 
+# group threads
 set sort=threads
+
+# immediatly return from external commands
+set wait_key=no
 
 source key-bindings.muttrc
 

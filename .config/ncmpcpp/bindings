@@ -82,6 +82,8 @@ def_key "U"
 
 def_key "n"
 	next_found_item
+def_key "n"
+	move_sort_order_down
 
 def_key "N"
 	previous_found_item
