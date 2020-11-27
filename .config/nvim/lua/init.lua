@@ -1,7 +1,7 @@
 -- colors in buffer
 require'colorizer'.setup(nil, { css=true })
 
-local nvim_lsp = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	require'completion'.on_attach()
@@ -31,14 +31,14 @@ local servers = {
 
 for lsp, config in pairs(servers) do
 	if not config.on_attach then config.on_attach = on_attach end
-  nvim_lsp[lsp].setup(config)
+  lspconfig[lsp].setup(config)
 end
 
 -- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
-require'nlua.lsp.nvim'.setup(nvim_lsp, {
+require'nlua.lsp.nvim'.setup(lspconfig, {
 	on_attach = on_attach,
 	lsp_path = '~/.local/src/lua-language-server',
-	runtime_paths = { '~/.cache/yay/neovim-git/src/neovim-git/src/nvim/lua' }
+	runtime_paths = { '~/.local/src/neovim/src/nvim/lua/' }
 })
 
 require'nvim-treesitter.configs'.setup {
