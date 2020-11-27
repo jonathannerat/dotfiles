@@ -5,6 +5,7 @@
 " -------------------------
 
 call plug#begin(stdpath('data').'/plugged')
+Plug 'junegunn/vim-plug'
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
 " fork that adds first occurrence line no to status line
@@ -12,7 +13,7 @@ Plug '~/proj/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " futuristic theme
-Plug 'embark-theme/vim'
+Plug 'embark-theme/vim', { 'as': 'embark-theme' }
 " redesigned mksession
 Plug 'tpope/vim-obsession'
 " git integration
@@ -40,7 +41,6 @@ Plug 'nvim-lua/completion-nvim'
 " auto close parenthesis / brackets / etc
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " neomut config syntax support
 Plug 'neomutt/neomutt.vim'
