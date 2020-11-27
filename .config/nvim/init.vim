@@ -135,10 +135,9 @@ nnoremap <leader>cd   <cmd>lcd %:h<cr>
 nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
 nnoremap <leader>cp   <cmd>edit ~/.local/src/dotfiles/.config/nvim/plugins.vim<cr>
-nnoremap <leader>dd   <cmd>OpenDiagnostic<cr>
-nnoremap <leader>dn   <cmd>NextDiagnosticCycle<cr>
-nnoremap <leader>dp   <cmd>PrevDiagnosticCycle<cr>
-nnoremap <leader>e    <cmd>NnnPicker<cr>
+nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
+nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
+nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
 nnoremap <leader>f    <cmd>Files<cr>
 nnoremap <leader>F    :Files<space>
 nnoremap <leader>gf   <cmd>e <cfile><cr>
