@@ -3,6 +3,7 @@ alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share
 alias gpg="gpg --homedir $HOME/.local/share/gnupg"
 alias tmux="tmux -f $HOME/.config/tmux/config"
 alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
+alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 
 # overrides
 alias ls='exa --group-directories-first'
