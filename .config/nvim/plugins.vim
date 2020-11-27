@@ -5,6 +5,7 @@
 " -------------------------
 
 call plug#begin(stdpath('data').'/plugged')
+Plug 'junegunn/vim-plug'
 " fancy and light status line
 Plug 'itchyny/lightline.vim'
 " fork that adds first occurrence line no to status line
@@ -12,7 +13,7 @@ Plug '~/proj/lightline-trailing-whitespace'
 " base16 themes for lightline
 Plug 'mike-hearn/base16-vim-lightline'
 " futuristic theme
-Plug 'embark-theme/vim'
+Plug 'embark-theme/vim', { 'as': 'embark-theme' }
 " redesigned mksession
 Plug 'tpope/vim-obsession'
 " git integration
@@ -40,7 +41,6 @@ Plug 'nvim-lua/completion-nvim'
 " auto close parenthesis / brackets / etc
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " neomut config syntax support
 Plug 'neomutt/neomutt.vim'
@@ -62,13 +62,17 @@ Plug 'tbastos/vim-lua'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " toml syntax
 Plug 'cespare/vim-toml'
+" snippets powered by python
 Plug 'SirVer/ultisnips'
-" write on browser from nvim
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 " helpers for unix
 Plug 'tpope/vim-eunuch'
 " pandoc integration and utilities
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" TOML syntax highlighting
+Plug 'cespare/vim-toml'
+" write on the browser from nvim
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 call plug#end()
 
 
@@ -170,6 +174,11 @@ let g:startify_lists = [
 " completion-nvim
 let g:completion_confirm_key = "\<c-y>"
 let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
 " lexima.vim
 let g:lexima_accept_pum_with_enter = 0
+
+" pandoc-vim
+let g:pandoc#formatting#mode = 'h'
+let g:pandoc#formatting#textwidth = 100
