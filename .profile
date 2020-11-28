@@ -31,6 +31,7 @@ export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_STORE_DIR="$XDG_DATA_HOME/pnpm-store"
 export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 
 export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/"

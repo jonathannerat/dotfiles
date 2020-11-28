@@ -37,20 +37,25 @@ end
 -- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
 require'nlua.lsp.nvim'.setup(lspconfig, {
 	on_attach = on_attach,
-	lsp_path = '~/.local/src/lua-language-server',
-	runtime_paths = { '~/.local/src/neovim/src/nvim/lua/' }
+	runtime_paths = { '~/.local/src/neovim' }
 })
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true,
+		virtual_text = false,
+	}
+)
+
 require'nvim-treesitter.configs'.setup {
-	-- Modules and its options go here
-	highlight = { enable = true },
-	-- textobjects = { enable = true },
-	-- incremental_selection = { enable = true },
-	-- refactor = {
-	-- 	highlight_definitions = { enable = true },
-	-- 	smart_rename = { enable = true },
-	-- 	navigation = { enable = true },
-	-- }
+	ensure_installed = "maintained",
+	-- Modules
+	highlight = {
+		enable = true,
+	},
+	incremental_selection = {
+		enable = true,
+	}
 }
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(

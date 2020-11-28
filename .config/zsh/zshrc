@@ -10,6 +10,8 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' completer _expand _complete
 # find new executables in PATH after installation
 zstyle ':completion:*' rehash true
+eval $(dircolors)
+zstyle ':completion:*' list-colors $LS_COLORS
 
 # awesome completion
 autoload -Uz compinit

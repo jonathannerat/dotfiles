@@ -136,35 +136,35 @@ nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
 nnoremap <leader>cp   <cmd>edit ~/.local/src/dotfiles/.config/nvim/plugins.vim<cr>
 nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
-nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<cr>
-nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<cr>
-nnoremap <leader>e    <cmd>NnnPicker<cr>
+nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
+nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
 nnoremap <leader>f    <cmd>Files<cr>
 nnoremap <leader>F    :Files<space>
-nnoremap <leader>gf   :e <cfile><cr>
+nnoremap <leader>gf   <cmd>e <cfile><cr>
 nnoremap <leader>h    <cmd>Helptags<cr>
-nnoremap <leader>hh   :noh<cr>
+nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
-nnoremap <leader>n    :NERDTreeToggle<cr>
-nnoremap <leader>ng   :NERDTreeVCS<cr>
-nnoremap <leader>nc   :NERDTreeCWD<cr>
-nnoremap <leader>o    :Obsession .session.vim<cr>
+nnoremap <leader>n    <cmd>NERDTreeToggle<cr>
+nnoremap <leader>ng   <cmd>NERDTreeVCS<cr>
+nnoremap <leader>nc   <cmd>NERDTreeCWD<cr>
+nnoremap <leader>o    <cmd>Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
-nnoremap <leader>pi   :PlugInstall<cr>
-nnoremap <leader>pc   :PlugClean<cr>
-nnoremap <leader>pu   :PlugUpdate<cr>
-nnoremap <leader>q    :q<cr>
-nnoremap <leader>qa   :qa<cr>
-nnoremap <leader>Q    :q!<cr>
-nnoremap <leader>Qa   :qa!<cr>
-nnoremap <leader>r    :e %<cr>
-nnoremap <leader>s    :so %<cr>
+nnoremap <leader>pi   <cmd>PlugInstall<cr>
+nnoremap <leader>pc   <cmd>PlugClean<cr>
+nnoremap <leader>pu   <cmd>PlugUpdate<cr>
+nnoremap <leader>q    <cmd>q<cr>
+nnoremap <leader>qa   <cmd>qa<cr>
+nnoremap <leader>Q    <cmd>q!<cr>
+nnoremap <leader>Qa   <cmd>qa!<cr>
+nnoremap <leader>r    <cmd>e %<cr>
+nnoremap <leader>s    <cmd>so %<cr>
 nnoremap <leader>S    <cmd>Startify<cr>
 nnoremap <leader>to   :TabooOpen<space>
 nnoremap <leader>tr   :TabooRename<space>
-nnoremap <leader>tR   :TabooReset<cr>
-nnoremap <leader>w    :w<cr>
-nnoremap <leader>Wf   :split <cfile><cr>
+nnoremap <leader>tR   <cmd>TabooReset<cr>
+nnoremap <leader>w    <cmd>w<cr>
+nnoremap <leader>W    <cmd>w !sudo tee %<cr>
+nnoremap <leader>Wf   <cmd>split <cfile><cr>
 
 " move curren line up and down
 nnoremap <M-j>        mz:m+<cr>`z

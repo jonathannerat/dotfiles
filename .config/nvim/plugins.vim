@@ -60,7 +60,13 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'tbastos/vim-lua'
 " markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-" pandoc integration
+" toml syntax
+Plug 'cespare/vim-toml'
+" snippets powered by python
+Plug 'SirVer/ultisnips'
+" helpers for unix
+Plug 'tpope/vim-eunuch'
+" pandoc integration and utilities
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " TOML syntax highlighting
@@ -100,10 +106,10 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " ULTISNIPS
-" let g:UltiSnipsEditSplit = 'context'
-" let g:UltiSnipsExpandTrigger = '<C-Space>'
-" let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
-" let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsExpandTrigger = '<C-Space>'
+let g:UltiSnipsJumpForwardTrigger = '<C-Space>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
 
 " VIMWIKI
 
