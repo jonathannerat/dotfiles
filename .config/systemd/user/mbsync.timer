@@ -1,5 +1,7 @@
 [Unit]
 Description=Mailbox synchronization timer
+After=network-online.target
+Wants=network-online.target
 
 [Timer]
 OnBootSec=2m
