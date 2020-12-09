@@ -42,6 +42,10 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
 Plug 'junegunn/fzf.vim'
+" telescope floating picker
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " neomut config syntax support
 Plug 'neomutt/neomutt.vim'
 " better support for scss syntax

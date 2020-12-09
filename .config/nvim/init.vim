@@ -130,7 +130,6 @@ nmap <leader>vm <Plug>VimwikiIndex 0
 
 nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
-nnoremap <leader>b    <cmd>Buffers<cr>
 nnoremap <leader>cd   <cmd>lcd %:h<cr>
 nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
@@ -138,10 +137,13 @@ nnoremap <leader>cp   <cmd>edit ~/.local/src/dotfiles/.config/nvim/plugins.vim<c
 nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
 nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
 nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
-nnoremap <leader>f    <cmd>Files<cr>
-nnoremap <leader>F    :Files<space>
+nnoremap <leader>fb   <cmd>Telescope buffers<cr>
+nnoremap <leader>ff   <cmd>Telescope find_files<cr>
+nnoremap <leader>fh   <cmd>Telescope help_tags<cr>
+nnoremap <leader>fg   <cmd>Telescope git_files<cr>
+nnoremap <leader>fs   <cmd>Telescope live_grep<cr>
+nnoremap <leader>F    <cmd>Files<cr>
 nnoremap <leader>gf   <cmd>e <cfile><cr>
-nnoremap <leader>h    <cmd>Helptags<cr>
 nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
 nnoremap <leader>n    <cmd>NERDTreeToggle<cr>
