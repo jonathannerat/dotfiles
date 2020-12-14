@@ -24,6 +24,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME/android"
 export ANDROID_ROOT_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
@@ -37,6 +38,7 @@ export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 
 export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/"
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GEM_HOME="$XDG_DATA_HOME/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
@@ -51,9 +53,11 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export _Z_DATA="$XDG_DATA_HOME/z"
 
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+export SOLARGRAPH_CACHE="$XDG_CACHE_HOME"/solargraph
 
 # use ibus as IM
 export XMODIFIERS=@im=ibus

@@ -26,7 +26,8 @@ local servers = {
 	bashls = {},
 	jsonls = {},
 	pyls = {},
-	rust_analyzer = {}
+	rust_analyzer = {},
+	solargraph = {}
 }
 
 for lsp, config in pairs(servers) do
