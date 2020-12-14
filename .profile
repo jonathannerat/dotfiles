@@ -57,6 +57,7 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+export SOLARGRAPH_CACHE="$XDG_CACHE_HOME"/solargraph
 
 # use ibus as IM
 export XMODIFIERS=@im=ibus
