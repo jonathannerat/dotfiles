@@ -11,10 +11,9 @@ mpd_music_dir = /srv/media/music
 mpd_crossfade_time = 5
 
 ## visualizer
-visualizer_fifo_path = ~/.cache/mpd.fifo
+visualizer_data_source = ~/.cache/mpd.fifo
 visualizer_output_name = visualizer_feed
 visualizer_in_stereo = yes
-visualizer_sync_interval = 30
 # values: spectrum, wave, wave_filled, ellipse.
 visualizer_type = wave_filled
 visualizer_look = ●▮
