@@ -66,13 +66,13 @@ export QT_IM_MODULE=ibus
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 # gem binaries
-[ -d "$GEM_HOME/bin" ] && PATH="$XDG_DATA_HOME/gem/bin:$PATH"
+[ -d "$GEM_HOME/bin" ] && PATH="$GEM_HOME/bin:$PATH"
 
 # go binaries
 [ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
 
 # cargo binaries
-[ -d "$CARGO_HOME/bin" ] && PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+[ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME"/custom.profile ] && source "$XDG_CONFIG_HOME"/custom.profile
