@@ -1,0 +1,6 @@
+[Unit]
+Description=KDEConnect Protocol implemented in Vala
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mconnect -d
