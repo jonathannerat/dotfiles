@@ -21,6 +21,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 # home cleaning
 # these variables keep many programs from creating dot-{files/folders} in
 # $HOME. Taken from XDG_Base_Directory's article at ArchWiki
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME/android"
 export ANDROID_ROOT_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
@@ -38,7 +39,7 @@ export RANDFILE="$XDG_CONFIG_HOME/openssl/rnd"
 
 export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/"
-export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GEM_HOME="$XDG_DATA_HOME/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
@@ -53,7 +54,7 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export _Z_DATA="$XDG_DATA_HOME/z"
 
-export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
@@ -77,7 +78,7 @@ export QT_IM_MODULE=ibus
 [ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
 
 # cargo binaries
-[ -d "$CARGO_HOME/bin" ] && PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+[ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME"/custom.profile ] && source "$XDG_CONFIG_HOME"/custom.profile
