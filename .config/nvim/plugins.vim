@@ -59,7 +59,7 @@ Plug 'gkz/vim-ls'
 " a starter page for vim/neovim
 Plug 'mhinz/vim-startify'
 " treesitter hightlighting¬
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 " betterer lua syntax
 Plug 'tbastos/vim-lua'
 " markdown preview plugin
