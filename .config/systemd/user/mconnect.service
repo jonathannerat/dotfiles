@@ -1,6 +1,11 @@
 [Unit]
 Description=KDEConnect Protocol implemented in Vala
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/mconnect -d
+
+[Install]
+WantedBy=default.target
