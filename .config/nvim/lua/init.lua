@@ -25,6 +25,14 @@ local servers = {
 	ccls = {},
 	bashls = {},
 	jsonls = {},
+	efm = {
+		cmd = {
+			"efm-langserver",
+			"-c",
+			"/home/jonathan/.config/efm-langserver/config.yaml",
+		},
+		init_options = { documentFormatting = true },
+	},
 	pyls = {},
 	rust_analyzer = {},
 	solargraph = {}
