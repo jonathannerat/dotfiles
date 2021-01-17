@@ -1,0 +1,32 @@
+version: 2
+log-file: /home/jonathan/efmlangserver.log
+log-level: 1
+root-markers:
+  - .git/
+
+tools:
+  eslint: &eslint
+    lint-command: 'eslint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-stdin: true
+    lint-formats:
+      - "%f:%l:%c: %m"
+    lint-ignore-exit-code: true
+    format-command: 'eslint --stdin --stdin-filename=${INPUT}'
+    format-stdin: true
+    root-markers:
+      - package.json
+
+languages:
+  javascript:
+    - <<: *eslint
+  javascriptreact:
+    - <<: *eslint
+  javascript.jsx:
+    - <<: *eslint
+  typescript:
+    - <<: *eslint
+  typescript.tsx:
+    - <<: *eslint
+  typescriptreact:
+    - <<: *eslint
+
