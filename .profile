@@ -14,7 +14,7 @@ export EDITOR=nvim
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
 export NNN_TRASH=1
 export NNN_COLORS=1234
-export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;z:fzz'
+export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:fzz'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
@@ -41,7 +41,9 @@ export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
 export GEM_HOME="$XDG_DATA_HOME/gem"
+export GEM_PATH="$XDG_DATA_HOME/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"

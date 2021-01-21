@@ -48,9 +48,6 @@ media_library_primary_tag = album_artist
 browser_sort_mode = format
 browser_sort_format = {%a-}{{(%y)}%b}|{%f} {(%l)}
 
-## commands
-execute_on_song_change = notify-send -u low -i music "Now Playing" "$(mpc --format '%artist% \"%album%\" - %title%' current)"
-
 ## progressbar
 progressbar_look = ▒█░
 progressbar_color = black:b
