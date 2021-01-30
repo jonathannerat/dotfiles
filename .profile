@@ -18,6 +18,9 @@ export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:fzz'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
+# tuir config
+export TUIR_BROWSER=url-opener.sh
+
 # home cleaning
 # these variables keep many programs from creating dot-{files/folders} in
 # $HOME. Taken from XDG_Base_Directory's article at ArchWiki
