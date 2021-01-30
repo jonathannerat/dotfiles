@@ -82,5 +82,8 @@ export QT_IM_MODULE=ibus
 # cargo binaries
 [ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH"
 
+# npm binaries
+[ -d "$XDG_DATA_HOME/npm/bin" ] && PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME"/custom.profile ] && source "$XDG_CONFIG_HOME"/custom.profile
