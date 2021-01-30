@@ -21,15 +21,16 @@ case "$mimetype" in
 		sxiv "$tmp" ;;
 	video/*)
 		mpv "$url" ;;
+	*)
+		# guess opener by link
+		case "$url" in
+			https://www.youtube.com/*)
+				mpv "$url" ;;
+			https://youtu.be/*)
+				mpv "$url" ;;
+			*)
+				xdg-open "$@" ;;
+		esac ;;
 esac
 
-# guess opener by link
-case "$url" in
-	https://www.youtube.com/*)
-		mpv "$url" ;;
-	https://youtu.be/*)
-		mpv "$url" ;;
-	*)
-		xdg-open "$@" ;;
-esac
 
