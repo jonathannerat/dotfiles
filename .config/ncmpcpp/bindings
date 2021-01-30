@@ -67,6 +67,8 @@ def_key "h"
 
 def_key "space"
 	select_item
+def_key "space"
+	toggle_visualization_type
 
 def_key "ctrl-l"
 	seek_forward
