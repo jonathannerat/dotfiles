@@ -29,6 +29,7 @@ case "$url" in
 		mpv "$url" ;;
 	https://youtu.be/*)
 		mpv "$url" ;;
+	*)
+		xdg-open "$@" ;;
 esac
 
-xdg-open "$@"
