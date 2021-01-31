@@ -28,6 +28,9 @@ case "$mimetype" in
 				mpv "$url" ;;
 			https://youtu.be/*)
 				mpv "$url" ;;
+			https://v.redd.it/*)
+				notify-send -u low "url-opener.sh" "Opening video in background. This might take a while..."
+				mpv "$url" &;;
 			*)
 				xdg-open "$@" ;;
 		esac ;;
