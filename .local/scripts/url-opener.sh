@@ -34,7 +34,7 @@ case "$mimetype" in
 			https://youtu.be/*)
 				mpv "$url" ;;
 			https://v.redd.it/*)
-				notify-send -u low "url-opener.sh" "Opening reddit video. This might take a while"
+				notify-send -u low "url-opener.sh" "Opening reddit video. This might take a while..."
 				mpv "$url" &;;
 			*)
 				xdg-open "$@" ;;
