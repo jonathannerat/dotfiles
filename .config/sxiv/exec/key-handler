@@ -15,8 +15,8 @@
 rotate() {
 	degree="$1"
 	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read file; do
-        # use imagemagick
-        convert "$file" -rotate $degree "$file"
+	# use imagemagick
+	convert "$file" -rotate $degree "$file"
 	done
 }
 
@@ -35,7 +35,9 @@ case "$1" in
 	# copy first image to clipboard
 	"y")  head -1 | xclip -selection clipboard -target image/png "$(cat -)" ;;
 	# set first image as wallpaper
-	"s")  head -1 | ln -fs "$(cat -)" ~/.wallpaper  && feh --bg-fill "$HOME/.wallpaper";;
+	"s")
+		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" 
+		head -1 | ln -fs "$(cat -)" "$wall" && bgs -z "$wall" ;;
 	# rotate clockwise all images
 	"r")  rotate 90 ;;
 	# rotate anti-clockwise all images
