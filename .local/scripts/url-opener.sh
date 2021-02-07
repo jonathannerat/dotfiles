@@ -45,10 +45,19 @@ case "$mimetype" in
 				mpv "$url" ;;
 			https://v.redd.it/*)
 				notify-send -u low "url-opener.sh" "Opening video in background. This might take a while..."
-				mpv "$url" &;;
+				mpv "$url" & ;;
 			https://imgur.com/*)
 				url="https://i.imgur.com/${url##*/}"
-				viewurl "$url" ;;
+				case "$(getheader "$url" "content-type")" in
+					image/*)
+						viewurl "$url" ;;
+					*)
+						xdg-open "$@" ;;
+				esac ;;
+			https://gfycat.com/*)
+				mpv "$url" ;;
+			https://streamable.com/*)
+				mpv "$url" ;;
 			*)
 				xdg-open "$@" ;;
 		esac ;;
