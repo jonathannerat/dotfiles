@@ -24,7 +24,9 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
-	jsonls = {},
+	jsonls = {
+		cmd = { 'json-languageserver', '--stdio' }
+	},
 	efm = {
 		cmd = {
 			"efm-langserver",
