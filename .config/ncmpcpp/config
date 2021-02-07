@@ -17,7 +17,10 @@ visualizer_in_stereo = yes
 # values: spectrum, wave, wave_filled, ellipse.
 visualizer_type = spectrum
 visualizer_look = ●▮
-visualizer_color = 162, 163, 164, 128, 129, 93, 99, 63, 69, 33, 39, 38, 44, 43, 49, 48, 84
+visualizer_color = 118, 154, 148, 184, 178, 214, 208, 209, 203, 204, 198, 199, 163
+visualizer_fps = 30
+
+
 
 ## formats
 song_list_format         = {{$(red)%a$(end){ $(blue)"%b"$(end)} - }{$(green)%t$(end)}}|{%f}
