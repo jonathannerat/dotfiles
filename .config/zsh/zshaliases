@@ -21,8 +21,8 @@ alias c='xclip'
 alias cx='xclip -selection clipboard'
 
 alias l='ls'
-alias la='ls -a'
-alias ll='ls -al'
+alias la='ls -aa'
+alias ll='ls -aal'
 alias tree='ls -T'
 
 alias v='nvim'
