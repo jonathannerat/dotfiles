@@ -27,7 +27,6 @@ tmpfolder="$HOME/.cache/url-opener"
 tmp=$(mktemp --dry-run -p "$tmpfolder")
 
 trap cleanup EXIT
-
 [ -d "$tmpfolder" ] || mkdir "$tmpfolder"
 
 # guess opener by mimetype
