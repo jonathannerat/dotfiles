@@ -9,11 +9,13 @@ lyrics_directory = ~/.local/share/lyrics
 mpd_host = ~/.local/share/mpd/socket
 mpd_music_dir = /srv/media/music
 mpd_crossfade_time = 5
+mpd_connection_timeout = 30
 
 ## visualizer
-visualizer_data_source = ~/.cache/mpd.fifo
+visualizer_data_source = localhost:5555
 visualizer_output_name = visualizer_feed
 visualizer_in_stereo = yes
+visualizer_fps = 30
 # values: spectrum, wave, wave_filled, ellipse.
 visualizer_type = spectrum
 visualizer_look = ●▮
@@ -51,7 +53,7 @@ browser_sort_format = {%a-}{{(%y)}%b}|{%f} {(%l)}
 ## progressbar
 progressbar_look = ▒█░
 progressbar_color = black:b
-progressbar_elapsed_color = white:b
+progressbar_elapsed_color = magenta:b
 
 # various
 mouse_support = no
