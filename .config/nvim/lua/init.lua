@@ -24,7 +24,9 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
-	jsonls = {},
+	jsonls = {
+		cmd = { 'json-languageserver', '--stdio' }
+	},
 	efm = {
 		cmd = {
 			"efm-langserver",
@@ -64,5 +66,12 @@ require'nvim-treesitter.configs'.setup {
 	},
 	incremental_selection = {
 		enable = true,
+	}
+}
+
+require'telescope'.setup{
+	defaults = {
+		file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+		grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
 	}
 }

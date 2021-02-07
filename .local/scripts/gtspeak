@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Google Translate Speak
+# depends on [translate-shell](https://github.com/soimort/translate-shell)
+
+sentence=$(dmenu -p "Speak:" </dev/null)
+trans -b -p :en "$sentence"

@@ -79,6 +79,8 @@ Plug 'cespare/vim-toml'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 " helpers for unix
 Plug 'tpope/vim-eunuch'
+" vala syntax plugin
+Plug 'arrufat/vala.vim'
 call plug#end()
 
 

@@ -70,3 +70,8 @@ fman() {
 	local _name=${_line%% \(*} # cut everything after the manpage name
 	[ $_name ] && man $_name
 }
+
+# dictionary
+def() {
+	dict -d gcide "$@" 2>&1 | colorit | less
+}

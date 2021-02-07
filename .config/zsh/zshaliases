@@ -5,6 +5,7 @@ alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $
 alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias colorit="colorit --config $XDG_CONFIG_HOME/colorit.conf"
 
 # overrides
 alias ls='exa --group-directories-first'
@@ -20,8 +21,8 @@ alias c='xclip'
 alias cx='xclip -selection clipboard'
 
 alias l='ls'
-alias la='ls -a'
-alias ll='ls -al'
+alias la='ls -aa'
+alias ll='ls -aal'
 alias tree='ls -T'
 
 alias v='nvim'

@@ -132,13 +132,14 @@ nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
 nnoremap <leader>cd   <cmd>lcd %:h<cr>
 nnoremap <leader>cg   <cmd>Gcd<cr>
-nnoremap <leader>ci   <cmd>edit ~/.local/src/dotfiles/.config/nvim/init.vim<cr>
-nnoremap <leader>cp   <cmd>edit ~/.local/src/dotfiles/.config/nvim/plugins.vim<cr>
+nnoremap <leader>ci   <cmd>exe 'edit' . stdpath('config') . '/init.vim'<cr>
+nnoremap <leader>cp   <cmd>exe 'edit' . stdpath('config') . '/plugins.vim'<cr>
+nnoremap <leader>cl   <cmd>exe 'edit' . stdpath('config') . '/lua/init.lua'<cr>
 nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
 nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
 nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
 nnoremap <leader>fb   <cmd>Telescope buffers<cr>
-nnoremap <leader>ff   <cmd>Telescope find_files<cr>
+nnoremap <leader>ff   <cmd>Telescope find_files find_command=fd,-t,f,-t,l,-H<cr>
 nnoremap <leader>fh   <cmd>Telescope help_tags<cr>
 nnoremap <leader>fg   <cmd>Telescope git_files<cr>
 nnoremap <leader>fs   <cmd>Telescope live_grep<cr>
@@ -179,6 +180,12 @@ exe 'luafile' stdpath('config') . '/lua/plugins.lua'
 
 augroup writing_file_rules
 	autocmd!
-	autocmd FileType tex,latex,mail,markdown,vimwiki,pandoc set textwidth=100
-		\ | set spell
+	autocmd FileType tex,latex,mail,markdown,vimwiki,pandoc set textwidth=100 spell
 augroup end
+
+augroup apply_config_changes
+	autocmd!
+	autocmd BufWritePost ~/.config/nvim/lua/**.lua   ++nested   luafile ~/.config/nvim/lua/init.lua
+	autocmd BufWritePost ~/.config/nvim/*.vim        ++nested   source %
+	autocmd BufWritePost Xresources                             exe '!xrdb -load' . expand('%:p')
+augroup END
