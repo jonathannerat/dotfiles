@@ -1,3 +1,6 @@
 set font "FiraCode Nerd Font Mono 9"
 
+set window-title-basename true
+set statusbar-home-tilde true
+
 map <C-h> nohlsearch
