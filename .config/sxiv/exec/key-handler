@@ -34,9 +34,12 @@ case "$1" in
 	"Y")  xclip -in -selection clipboard ;;
 	# copy first image to clipboard
 	"y")  head -1 | xclip -selection clipboard -target image/png "$(cat -)" ;;
-	# set first image as wallpaper
+	# set image as wallpaper
 	"s")
-		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper" 
+		bgs -z "$(head -1 | cat -)" ;;
+	# set image as wallpaper permanently
+	"S")
+		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
 		head -1 | ln -fs "$(cat -)" "$wall" && bgs -z "$wall" ;;
 	# rotate clockwise all images
 	"r")  rotate 90 ;;
