@@ -23,7 +23,11 @@ elif [ $(ls -1 "$_dahuaf" | wc -l) -eq 0 ]; then
 	errcho "No dahua servers found in $_dahuaf"
 fi
 
-_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server")"
+if [ "$(find "$_dahuaf" -type f | wc -l)" = "1" ]; then
+	_dahua="$(find "$_dahuaf" -type f -printf "%P")"
+else
+	_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server:")"
+fi
 
 # check if selected connection exists
 if [ -z "$_dahua" ]; then
@@ -54,4 +58,4 @@ rm $_fifo
 _channelname=$(echo $_channels | tr ";" "\n" | cut -d: -f1 | dmenu -i -p "Choose a channel:")
 _channel=$(echo $_channels | tr ";" "\n" | grep -F "$_channelname" | cut -d: -f2)
 
-exec mpv --title="Camera: $_channelname" "rtsp://${_user:-admin}:${_pass:-admin}@$_host:${_port:-554}/cam/realmonitor?channel=$_channel&subtype=0"
+exec mpv --no-terminal --title="Camera: $_channelname" "rtsp://${_user:-admin}:${_pass:-admin}@$_host:${_port:-554}/cam/realmonitor?channel=$_channel&subtype=0"
