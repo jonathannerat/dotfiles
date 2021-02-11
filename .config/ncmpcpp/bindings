@@ -20,6 +20,13 @@ def_key "alt-k"
 def_key "alt-j"
 	move_selected_items_down
 
+def_key "A"
+	move_home
+	select_item
+	move_end
+	select_item
+	select_range
+
 def_key "P"
 	stop
 
