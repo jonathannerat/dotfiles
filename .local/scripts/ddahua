@@ -23,7 +23,11 @@ elif [ $(ls -1 "$_dahuaf" | wc -l) -eq 0 ]; then
 	errcho "No dahua servers found in $_dahuaf"
 fi
 
-_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server")"
+if [ "$(find "$_dahuaf" -type f | wc -l)" = "1" ]; then
+	_dahua="$(find "$_dahuaf" -type f -printf "%P")"
+else
+	_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server:")"
+fi
 
 # check if selected connection exists
 if [ -z "$_dahua" ]; then
