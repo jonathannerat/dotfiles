@@ -40,7 +40,7 @@ case "$1" in
 	# set image as wallpaper permanently
 	"S")
 		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
-		head -1 | ln -fs "$(cat -)" "$wall" && bgs -z "$wall" ;;
+		head -1 | ln -rfs "$(cat -)" "$wall" && bgs -z "$wall" ;;
 	# rotate clockwise all images
 	"r")  rotate 90 ;;
 	# rotate anti-clockwise all images
