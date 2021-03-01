@@ -147,9 +147,7 @@ nnoremap <leader>F    <cmd>Files<cr>
 nnoremap <leader>gf   <cmd>e <cfile><cr>
 nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
-nnoremap <leader>n    <cmd>NERDTreeToggle<cr>
-nnoremap <leader>ng   <cmd>NERDTreeVCS<cr>
-nnoremap <leader>nc   <cmd>NERDTreeCWD<cr>
+nnoremap <leader>n    <cmd>NnnPicker<cr>
 nnoremap <leader>o    <cmd>Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
 nnoremap <leader>pi   <cmd>PlugInstall<cr>
