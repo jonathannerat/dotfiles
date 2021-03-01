@@ -147,6 +147,8 @@ nnoremap <leader>F    <cmd>Files<cr>
 nnoremap <leader>gf   <cmd>e <cfile><cr>
 nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
+nnoremap <leader>mp   <cmd>MarkdownPreview<cr>
+nnoremap <leader>mP   <cmd>MarkdownPreviewStop<cr>
 nnoremap <leader>n    <cmd>NERDTreeToggle<cr>
 nnoremap <leader>ng   <cmd>NERDTreeVCS<cr>
 nnoremap <leader>nc   <cmd>NERDTreeCWD<cr>
@@ -165,6 +167,7 @@ nnoremap <leader>S    <cmd>Startify<cr>
 nnoremap <leader>to   :TabooOpen<space>
 nnoremap <leader>tr   :TabooRename<space>
 nnoremap <leader>tR   <cmd>TabooReset<cr>
+nnoremap <leader>u    <cmd>UltiSnipsEdit<cr>
 nnoremap <leader>w    <cmd>w<cr>
 nnoremap <leader>W    <cmd>w !sudo tee %<cr>
 nnoremap <leader>Wf   <cmd>split <cfile><cr>
@@ -188,4 +191,6 @@ augroup apply_config_changes
 	autocmd BufWritePost ~/.config/nvim/lua/**.lua   ++nested   luafile ~/.config/nvim/lua/init.lua
 	autocmd BufWritePost ~/.config/nvim/*.vim        ++nested   source %
 	autocmd BufWritePost Xresources                             exe '!xrdb -load' . expand('%:p')
+	autocmd BufWritePost ~/.local/bin/*                         exe '!chmod a+x' . expand('%:p')
+	autocmd BufWritePost ~/.local/scripts/*                     exe '!chmod a+x' . expand('%:p')
 augroup END

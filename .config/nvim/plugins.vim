@@ -190,3 +190,8 @@ let g:lexima_accept_pum_with_enter = 0
 " pandoc-vim
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#formatting#textwidth = 100
+
+" markdown-preview.nvim
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_port = 8007
