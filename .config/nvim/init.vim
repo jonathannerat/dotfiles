@@ -149,9 +149,7 @@ nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
 nnoremap <leader>mp   <cmd>MarkdownPreview<cr>
 nnoremap <leader>mP   <cmd>MarkdownPreviewStop<cr>
-nnoremap <leader>n    <cmd>NERDTreeToggle<cr>
-nnoremap <leader>ng   <cmd>NERDTreeVCS<cr>
-nnoremap <leader>nc   <cmd>NERDTreeCWD<cr>
+nnoremap <leader>n    <cmd>NnnPicker<cr>
 nnoremap <leader>o    <cmd>Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
 nnoremap <leader>pi   <cmd>PlugInstall<cr>

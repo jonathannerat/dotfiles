@@ -134,7 +134,7 @@ let g:vimwiki_list = [default_vimwiki]
 " NNN
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
-let g:nnn#layout = { 'left': '~20%' }
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 " [nvim only] floating window
 " let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:nnn#action = {
