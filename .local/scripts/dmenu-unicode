@@ -89,4 +89,6 @@ if [ "$_selected" ]; then
 	_code=${_selected% :*}
 	>&2 echo "debug: copying $_code to system clipboard"
 	echo -n "$_code" | xclip -selection clipboard
+	>&2 echo "debug: writing $_code to X"
+	xdotool type "$_code"
 fi
