@@ -28,12 +28,12 @@ export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME/android"
 export ANDROID_ROOT_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
-export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -63,7 +63,8 @@ export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
-export SOLARGRAPH_CACHE="$XDG_CACHE_HOME"/solargraph
+export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NugetPackages"
 
 # use ibus as IM
 export XMODIFIERS=@im=ibus
@@ -89,4 +90,4 @@ export QT_IM_MODULE=ibus
 [ -d "$XDG_DATA_HOME/npm/bin" ] && PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
 # untracked overrides for this profile
-[ -f "$XDG_CONFIG_HOME"/custom.profile ] && source "$XDG_CONFIG_HOME"/custom.profile
+[ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
