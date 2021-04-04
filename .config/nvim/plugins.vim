@@ -62,6 +62,8 @@ Plug 'mhinz/vim-startify'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 " betterer lua syntax
 Plug 'tbastos/vim-lua'
+" moonscript support for vim
+Plug 'leafo/moonscript-vim'
 " markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " toml syntax
