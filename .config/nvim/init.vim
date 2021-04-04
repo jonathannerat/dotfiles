@@ -188,7 +188,7 @@ augroup apply_config_changes
 	autocmd!
 	autocmd BufWritePost ~/.config/nvim/lua/**.lua   ++nested   luafile ~/.config/nvim/lua/init.lua
 	autocmd BufWritePost ~/.config/nvim/*.vim        ++nested   source %
-	autocmd BufWritePost Xresources                             exe '!xrdb -load' . expand('%:p')
-	autocmd BufWritePost ~/.local/bin/*                         exe '!chmod a+x' . expand('%:p')
-	autocmd BufWritePost ~/.local/scripts/*                     exe '!chmod a+x' . expand('%:p')
+	autocmd BufWritePost Xresources                             exe '!xrdb -load ' . expand('%:p')
+	autocmd BufWritePost ~/.local/bin/*                         exe '!chmod a+x ' . expand('%:p')
+	autocmd BufWritePost ~/.local/scripts/*                     exe '!chmod a+x ' . expand('%:p')
 augroup END
