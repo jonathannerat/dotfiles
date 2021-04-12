@@ -140,9 +140,6 @@ nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>exe 'edit' . stdpath('config') . '/init.vim'<cr>
 nnoremap <leader>cp   <cmd>exe 'edit' . stdpath('config') . '/plugins.vim'<cr>
 nnoremap <leader>cl   <cmd>exe 'edit' . stdpath('config') . '/lua/init.lua'<cr>
-nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
-nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
-nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
 nnoremap <leader>fb   <cmd>Telescope buffers<cr>
 nnoremap <leader>ff   <cmd>Telescope find_files find_command=fd,-t,f,-t,l,-H<cr>
 nnoremap <leader>fh   <cmd>Telescope help_tags<cr>
