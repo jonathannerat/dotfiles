@@ -21,11 +21,17 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
-	jsonls = {},
 	pyls = {},
 	rust_analyzer = {},
 	solargraph = {},
 	sumneko_lua = {
+		cmd = {
+			"/home/jonathan/.local/src/lua-language-server/bin/Linux/lua-language-server",
+			"-E",
+			"/home/jonathan/.local/src/lua-language-server/main.lua"
+		}
+	},
+	jsonls = {
 		cmd = { 'json-languageserver', '--stdio' }
 	},
 	efm = {
