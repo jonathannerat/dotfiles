@@ -36,8 +36,8 @@ Plug 'tpope/vim-surround'
 Plug '~/proj/nlua.nvim'
 " nvim lsp starter config¬
 Plug 'neovim/nvim-lspconfig'
-" async completion framework written in lua¬
-Plug 'nvim-lua/completion-nvim'
+" autocomplete plugin for nvim written in lua
+Plug 'hrsh7th/nvim-compe'
 " auto close parenthesis / brackets / etc
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
@@ -180,11 +180,6 @@ let g:startify_lists = [
 \ { 'type': 'files',     'header': ['  MRU']            },
 \ { 'type': 'dir',       'header': ['  MRU '. getcwd()] },
 \ ]
-
-" completion-nvim
-let g:completion_confirm_key = "\<c-y>"
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
 " lexima.vim
 let g:lexima_accept_pum_with_enter = 0

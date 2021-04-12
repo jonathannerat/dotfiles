@@ -3,9 +3,6 @@ require'colorizer'.setup(nil, { css=true })
 
 local lspconfig = require'lspconfig'
 local on_attach = function(_, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	require'completion'.on_attach()
-
 	-- Mappings
 	local opts = { noremap=true, silent=true }
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -24,7 +21,11 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
-	jsonls = {
+	jsonls = {},
+	pyls = {},
+	rust_analyzer = {},
+	solargraph = {},
+	sumneko_lua = {
 		cmd = { 'json-languageserver', '--stdio' }
 	},
 	efm = {
@@ -35,21 +36,12 @@ local servers = {
 		},
 		init_options = { documentFormatting = true },
 	},
-	pyls = {},
-	rust_analyzer = {},
-	solargraph = {}
 }
 
 for lsp, config in pairs(servers) do
 	if not config.on_attach then config.on_attach = on_attach end
-  lspconfig[lsp].setup(config)
+	lspconfig[lsp].setup(config)
 end
-
--- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
-require'nlua.lsp.nvim'.setup(lspconfig, {
-	on_attach = on_attach,
-	runtime_paths = { '~/.local/src/neovim' }
-})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -73,5 +65,18 @@ require'telescope'.setup{
 	defaults = {
 		file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 		grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+	}
+}
+
+require'compe'.setup {
+	enabled = true,
+	autocomplete = true,
+	source = {
+		path = true,
+		buffer = true,
+		calc = true,
+		nvim_lsp = true,
+		nvim_lua = true,
+		ultisnips = true,
 	}
 }
