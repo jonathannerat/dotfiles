@@ -184,7 +184,7 @@ exe 'luafile' stdpath('config') . '/lua/plugins.lua'
 augroup writing_file_rules
 	autocmd!
 	autocmd FileType tex,latex,mail,markdown,vimwiki,pandoc set textwidth=100 spell
-augroup end
+augroup END
 
 augroup apply_config_changes
 	autocmd!
