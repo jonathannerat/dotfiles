@@ -75,3 +75,26 @@ fman() {
 def() {
 	dict -d gcide "$@" 2>&1 | colorit | less
 }
+
+# open my usual programs in tmux
+t() {
+	session="${1:-home}"
+	if tmux has-session -t "$session"; then
+		if [ -z "$TMUX" ]; then
+			tmux attach-session -t "$session"
+		else
+			>&2 echo "Already inside session [$session]"
+		fi
+		return
+	fi
+
+	tmux new-session -d -s "$session"
+	tmux new-window -t "$session"
+	tmux new-window -t "$session"
+	tmux rename-window -t "$session:0" "mail"
+	tmux rename-window -t "$session:1" "music"
+	tmux rename-window -t "$session:2" "work"
+	tmux send-keys -t "$session:mail" "neomutt" Return
+	tmux send-keys -t "$session:music" "ncmpcpp" Return
+	tmux attach-session -t "$session:work"
+}

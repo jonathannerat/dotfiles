@@ -119,6 +119,11 @@ inoremap kk <Esc>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" completition mappings
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm(lexima#expand('<LT>CR>', 'i'))
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 
@@ -135,9 +140,6 @@ nnoremap <leader>cg   <cmd>Gcd<cr>
 nnoremap <leader>ci   <cmd>exe 'edit' . stdpath('config') . '/init.vim'<cr>
 nnoremap <leader>cp   <cmd>exe 'edit' . stdpath('config') . '/plugins.vim'<cr>
 nnoremap <leader>cl   <cmd>exe 'edit' . stdpath('config') . '/lua/init.lua'<cr>
-nnoremap <leader>dd   <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
-nnoremap <leader>dn   <cmd>lua vim.lsp.diagnostic.goto_next{ wrap = false }<cr>
-nnoremap <leader>dp   <cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = false }<cr>
 nnoremap <leader>fb   <cmd>Telescope buffers<cr>
 nnoremap <leader>ff   <cmd>Telescope find_files find_command=fd,-t,f,-t,l,-H<cr>
 nnoremap <leader>fh   <cmd>Telescope help_tags<cr>
@@ -147,6 +149,8 @@ nnoremap <leader>F    <cmd>Files<cr>
 nnoremap <leader>gf   <cmd>e <cfile><cr>
 nnoremap <leader>hh   <cmd>noh<cr>
 nnoremap <leader>ht   /\s\+$<cr>
+nnoremap <leader>mp   <cmd>MarkdownPreview<cr>
+nnoremap <leader>mP   <cmd>MarkdownPreviewStop<cr>
 nnoremap <leader>n    <cmd>NnnPicker<cr>
 nnoremap <leader>o    <cmd>Obsession .session.vim<cr>
 nnoremap <leader>p    :Plug
@@ -163,6 +167,7 @@ nnoremap <leader>S    <cmd>Startify<cr>
 nnoremap <leader>to   :TabooOpen<space>
 nnoremap <leader>tr   :TabooRename<space>
 nnoremap <leader>tR   <cmd>TabooReset<cr>
+nnoremap <leader>u    <cmd>UltiSnipsEdit<cr>
 nnoremap <leader>w    <cmd>w<cr>
 nnoremap <leader>W    <cmd>w !sudo tee %<cr>
 nnoremap <leader>Wf   <cmd>split <cfile><cr>
@@ -179,11 +184,13 @@ exe 'luafile' stdpath('config') . '/lua/plugins.lua'
 augroup writing_file_rules
 	autocmd!
 	autocmd FileType tex,latex,mail,markdown,vimwiki,pandoc set textwidth=100 spell
-augroup end
+augroup END
 
 augroup apply_config_changes
 	autocmd!
 	autocmd BufWritePost ~/.config/nvim/lua/**.lua   ++nested   luafile ~/.config/nvim/lua/init.lua
 	autocmd BufWritePost ~/.config/nvim/*.vim        ++nested   source %
-	autocmd BufWritePost Xresources                             exe '!xrdb -load' . expand('%:p')
+	autocmd BufWritePost Xresources                             exe '!xrdb -load ' . expand('%:p')
+	autocmd BufWritePost ~/.local/bin/*                         exe '!chmod a+x ' . expand('%:p')
+	autocmd BufWritePost ~/.local/scripts/*                     exe '!chmod a+x ' . expand('%:p')
 augroup END

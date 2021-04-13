@@ -36,8 +36,8 @@ Plug 'tpope/vim-surround'
 Plug '~/proj/nlua.nvim'
 " nvim lsp starter config¬
 Plug 'neovim/nvim-lspconfig'
-" async completion framework written in lua¬
-Plug 'nvim-lua/completion-nvim'
+" autocomplete plugin for nvim written in lua
+Plug 'hrsh7th/nvim-compe'
 " auto close parenthesis / brackets / etc
 Plug 'cohama/lexima.vim'
 " fuzzy file finder¬
@@ -62,6 +62,8 @@ Plug 'mhinz/vim-startify'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 " betterer lua syntax
 Plug 'tbastos/vim-lua'
+" moonscript support for vim
+Plug 'leafo/moonscript-vim'
 " markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " toml syntax
@@ -179,14 +181,14 @@ let g:startify_lists = [
 \ { 'type': 'dir',       'header': ['  MRU '. getcwd()] },
 \ ]
 
-" completion-nvim
-let g:completion_confirm_key = "\<c-y>"
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_matching_strategy_list = ['exact', 'fuzzy']
-
 " lexima.vim
 let g:lexima_accept_pum_with_enter = 0
 
 " pandoc-vim
 let g:pandoc#formatting#mode = 'h'
 let g:pandoc#formatting#textwidth = 100
+
+" markdown-preview.nvim
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_port = 8007

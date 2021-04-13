@@ -2,20 +2,49 @@
 require'colorizer'.setup(nil, { css=true })
 
 local lspconfig = require'lspconfig'
-local on_attach = function(_, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	require'completion'.on_attach()
+local on_attach = function(client, bufnr)
+	local opts = { noremap=true, silent=true }
+	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
 	-- Mappings
-	local opts = { noremap=true, silent=true }
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+	buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+	buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+	buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+	buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+	buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+	if client.resolved_capabilities.document_formatting then
+		buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	end
+
+	if client.resolved_capabilities.document_range_formatting then
+		buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+	end
+
+	-- Set autocommands conditional on server_capabilities
+	if client.resolved_capabilities.document_highlight then
+		vim.api.nvim_exec([[
+			hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+			hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+			hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+			augroup lsp_document_highlight
+				autocmd! * <buffer>
+				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+			augroup END
+		]], false)
+	end
 end
 
 local servers = {
@@ -24,6 +53,16 @@ local servers = {
 	vimls = {},
 	ccls = {},
 	bashls = {},
+	pyls = {},
+	rust_analyzer = {},
+	solargraph = {},
+	sumneko_lua = {
+		cmd = {
+			"/home/jonathan/.local/src/lua-language-server/bin/Linux/lua-language-server",
+			"-E",
+			"/home/jonathan/.local/src/lua-language-server/main.lua"
+		}
+	},
 	jsonls = {
 		cmd = { 'json-languageserver', '--stdio' }
 	},
@@ -35,21 +74,12 @@ local servers = {
 		},
 		init_options = { documentFormatting = true },
 	},
-	pyls = {},
-	rust_analyzer = {},
-	solargraph = {}
 }
 
 for lsp, config in pairs(servers) do
 	if not config.on_attach then config.on_attach = on_attach end
-  lspconfig[lsp].setup(config)
+	lspconfig[lsp].setup(config)
 end
-
--- custom setup for sumneko_lua, to include tj's nlua.nvim plugin
-require'nlua.lsp.nvim'.setup(lspconfig, {
-	on_attach = on_attach,
-	runtime_paths = { '~/.local/src/neovim' }
-})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -73,5 +103,18 @@ require'telescope'.setup{
 	defaults = {
 		file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 		grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+	}
+}
+
+require'compe'.setup {
+	enabled = true,
+	autocomplete = true,
+	source = {
+		path = true,
+		buffer = true,
+		calc = true,
+		nvim_lsp = true,
+		nvim_lua = true,
+		ultisnips = true,
 	}
 }
