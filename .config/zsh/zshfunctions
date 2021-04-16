@@ -94,7 +94,7 @@ t() {
 	tmux rename-window -t "$session:0" "mail"
 	tmux rename-window -t "$session:1" "music"
 	tmux rename-window -t "$session:2" "work"
-	tmux send-keys -t "$session:mail" "neomutt" Return
-	tmux send-keys -t "$session:music" "ncmpcpp" Return
+	tmux send-keys -t "$session:mail" "neomutt" Enter
+	tmux send-keys -t "$session:music" "ncmpcpp" Enter
 	tmux attach-session -t "$session:work"
 }
