@@ -55,7 +55,7 @@ n() {
 	# stty lwrap undef
 	stty lnext undef
 	# Add the command line options you want to combine with cd on quit here, then run nnn with just "n"
-	nnn -arA -P t "$@"
+	nnn -rA -P t "$@"
 
 	if [ -f "$NNN_TMPFILE" ]; then
 		. "$NNN_TMPFILE"

@@ -46,8 +46,8 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
   eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
 fi
 
-# z to jump between directories
-[ -r "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
+# z to jump between directories (with zoxide)
+eval "$(/usr/bin/zoxide init zsh)"
 
 # for aliases
 [ -f "$ZDOTDIR"/zshaliases ] && source "$ZDOTDIR"/zshaliases
