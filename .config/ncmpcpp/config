@@ -6,8 +6,7 @@ ncmpcpp_directory = ~/.local/share/ncmpcpp
 lyrics_directory = ~/.local/share/lyrics
 
 ## mpd related configs
-mpd_host = ~/.local/share/mpd/socket
-mpd_music_dir = /srv/media/music
+mpd_host = ~/.local/share/mopidy/socket
 mpd_crossfade_time = 5
 mpd_connection_timeout = 30
 
