@@ -21,7 +21,7 @@ export SAVEHIST=1000
 export WORDCHARS=${WORDCHARS/\/}
 
 # colorful man-pages
-# color codes: 
+# color codes:
 # - black     0
 # - red       1
 # - green     2
@@ -45,3 +45,9 @@ if [ -t 1 ]; then
 	export LESS_TERMCAP_ZO=$(tput ssupm)
 	export LESS_TERMCAP_ZW=$(tput rsupm)
 fi
+
+# zsh-autosuggestions config
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd|ls) *"

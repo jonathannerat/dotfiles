@@ -57,3 +57,10 @@ eval "$(/usr/bin/zoxide init zsh)"
 
 # for key bindings
 [ -f "$ZDOTDIR"/zshkeybinds ] && source "$ZDOTDIR"/zshkeybinds
+
+plugdir="/usr/share/zsh/plugins"
+plugins=("zsh-autosuggestions/zsh-autosuggestions.plugin.zsh")
+
+for p in $plugins; do
+	[ -f "$plugdir/$p" ] && source "$plugdir/$p"
+done
