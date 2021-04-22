@@ -60,6 +60,7 @@ local servers = {
 		},
 		init_options = { documentFormatting = true },
 	},
+	texlab = {},
 }
 
 for lsp, config in pairs(servers) do
