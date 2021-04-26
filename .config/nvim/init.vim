@@ -133,6 +133,12 @@ vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
 
 nmap <leader>vm <Plug>VimwikiIndex 0
 
+function SudaRead_keeppos()
+	let pos = getcurpos()
+	SudaRead
+	call setpos('.', pos)
+endfunction
+
 nnoremap  Q           <nop>
 nnoremap <Space>      <nop>
 nnoremap <leader>cd   <cmd>lcd %:h<cr>
@@ -163,8 +169,8 @@ nnoremap <leader>Q    <cmd>q!<cr>
 nnoremap <leader>Qa   <cmd>qa!<cr>
 nnoremap <leader>r    <cmd>e %<cr>
 nnoremap <leader>s    <cmd>so %<cr>
-nnoremap <leader>S    <cmd>Startify<cr>
-nnoremap <leader>to   :TabooOpen<space>
+nnoremap <leader>sr   <cmd>call SudaRead_keeppos()<cr>
+nnoremap <leader>sw   <cmd>SudaWrite<cr>
 nnoremap <leader>tr   :TabooRename<space>
 nnoremap <leader>tR   <cmd>TabooReset<cr>
 nnoremap <leader>u    <cmd>UltiSnipsEdit<cr>
