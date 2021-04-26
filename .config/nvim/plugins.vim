@@ -83,6 +83,8 @@ Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'tpope/vim-eunuch'
 " vala syntax plugin
 Plug 'arrufat/vala.vim'
+" read / write files with sudo
+Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 
