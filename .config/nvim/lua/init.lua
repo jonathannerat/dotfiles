@@ -105,3 +105,9 @@ require'compe'.setup {
 		ultisnips = true,
 	}
 }
+
+require'lualine'.setup {
+	options = {
+		theme = 'tokyonight'
+	}
+}

@@ -77,6 +77,10 @@ Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'arrufat/vala.vim'
 " read / write files with sudo
 Plug 'lambdalisue/suda.vim'
+" dark theme
+Plug 'folke/tokyonight.nvim'
+" material dark/light theme¬
+Plug 'marko-cerovac/material.nvim'
 " statusline
 Plug 'hoob3rt/lualine.nvim'
 call plug#end()
@@ -162,3 +166,9 @@ let g:pandoc#formatting#textwidth = 100
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = 8007
+
+" tokyonight
+let g:tokyonight_style = 'night'
+
+" material-nvim
+let g:material_style = 'deep ocean'
