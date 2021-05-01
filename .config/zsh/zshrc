@@ -59,7 +59,8 @@ eval "$(/usr/bin/zoxide init zsh)"
 [ -f "$ZDOTDIR"/zshkeybinds ] && source "$ZDOTDIR"/zshkeybinds
 
 plugdir="/usr/share/zsh/plugins"
-plugins=("zsh-autosuggestions/zsh-autosuggestions.plugin.zsh")
+plugins=("zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+	       "fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh")
 
 for p in $plugins; do
 	[ -f "$plugdir/$p" ] && source "$plugdir/$p"
