@@ -30,6 +30,8 @@ alias V='SUDO_EDITOR="nvim" sudo -e'
 
 alias tt='tmux new -A -s'
 
+alias sysu='systemctl --user'
+
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
 
