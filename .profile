@@ -14,7 +14,7 @@ export EDITOR=nvim
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
 export NNN_TRASH=1
 export NNN_COLORS=1234
-export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:fzz'
+export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:autojump'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
