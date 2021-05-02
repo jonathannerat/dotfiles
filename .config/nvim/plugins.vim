@@ -6,12 +6,6 @@
 
 call plug#begin(stdpath('data').'/plugged')
 Plug 'junegunn/vim-plug'
-" fancy and light status line
-Plug 'itchyny/lightline.vim'
-" fork that adds first occurrence line no to status line
-Plug '~/proj/lightline-trailing-whitespace'
-" base16 themes for lightline
-Plug 'mike-hearn/base16-vim-lightline'
 " futuristic theme
 Plug 'embark-theme/vim', { 'as': 'embark-theme' }
 " redesigned mksession
@@ -83,6 +77,12 @@ Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'arrufat/vala.vim'
 " read / write files with sudo
 Plug 'lambdalisue/suda.vim'
+" dark theme
+Plug 'folke/tokyonight.nvim'
+" material dark/light theme¬
+Plug 'marko-cerovac/material.nvim'
+" statusline
+Plug 'hoob3rt/lualine.nvim'
 call plug#end()
 
 
@@ -136,39 +136,13 @@ let g:vimwiki_list = [default_vimwiki]
 " NNN
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#layout = { 'left': '-20%' }
 " [nvim only] floating window
 " let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:nnn#action = {
 	\ '<c-t>': 'tab split',
 	\ '<c-x>': 'split',
 	\ '<c-v>': 'vsplit' }
-
-
-" LIGHTLINE
-function LightlineObsession()
-	return '%{ObsessionStatus(''session:  '', ''session:  '')}'
-endfunction
-
-let g:lightline = {}
-let lightline#trailing_whitespace#indicator = '•'
-let g:lightline.component_expand = {
-\ 'trailing': 'lightline#trailing_whitespace#component',
-\ 'obsession': 'LightlineObsession' }
-let g:lightline.component_type = { 'trailing': 'error', 'obsession': 'warning' }
-let g:lightline.active = {
-\ 'left': [ [ 'mode', 'paste' ],
-\           [ 'readonly', 'filename', 'modified' ] ],
-\ 'right': [ [ 'trailing', 'lineinfo' ],
-\            [ 'percent' ]]
-\ }
-let g:lightline.inactive = {
-\ 'left': [ [ 'filename' ] ],
-\ 'right': [ [ 'lineinfo' ],
-\            [ 'percent' ] ] }
-let g:lightline.tabline = {
-\ 'left': [ [ 'tabs' ] ],
-\ 'right': [ [ 'close', 'obsession' ] ] }
 
 " TABOO
 let g:taboo_tab_format = ' %m%N:[%d %f] '
@@ -192,3 +166,9 @@ let g:pandoc#formatting#textwidth = 100
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = 8007
+
+" tokyonight
+let g:tokyonight_style = 'night'
+
+" material-nvim
+let g:material_style = 'deep ocean'
