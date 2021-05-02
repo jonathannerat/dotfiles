@@ -136,13 +136,14 @@ let g:vimwiki_list = [default_vimwiki]
 " NNN
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
-let g:nnn#layout = { 'left': '-20%' }
+let g:nnn#layout = { 'left': '~20%' }
 " [nvim only] floating window
 " let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:nnn#action = {
 	\ '<c-t>': 'tab split',
 	\ '<c-x>': 'split',
 	\ '<c-v>': 'vsplit' }
+let g:nnn#command = 'nnn -rAH -P t'
 
 " TABOO
 let g:taboo_tab_format = ' %m%N:[%d %f] '
