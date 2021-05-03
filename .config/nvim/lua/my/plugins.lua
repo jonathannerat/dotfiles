@@ -48,7 +48,7 @@ local packages = {
 						['n|gr'] = map_cr('lua vim.lsp.buf.references()'):with_silent():with_noremap(),
 						['n|<space>e'] = map_cr('lua vim.lsp.diagnostic.show_line_diagnostics()'):with_silent():with_noremap(),
 						['n|[d'] = map_cr('lua vim.lsp.diagnostic.goto_prev()'):with_silent():with_noremap(),
-						['n]]' ] = map_cr('lua vim.lsp.diagnostic.goto_next()'):with_silent():with_noremap(),
+						['n|]d' ] = map_cr('lua vim.lsp.diagnostic.goto_next()'):with_silent():with_noremap(),
 						['n|<leader>dd'] = map_cr('lua vim.lsp.diagnostic.set_loclist()'):with_silent():with_noremap(),
 					}
 
