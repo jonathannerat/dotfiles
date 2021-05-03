@@ -221,5 +221,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
-vim.g.tokyonight_style = 'night'
 vim.cmd 'colorscheme tokyonight'
