@@ -127,13 +127,25 @@ local packages = {
 			'hoob3rt/lualine.nvim',
 			requires = { {'ryanoasis/vim-devicons', opt = true}, {'tpope/vim-fugitive', opt = true} },
 			config = function()
-				local defaults = require'lualine.defaults'
 				require'lualine'.setup {
-					sections = defaults.sections,
-					inactive_sections = defaults.inactive_sections,
+					sections = {
+						lualine_a = {'mode'},
+						lualine_b = {'branch', 'diff'},
+						lualine_c = {'filename'},
+						lualine_x = {'encoding', 'fileformat', 'filetype'},
+						lualine_y = {'progress'},
+						lualine_z = {'location'},
+					},
+					inactive_sections = {
+						lualine_a = {},
+						lualine_b = {},
+						lualine_c = {'filename'},
+						lualine_x = {'location'},
+						lualine_y = {},
+						lualine_z = {},
+					},
 					options = {
 						theme = 'tokyonight',
-						icons_enabled = true,
 					},
 					extensions = { 'fzf', 'fugitive' }
 				}
