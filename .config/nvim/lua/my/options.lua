@@ -43,7 +43,9 @@ local vim_options = {
 	fileformats = 'unix,dos,mac',
 
 	timeoutlen = 500,
-	completeopt = 'menuone,noinsert,noselect',
+	completeopt = {
+		add = 'menuone,noinsert,noselect'
+	},
 }
 
 local vim_globals = {
@@ -81,7 +83,14 @@ local vim_globals = {
 }
 
 for option, value in pairs(vim_options) do
-	vim.o[option] = value
+	if type(value) == 'table' then
+		if value.add and type(value.add) == 'string' then
+			print(vim.o[option])
+			vim.o[option] = vim.o[option] .. ',' .. value.add
+		end
+	else
+		vim.o[option] = value
+	end
 end
 
 for key, value in pairs(vim_globals) do
