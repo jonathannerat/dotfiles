@@ -1,4 +1,5 @@
 local global = require'my.global'
+local vim = vim
 
 local vim_options = {
 	termguicolors = true,
@@ -12,7 +13,7 @@ local vim_options = {
 
 	ignorecase = true,
 	smartcase = true,
-	inccommand=split,
+	inccommand='split',
 	showmatch = true,
 
 	lazyredraw = true,
