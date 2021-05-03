@@ -82,14 +82,6 @@ local packages = {
 					jsonls = {
 						cmd = { 'json-languageserver', '--stdio' }
 					},
-					efm = {
-						cmd = {
-							"efm-langserver",
-							"-c",
-							"/home/jonathan/.config/efm-langserver/config.yaml",
-						},
-						init_options = { documentFormatting = true },
-					},
 					texlab = {},
 				}
 
