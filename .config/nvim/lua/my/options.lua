@@ -85,7 +85,6 @@ local vim_globals = {
 for option, value in pairs(vim_options) do
 	if type(value) == 'table' then
 		if value.add and type(value.add) == 'string' then
-			print(vim.o[option])
 			vim.o[option] = vim.o[option] .. ',' .. value.add
 		end
 	else
