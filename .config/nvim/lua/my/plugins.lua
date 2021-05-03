@@ -13,7 +13,7 @@ local packages = {
 	-- external tools integration
 	integration = {
 		'tpope/vim-fugitive',
-		'lervat/vimtex',
+		'lervag/vimtex',
 		'asciidoc/vim-asciidoc',
 		'mcchrish/nnn.vim',
 		{
