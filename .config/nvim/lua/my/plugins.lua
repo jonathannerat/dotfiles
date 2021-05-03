@@ -133,11 +133,17 @@ local packages = {
 			end}, 
 		{
 			'hoob3rt/lualine.nvim',
+			requires = { {'ryanoasis/vim-devicons', opt = true}, {'tpope/vim-fugitive', opt = true} },
 			config = function()
+				local defaults = require'lualine.defaults'
 				require'lualine'.setup {
+					sections = defaults.sections,
+					inactive_sections = defaults.inactive_sections,
 					options = {
-						theme = 'tokyonight'
-					}
+						theme = 'tokyonight',
+						icons_enabled = true,
+					},
+					extensions = { 'fzf', 'fugitive' }
 				}
 			end
 		}
