@@ -1,5 +1,6 @@
-
+local global = require'my.global'
 local bind = require'my.keymap.bind'
+
 local map_cr = bind.map_cr
 local map_cmd = bind.map_cmd
 local map_args = bind.map_args
