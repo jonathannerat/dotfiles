@@ -14,7 +14,7 @@ export EDITOR=nvim
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
 export NNN_TRASH=1
 export NNN_COLORS=1234
-export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:fzz'
+export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;P:preview-tabbed;z:autojump'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
@@ -51,7 +51,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export LESSKEY="$XDG_DATA_HOME/less/lesskey"
-export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
+export MPD_HOST="$XDG_DATA_HOME/mopidy/socket"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
