@@ -4,4 +4,4 @@
 cgfolder="${XDG_CONFIG_HOME:-$HOME/.config}/catgirl/hosts"
 conf=$(find "$cgfolder" -type f -printf "%f\n" | fzf)
 
-catgirl "hosts/$conf"
+[ -n "$conf" ] && exec catgirl "hosts/$conf"
