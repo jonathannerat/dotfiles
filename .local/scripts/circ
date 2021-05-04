@@ -1,0 +1,7 @@
+#!/bin/sh
+# connects to configured hosts with catgirl
+
+cgfolder="${XDG_CONFIG_HOME:-$HOME/.config}/catgirl/hosts"
+conf=$(find "$cgfolder" -type f -printf "%f\n" | fzf)
+
+catgirl "hosts/$conf"
