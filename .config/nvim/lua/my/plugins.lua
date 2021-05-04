@@ -8,7 +8,8 @@ local packages = {
 	themes = {
 		{ 'embark-theme/vim', as = 'embark-theme'},
 		{ 'folke/tokyonight.nvim' },
-		'marko-cerovac/material.nvim'
+		'marko-cerovac/material.nvim',
+		{ 'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 	},
 	-- external tools integration
 	integration = {
@@ -145,7 +146,7 @@ local packages = {
 						lualine_z = {},
 					},
 					options = {
-						theme = 'tokyonight',
+						theme = 'gruvbox_material',
 					},
 					extensions = { 'fzf', 'fugitive' }
 				}
@@ -233,4 +234,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
-vim.cmd 'colorscheme tokyonight'
+vim.cmd 'colorscheme gruvbox'
