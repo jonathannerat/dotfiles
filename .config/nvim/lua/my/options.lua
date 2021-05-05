@@ -1,50 +1,47 @@
 local global = require'my.global'
 local vim = vim
 
-local vim_options = {
-	termguicolors = true,
-	showmode = true,
-	splitbelow = true,
-	splitright = true,
-	number = true,
-	relativenumber = true,
-	scrolloff = 5,
-	cursorline = true,
-	conceallevel = 1,
-
-	ignorecase = true,
-	smartcase = true,
-	inccommand='split',
-	showmatch = true,
-
-	lazyredraw = true,
-	history = 100,
-
-	spelllang = 'en,es',
-
-	expandtab = false,
-	tabstop = 2,
-	shiftwidth = 2,
-	list = true,
-	listchars = 'eol:↵,tab:| ,trail:·,extends:…,precedes:…,nbsp:☠',
-	fillchars = 'eob:~',
-
-	autoindent = true,
-	copyindent = true,
-	preserveindent = true,
-	wrap = false,
-	linebreak = true,
-
-	undofile = true,
-	backup = false,
-	writebackup = false,
-	swapfile = false,
-	encoding = 'utf-8',
-	fileformats = 'unix,dos,mac',
-
-	timeoutlen = 500,
-	completeopt = {
-		add = 'menuone,noinsert,noselect'
+local options = {
+	o = {
+		['completeopt +='] = { sep=',', 'menuone', 'noinsert', 'noselect' },
+		['shortmess +='] = 'c',
+		autoindent = true,
+		background = 'dark',
+		backup = false,
+		copyindent = true,
+		encoding = 'utf-8',
+		expandtab = false,
+		fileformats = 'unix,dos,mac',
+		fillchars = 'eob:~',
+		history = 100,
+		ignorecase = true,
+		inccommand='split',
+		lazyredraw = true,
+		listchars = 'eol:↵,tab:| ,trail:·,extends:…,precedes:…,nbsp:☠',
+		preserveindent = true,
+		scrolloff = 5,
+		shiftwidth = 2,
+		showmatch = true,
+		showmode = false,
+		smartcase = true,
+		spelllang = 'en,es',
+		splitbelow = true,
+		splitright = true,
+		swapfile = false,
+		tabstop = 2,
+		termguicolors = true,
+		timeoutlen = 500,
+		undofile = true,
+		writebackup = false,
+	},
+	wo = {
+		conceallevel = 1,
+		cursorline = true,
+		linebreak = true,
+		list = true,
+		number = true,
+		relativenumber = true,
+		wrap = false,
 	},
 }
 
@@ -82,13 +79,24 @@ local vim_globals = {
 	},
 }
 
-for option, value in pairs(vim_options) do
-	if type(value) == 'table' then
-		if value.add and type(value.add) == 'string' then
-			vim.o[option] = vim.o[option] .. ',' .. value.add
+for context, group in pairs(options) do
+	for key, value in pairs(group) do
+		local option, operation = key:match('(%a+)%s*(%g*)')
+		local old_value = vim[context][option]
+		local new_value
+
+		if not(operation and #operation > 0) then
+			new_value = value
+		elseif operation == "+=" then
+			if type(value) == 'table' then
+				local sep = value.sep or ''
+				new_value = old_value .. sep ..  table.concat(value, sep)
+			else
+				new_value = old_value .. value
+			end
 		end
-	else
-		vim.o[option] = value
+
+		vim[context][option] = new_value
 	end
 end
 
