@@ -68,7 +68,7 @@ local vim_globals = {
 
 	tokyonight_style = 'night',
 	material_style = 'deep ocean',
-	gruvbox_contrast_dark  = 'hard',
+	gruvbox_contrast_dark = 'hard',
 
 	['nnn#set_default_mappings'] = 0,
 	['nnn#layout'] = { left = '~20%' },
