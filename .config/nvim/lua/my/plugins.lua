@@ -9,7 +9,7 @@ local packages = {
 		{ 'embark-theme/vim', as = 'embark-theme'},
 		{ 'folke/tokyonight.nvim' },
 		'marko-cerovac/material.nvim',
-		{ 'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+		{ 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' }
 	},
 	-- external tools integration
 	integration = {
