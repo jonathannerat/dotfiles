@@ -4,3 +4,4 @@ Description=Mailbox synchronization service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mbsync -c /home/jonathan/.config/isync/mbsyncrc -Va
+ExecStartPost=/usr/local/bin/isync-notmuch.sh
