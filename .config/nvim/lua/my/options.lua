@@ -70,6 +70,8 @@ local vim_globals = {
 	material_style = 'deep ocean',
 	gruvbox_contrast_dark = 'hard',
 
+	mapleader = ' ',
+	localmapleader = '\\',
 	['nnn#set_default_mappings'] = 0,
 	['nnn#layout'] = { left = '~20%' },
 	['nnn#action'] = {
