@@ -65,6 +65,4 @@ local mappings = {
 	["t|<c-m-q>"]    = map_cmd([[<c-\><c-n>]]):with_noremap():with_silent(),
 };
 
-vim.cmd[[ let mapleader=' ' ]]
-vim.cmd[[ let localmapleader='\' ]]
 bind.nvim_load_mapping(mappings)
