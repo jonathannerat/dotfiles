@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# es: edit script
+
+scriptsdir="$HOME/.local/scripts/"
+script=$(find -L "$scriptsdir" -mindepth 1 -printf '%f\n' -type f -o -type l | fzf)
+
+[ -n "$script" ] && exec nvim "$scriptsdir/$script"
