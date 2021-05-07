@@ -3,5 +3,6 @@
 
 cgfolder="${XDG_CONFIG_HOME:-$HOME/.config}/catgirl/hosts"
 conf=$(find "$cgfolder" -type f -printf "%f\n" | fzf)
+opts="-O url-opener.sh -s ${conf%.conf}"
 
-[ -n "$conf" ] && exec catgirl "hosts/$conf" -s ${conf%.conf}
+[ -n "$conf" ] && exec catgirl $opts "hosts/$conf"
