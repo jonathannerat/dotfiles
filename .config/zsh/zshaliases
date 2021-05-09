@@ -1,37 +1,33 @@
 # force XDG compliance
-alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
+alias colorit="colorit --config $XDG_CONFIG_HOME/colorit.conf"
 alias gpg="gpg --homedir $HOME/.local/share/gnupg"
-alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
+alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
 alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
+alias vncviewer="vncviewer -X509CA $HOME/.config/tigervnc/x509_ca.pem -X509CRL $HOME/.config/tigervnc/x509_crl.pem $HOME/.config/tigervnc/default.tigervnc"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
-alias colorit="colorit --config $XDG_CONFIG_HOME/colorit.conf"
 
 # overrides
-alias ls='exa --group-directories-first'
-alias less='less -FRi'
-alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias info="info --vi-keys --init-file $XDG_CONFIG_HOME/info/infokey"
 alias ip='ip -color=auto'
+alias less='less -FRi'
+alias ls='exa --group-directories-first'
+alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
 
 # convinient aliases
+alias V='SUDO_EDITOR="nvim" sudo -e'
 alias c='xclip'
 alias cx='xclip -selection clipboard'
-
 alias l='ls'
 alias la='ls -aa'
 alias ll='ls -aal'
-alias tree='ls -T'
-
-alias v='nvim'
-alias V='SUDO_EDITOR="nvim" sudo -e'
-
-alias tt='tmux new -A -s'
-
 alias sysu='systemctl --user'
-
+alias tl="tldr --list | fzf --preview 'tldr {} --color always' | xargs tldr"
+alias tree='ls -T'
+alias tt='tmux new -A -s'
+alias v='nvim'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
 
