@@ -23,10 +23,10 @@ make-ps1() {
 	done
 
 	if typeset -f __git_ps1 >/dev/null && [ "x$nogit" = x ]; then
-		prompt="$prompt"' $(__git_ps1 "%%F{white} (%s)")'
+		prompt="$prompt"'$(__git_ps1 "%%F{white} (%s)")'
 	fi
 	if typeset -f __get_venv >/dev/null && [ "x$novenv" = x ]; then
-		prompt="$prompt"' $(__get_venv "%%F{yellow} (%s)")'
+		prompt="$prompt"'$(__get_venv "%%F{yellow} ( %s)")'
 	fi
 	prompt="$prompt"'\n%F{white}└─%f%b '
 	echo "$prompt"
