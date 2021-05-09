@@ -32,6 +32,7 @@ local mappings = {
 	["n|<leader>ck"] = map_cr('edit ' .. global.lua_dir .. '/my/keymap/init.lua'):with_noremap():with_silent(),
 	["n|<leader>fb"] = map_cr('Telescope buffers'):with_noremap():with_silent(),
 	["n|<leader>ff"] = map_cr('Telescope find_files find_command=fd,-t,f,-t,l,-H'):with_noremap():with_silent(),
+	["n|<leader>fF"] = map_cr('Telescope find_files find_command=fd,-t,f,-t,l,-HI'):with_noremap():with_silent(),
 	["n|<leader>fh"] = map_cr('Telescope help_tags'):with_noremap():with_silent(),
 	["n|<leader>fg"] = map_cr('Telescope git_files'):with_noremap():with_silent(),
 	["n|<leader>fs"] = map_cr('Telescope live_grep'):with_noremap():with_silent(),
