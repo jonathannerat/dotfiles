@@ -1,7 +1,7 @@
 #!/bin/sh
 # fzf chooser for irc hosts to connect with catgirl
 
-hostsfolder="${XDG_DATA_HOME:-$HOME/.local/share}/pounce"
+hostsfolder="${XDG_DATA_HOME:-$HOME/.local/share}/catgirl"
 user="deskpc"
 host=$(find "$hostsfolder" -type s -printf "%f\n" | fzf)
 
