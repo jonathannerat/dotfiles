@@ -3,7 +3,7 @@
 
 make-ps1() {
 	if typeset -f __git_ps1 >/dev/null && [ ! "$1" = "--nogit" ]; then
-		echo '%B┌─%F{green}%n%F{white}@%F{blue}%m %F{magenta}%~%F{white}$(__git_ps1 " (%s)")'
+		echo '%B┌─%F{green}%n%F{white}@%F{blue}%m %F{magenta}%2~%F{white}$(__git_ps1 " (%s)")'
 		echo   '└─%F{white}%f%b '
 	else
 		echo        '%B┌─%F{green}%n%F{white}@%F{blue}%m %F{magenta}%~ '
