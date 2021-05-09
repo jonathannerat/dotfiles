@@ -43,6 +43,7 @@ local mappings = {
 	["n|<leader>mp"] = map_cr('MarkdownPreview'):with_noremap():with_silent(),
 	["n|<leader>mP"] = map_cr('MarkdownPreviewStop'):with_noremap():with_silent(),
 	["n|<leader>n"]  = map_cr('NnnPicker'):with_noremap():with_silent(),
+	["n|<leader>N"]  = map_cr([[call nnn#pick('',{'layout':{'window':{'width': 0.9, 'height': 0.6}}})]]):with_noremap():with_silent(),
 	["n|<leader>o"]  = map_cr('Obsession .session.vim'):with_noremap():with_silent(),
 	["n|<leader>p"]  = map_cmd('<cmd>Packer'):with_noremap():with_silent(),
 	["n|<leader>pi"] = map_cr('PackerInstall'):with_noremap():with_silent(),
