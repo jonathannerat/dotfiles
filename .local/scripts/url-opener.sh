@@ -5,7 +5,9 @@
 getheader() {
 	local url="$1"
 	local header="$2"
-	curl -Is "$url" | grep -Fi "$header: " | cut -d' ' -f2
+	headervalue=$(curl -Is "$url" | grep -Fi "$header: " | cut -d' ' -f2)
+	# discard charset, don't even bother if it's not utf-8
+	echo ${headervalue%%\;*}
 }
 
 # remove tmp file before exit
@@ -25,6 +27,10 @@ viewvideo() {
 	mpv --no-terminal $*
 }
 
+viewtext() {
+	"${TERMINAL:-st}" -e /bin/sh -c "curl -sL \"$1\" | less"
+}
+
 url="$1"
 mimetype=$(getheader "$url" "content-type")
 tmpfolder="$HOME/.cache/url-opener"
@@ -35,6 +41,8 @@ trap cleanup EXIT
 
 # guess opener by mimetype
 case "$mimetype" in
+	text/plain)
+		viewtext "$url" ;;
 	image/*)
 		viewurl "$url" ;;
 	video/*)
