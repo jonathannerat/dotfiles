@@ -98,3 +98,16 @@ t() {
 	tmux send-keys -t "$session:music" "ncmpcpp" Enter
 	tmux attach-session -t "$session:work"
 }
+
+# edit script: lists file in scriptsfolder using fzf, and opens them in $EDITOR
+es() {
+	# also search for plain files
+	[ "$1" = "-p" ] && opts="-o -type f"
+
+	scriptsfolder="$HOME/.local/scripts"
+	# search for executables or symlinks
+	script=$(find "$scriptsfolder" \( -type f -a -executable \) -o -type l $opts -printf "%f\n" \
+	       | fzf --preview "bat -l sh --color always --style plain $scriptsfolder/'{}' ")
+
+	[ -n "$script" ] && nvim "$scriptsfolder/$script"
+}
