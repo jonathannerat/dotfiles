@@ -107,7 +107,7 @@ es() {
 	scriptsfolder="$HOME/.local/scripts"
 	# search for executables or symlinks
 	script=$(find "$scriptsfolder" \( -type f -a -executable \) -o -type l $opts -printf "%f\n" \
-	       | fzf --preview "bat -l sh --color always --style plain $scriptsfolder/'{}' ")
+	       | fzf --preview "bat -l sh --color always --style plain --theme gruvbox-dark-hard $scriptsfolder/'{}' ")
 
 	[ -n "$script" ] && nvim "$scriptsfolder/$script"
 }
