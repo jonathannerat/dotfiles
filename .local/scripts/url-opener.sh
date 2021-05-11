@@ -5,7 +5,7 @@
 getheader() {
 	local url="$1"
 	local header="$2"
-	headervalue=$(curl -Is "$url" | grep -Fi "$header: " | cut -d' ' -f2)
+	headervalue=$(curl -ILs "$url" | grep -Fi "$header: " | tail -n1 | cut -d' ' -f2)
 	# discard charset, don't even bother if it's not utf-8
 	echo ${headervalue%%\;*}
 }
@@ -20,6 +20,13 @@ cleanup() {
 viewurl() {
 	local url="$1"
 	curl -sLo "$tmp" "$url"
+
+	# add .webp extension to webp images to fix sxiv issue
+	if [ "$(file -b --mime-type "$tmp")" = "image/webp" ]; then
+		mv "$tmp" "$tmp.webp"
+		tmp="$tmp.webp"
+	fi
+
 	sxiv "$tmp"
 }
 
