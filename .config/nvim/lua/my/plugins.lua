@@ -9,7 +9,7 @@ local packages = {
 		{ 'embark-theme/vim', as = 'embark-theme'},
 		{ 'folke/tokyonight.nvim' },
 		'marko-cerovac/material.nvim',
-		{ 'npxbr/gruvbox.nvim', requires = 'rktjmp/lush.nvim' }
+		'sainnhe/gruvbox-material'
 	},
 	-- external tools integration
 	integration = {
@@ -234,4 +234,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
-vim.cmd 'colorscheme gruvbox'
+vim.cmd 'colorscheme gruvbox-material'

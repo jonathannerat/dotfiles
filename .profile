@@ -78,6 +78,9 @@ export QT_IM_MODULE=ibus
 # local programs
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
+# pyenv shims
+[ -d "$HOME/.pyenv" ] && PATH="$HOME/.pyenv/shims:$PATH"
+
 # gem binaries
 [ -d "$GEM_HOME/bin" ] && PATH="$GEM_HOME/bin:$PATH"
 
@@ -89,6 +92,7 @@ export QT_IM_MODULE=ibus
 
 # npm binaries
 [ -d "$XDG_DATA_HOME/npm/bin" ] && PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
