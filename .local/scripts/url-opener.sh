@@ -5,7 +5,9 @@
 getheader() {
 	local url="$1"
 	local header="$2"
-	curl -Is "$url" | grep -Fi "$header: " | cut -d' ' -f2
+	headervalue=$(curl -ILs "$url" | grep -Fi "$header: " | tail -n1 | cut -d' ' -f2)
+	# discard charset, don't even bother if it's not utf-8
+	echo ${headervalue%%\;*}
 }
 
 # remove tmp file before exit
@@ -18,11 +20,22 @@ cleanup() {
 viewurl() {
 	local url="$1"
 	curl -sLo "$tmp" "$url"
+
+	# add .webp extension to webp images to fix sxiv issue
+	if [ "$(file -b --mime-type "$tmp")" = "image/webp" ]; then
+		mv "$tmp" "$tmp.webp"
+		tmp="$tmp.webp"
+	fi
+
 	sxiv "$tmp"
 }
 
 viewvideo() {
 	mpv --no-terminal $*
+}
+
+viewtext() {
+	"${TERMINAL:-st}" -e /bin/sh -c "curl -sL \"$1\" | less"
 }
 
 url="$1"
@@ -35,6 +48,8 @@ trap cleanup EXIT
 
 # guess opener by mimetype
 case "$mimetype" in
+	text/plain)
+		viewtext "$url" ;;
 	image/*)
 		viewurl "$url" ;;
 	video/*)
