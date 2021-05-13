@@ -30,7 +30,7 @@ local packages = {
 		'editorconfig/editorconfig-vim',
 		{
 			'neovim/nvim-lspconfig',
-			config = function() 
+			config = function()
 				local lspconfig = require'lspconfig'
 				local bind = require'my.keymap.bind'
 				local map_cr = bind.map_cr
@@ -80,6 +80,12 @@ local packages = {
 					texlab = {},
 				}
 
+				servers.sumneko_lua.cmd = {
+					'/home/jonathan/.local/src/lua-language-server/bin/Linux/lua-language-server',
+					'-E',
+					'/home/jonathan/.local/src/lua-language-server/main.lua'
+				}
+
 				for lsp, config in pairs(servers) do
 					if not config.on_attach then config.on_attach = on_attach end
 					lspconfig[lsp].setup(config)
@@ -95,6 +101,7 @@ local packages = {
 						path = true,
 						buffer = true,
 						calc = true,
+						nvim_lsp = true,
 						ultisnips = true,
 					}
 				}
@@ -115,7 +122,8 @@ local packages = {
 						enable = true,
 					}
 				}
-			end}, 
+			end
+		},
 		{
 			'hoob3rt/lualine.nvim',
 			requires = { {'ryanoasis/vim-devicons', opt = true}, {'tpope/vim-fugitive', opt = true} },
