@@ -153,13 +153,26 @@ local packages = {
 			'nvim-telescope/telescope.nvim',
 			requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
 			config = function()
-				require'telescope'.setup{
+				local telescope = require'telescope'
+				telescope.setup{
 					defaults = {
 						file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 						grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+					},
+					extensions = {
+						fzf = {
+							override_generic_sorter = false,
+							override_file_sorter = true,
+							case_mode = 'smart_case',
+						}
 					}
 				}
+				telescope.load_extension('fzf')
 			end
+		},
+		{
+			'nvim-telescope/telescope-fzf-native.nvim',
+			run = 'make'
 		},
 		'SirVer/ultisnips',
 		'lambdalisue/suda.vim',
