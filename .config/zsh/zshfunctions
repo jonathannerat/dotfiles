@@ -111,3 +111,11 @@ es() {
 
 	[ -n "$script" ] && nvim "$scriptsfolder/$script"
 }
+
+# init pyenv modules manually to improve performance
+pyenvinit() {
+	if command -v pyenv >/dev/null; then
+		eval "$(pyenv init -)"
+		eval "$(pyenv virtualenv-init -)"
+	fi
+}
