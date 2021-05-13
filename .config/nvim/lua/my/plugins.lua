@@ -73,13 +73,7 @@ local packages = {
 					pyls = {},
 					rust_analyzer = {},
 					solargraph = {},
-					sumneko_lua = {
-						cmd = {
-							"/home/jonathan/.local/src/lua-language-server/bin/Linux/lua-language-server",
-							"-E",
-							"/home/jonathan/.local/src/lua-language-server/main.lua"
-						}
-					},
+					sumneko_lua = require'my.lua_lsp',
 					jsonls = {
 						cmd = { 'json-languageserver', '--stdio' }
 					},
@@ -101,8 +95,6 @@ local packages = {
 						path = true,
 						buffer = true,
 						calc = true,
-						nvim_lsp = true,
-						nvim_lua = true,
 						ultisnips = true,
 					}
 				}
