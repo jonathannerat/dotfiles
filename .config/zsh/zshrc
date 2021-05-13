@@ -1,3 +1,8 @@
+# no X server => we're probably sshing
+if ! xset q &>/dev/null; then
+	source ~/.profile
+fi
+
 # shut up
 unsetopt beep
 # for gitbranch on prompt
