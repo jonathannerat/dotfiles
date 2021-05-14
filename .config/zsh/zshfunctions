@@ -79,7 +79,7 @@ def() {
 # open my usual programs in tmux
 t() {
 	session="${1:-home}"
-	if tmux has-session -t "$session"; then
+	if tmux has-session -t "$session" 2>/dev/null; then
 		if [ -z "$TMUX" ]; then
 			tmux attach-session -t "$session"
 		else
@@ -110,4 +110,12 @@ es() {
 	       | fzf --preview "bat -l sh --color always --style plain --theme gruvbox-dark-hard $scriptsfolder/'{}' ")
 
 	[ -n "$script" ] && nvim "$scriptsfolder/$script"
+}
+
+# init pyenv modules manually to improve performance
+pyenvinit() {
+	if command -v pyenv >/dev/null; then
+		eval "$(pyenv init -)"
+		eval "$(pyenv virtualenv-init -)"
+	fi
 }
