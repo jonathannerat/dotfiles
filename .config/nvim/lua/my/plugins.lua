@@ -62,6 +62,16 @@ local packages = {
 					end
 
 					bind.nvim_load_mapping(mappings)
+
+					require'lsp_signature'.on_attach({
+						bind = false,
+						doc_lines = 10,
+						hint_enable = false,
+						hint_prefix = '',
+						handler_opts = {
+							border = 'single',
+						}
+					})
 				end
 
 				local servers = {
@@ -107,6 +117,7 @@ local packages = {
 				}
 			end
 		},
+		'ray-x/lsp_signature.nvim',
 		'mhinz/vim-startify',
 		{
 			'nvim-treesitter/nvim-treesitter',
