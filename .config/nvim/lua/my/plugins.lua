@@ -131,6 +131,9 @@ local packages = {
 					},
 					incremental_selection = {
 						enable = true,
+					},
+					indent = {
+						enable = true,
 					}
 				}
 			end
