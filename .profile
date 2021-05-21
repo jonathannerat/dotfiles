@@ -73,25 +73,22 @@ export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 
 # custom scripts
-[ -d "$HOME/.local/scripts" ] && PATH="$HOME/.local/scripts:$PATH"
+[ -d "$HOME/.local/scripts" ] && export PATH="$HOME/.local/scripts:$PATH"
 
 # local programs
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-
-# pyenv shims
-[ -d "$HOME/.pyenv" ] && PATH="$HOME/.pyenv/shims:$PATH"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # gem binaries
-[ -d "$GEM_HOME/bin" ] && PATH="$GEM_HOME/bin:$PATH"
+[ -d "$GEM_HOME/bin" ] && export PATH="$GEM_HOME/bin:$PATH"
 
 # go binaries
-[ -d "$GOPATH/bin" ] && PATH="$GOPATH/bin:$PATH"
+[ -d "$GOPATH/bin" ] && export PATH="$GOPATH/bin:$PATH"
 
 # cargo binaries
-[ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH"
+[ -d "$CARGO_HOME/bin" ] && export PATH="$CARGO_HOME/bin:$PATH"
 
 # npm binaries
-[ -d "$XDG_DATA_HOME/npm/bin" ] && PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+[ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
 
 # untracked overrides for this profile

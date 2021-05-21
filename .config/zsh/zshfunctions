@@ -117,5 +117,13 @@ pyenvinit() {
 	if command -v pyenv >/dev/null; then
 		eval "$(pyenv init -)"
 		eval "$(pyenv virtualenv-init -)"
+
+		# pyenv shims
+		pyenvdir="$HOME/.pyenv" 
+		if [ -d "$pyenvdir" ]; then
+			case ":$PATH:" in
+				*:"$pyenvdir":*) export PATH="$pyenvdir/shims:$PATH" ;;
+			esac
+		fi 
 	fi
 }
