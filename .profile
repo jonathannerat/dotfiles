@@ -74,24 +74,26 @@ export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 
+add_to_path() {
+	local dir="$1"
+	case ":$PATH:" in
+		*:"$dir":*) ;;
+		*) [ -d "$dir" ] && export PATH="$dir:$PATH"
+	esac
+}
+
 # custom scripts
-[ -d "$HOME/.local/scripts" ] && export PATH="$HOME/.local/scripts:$PATH"
-
+add_to_path "$HOME/.local/scripts"
 # local programs
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-
+add_to_path "$HOME/.local/bin"
 # gem binaries
-[ -d "$GEM_HOME/bin" ] && export PATH="$GEM_HOME/bin:$PATH"
-
+add_to_path "$GEM_HOME/bin"
 # go binaries
-[ -d "$GOPATH/bin" ] && export PATH="$GOPATH/bin:$PATH"
-
+add_to_path "$GOPATH/bin"
 # cargo binaries
-[ -d "$CARGO_HOME/bin" ] && export PATH="$CARGO_HOME/bin:$PATH"
-
+add_to_path "$CARGO_HOME/bin"
 # npm binaries
-[ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
-
+add_to_path "$XDG_DATA_HOME/npm/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
