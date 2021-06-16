@@ -112,18 +112,22 @@ es() {
 	[ -n "$script" ] && nvim "$scriptsfolder/$script"
 }
 
+add_to_path() {
+	local dir="$1"
+	case ":$PATH:" in
+		*:"$dir":*) ;;
+		*) [ -d "$dir" ] && export PATH="$dir:$PATH"
+	esac
+}
+
 # init pyenv modules manually to improve performance
 pyenvinit() {
 	if command -v pyenv >/dev/null; then
 		eval "$(pyenv init -)"
 		eval "$(pyenv virtualenv-init -)"
 
-		# pyenv shims
-		pyenvdir="$HOME/.pyenv" 
-		if [ -d "$pyenvdir" ]; then
-			case ":$PATH:" in
-				*:"$pyenvdir":*) export PATH="$pyenvdir/shims:$PATH" ;;
-			esac
-		fi 
+		add_to_path "$PYENV_ROOT/bin"
+		add_to_path "$PYENV_ROOT/shims"
+		add_to_path "$(pyenv init --path)"
 	fi
 }

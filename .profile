@@ -35,6 +35,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+export KAGGLE_CONFIG_DIR="$XDG_CONFIG_HOME/kaggle"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -55,6 +56,7 @@ export LESSKEY="$XDG_DATA_HOME/less/lesskey"
 export MPD_HOST="$XDG_DATA_HOME/mopidy/socket"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
@@ -72,24 +74,26 @@ export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 
+add_to_path() {
+	local dir="$1"
+	case ":$PATH:" in
+		*:"$dir":*) ;;
+		*) [ -d "$dir" ] && export PATH="$dir:$PATH"
+	esac
+}
+
 # custom scripts
-[ -d "$HOME/.local/scripts" ] && export PATH="$HOME/.local/scripts:$PATH"
-
+add_to_path "$HOME/.local/scripts"
 # local programs
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-
+add_to_path "$HOME/.local/bin"
 # gem binaries
-[ -d "$GEM_HOME/bin" ] && export PATH="$GEM_HOME/bin:$PATH"
-
+add_to_path "$GEM_HOME/bin"
 # go binaries
-[ -d "$GOPATH/bin" ] && export PATH="$GOPATH/bin:$PATH"
-
+add_to_path "$GOPATH/bin"
 # cargo binaries
-[ -d "$CARGO_HOME/bin" ] && export PATH="$CARGO_HOME/bin:$PATH"
-
+add_to_path "$CARGO_HOME/bin"
 # npm binaries
-[ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
-
+add_to_path "$XDG_DATA_HOME/npm/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
