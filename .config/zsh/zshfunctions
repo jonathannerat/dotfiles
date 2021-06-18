@@ -131,3 +131,9 @@ pyenvinit() {
 		add_to_path "$(pyenv init --path)"
 	fi
 }
+
+# compress a directory into a tar.xz with the same name
+# source: https://old.reddit.com/r/archlinux/comments/o2bfha/h265fe2/
+txz() {
+	tar cf - "$1" | xz -T 0 -zevc > "${1%/}.tar.xz"
+}
