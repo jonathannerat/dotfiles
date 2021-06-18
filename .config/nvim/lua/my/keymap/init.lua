@@ -17,6 +17,7 @@ local mappings = {
 	["i|jj"]         = map_cmd('<esc>'):with_noremap(),
 	["i|kk"]         = map_cmd('<esc>'):with_noremap(),
 
+	["n|<c-t>"]      = map_cmd('tabnew'):with_noremap():with_silent(),
 	["n|<M-j>"]      = map_cmd('mz:m+<cr>`z'):with_noremap():with_silent(),
 	["n|<M-k>"]      = map_cmd('mz:m-2<cr>`z'):with_noremap():with_silent(),
 	["n|<leader>N"]  = map_cr([[call nnn#pick('',{'layout':{'window':{'width': 0.9, 'height': 0.6}}})]]):with_noremap():with_silent(),
