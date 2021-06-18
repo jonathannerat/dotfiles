@@ -45,7 +45,8 @@ zle -N zle-line-init
 
 # start only one ssh-agent
 agent_env="$XDG_RUNTIME_DIR/ssh-agent.env"
-if ! pgrep -u "$USER" ssh-agent > /dev/null && [ -w "$agent_env" ]; then
+if ! pgrep -u "$USER" ssh-agent > /dev/null \
+   && [ -w "$(dirname "$agent_env")" ]; then
   ssh-agent > "$agent_env"
 fi
 if [ ! "$SSH_AUTH_SOCK" -a -r "$agent_env" ]; then
