@@ -23,7 +23,7 @@ local packages = {
 			ft = { 'markdown', 'pandoc.markdown', 'rmd' }
 		},
 		'vim-pandoc/vim-pandoc',
-		{ 'raghur/vim-ghost', run = ':GhostInstall' }
+		{ 'glacambre/firenvim', run = ':call firenvim#install(0)' }
 	},
 	enhanced_vim = {
 		'tpope/vim-obsession',
