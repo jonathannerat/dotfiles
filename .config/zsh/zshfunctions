@@ -114,21 +114,17 @@ es() {
 
 add_to_path() {
 	local dir="$1"
-	case ":$PATH:" in
-		*:"$dir":*) ;;
-		*) [ -d "$dir" ] && export PATH="$dir:$PATH"
-	esac
+	[ -d "$dir" ] && export PATH="$dir:$PATH"
 }
 
 # init pyenv modules manually to improve performance
 pyenvinit() {
+	add_to_path "$PYENV_ROOT/bin"
+	add_to_path "$PYENV_ROOT/shims"
+
 	if command -v pyenv >/dev/null; then
 		eval "$(pyenv init -)"
 		eval "$(pyenv virtualenv-init -)"
-
-		add_to_path "$PYENV_ROOT/bin"
-		add_to_path "$PYENV_ROOT/shims"
-		add_to_path "$(pyenv init --path)"
 	fi
 }
 
