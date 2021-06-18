@@ -126,9 +126,7 @@ pyenvinit() {
 		eval "$(pyenv init -)"
 		eval "$(pyenv virtualenv-init -)"
 
-		add_to_path "$PYENV_ROOT/bin"
 		add_to_path "$PYENV_ROOT/shims"
-		add_to_path "$(pyenv init --path)"
 	fi
 }
 
