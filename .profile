@@ -1,3 +1,9 @@
+if [ -z "$PROFILED" ]; then
+	export PROFILED=1
+else
+	return 0
+fi
+
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
 
@@ -76,10 +82,8 @@ export QT_IM_MODULE=ibus
 
 add_to_path() {
 	local dir="$1"
-	case ":$PATH:" in
-		*:"$dir":*) ;;
-		*) [ -d "$dir" ] && export PATH="$dir:$PATH"
-	esac
+
+	[ -d "$dir" ] && export PATH="$dir:$PATH"
 }
 
 # custom scripts
