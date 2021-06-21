@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# imgkprnt: ImageMagick based screenshot script
+
+ssdir="$HOME/pics/screenshots"
+tmpfile=$(mktemp /tmp/imkgprnt.XXXXXX.png)
+type=root
+timestamp="$(date "+%Y-%m-%d_%H:%M:%S")"
+
+trap 'test -f "$tmpfile" && rm "$tmpfile"' 0 1 15
+
+while getopts "hrwaco" o; do case "${o}" in
+	h) cat >&2 <<END && exit 1;;
+Usage: imgkprnt [ -r | -w | -a ] [ -o FILE ]
+ImageMagick based screenshot script
+Options:
+	-r        take screenshot of the root window (default)
+	-w        take screenshot of a window
+	-a        take screenshot of a particular area
+	-c        copy image to clipboard (requires xclip)
+	-o FILE   save the screenshot to FILE
+END
+	r) type=root ;;
+	w) type=window ;;
+	a) type=area ;;
+	o) file="$OPTARG" ;;
+	c) copy=1 ;;
+	*) >&2 printf "Invalid option: -%s\\n" "$OPTARG" && exit 1 ;;
+esac done
+
+file="${file:-$tmpfile}"
+
+case "$type" in
+	root) import -window root "$file" ;;
+	window) import -screen "$file" ;;
+	area) import "$file" ;;
+	*) >&2 echo "bad type $type" && exit 1 ;;
+esac
+
+if [ "$file" = "$tmpfile" ]; then
+	size="$(identify -format "%wx%h" "$file")"
+	file="$ssdir/${timestamp}_${size}.png"
+	mv "$tmpfile" "$file"
+fi
+
+if [ "$copy" = 1 ]; then 
+	xclip -selection clipboard -target "$(file -b --mime-type "$file")" "$file"
+fi
