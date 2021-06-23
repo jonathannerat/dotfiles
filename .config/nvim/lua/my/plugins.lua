@@ -8,7 +8,6 @@ local packages = {
 	themes = {
 		{ 'embark-theme/vim', as = 'embark-theme'},
 		{ 'folke/tokyonight.nvim' },
-		'marko-cerovac/material.nvim',
 		'sainnhe/gruvbox-material'
 	},
 	-- external tools integration
@@ -248,9 +247,6 @@ vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='te
 			ft = { 'vala' }
 		}
 	},
-	other = {
-		'~/proj/nlua.nvim'
-	}
 }
 
 require'packer'.startup(function(use)
