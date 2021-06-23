@@ -14,6 +14,7 @@ local packages = {
 	-- external tools integration
 	integration = {
 		'tpope/vim-fugitive',
+		'kdheepak/lazygit.nvim',
 		'lervag/vimtex',
 		'asciidoc/vim-asciidoc',
 		'mcchrish/nnn.vim',
