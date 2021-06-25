@@ -1,7 +1,4 @@
-local global = require'my.global'
-local vim = vim
-
-vim.cmd 'packadd packer.nvim'
+local M = {}
 
 local packages = {
 	-- colorschemes
@@ -32,37 +29,36 @@ local packages = {
 			'neovim/nvim-lspconfig',
 			config = function()
 				local lspconfig = require'lspconfig'
-				local bind = require'my.keymap.bind'
-				local map_cr = bind.map_cr
+				local m = require'my.util.mapper'
 				local on_attach = function(client, _)
 					local mappings = {
-						['n|gD'] = map_cr('lua vim.lsp.buf.declaration()'):with_silent():with_noremap(),
-						['n|gd'] = map_cr('lua vim.lsp.buf.definition()'):with_silent():with_noremap(),
-						['n|K'] = map_cr('lua vim.lsp.buf.hover()'):with_silent():with_noremap(),
-						['n|gi'] = map_cr('lua vim.lsp.buf.implementation()'):with_silent():with_noremap(),
-						['n|<C-k>'] = map_cr('lua vim.lsp.buf.signature_help()'):with_silent():with_noremap(),
-						['n|<space>wa'] = map_cr('lua vim.lsp.buf.add_workspace_folder()'):with_silent():with_noremap(),
-						['n|<space>wr'] = map_cr('lua vim.lsp.buf.remove_workspace_folder()'):with_silent():with_noremap(),
-						['n|<space>wl'] = map_cr('lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'):with_silent():with_noremap(),
-						['n|<space>D'] = map_cr('lua vim.lsp.buf.type_definition()'):with_silent():with_noremap(),
-						['n|<space>rn'] = map_cr('lua vim.lsp.buf.rename()'):with_silent():with_noremap(),
-						['n|<space>ca'] = map_cr('lua vim.lsp.buf.code_action()'):with_silent():with_noremap(),
-						['n|gr'] = map_cr('lua vim.lsp.buf.references()'):with_silent():with_noremap(),
-						['n|<space>e'] = map_cr('lua vim.lsp.diagnostic.show_line_diagnostics()'):with_silent():with_noremap(),
-						['n|[d'] = map_cr('lua vim.lsp.diagnostic.goto_prev()'):with_silent():with_noremap(),
-						['n|]d' ] = map_cr('lua vim.lsp.diagnostic.goto_next()'):with_silent():with_noremap(),
-						['n|<leader>dd'] = map_cr('lua vim.lsp.diagnostic.set_loclist()'):with_silent():with_noremap(),
+						['n|ns|gD']         = m.cmd('lua vim.lsp.buf.declaration()'),
+						['n|ns|gd']         = m.cmd('lua vim.lsp.buf.definition()'),
+						['n|ns|K']          = m.cmd('lua vim.lsp.buf.hover()'),
+						['n|ns|gi']         = m.cmd('lua vim.lsp.buf.implementation()'),
+						['n|ns|<C-k>']      = m.cmd('lua vim.lsp.buf.signature_help()'),
+						['n|ns|<leader>wa'] = m.cmd('lua vim.lsp.buf.add_workspace_folder()'),
+						['n|ns|<leader>wr'] = m.cmd('lua vim.lsp.buf.remove_workspace_folder()'),
+						['n|ns|<leader>wl'] = m.cmd('lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'),
+						['n|ns|<leader>D']  = m.cmd('lua vim.lsp.buf.type_definition()'),
+						['n|ns|<leader>rn'] = m.cmd('lua vim.lsp.buf.rename()'),
+						['n|ns|<leader>ca'] = m.cmd('lua vim.lsp.buf.code_action()'),
+						['n|ns|gr']         = m.cmd('lua vim.lsp.buf.references()'),
+						['n|ns|<leader>e']  = m.cmd('lua vim.lsp.diagnostic.show_line_diagnostics()'),
+						['n|ns|[d']         = m.cmd('lua vim.lsp.diagnostic.goto_prev()'),
+						['n|ns|]d' ]        = m.cmd('lua vim.lsp.diagnostic.goto_next()'),
+						['n|ns|<leader>dd'] = m.cmd('lua vim.lsp.diagnostic.set_loclist()'),
 					}
 
 					if client.resolved_capabilities.document_formatting then
-						mappings['n|<space>f'] = map_cr('lua vim.lsp.buf.formatting()'):with_silent():with_noremap()
+						mappings['n|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.formatting()')
 					end
 
 					if client.resolved_capabilities.document_range_formatting then
-						mappings['v|<space>f'] = map_cr('lua vim.lsp.buf.range_formatting()'):with_silent():with_noremap()
+						mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
 					end
 
-					bind.nvim_load_mapping(mappings)
+					m.bind(mappings)
 
 					require'lsp_signature'.on_attach({
 						bind = true,
@@ -251,20 +247,22 @@ vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='te
 	},
 }
 
-require'packer'.startup(function(use)
-	use { 'wbthomason/packer.nvim', opt = true }
-	for _, category in pairs(packages) do
-		for _, package in pairs(category) do
-			use(package)
+function M.setup()
+	require'packer'.startup(function(use)
+		use { 'wbthomason/packer.nvim', opt = true }
+		for _, category in pairs(packages) do
+			for _, package in pairs(category) do
+				use(package)
+			end
 		end
-	end
-end)
+	end)
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		signs = true,
-		virtual_text = true,
-	}
-)
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, {
+			signs = true,
+			virtual_text = true,
+		}
+	)
+end
 
-vim.cmd 'colorscheme gruvbox-material'
+return M
