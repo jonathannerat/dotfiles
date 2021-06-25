@@ -51,10 +51,10 @@
 	mouse_right_click = close_all
 
 [shortcuts]
-	close = ctrl+grave
-	close_all = ctrl+shift+grave
-	history = ctrl+shift+comma
-	context = ctrl+shift+period
+	close = mod1+grave
+	close_all = mod1+shift+grave
+	history = mod1+shift+comma
+	context = mod1+shift+period
 
 [urgency_low]
 	timeout = 5
@@ -64,7 +64,7 @@
 
 [urgency_normal]
 	timeout = 10
-	background = "#a9b665"
+	background = "#89b482"
 	foreground = "#1d2021"
 	frame_color = "#e2d3ba"
 
