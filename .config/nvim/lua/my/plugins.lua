@@ -8,12 +8,12 @@ local packages = {
 	themes = {
 		{ 'embark-theme/vim', as = 'embark-theme'},
 		{ 'folke/tokyonight.nvim' },
-		'marko-cerovac/material.nvim',
 		'sainnhe/gruvbox-material'
 	},
 	-- external tools integration
 	integration = {
 		'tpope/vim-fugitive',
+		'kdheepak/lazygit.nvim',
 		'lervag/vimtex',
 		'asciidoc/vim-asciidoc',
 		'mcchrish/nnn.vim',
@@ -46,6 +46,7 @@ local packages = {
 						['n|<space>wl'] = map_cr('lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'):with_silent():with_noremap(),
 						['n|<space>D'] = map_cr('lua vim.lsp.buf.type_definition()'):with_silent():with_noremap(),
 						['n|<space>rn'] = map_cr('lua vim.lsp.buf.rename()'):with_silent():with_noremap(),
+						['n|<space>ca'] = map_cr('lua vim.lsp.buf.code_action()'):with_silent():with_noremap(),
 						['n|gr'] = map_cr('lua vim.lsp.buf.references()'):with_silent():with_noremap(),
 						['n|<space>e'] = map_cr('lua vim.lsp.diagnostic.show_line_diagnostics()'):with_silent():with_noremap(),
 						['n|[d'] = map_cr('lua vim.lsp.diagnostic.goto_prev()'):with_silent():with_noremap(),
@@ -64,10 +65,10 @@ local packages = {
 					bind.nvim_load_mapping(mappings)
 
 					require'lsp_signature'.on_attach({
-						bind = false,
+						bind = true,
 						doc_lines = 10,
-						hint_enable = false,
-						hint_prefix = '',
+						hint_enable = true,
+						hint_prefix = "🐼 ",
 						handler_opts = {
 							border = 'single',
 						}
@@ -107,6 +108,7 @@ local packages = {
 				require'compe'.setup {
 					enabled = true,
 					autocomplete = true,
+					documentation = true,
 					source = {
 						path = true,
 						buffer = true,
@@ -247,9 +249,6 @@ vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='te
 			ft = { 'vala' }
 		}
 	},
-	other = {
-		'~/proj/nlua.nvim'
-	}
 }
 
 require'packer'.startup(function(use)

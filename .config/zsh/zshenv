@@ -73,3 +73,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd|ls) *"
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+	export GIT_EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+fi
