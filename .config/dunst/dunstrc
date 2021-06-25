@@ -4,7 +4,7 @@
 	indicate_hidden = yes
 
 	# {w}x{h}±{x}±{y}
-	geometry =  "350x5-10+44"
+	geometry = "350x5-5+32"
 	shrink = no
 
 	separator_height = 1
