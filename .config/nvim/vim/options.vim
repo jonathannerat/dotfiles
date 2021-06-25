@@ -1,7 +1,6 @@
 " ╭───────────┐
 " │ INTERFACE │
 " └───────────┘
-
 set background=dark
 set completeopt+=menuone,noinsert,noselect
 set conceallevel=1
@@ -24,7 +23,6 @@ set wrap
 " ╭───────────┐
 " │    FILE   │
 " └───────────┘
-
 set nobackup nowritebackup
 set noswapfile
 set undofile
@@ -34,7 +32,6 @@ set undofile
 " ╭───────────┐
 " │  EDITING  │
 " └───────────┘
-
 set autoindent copyindent preserveindent
 set noexpandtab
 set shiftwidth=2 tabstop=2
@@ -46,7 +43,15 @@ set linebreak
 " ╭───────────┐
 " │ BEHAVIOUR │
 " └───────────┘
-
 set inccommand=split
 set ignorecase smartcase
 set timeoutlen=300
+
+
+
+" ╭───────────┐
+" │  GLOBALS  │
+" └───────────┘
+" tmux fix for colors
+let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
+let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'

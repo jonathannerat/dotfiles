@@ -18,6 +18,15 @@ function M.raw(command)
 	return build_string(command, '', '')
 end
 
+function M.bind(mappings)
+	for key, rhs in pairs(mappings) do
+		local mode, optchars, keymap = string.match(key, "([cinvt])|([ensw]*)|(.*)")
+		local options = M.parse_opt_chars(optchars)
+
+		vim.api.nvim_set_keymap(mode, keymap, rhs, options)
+	end
+end
+
 function M.parse_opt_chars(optchars)
 	local o = {
 		expr = false,

@@ -13,10 +13,12 @@ local mappings = {
 	["i|en|<cr>"]       = m.cmd([[compe#confirm( lexima#expand('<lt>cr>', 'i') )]]),
 	["i|en|<s-tab>"]    = m.cmd([[pumvisible() ? "\<c-p>" : "\<s-tab>"]]),
 	["i|en|<tab>"]      = m.cmd([[pumvisible() ? "\<c-n>" : "\<tab>"]]),
+	["i|ns|<m-j>"]      = m.raw([[<esc>:m .+1<CR>==gi]]),
+	["i|ns|<m-k>"]      = m.raw([[<esc>:m .-2<CR>==gi]]),
 
 	["n|ns|<c-t>"]      = m.cmd('tabnew'),
-	["n|ns|<m-j>"]      = m.raw('mz:m+<cr>`z'),
-	["n|ns|<m-k>"]      = m.raw('mz:m-2<cr>`z'),
+	["n|ns|<m-j>"]      = m.raw(':m .+1<CR>=='),
+	["n|ns|<m-k>"]      = m.raw(':m .-2<CR>=='),
 	["n|ns|<leader>N"]  = m.cmd([[call nnn#pick('',{'layout':{'window':{'width': 0.9, 'height': 0.6}}})]]),
 	["n|ns|<leader>Q"]  = m.cmd('q!'),
 	["n|ns|<leader>Qa"] = m.cmd('qa!'),
@@ -62,17 +64,12 @@ local mappings = {
 
 	["t|ns|<c-m-q>"]    = m.raw([[<c-\><c-n>]]),
 
-	["v|ns|<m-j>"]      = m.colon([[m'>+<cr>`<my`>mzgv`yo`z]]),
-	["v|ns|<m-k>"]      = m.colon([[m'<-2<cr>`>my`<mzgv`yo`z]]),
+	["v|ns|<m-j>"]      = m.raw([[:m '>+1<cr>gv=gv]]),
+	["v|ns|<m-k>"]      = m.raw([[:m '<-2<cr>gv=gv]]),
 }
 
 function M.setup()
-	for key, rhs in pairs(mappings) do
-		local mode, optchars, keymap = string.match(key, "([cinvt])|([ensw]*)|(.*)")
-		local options = m.parse_opt_chars(optchars)
-
-		vim.api.nvim_set_keymap(mode, keymap, rhs, options)
-	end
+	m.bind(mappings)
 end
 
 return M

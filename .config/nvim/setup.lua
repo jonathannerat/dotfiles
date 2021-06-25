@@ -1,4 +1,3 @@
--- allow require('folder')
 local function add_to_path(path)
 	if not string.match(';' .. package.path .. ';', ';' .. path .. ';') then
 		package.path = path .. ';' .. package.path
