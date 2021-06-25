@@ -1,7 +1,4 @@
-local global = require'my.global'
-local vim = vim
-
-vim.cmd 'packadd packer.nvim'
+local M = {}
 
 local packages = {
 	-- colorschemes
@@ -251,20 +248,22 @@ vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='te
 	},
 }
 
-require'packer'.startup(function(use)
-	use { 'wbthomason/packer.nvim', opt = true }
-	for _, category in pairs(packages) do
-		for _, package in pairs(category) do
-			use(package)
+function M.setup()
+	require'packer'.startup(function(use)
+		use { 'wbthomason/packer.nvim', opt = true }
+		for _, category in pairs(packages) do
+			for _, package in pairs(category) do
+				use(package)
+			end
 		end
-	end
-end)
+	end)
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		signs = true,
-		virtual_text = true,
-	}
-)
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, {
+			signs = true,
+			virtual_text = true,
+		}
+	)
+end
 
-vim.cmd 'colorscheme gruvbox-material'
+return M
