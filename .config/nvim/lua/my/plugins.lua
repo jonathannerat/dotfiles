@@ -30,7 +30,7 @@ local packages = {
 			config = function()
 				local lspconfig = require'lspconfig'
 				local m = require'my.util.mapper'
-				local on_attach = function(client, _)
+				local on_attach = function(client, bufnr)
 					local mappings = {
 						['n|ns|gD']         = m.cmd('lua vim.lsp.buf.declaration()'),
 						['n|ns|gd']         = m.cmd('lua vim.lsp.buf.definition()'),
@@ -58,7 +58,7 @@ local packages = {
 						mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
 					end
 
-					m.bind(mappings)
+					m.bind(mappings, bufnr)
 
 					require'lsp_signature'.on_attach({
 						bind = true,

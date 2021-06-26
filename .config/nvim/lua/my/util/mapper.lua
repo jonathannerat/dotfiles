@@ -18,12 +18,16 @@ function M.raw(command)
 	return build_string(command, '', '')
 end
 
-function M.bind(mappings)
+function M.bind(mappings, bufnr)
 	for key, rhs in pairs(mappings) do
 		local mode, optchars, keymap = string.match(key, "([cinvt])|([ensw]*)|(.*)")
 		local options = M.parse_opt_chars(optchars)
 
-		vim.api.nvim_set_keymap(mode, keymap, rhs, options)
+		if bufnr then
+			vim.api.nvim_buf_set_keymap(bufnr, mode, keymap, rhs, options)
+		else
+			vim.api.nvim_set_keymap(mode, keymap, rhs, options)
+		end
 	end
 end
 
