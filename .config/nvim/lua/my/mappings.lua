@@ -11,8 +11,8 @@ local mappings = {
 	["i|en|<c-e>"]      = m.cmd([[compe#close('<c-e>')]]),
 	["i|en|<c-space>"]  = m.cmd([[compe#complete()]]),
 	["i|en|<cr>"]       = m.cmd([[compe#confirm( lexima#expand('<lt>cr>', 'i') )]]),
-	["i|en|<s-tab>"]    = m.cmd([[pumvisible() ? "\<c-p>" : "\<s-tab>"]]),
-	["i|en|<tab>"]      = m.cmd([[pumvisible() ? "\<c-n>" : "\<tab>"]]),
+	["i|en|<s-tab>"]    = m.raw([[pumvisible() ? '\<c-p>' : '\<s-tab>']]),
+	["i|en|<tab>"]      = m.raw([[pumvisible() ? '\<c-n>' : '\<tab>']]),
 	["i|ns|<m-j>"]      = m.raw([[<esc>:m .+1<CR>==gi]]),
 	["i|ns|<m-k>"]      = m.raw([[<esc>:m .-2<CR>==gi]]),
 
