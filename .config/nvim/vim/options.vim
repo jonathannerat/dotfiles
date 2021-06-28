@@ -55,3 +55,15 @@ set timeoutlen=300
 " tmux fix for colors
 let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
 let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
+
+
+
+" ╭───────────┐
+" │ Firenvim  │
+" └───────────┘
+if exists('g:started_by_firenvim')
+	set nowrap
+	set laststatus=0
+	set linespace=-2
+	set guifont=Iosevka_Nerd_Font:h9
+endif
