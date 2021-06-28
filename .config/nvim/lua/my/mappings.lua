@@ -27,6 +27,7 @@ local mappings = {
 	["n|ns|<leader>cg"] = m.cmd('Gcd'),
 	["n|ns|<leader>ci"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/init.vim']]),
 	["n|ns|<leader>co"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/options.vim']]),
+	["n|ns|<leader>ca"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/autocmd.vim']]),
 	["n|ns|<leader>cm"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/mappings.vim']]),
 	["n|ns|<leader>cM"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/lua/my/mappings.lua']]),
 	["n|ns|<leader>cp"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/plugins.vim']]),
