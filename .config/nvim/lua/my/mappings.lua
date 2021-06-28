@@ -11,8 +11,8 @@ local mappings = {
 	["i|en|<c-e>"]      = m.cmd([[compe#close('<c-e>')]]),
 	["i|en|<c-space>"]  = m.cmd([[compe#complete()]]),
 	["i|en|<cr>"]       = m.cmd([[compe#confirm( lexima#expand('<lt>cr>', 'i') )]]),
-	["i|en|<s-tab>"]    = m.raw([[pumvisible() ? '\<c-p>' : '\<s-tab>']]),
-	["i|en|<tab>"]      = m.raw([[pumvisible() ? '\<c-n>' : '\<tab>']]),
+	["i|en|<s-tab>"]    = m.raw([[pumvisible() ? '<c-p>' : '<s-tab>']]),
+	["i|en|<tab>"]      = m.raw([[pumvisible() ? '<c-n>' : '<tab>']]),
 	["i|ns|<m-j>"]      = m.raw([[<esc>:m .+1<CR>==gi]]),
 	["i|ns|<m-k>"]      = m.raw([[<esc>:m .-2<CR>==gi]]),
 
@@ -27,6 +27,7 @@ local mappings = {
 	["n|ns|<leader>cg"] = m.cmd('Gcd'),
 	["n|ns|<leader>ci"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/init.vim']]),
 	["n|ns|<leader>co"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/options.vim']]),
+	["n|ns|<leader>ca"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/autocmd.vim']]),
 	["n|ns|<leader>cm"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/mappings.vim']]),
 	["n|ns|<leader>cM"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/lua/my/mappings.lua']]),
 	["n|ns|<leader>cp"] = m.cmd([[exe 'e ' .. stdpath('config') .. '/vim/plugins.vim']]),

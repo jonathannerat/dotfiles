@@ -27,10 +27,11 @@ local packages = {
 		'editorconfig/editorconfig-vim',
 		{
 			'neovim/nvim-lspconfig',
+			requires = 'ray-x/lsp_signature.nvim',
 			config = function()
 				local lspconfig = require'lspconfig'
 				local m = require'my.util.mapper'
-				local on_attach = function(client, _)
+				local on_attach = function(client, bufnr)
 					local mappings = {
 						['n|ns|gD']         = m.cmd('lua vim.lsp.buf.declaration()'),
 						['n|ns|gd']         = m.cmd('lua vim.lsp.buf.definition()'),
@@ -58,13 +59,13 @@ local packages = {
 						mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
 					end
 
-					m.bind(mappings)
+					m.bind(mappings, bufnr)
 
 					require'lsp_signature'.on_attach({
 						bind = true,
-						doc_lines = 10,
+						doc_lines = 2,
 						hint_enable = true,
-						hint_prefix = "🐼 ",
+						hint_prefix = "»",
 						handler_opts = {
 							border = 'single',
 						}
