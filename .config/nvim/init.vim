@@ -9,4 +9,4 @@ call s:stdsource('vim/plugins.vim')
 call s:stdsource('vim/mappings.vim')
 call s:stdsource('vim/autocmd.vim')
 
-colorscheme gruvbox-material
+call s:stdsource('custom.vim')

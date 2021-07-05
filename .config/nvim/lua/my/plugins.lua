@@ -1,3 +1,4 @@
+local custom = require'my.custom'
 local M = {}
 
 local packages = {
@@ -158,7 +159,7 @@ local packages = {
 						lualine_z = {},
 					},
 					options = {
-						theme = 'gruvbox_material',
+						theme = custom.lualine_theme,
 					},
 					extensions = { 'fzf', 'fugitive' }
 				}
