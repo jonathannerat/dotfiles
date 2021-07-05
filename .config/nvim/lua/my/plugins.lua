@@ -27,7 +27,6 @@ local packages = {
 		'editorconfig/editorconfig-vim',
 		{
 			'neovim/nvim-lspconfig',
-			requires = 'ray-x/lsp_signature.nvim',
 			config = function()
 				local lspconfig = require'lspconfig'
 				local m = require'my.util.mapper'
