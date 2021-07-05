@@ -1,8 +1,8 @@
 #!/bin/sh
 # fzf chooser for irc hosts to connect with catgirl
 
-hostsfolder="${XDG_DATA_HOME:-$HOME/.local/share}/pounce"
+hostsfolder="${XDG_CONFIG_HOME:-$HOME/.config}/catgirl/hosts"
 user="deskpc"
-host=$(find "$hostsfolder" -type s -printf "%f\n" | fzf)
+host=$(find "$hostsfolder" -type f -printf "%f\n" | fzf)
 
-[ -n "$host" ] && exec catgirl -h $host -t localhost.crt -u $user -O url-opener.sh -s $host
+[ -n "$host" ] && exec catgirl -h $host -t certs/deskpc.home.crt -u $user -O url-opener.sh -s $host

@@ -56,3 +56,17 @@ let g:nnn#action = {
 	\ '<c-x>': 'split',
 	\ '<c-v>': 'vsplit',
 \ }
+
+" ╭───────────┐
+" │ Firenvim  │
+" └───────────┘
+let g:firenvim_config = { 'localSettings': {} }
+
+let fc = g:firenvim_config['localSettings']
+let fc_site_disable = { 'takeover': 'never', 'priority': 1 }
+
+" enable command line
+let fc['.*'] = { 'cmdline': 'neovim' }
+" jupyter notebooks
+let fc['https?://(127.0.0.1|deskpc\.home):888[0-9]/'] = fc_site_disable
+let fc['https?://twitch\.tv'] = fc_site_disable
