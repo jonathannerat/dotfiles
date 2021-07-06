@@ -64,8 +64,7 @@ local packages = {
 					require'lsp_signature'.on_attach({
 						bind = true,
 						doc_lines = 2,
-						hint_enable = true,
-						hint_prefix = "»",
+						hint_enable = false,
 						handler_opts = {
 							border = 'single',
 						}
