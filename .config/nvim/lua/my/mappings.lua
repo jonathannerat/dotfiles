@@ -8,11 +8,11 @@ local mappings = {
 
 	["i|n|jj"]          = m.raw('<esc>'),
 	["i|n|kk"]          = m.raw('<esc>'),
-	["i|en|<c-e>"]      = m.cmd([[compe#close('<c-e>')]]),
-	["i|en|<c-space>"]  = m.cmd([[compe#complete()]]),
-	["i|en|<cr>"]       = m.cmd([[compe#confirm( lexima#expand('<lt>cr>', 'i') )]]),
-	["i|en|<s-tab>"]    = m.raw([[pumvisible() ? '<c-p>' : '<s-tab>']]),
-	["i|en|<tab>"]      = m.raw([[pumvisible() ? '<c-n>' : '<tab>']]),
+	["i|es|<tab>"]      = m.raw('v:lua.tab_complete()'),
+	["i|es|<s-tab>"]    = m.raw('v:lua.s_tab_complete()'),
+	["i|ens|<cr>"]      = m.raw("compe#confirm( lexima#expand('<lt>cr>', 'i') )"),
+	["i|ens|<c-f>"]     = m.raw("compe#scroll({ 'delta': 4 })"),
+	["i|ens|<c-b>"]     = m.raw("compe#scroll({ 'delta': -4 })"),
 	["i|ns|<m-j>"]      = m.raw([[<esc>:m .+1<CR>==gi]]),
 	["i|ns|<m-k>"]      = m.raw([[<esc>:m .-2<CR>==gi]]),
 
@@ -64,6 +64,9 @@ local mappings = {
 	["n|ns|<leader>w"]  = m.cmd('w'),
 	["n|n|<space>"]     = m.raw(''),
 	["n|n|Q"]           = m.raw(''),
+
+	["s|es|<tab>"]      = m.raw('v:lua.tab_complete()'),
+	["s|es|<s-tab>"]    = m.raw('v:lua.s_tab_complete()'),
 
 	["t|ns|<c-m-q>"]    = m.raw([[<c-\><c-n>]]),
 

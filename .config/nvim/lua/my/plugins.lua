@@ -72,6 +72,17 @@ local packages = {
 					})
 				end
 
+				local capabilities = vim.lsp.protocol.make_client_capabilities()
+				capabilities.textDocument.completion.completionItem.snippetSupport = true
+				capabilities.textDocument.completion.completionItem.resolveSupport = {
+					properties = {
+						'documentation',
+						'detail',
+						'additionalTextEdits',
+					}
+				}
+
+
 				local servers = {
 					tsserver = {},
 					cssls = {},
@@ -95,7 +106,9 @@ local packages = {
 				}
 
 				for lsp, config in pairs(servers) do
-					if not config.on_attach then config.on_attach = on_attach end
+					if not config.on_attach    then config.on_attach    = on_attach end
+					if not config.capabilities then config.capabilities = capabilities end
+
 					lspconfig[lsp].setup(config)
 				end
 			end},
@@ -111,12 +124,11 @@ local packages = {
 						buffer = true,
 						calc = true,
 						nvim_lsp = true,
-						ultisnips = true,
+						luasnip = true,
 					}
 				}
 			end
 		},
-		'ray-x/lsp_signature.nvim',
 		'mhinz/vim-startify',
 		{
 			'nvim-treesitter/nvim-treesitter',

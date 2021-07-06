@@ -20,7 +20,7 @@ end
 
 function M.bind(mappings, bufnr)
 	for key, rhs in pairs(mappings) do
-		local mode, optchars, keymap = string.match(key, "([cinvt])|([ensw]*)|(.*)")
+		local mode, optchars, keymap = string.match(key, "([cinstv])|([ensw]*)|(.*)")
 		local options = M.parse_opt_chars(optchars)
 
 		if bufnr then

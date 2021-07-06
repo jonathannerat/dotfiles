@@ -22,7 +22,9 @@ let g:startify_lists = [
 " ╭───────────┐
 " │  Lexima   │
 " └───────────┘
-let g:lexima_accept_pum_with_enter = 0
+" Set default rules in synchronously
+let g:lexima_no_default_rules = v:true
+call lexima#set_default_rules()
 
 " ╭───────────┐
 " │  Pandoc   │
