@@ -9,4 +9,4 @@ call s:stdsource('vim/plugins.vim')
 call s:stdsource('vim/mappings.vim')
 call s:stdsource('vim/autocmd.vim')
 
-call s:stdsource('custom.vim')
+call s:stdsource('vim/custom.vim')

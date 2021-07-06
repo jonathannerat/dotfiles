@@ -3,3 +3,7 @@
 
 # worktrees
 .wt/
+
+# custom files
+.config/nvim/lua/my/custom.lua
+.config/nvim/vim/custom.vim
