@@ -150,6 +150,10 @@ local packages = {
 			end
 		},
 		{
+			'nvim-treesitter/playground',
+			run = ':TSUpdate query'
+		},
+		{
 			'hoob3rt/lualine.nvim',
 			requires = { {'ryanoasis/vim-devicons', opt = true}, {'tpope/vim-fugitive', opt = true} },
 			config = function()
