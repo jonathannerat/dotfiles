@@ -1,0 +1,32 @@
+local M = {}
+
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+	local col = vim.fn.col('.') - 1
+	return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+_G.tab_complete = function()
+	if vim.fn.pumvisible() == 1 then
+		return t '<c-n>'
+	elseif vim.fn['luasnip#expand_or_jumpable']() == 1 then
+		return t '<plug>luasnip-expand-or-jump'
+	elseif check_back_space() then
+		return t '<tab>'
+	end
+end
+
+_G.s_tab_complete = function()
+	if vim.fn.pumvisible() == 1 then
+		return t '<c-p>'
+	elseif vim.fn['luasnip#jumpable'](-1) == 1 then
+		return require'luasnip'.jump(-1)
+	else
+		return t '<s-tab>'
+	end
+end
+
+return M
