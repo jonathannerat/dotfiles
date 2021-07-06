@@ -226,7 +226,7 @@ vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='te
 			'nvim-telescope/telescope-fzf-native.nvim',
 			run = 'make'
 		},
-		'SirVer/ultisnips',
+		'L3MON4D3/LuaSnip',
 		'lambdalisue/suda.vim',
 		{
 			'norcalli/nvim-colorizer.lua',
