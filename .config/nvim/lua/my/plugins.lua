@@ -180,6 +180,14 @@ local packages = {
 					extensions = { 'fzf', 'fugitive' }
 				}
 			end
+		},
+		{
+			'folke/trouble.nvim',
+			config = function()
+				require'trouble'.setup{
+					icons = false
+				}
+			end
 		}
 	},
 	editing = {

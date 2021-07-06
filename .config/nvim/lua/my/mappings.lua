@@ -64,6 +64,8 @@ local mappings = {
 	["n|ns|<leader>th"] = m.cmd('TSHighlightCapturesUnderCursor'),
 	["n|ns|<leader>u"]  = m.cmd('UltiSnipsEdit'),
 	["n|ns|<leader>w"]  = m.cmd('w'),
+	["n|ns|<leader>xd"] = m.cmd('TroubleToggle lsp_document_diagnostics'),
+	["n|ns|gR"]         = m.cmd('TroubleToggle lsp_references'),
 	["n|n|<space>"]     = m.raw(''),
 	["n|n|Q"]           = m.raw(''),
 
