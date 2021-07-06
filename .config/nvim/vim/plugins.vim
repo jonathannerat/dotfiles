@@ -25,6 +25,15 @@ let g:startify_lists = [
 " Set default rules in synchronously
 let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
+let s:rules = [
+\ 	{ 'char': '$',    'input_after': '$',              'filetype': ['tex', 'latex'] },
+\ 	{ 'char': '$',    'at': '\\%#\\$',    'leave': 1,  'filetype': ['tex', 'latex'] },
+\ 	{ 'char': '<BS>', 'at': '\\$\\%#\\$', 'delete': 1, 'filetype': ['tex', 'latex'] },
+\ ]
+
+for rule in s:rules
+	call lexima#add_rule(rule)
+endfor
 
 " ╭───────────┐
 " │  Pandoc   │

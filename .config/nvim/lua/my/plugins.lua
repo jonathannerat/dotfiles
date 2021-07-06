@@ -192,14 +192,7 @@ local packages = {
 	editing = {
 		'tpope/vim-commentary',
 		'tpope/vim-surround',
-		{
-			'cohama/lexima.vim',
-			config = [=[
-vim.call("lexima#add_rule", {char='$', input_after='$', filetype='tex'})
-vim.call("lexima#add_rule", {char='$', at=[[\%#\$]], leave=1, filetype='tex'})
-vim.call("lexima#add_rule", {char='<BS>', at=[[\$\%#\$]], delete=1, filetype='tex'})
-			]=]
-		},
+		'cohama/lexima.vim',
 		{
 			'nvim-telescope/telescope.nvim',
 			requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
