@@ -9,7 +9,7 @@ local check_back_space = function()
 	return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
-_G.tab_complete = function()
+function M.tab_complete ()
 	if vim.fn.pumvisible() == 1 then
 		return t '<c-n>'
 	elseif vim.fn['luasnip#expand_or_jumpable']() == 1 then
@@ -19,7 +19,7 @@ _G.tab_complete = function()
 	end
 end
 
-_G.s_tab_complete = function()
+function M.s_tab_complete ()
 	if vim.fn.pumvisible() == 1 then
 		return t '<c-p>'
 	elseif vim.fn['luasnip#jumpable'](-1) == 1 then

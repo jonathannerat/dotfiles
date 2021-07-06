@@ -8,8 +8,8 @@ local mappings = {
 
 	["i|n|jj"]          = m.raw('<esc>'),
 	["i|n|kk"]          = m.raw('<esc>'),
-	["i|es|<tab>"]      = m.raw('v:lua.tab_complete()'),
-	["i|es|<s-tab>"]    = m.raw('v:lua.s_tab_complete()'),
+	["i|es|<tab>"]      = m.raw("v:lua.require'my.functions'.tab_complete()"),
+	["i|es|<s-tab>"]    = m.raw("v:lua.require'my.functions'.s_tab_complete()"),
 	["i|ens|<cr>"]      = m.raw("compe#confirm( lexima#expand('<lt>cr>', 'i') )"),
 	["i|ens|<c-f>"]     = m.raw("compe#scroll({ 'delta': 4 })"),
 	["i|ens|<c-b>"]     = m.raw("compe#scroll({ 'delta': -4 })"),
@@ -69,8 +69,8 @@ local mappings = {
 	["n|n|<space>"]     = m.raw(''),
 	["n|n|Q"]           = m.raw(''),
 
-	["s|es|<tab>"]      = m.raw('v:lua.tab_complete()'),
-	["s|es|<s-tab>"]    = m.raw('v:lua.s_tab_complete()'),
+	["s|es|<tab>"]      = m.raw("v:lua.require'my.functions'.tab_complete()"),
+	["s|es|<s-tab>"]    = m.raw("v:lua.require'my.functions'.s_tab_complete()"),
 
 	["t|ns|<c-m-q>"]    = m.raw([[<c-\><c-n>]]),
 
