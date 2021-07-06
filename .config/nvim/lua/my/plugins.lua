@@ -1,4 +1,3 @@
-local custom = require'my.custom'
 local M = {}
 
 local packages = {
@@ -129,6 +128,7 @@ local packages = {
 			end
 		},
 		'mhinz/vim-startify',
+		'ray-x/lsp_signature.nvim',
 		{
 			'nvim-treesitter/nvim-treesitter',
 			run = ':TSUpdate',
@@ -174,7 +174,7 @@ local packages = {
 						lualine_z = {},
 					},
 					options = {
-						theme = custom.lualine_theme,
+						theme = require'my.custom'.lualine_theme,
 					},
 					extensions = { 'fzf', 'fugitive' }
 				}
