@@ -1,3 +1,4 @@
+local custom = require'my.custom'
 local M = {}
 
 local packages = {
@@ -27,7 +28,6 @@ local packages = {
 		'editorconfig/editorconfig-vim',
 		{
 			'neovim/nvim-lspconfig',
-			requires = 'ray-x/lsp_signature.nvim',
 			config = function()
 				local lspconfig = require'lspconfig'
 				local m = require'my.util.mapper'
@@ -174,7 +174,7 @@ local packages = {
 						lualine_z = {},
 					},
 					options = {
-						theme = 'gruvbox_material',
+						theme = custom.lualine_theme,
 					},
 					extensions = { 'fzf', 'fugitive' }
 				}

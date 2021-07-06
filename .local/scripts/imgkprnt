@@ -40,6 +40,7 @@ esac
 if [ "$file" = "$tmpfile" ]; then
 	size="$(identify -format "%wx%h" "$file")"
 	file="$ssdir/${timestamp}_${size}.png"
+	[ -d "$ssdir" ] || mkdir -p "$ssdir"
 	mv "$tmpfile" "$file"
 fi
 
