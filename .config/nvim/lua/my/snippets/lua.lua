@@ -25,9 +25,7 @@ return {
 				t { '{', "\t'" },
 				d(1, get_repo_from_clipboard, {}),
 				t { "'", '},' },
-				i(0),
 			})
 		}),
-		i(0)
 	})
 }
