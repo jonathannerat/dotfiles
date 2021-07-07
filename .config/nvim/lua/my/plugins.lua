@@ -218,7 +218,12 @@ local packages = {
 			'nvim-telescope/telescope-fzf-native.nvim',
 			run = 'make'
 		},
-		'L3MON4D3/LuaSnip',
+		{
+			'L3MON4D3/LuaSnip',
+			config = function()
+				require'my.snippets'.setup()
+			end
+		},
 		'lambdalisue/suda.vim',
 		{
 			'norcalli/nvim-colorizer.lua',
