@@ -12,8 +12,6 @@ end
 function M.tab_complete ()
 	if vim.fn.pumvisible() == 1 then
 		return t '<c-n>'
-	elseif vim.fn['luasnip#expand_or_jumpable']() == 1 then
-		return t '<plug>luasnip-expand-or-jump'
 	elseif check_back_space() then
 		return t '<tab>'
 	end
@@ -22,8 +20,6 @@ end
 function M.s_tab_complete ()
 	if vim.fn.pumvisible() == 1 then
 		return t '<c-p>'
-	elseif vim.fn['luasnip#jumpable'](-1) == 1 then
-		return require'luasnip'.jump(-1)
 	else
 		return t '<s-tab>'
 	end
