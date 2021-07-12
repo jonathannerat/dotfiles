@@ -10,7 +10,7 @@ local function get_repo_from_clipboard()
 	local clipboard = vim.fn.getreg("+", 1)
 	local content = string.match(clipboard, 'https?://github.com/([%w-_%.]*/[%w-_%.]*)')
 
-	return s(nil, { i(1, content or 'username/repository'), t ',' })
+	return s(nil, { i(1, content or 'username/repository') })
 end
 
 return {
@@ -19,12 +19,19 @@ return {
 			s(nil, {
 				t "'",
 				d(1, get_repo_from_clipboard, {}),
-				t "'",
+				t "',",
 			}),
 			s(nil, {
 				t { '{', "\t'" },
 				d(1, get_repo_from_clipboard, {}),
 				t { "'", '},' },
+			}),
+			s(nil, {
+				t "['",
+				d(1, get_repo_from_clipboard, {}),
+				t "'] = {",
+				t { '', '\t' }, i(2),
+				t { '', "}," },
 			})
 		}),
 	})
