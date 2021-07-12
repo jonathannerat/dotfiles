@@ -1,7 +1,6 @@
 local M = {}
 
 local packages = {
-
 	'asciidoc/vim-asciidoc',
 	'cohama/lexima.vim',
 	'editorconfig/editorconfig-vim',
@@ -232,6 +231,13 @@ local packages = {
 					},
 				}
 			}
+		end
+	},
+
+	['folke/todo-comments.nvim'] = {
+		requires = 'nvim-lua/plenary.nvim',
+		config = function ()
+			require'todo-comments'.setup {}
 		end
 	},
 }
