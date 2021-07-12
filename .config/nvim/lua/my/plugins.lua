@@ -203,22 +203,7 @@ local packages = {
 	['nvim-telescope/telescope.nvim'] = {
 		requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
 		config = function()
-			local t = require'telescope'
-			local tp = require'telescope.previewers'
-			t.setup{
-				defaults = {
-					file_previewer = tp.vim_buffer_cat.new,
-					grep_previewer = tp.vim_buffer_vimgrep.new,
-				},
-				extensions = {
-					fzf = {
-						override_generic_sorter = false,
-						override_file_sorter = true,
-						case_mode = 'smart_case',
-					}
-				}
-			}
-			t.load_extension('fzf')
+			require'my.plugins.telescope'.config()
 		end
 	},
 
