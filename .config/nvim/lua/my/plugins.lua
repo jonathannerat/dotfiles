@@ -18,6 +18,7 @@ local packages = {
 	'tpope/vim-fugitive',
 	'tpope/vim-obsession',
 	'tpope/vim-surround',
+	'vhyrro/tree-sitter-norg',
 	'vim-pandoc/vim-pandoc',
 
 	['arrufat/vala.vim']           = { ft = 'vala' },
@@ -216,6 +217,20 @@ local packages = {
 	['norcalli/nvim-colorizer.lua'] = {
 		config = function()
 			require'colorizer'.setup(nil, { css=true })
+		end
+	},
+
+	['vhyrro/neorg'] = {
+		config = function()
+			require'neorg'.setup {
+				load = {
+					['core.defaults'] = {},
+					['core.norg.concealer'] = {},
+					['core.norg.dirman'] = {
+						config = { workspaces = { notes = '~/docs/notes' } }
+					},
+				}
+			}
 		end
 	},
 }
