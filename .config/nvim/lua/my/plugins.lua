@@ -150,6 +150,7 @@ local packages = {
 				highlight = { enable = true, },
 				incremental_selection = { enable = true, },
 				indent = { enable = true, },
+				playground = { enable = true },
 				textobjects = {
 					select = {
 						enable = true,
