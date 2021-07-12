@@ -1,7 +1,6 @@
 local M = {}
 
 local packages = {
-
 	'asciidoc/vim-asciidoc',
 	'cohama/lexima.vim',
 	'editorconfig/editorconfig-vim',
@@ -18,6 +17,7 @@ local packages = {
 	'tpope/vim-fugitive',
 	'tpope/vim-obsession',
 	'tpope/vim-surround',
+	'vhyrro/tree-sitter-norg',
 	'vim-pandoc/vim-pandoc',
 
 	['arrufat/vala.vim']           = { ft = 'vala' },
@@ -149,6 +149,7 @@ local packages = {
 				highlight = { enable = true, },
 				incremental_selection = { enable = true, },
 				indent = { enable = true, },
+				playground = { enable = true },
 				textobjects = {
 					select = {
 						enable = true,
@@ -203,22 +204,7 @@ local packages = {
 	['nvim-telescope/telescope.nvim'] = {
 		requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
 		config = function()
-			local t = require'telescope'
-			local tp = require'telescope.previewers'
-			t.setup{
-				defaults = {
-					file_previewer = tp.vim_buffer_cat.new,
-					grep_previewer = tp.vim_buffer_vimgrep.new,
-				},
-				extensions = {
-					fzf = {
-						override_generic_sorter = false,
-						override_file_sorter = true,
-						case_mode = 'smart_case',
-					}
-				}
-			}
-			t.load_extension('fzf')
+			require'my.plugins.telescope'.config()
 		end
 	},
 
@@ -231,6 +217,27 @@ local packages = {
 	['norcalli/nvim-colorizer.lua'] = {
 		config = function()
 			require'colorizer'.setup(nil, { css=true })
+		end
+	},
+
+	['vhyrro/neorg'] = {
+		config = function()
+			require'neorg'.setup {
+				load = {
+					['core.defaults'] = {},
+					['core.norg.concealer'] = {},
+					['core.norg.dirman'] = {
+						config = { workspaces = { notes = '~/docs/notes' } }
+					},
+				}
+			}
+		end
+	},
+
+	['folke/todo-comments.nvim'] = {
+		requires = 'nvim-lua/plenary.nvim',
+		config = function ()
+			require'todo-comments'.setup {}
 		end
 	},
 }
