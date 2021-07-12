@@ -32,7 +32,7 @@
 	### Icons ###
 	icon_position = left
 	max_icon_size = 80
-	icon_path = /usr/share/icons/Papirus-Dark-Dark/22x22/status/:/usr/share/icons/Papirus-Dark/22x22/devices/:/usr/share/icons/Papirus-Dark/22x22/categories/:/usr/share/icons/Papirus-Dark/22x22/apps/:/usr/share/icons/Papirus-Dark/22x22/actions/
+	icon_path = /usr/share/icons/Papirus-Dark/22x22/status/:/usr/share/icons/Papirus-Dark/22x22/devices/:/usr/share/icons/Papirus-Dark/22x22/categories/:/usr/share/icons/Papirus-Dark/22x22/apps/:/usr/share/icons/Papirus-Dark/22x22/actions/
 
 	### History ###
 	sticky_history = yes
