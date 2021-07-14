@@ -78,3 +78,8 @@ let fc_site_enable = { 'takeover': 'never', 'priority': 1 }
 
 " enable command line
 let fc['.*'] = { 'cmdline': 'neovim', 'takeover': 'never' }
+
+" ╭───────────┐
+" │   Neon    │
+" └───────────┘
+let g:neon_style = 'dark'
