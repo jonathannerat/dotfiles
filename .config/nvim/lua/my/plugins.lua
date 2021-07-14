@@ -234,10 +234,9 @@ local packages = {
 		end
 	},
 
-	['folke/todo-comments.nvim'] = {
-		requires = 'nvim-lua/plenary.nvim',
-		config = function ()
-			require'todo-comments'.setup {}
+	['folke/persistence.nvim'] = {
+		config = function()
+			require'my.plugins.persistence'.config()
 		end
 	},
 }
