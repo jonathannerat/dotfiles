@@ -22,6 +22,10 @@ function M.plug(command)
 	return build_string(command, '<plug>', '')
 end
 
+function M.lua(command)
+	return M.cmd('lua' .. command)
+end
+
 function M.bind(mappings, bufnr)
 	for key, rhs in pairs(mappings) do
 		local mode, optchars, keymap = string.match(key, "([cinstv])|([ensw]*)|(.*)")
