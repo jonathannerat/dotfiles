@@ -17,6 +17,7 @@ local packages = {
 	'tpope/vim-fugitive',
 	'tpope/vim-obsession',
 	'tpope/vim-surround',
+	'tridactyl/vim-tridactyl',
 	'vhyrro/tree-sitter-norg',
 	'vim-pandoc/vim-pandoc',
 
