@@ -58,11 +58,11 @@ local packages = {
 				}
 
 				if client.resolved_capabilities.document_formatting then
-					mappings['n|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.formatting()')
+					mappings['n|ns|<c-s-f>'] = m.cmd('lua vim.lsp.buf.formatting()')
 				end
 
 				if client.resolved_capabilities.document_range_formatting then
-					mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
+					mappings['v|ns|<c-s-f>'] = m.cmd('lua vim.lsp.buf.range_formatting()')
 				end
 
 				m.bind(mappings, bufnr)
