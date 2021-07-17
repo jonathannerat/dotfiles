@@ -45,11 +45,6 @@ local packages = {
 		config = function() require'presence':setup() end
 	},
 
-	['TimUntersberger/neogit'] = {
-		requires = 'nvim-lua/plenary.nvim',
-		config = function() require'neogit'.setup{} end
-	},
-
 	['sunjon/shade.nvim'] = {
 		config = function()
 			require'shade'.setup {
