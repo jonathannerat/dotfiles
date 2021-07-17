@@ -6,19 +6,19 @@ local lualsp_path = os.getenv('HOME') .. '/.local/src/lua-language-server/'
 local M = {}
 
 M.lsp_servers = {
-	tsserver = {},
-	cssls = {},
-	vimls = {},
-	ccls = {},
 	bashls = {},
-	pyls = {},
-	rust_analyzer = {},
-	solargraph = {},
-	sumneko_lua = require'my.lua_lsp',
+	ccls = {},
+	cssls = {},
 	jsonls = {
 		cmd = { 'json-languageserver', '--stdio' }
 	},
+	pylsp = {},
+	rust_analyzer = {},
+	solargraph = {},
+	sumneko_lua = require'my.lua_lsp',
 	texlab = {},
+	tsserver = {},
+	vimls = {},
 }
 
 M.lsp_servers.sumneko_lua.cmd = {
@@ -55,42 +55,43 @@ M.default_mappings = {
 	['n|ns|<leader>dd'] = m.cmd('lua vim.lsp.diagnostic.set_loclist()'),
 }
 
-function M.config()
-	local lspconfig = require'lspconfig'
-	local on_attach = function(client, bufnr)
-		-- share this instance for all buffers
-		local mappings = M.default_mappings
+M.on_attach = function(client, bufnr)
+	-- share this instance for all buffers
+	local mappings = M.default_mappings
 
-		if client.resolved_capabilities.document_formatting then
-			-- create a copy for a specific buffer if it has more capabilities
-			mappings = f.shallowcopy(M.default_mappings)
-			mappings['n|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.formatting()')
-		end
-
-		if client.resolved_capabilities.document_range_formatting then
-			-- only create one copy
-			mappings = mappings == M.default_mappings and f.shallowcopy(M.default_mappings) or mappings
-			mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
-		end
-
-		m.bind(mappings, bufnr)
-
-		require'lsp_signature'.on_attach(M.lsp_signature_config)
+	if client.resolved_capabilities.document_formatting then
+		-- create a copy for a specific buffer if it has more capabilities
+		mappings = f.shallowcopy(M.default_mappings)
+		mappings['n|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.formatting()')
 	end
 
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities.textDocument.completion.completionItem.resolveSupport = {
-		properties = {
-			'documentation',
-			'detail',
-			'additionalTextEdits',
-		}
+	if client.resolved_capabilities.document_range_formatting then
+		-- only create one copy
+		mappings = mappings == M.default_mappings and f.shallowcopy(M.default_mappings) or mappings
+		mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
+	end
+
+	m.bind(mappings, bufnr)
+
+	require'lsp_signature'.on_attach(M.lsp_signature_config)
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = {
+		'documentation',
+		'detail',
+		'additionalTextEdits',
 	}
+}
+
+function M.config()
+	local lspconfig = require'lspconfig'
 
 	for lsp, config in pairs(M.lsp_servers) do
-		if not config.on_attach    then config.on_attach    = on_attach end
-		if not config.capabilities then config.capabilities = capabilities end
+		if not config.on_attach    then config.on_attach    = M.on_attach end
+		if not config.capabilities then config.capabilities = M.capabilities end
 
 		lspconfig[lsp].setup(config)
 	end
