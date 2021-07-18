@@ -3,8 +3,8 @@ local tp = require'telescope.previewers'
 
 local M = {}
 
+--- opens the selected file on your system's default file opener
 local function action_open(prompt_bufnr)
-
 	local action_state = require'telescope.actions.state'
 	local path = require'telescope.path'
 	local entry = action_state.get_selected_entry()
@@ -48,6 +48,7 @@ function M.config()
 		},
 		extensions = {
 			fzf = {
+				fuzzy = true,
 				override_generic_sorter = false,
 				override_file_sorter = true,
 				case_mode = 'smart_case',

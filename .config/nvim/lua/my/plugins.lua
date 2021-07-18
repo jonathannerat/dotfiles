@@ -79,83 +79,16 @@ local packages = {
 	},
 
 	['hrsh7th/nvim-compe'] = {
-		config = function()
-			require'compe'.setup {
-				enabled = true,
-				autocomplete = true,
-				documentation = true,
-				source = {
-					path = true,
-					buffer = true,
-					calc = true,
-					nvim_lsp = true,
-					luasnip = true,
-					neorg = true,
-				}
-			}
-		end
+		config = function() require'my.plugins.compe'.config() end
 	},
 
 	['nvim-treesitter/nvim-treesitter'] = {
 		run = ':TSUpdate',
-		config = function()
-			local parser_configs = require'nvim-treesitter.parsers'.get_parser_configs()
-
-			parser_configs.norg = {
-				install_info = {
-					url = 'https://github.com/vhyrro/tree-sitter-norg',
-					files = { 'src/parser.c' },
-					branch = 'main'
-				}
-			}
-
-			require'nvim-treesitter.configs'.setup {
-				ensure_installed = "maintained",
-				-- Modules
-				highlight = { enable = true, },
-				incremental_selection = { enable = true, },
-				indent = { enable = true, },
-				playground = { enable = true },
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							-- You can use the capture groups defined in textobjects.scm
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-						}
-					}
-				}
-			}
-		end
+		config = function() require'my.plugins.treesitter'.config() end
 	},
 
 	['hoob3rt/lualine.nvim'] = {
-		config = function()
-			require'lualine'.setup {
-				sections = {
-					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff'},
-					lualine_c = {'filename'},
-					lualine_x = {'encoding', 'fileformat', 'filetype'},
-					lualine_y = {'progress'},
-					lualine_z = {'location'},
-				},
-				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = {'filename'},
-					lualine_x = {'location'},
-					lualine_y = {},
-					lualine_z = {},
-				},
-				options = {
-					theme = require'my.custom'.lualine_theme,
-				},
-				extensions = { 'fzf', 'fugitive' }
-			}
-		end
+		config = function() require'my.plugins.lualine'.config() end
 	},
 
 	['nvim-telescope/telescope.nvim'] = {
@@ -164,20 +97,7 @@ local packages = {
 	},
 
 	['vhyrro/neorg'] = {
-		config = function()
-			require'neorg'.setup {
-				load = {
-					['core.defaults'] = {},
-					['core.keybinds'] = {
-						config = { default_keybinds = true }
-					},
-					['core.norg.concealer'] = {},
-					['core.norg.dirman'] = {
-						config = { workspaces = { notes = '~/docs/notes' } }
-					},
-				}
-			}
-		end
+		config = function() require'my.plugins.neorg'.config() end
 	},
 
 	['folke/persistence.nvim'] = {
