@@ -64,14 +64,14 @@ M.on_attach = function(client, bufnr)
 
 	if client.resolved_capabilities.document_formatting then
 		-- create a copy for a specific buffer if it has more capabilities
-		mappings = f.shallowcopy(M.default_mappings)
-		mappings['n|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.formatting()')
+		mappings = vim.fn.copy(M.default_mappings)
+		mappings['n|ns|<leader>sf'] = m.cmd('lua vim.lsp.buf.formatting()')
 	end
 
 	if client.resolved_capabilities.document_range_formatting then
 		-- only create one copy
-		mappings = mappings == M.default_mappings and f.shallowcopy(M.default_mappings) or mappings
-		mappings['v|ns|<leader>f'] = m.cmd('lua vim.lsp.buf.range_formatting()')
+		mappings = mappings == M.default_mappings and vim.fn.copy(M.default_mappings) or mappings
+		mappings['v|ns|<leader>sf'] = m.cmd('lua vim.lsp.buf.range_formatting()')
 	end
 
 	m.bind(mappings, bufnr)
