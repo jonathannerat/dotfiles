@@ -1,9 +1,18 @@
+local M = {}
+
 local m = require'my.util.mapper'
-local f = require'my.util.functions'
 
 local lualsp_path = os.getenv('HOME') .. '/.local/src/lua-language-server/'
 
-local M = {}
+local luadev = require'lua-dev'.setup {
+	lspconfig = {
+		cmd = {
+				lualsp_path .. 'bin/Linux/lua-language-server',
+				'-E',
+				lualsp_path .. 'main.lua'
+		}
+	}
+}
 
 M.lsp_servers = {
 	bashls = {},
@@ -15,16 +24,10 @@ M.lsp_servers = {
 	pylsp = {},
 	rust_analyzer = {},
 	solargraph = {},
-	sumneko_lua = require'my.lua_lsp',
+	sumneko_lua = luadev,
 	texlab = {},
 	tsserver = {},
 	vimls = {},
-}
-
-M.lsp_servers.sumneko_lua.cmd = {
-	lualsp_path .. 'bin/Linux/lua-language-server',
-	'-E',
-	lualsp_path .. 'main.lua'
 }
 
 M.lsp_signature_config = {

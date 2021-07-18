@@ -5,6 +5,7 @@ local packages = {
 	'cohama/lexima.vim',
 	'editorconfig/editorconfig-vim',
 	'folke/tokyonight.nvim',
+	'folke/lua-dev.nvim',
 	'lambdalisue/suda.vim',
 	'lervag/vimtex',
 	'mcchrish/nnn.vim',
