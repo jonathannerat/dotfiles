@@ -15,11 +15,11 @@ end
 
 local parseable_snippets = {
 	mod =
-[[local M = {}
+[[local ${1:M} = {}
 
-M.${1:key} = ${2:value}
+$1.${2:key} = ${3:value}
 
-return M]]
+return $1]]
 }
 
 local snippets = {
