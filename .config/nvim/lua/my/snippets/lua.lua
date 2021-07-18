@@ -13,7 +13,16 @@ local function get_repo_from_clipboard()
 	return s(nil, { i(1, content or 'username/repository') })
 end
 
-return {
+local parseable_snippets = {
+	mod =
+[[local M = {}
+
+M.${1:key} = ${2:value}
+
+return M]]
+}
+
+local snippets = {
 	S('pplug', {
 		c(1, {
 			s(nil, {
@@ -36,3 +45,9 @@ return {
 		}),
 	})
 }
+
+for trigger, snippet_def in pairs(parseable_snippets) do
+	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
+end
+
+return snippets
