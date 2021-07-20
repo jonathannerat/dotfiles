@@ -47,15 +47,6 @@ local packages = {
 		config = function() require'presence':setup() end
 	},
 
-	['sunjon/shade.nvim'] = {
-		config = function()
-			require'shade'.setup {
-				overlay_opacity = 50,
-				opacity_step = 5,
-			}
-		end
-	},
-
 	['L3MON4D3/LuaSnip'] = {
 		config = function() require'my.snippets'.setup() end
 	},
