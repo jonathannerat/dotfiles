@@ -23,7 +23,7 @@ function M.plug(command)
 end
 
 function M.lua(command)
-	return M.cmd('lua' .. command)
+	return M.cmd('lua ' .. command)
 end
 
 function M.bind(mappings, bufnr)
