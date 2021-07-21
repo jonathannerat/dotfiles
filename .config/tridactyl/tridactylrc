@@ -1,27 +1,40 @@
-" General options"
+" GENERAL
+" =======
+
 set smoothscroll true
 
-colorscheme tokyonight
+colorscheme base16-chalk
 
 
 
-" Search engines
+" SEARCH ENGINES
+" ==============
 
 set searchurls.1337x https://1337x.to/search/%s/1/
 set searchurls.aur https://aur.archlinux.org/packages/?K=%s
 set searchurls.nyaa https://nyaa.si/?q=%s
+set searchurls.man https://man.archlinux.org/search?q=%s&go=Go
 
 
 
-" Commands"
-command getsearchparam js -d£ (function(a){let p,u=document.location.href,i=u.indexOf('?');return i!=-1?(p=new URLSearchParams(u.substr(i+1)),p.has(a)?p.get(a):''):''})(JS_ARGS[1]) £
+
+" COMMANDS
+" ========
+
+" parses url search params, useful to autocomplete the current search in some websites (see binds below)
+" JS_ARGS[0] is empty for some reason, so we use JS_ARGS[1]
+command getsearchparam js -d| (function(param) {let u=document.location.href,i=u.indexOf('?'),p; return i!=-1?(p=new URLSearchParams(u.substr(i+1)),p.has(param)?p.get(param):''):''})(JS_ARGS[1]) |
 
 
 
-" Binds
+" BINDS
+" =====
 
 bind j scrollline 5
 bind k scrollline -5
+bind / fillcmdline find
+bind n findnext
+bind N findnext -1
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
@@ -31,28 +44,34 @@ bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//
 
 " make t open the selection with tabopen
 bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
-" 
-" I like wikiwand but I don't like the way it changes URLs
-bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
-" 
-" Only hint search results on Google and DDG
-bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
-bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 
-" auto complete with current search queries
-bindurl www.google.com o composite getsearchparam q | fillcmdline open google
-bindurl www.youtube.com o composite getsearchparam search_query | fillcmdline open youtube
+bind gr composite hint -pipe a href | jsb -p tri.excmds.tabopen("about:reader?url=" + JS_ARG)
 
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD composite tabduplicate; tabdetach
-" 
+"
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
 
+bind ZZ composite sanitise tridactyllocal; qall
+
+" I like wikiwand but I don't like the way it changes URLs
+bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
+"
+" Only hint search results on Google and DDG
+bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+
+" pull up a new searchbox with the current search autocompleted
+bindurl www\.google\.com/search   o composite getsearchparam q | fillcmdline open google
+bindurl www\.youtube\.com/results o composite getsearchparam search_query | fillcmdline open youtube
+bindurl duckduckgo\.com           o composite getsearchparam q | fillcmdline open
 
 
-" Misc settings
+
+" MISC
+" ====
 
 " Inject Google Translate
 " This (clearly) is remotely hosted code. Google will be sent the whole
@@ -64,9 +83,14 @@ autocontain trading\.portfoliopersonal\.com personal
 
 
 
-" URL redirects
+" URL REDIRECTS
+" =============
 
 " New reddit is bad
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " Use mobile version of wikipedia
-autocmd DocStart ^http(s?)://www.wikipedia.org js tri.excmds.urlmodify("-t", "www", "m")
+autocmd DocStart ^http(s?)://en.wikipedia.org js tri.excmds.urlmodify("-t", "en.wikipedia.org", "www.wikiwand.com"),tri.excmds.urlmodify('-t', '/wiki/', '/en/')
+
+
+
+source ~/.config/tridactyl/hiddenrc
