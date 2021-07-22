@@ -8,10 +8,8 @@ local i = ls.insert_node
 local s = ls.snippet_node
 local t = ls.text_node
 
-return {
-	ls.parser.parse_snippet(
-		'skel',
-		[[<!DOCTYPE html>
+local parseable_snippets = {
+	skel = [[<!DOCTYPE html>
 <html>
 <head>
 	<title>${1:Title}</title>
@@ -20,7 +18,10 @@ return {
 </head>
 <body>
 	${0:}
-</body>]]),
+</body>]]
+}
+
+local snippets = {
 	S('script', {
 		t '<script',
 		c (1, {
@@ -49,3 +50,9 @@ return {
 		end, {}, i(0))
 	})
 }
+
+for trigger, snippet_def in ipairs(parseable_snippets) do
+	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
+end
+
+return snippets
