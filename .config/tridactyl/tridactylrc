@@ -64,9 +64,15 @@ bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
 bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 
 " pull up a new searchbox with the current search autocompleted
-bindurl www\.google\.com/search   o composite getsearchparam q | fillcmdline open google
-bindurl www\.youtube\.com/results o composite getsearchparam search_query | fillcmdline open youtube
-bindurl duckduckgo\.com           o composite getsearchparam q | fillcmdline open
+bindurl www\.google\.com/search   O composite getsearchparam q | fillcmdline open google
+bindurl www\.youtube\.com/results O composite getsearchparam search_query | fillcmdline open youtube
+bindurl duckduckgo\.com           O composite getsearchparam q | fillcmdline open
+bindurl www\.google\.com/search   T composite getsearchparam q | fillcmdline tabopen google
+bindurl www\.youtube\.com/results T composite getsearchparam search_query | fillcmdline tabopen youtube
+bindurl duckduckgo\.com           T composite getsearchparam q | fillcmdline tabopen
+
+" retry with google
+bindurl duckduckgo\.com           gG composite getsearchparam q | fillcmdline open google
 
 
 
