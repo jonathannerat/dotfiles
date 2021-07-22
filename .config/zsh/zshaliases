@@ -8,6 +8,8 @@ alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # overrides
+alias ffmpeg='ffmpeg -hide_banner'
+alias fzf='fzf --color=16'
 alias grep='grep --color=auto'
 alias info="info --vi-keys --init-file $XDG_CONFIG_HOME/info/infokey"
 alias ip='ip -color=auto'
@@ -15,7 +17,6 @@ alias less='less -FRi'
 alias ls='exa --group-directories-first'
 alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
-alias fzf='fzf --color=16'
 
 # convinient aliases
 alias V='SUDO_EDITOR="nvim" sudo -e'
