@@ -6,7 +6,7 @@ local M = {}
 --- opens the selected file on your system's default file opener
 local function action_open(prompt_bufnr)
 	local action_state = require'telescope.actions.state'
-	local path = require'telescope.path'
+	local Path = require'plenary.path'
 	local entry = action_state.get_selected_entry()
 
 	if not entry then
@@ -14,13 +14,13 @@ local function action_open(prompt_bufnr)
 		return
 	end
 
-	local filename = entry.path or entry.filename
+	local filename = Path.new(entry.path or entry.filename)
 
 	if not filename then
 		print('[telescope] No filename in selected entry')
 	end
 
-	filename = path.normalize(vim.fn.fnameescape(filename), vim.loop.cwd())
+	filename:normalize(vim.loop.cwd())
 
 	local opener = 'xdg-open'
 
