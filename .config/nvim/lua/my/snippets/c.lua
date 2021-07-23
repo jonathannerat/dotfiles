@@ -15,6 +15,15 @@ local function get_defguard()
 	return s(nil, { i(1), i(2, filename) })
 end
 
+local c_snippets = {
+	skel = [[#include <stdio.h>
+
+int main(int argc, char** arv) {
+	${1:printf("Hello world!\n")}
+	return 0;
+}]],
+}
+
 local snippets = {
 	S('pragma', {
 		t { '#ifndef ' },
@@ -28,5 +37,9 @@ local snippets = {
 		f (u.copy, 1),
 	})
 }
+
+for trigger, snippet_def in pairs(c_snippets) do
+	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
+end
 
 return snippets

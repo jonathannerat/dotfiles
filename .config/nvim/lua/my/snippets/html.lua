@@ -8,7 +8,7 @@ local i = ls.insert_node
 local s = ls.snippet_node
 local t = ls.text_node
 
-local parseable_snippets = {
+local html_snippets = {
 	skel = [[<!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +51,7 @@ local snippets = {
 	})
 }
 
-for trigger, snippet_def in ipairs(parseable_snippets) do
+for trigger, snippet_def in ipairs(html_snippets) do
 	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
 end
 

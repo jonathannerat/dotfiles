@@ -13,9 +13,8 @@ local function get_repo_from_clipboard()
 	return s(nil, { i(1, content or 'username/repository') })
 end
 
-local parseable_snippets = {
-	mod =
-[[local ${1:M} = {}
+local lua_snippets = {
+	mod = [[local ${1:M} = {}
 
 $1.${2:key} = ${3:value}
 
@@ -46,7 +45,7 @@ local snippets = {
 	})
 }
 
-for trigger, snippet_def in pairs(parseable_snippets) do
+for trigger, snippet_def in pairs(lua_snippets) do
 	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
 end
 

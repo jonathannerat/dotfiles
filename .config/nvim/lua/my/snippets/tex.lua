@@ -5,7 +5,7 @@ local f = ls.function_node
 local t = ls.text_node
 local i = ls.insert_node
 
-local parseable_snippets = {
+local tex_snippets = {
 	skel = [[\documentclass[a4paper,10pt]{article}
 
 \usepackage[utf8]{inputenc}
@@ -19,8 +19,7 @@ local parseable_snippets = {
 
 \begin{document}
 $0
-\end{document}
-]]
+\end{document}]]
 }
 
 local snippets = {
@@ -35,7 +34,7 @@ local snippets = {
 	})
 }
 
-for trigger, snippet_def in pairs(parseable_snippets) do
+for trigger, snippet_def in pairs(tex_snippets) do
 	snippets[#snippets+1] = ls.parser.parse_snippet(trigger, snippet_def)
 end
 
