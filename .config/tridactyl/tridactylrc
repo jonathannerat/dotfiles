@@ -3,7 +3,7 @@
 
 set smoothscroll true
 
-colorscheme base16-chalk
+colorscheme base16-gruvbox-dark-hard
 
 
 
@@ -14,7 +14,7 @@ set searchurls.1337x https://1337x.to/search/%s/1/
 set searchurls.aur https://aur.archlinux.org/packages/?K=%s
 set searchurls.nyaa https://nyaa.si/?q=%s
 set searchurls.man https://man.archlinux.org/search?q=%s&go=Go
-
+set searchurls.img https://www.google.com/search?tbm=isch&q=%s
 
 
 
@@ -30,11 +30,13 @@ command getsearchparam js -d| (function(param) {let u=document.location.href,i=u
 " BINDS
 " =====
 
+bind e bmarks
 bind j scrollline 5
 bind k scrollline -5
 bind / fillcmdline find
 bind n findnext
 bind N findnext -1
+bind <space>h nohlsearch
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
@@ -60,19 +62,21 @@ bind ZZ composite sanitise tridactyllocal; qall
 bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
 "
 " Only hint search results on Google and DDG
-bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
-bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+bindurl www.google.com f hint -Jc div:not(.action-menu) > a
+bindurl www.google.com F hint -Jbc div:not(.action-menu) > a
 
 " pull up a new searchbox with the current search autocompleted
 bindurl www\.google\.com/search   O composite getsearchparam q | fillcmdline open google
 bindurl www\.youtube\.com/results O composite getsearchparam search_query | fillcmdline open youtube
 bindurl duckduckgo\.com           O composite getsearchparam q | fillcmdline open
+bindurl github\.com/search        O composite getsearchparam q | fillcmdline open github
 bindurl www\.google\.com/search   T composite getsearchparam q | fillcmdline tabopen google
 bindurl www\.youtube\.com/results T composite getsearchparam search_query | fillcmdline tabopen youtube
 bindurl duckduckgo\.com           T composite getsearchparam q | fillcmdline tabopen
+bindurl github\.com/search        T composite getsearchparam q | fillcmdline tabopen github
 
 " retry with google
-bindurl duckduckgo\.com           gG composite getsearchparam q | fillcmdline open google
+bindurl duckduckgo\.com           gG composite getsearchparam q | open google
 
 
 
@@ -89,14 +93,17 @@ autocontain trading\.portfoliopersonal\.com personal
 
 
 
-" URL REDIRECTS
-" =============
+" AUTOCMDS
+" ========
 
 " New reddit is bad
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-" Use mobile version of wikipedia
-autocmd DocStart ^http(s?)://en.wikipedia.org js tri.excmds.urlmodify("-t", "en.wikipedia.org", "www.wikiwand.com"),tri.excmds.urlmodify('-t', '/wiki/', '/en/')
+" Redirect to wikiwand instead
+autocmd DocStart ^http(s?)://[^.]*\.(m\.)?wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https?:\/\/([^.]*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
+" send all keys here, since we're probably using firenvim
+autocmd DocStart ^http(s?)://www\.overleaf\.com/project/ mode ignore
 
 
 
+""
 source ~/.config/tridactyl/hiddenrc
