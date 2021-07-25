@@ -15,9 +15,9 @@ cleanup() {
 	[ -f "$tmp" ] && rm "$tmp"
 }
 
-# usage: viewurl URL
+# usage: viewimage URL
 # fetches the url into a temp file and opens it with sxiv
-viewurl() {
+viewimage() {
 	local url="$1"
 	curl -sLo "$tmp" "$url"
 
@@ -39,19 +39,27 @@ viewtext() {
 }
 
 url="$1"
-mimetype=$(getheader "$url" "content-type")
 tmpfolder="$HOME/.cache/url-opener"
 tmp=$(mktemp --dry-run -p "$tmpfolder")
 
+case "$url" in
+	*https://libera.ems.host/_matrix/media/*/image.png)
+		viewimage "$url" ;;
+	*)
+		mimetype=$(getheader "$url" "content-type") ;;
+esac
+
 trap cleanup EXIT
 [ -d "$tmpfolder" ] || mkdir "$tmpfolder"
+
+[ -n "$mimetype" ] || exit 0
 
 # guess opener by mimetype
 case "$mimetype" in
 	text/plain)
 		viewtext "$url" ;;
 	image/*)
-		viewurl "$url" ;;
+		viewimage "$url" ;;
 	video/*)
 		viewvideo "$url" ;;
 	*)
@@ -68,7 +76,7 @@ case "$mimetype" in
 				url="https://i.imgur.com/${url##*/}"
 				case "$(getheader "$url" "content-type")" in
 					image/*)
-						viewurl "$url" ;;
+						viewimage "$url" ;;
 					*)
 						xdg-open "$@" ;;
 				esac ;;
