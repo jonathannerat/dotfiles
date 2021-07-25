@@ -3,7 +3,7 @@
 " └───────────┘
 set background=dark
 set completeopt+=menuone,noinsert,noselect
-set conceallevel=1
+set conceallevel=2
 set cursorline
 set fillchars=eob:~
 set lazyredraw

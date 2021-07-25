@@ -1,7 +1,3 @@
-packadd packer.nvim
-
-lua require'my.plugins'.setup()
-
 " ╭───────────┐
 " │ UltiSnips │
 " └───────────┘
@@ -84,19 +80,30 @@ let fc['.*'] = { 'cmdline': 'neovim', 'takeover': 'never' }
 " └───────────┘
 let g:neon_style = 'dark'
 
-" ╭──────────┐
-" │  Vimtex  │
-" └──────────┘
+" ╭──────────────────┐
+" │   Gruvbox-flat   │
+" └──────────────────┘
+let g:gruvbox_flat_style = 'hard'
+
+
+" ╭────────────┐
+" │   Vimtex   │
+" └────────────┘
+let g:tex_flavor='latex'
+let g:tex_conceal='abdmg'
 let g:vimtex_compiler_latexmk = {
-	\ 'build_dir' : './build',
-	\ 'callback' : 1,
-	\ 'continuous' : 1,
-	\ 'executable' : 'latexmk',
-	\ 'hooks' : [],
-	\ 'options' : [
-		\ '-verbose',
-		\ '-file-line-error',
-		\ '-synctex=1',
-		\ '-interaction=nonstopmode',
-	\ ],
+\ 'build_dir' : 'build',
+\ 'callback' : 1,
+\ 'continuous' : 1,
+\ 'executable' : 'latexmk',
+\ 'hooks' : [],
+\ 'options' : [
+\   '-verbose',
+\   '-file-line-error',
+\   '-synctex=1',
+\   '-interaction=nonstopmode',
+\ ],
 \}
+
+packadd packer.nvim
+lua require'my.plugins'.setup()
