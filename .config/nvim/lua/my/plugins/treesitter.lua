@@ -12,13 +12,17 @@ M.parsers = {
 
 M.setup_config = {
 	ensure_installed = "maintained",
-	highlight = { enable = true, },
+	highlight = {
+		enable = true,
+		disable = { 'tex', 'latex' } -- conflicts with vimtex's concela
+	},
 	incremental_selection = { enable = true, },
 	indent = { enable = true, },
 	playground = { enable = true },
 	textobjects = {
 		select = {
 			enable = true,
+			disable = { 'tex', 'latex' },
 			lookahead = true,
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm

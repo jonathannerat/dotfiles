@@ -39,16 +39,6 @@ local snippets = {
 		i(0),
 		t '</script>',
 	}),
-	S({ trig='<([%w-_:%.]*)', regTrig=true, wordTrig=true }, {
-		d(1, function(args, _, last)
-			local tag = args[1].captures[1]
-			return s(1, {
-				t '<', i(1, tag), t { '>', '\t' },
-				last,
-				t { '', '</' }, f(u.copy, 1), t '>'
-			})
-		end, {}, i(0))
-	})
 }
 
 for trigger, snippet_def in ipairs(html_snippets) do

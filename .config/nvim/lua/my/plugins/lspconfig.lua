@@ -41,13 +41,8 @@ M.lsp_signature_config = {
 
 M.default_mappings = {
 	['n|ns|<C-k>']      = m.cmd('lua vim.lsp.buf.signature_help()'),
-	['n|ns|<leader>ca'] = m.cmd('lua vim.lsp.buf.code_action()'),
-	['n|ns|<leader>dd'] = m.cmd('lua vim.lsp.diagnostic.set_loclist()'),
-	['n|ns|<leader>e']  = m.cmd('lua vim.lsp.diagnostic.show_line_diagnostics()'),
-	['n|ns|<leader>rn'] = m.cmd('lua vim.lsp.buf.rename()'),
-	['n|ns|<leader>wa'] = m.cmd('lua vim.lsp.buf.add_workspace_folder()'),
-	['n|ns|<leader>wl'] = m.cmd('lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'),
-	['n|ns|<leader>wr'] = m.cmd('lua vim.lsp.buf.remove_workspace_folder()'),
+	['n|ns|<leader>A']  = m.cmd('lua vim.lsp.buf.code_action()'),
+	['n|ns|<leader>R']  = m.cmd('lua vim.lsp.buf.rename()'),
 	['n|ns|K']          = m.cmd('lua vim.lsp.buf.hover()'),
 	['n|ns|[d']         = m.cmd('lua vim.lsp.diagnostic.goto_prev()'),
 	['n|ns|]d' ]        = m.cmd('lua vim.lsp.diagnostic.goto_next()'),
