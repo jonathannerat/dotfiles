@@ -21,7 +21,7 @@ M.lsp_servers = {
 	jsonls = {
 		cmd = { 'json-languageserver', '--stdio' }
 	},
-	pylsp = {},
+	pyright = {},
 	rust_analyzer = {},
 	solargraph = {},
 	sumneko_lua = luadev,
