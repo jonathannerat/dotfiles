@@ -1,7 +1,10 @@
 local ls = require'luasnip'
 local u = require 'my.util.snippets'
 local S = ls.snippet
+local c = ls.choice_node
+local d = ls.dynamic_node
 local f = ls.function_node
+local s = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 
@@ -22,6 +25,15 @@ $0
 \end{document}]]
 }
 
+local rec_list
+rec_list = function()
+	return s(nil, {
+		c(1, {
+			t '',
+			s(nil, { t {'', '\t\\item '}, i(1), d(2, rec_list, {}) })
+		})
+	})
+end
 local snippets = {
 	S('begin', {
 		t '\\begin{',
@@ -31,6 +43,22 @@ local snippets = {
 		t { '', '\\end{' },
 		f(u.copy, 1),
 		t '}'
+	}),
+	S('list', {
+		c(1, {
+			s(nil, {
+				t { '\\begin{itemize}', '\t\\item ' },
+				i(1),
+				d(2, rec_list, {}),
+				t { '', '\\end{itemize}' }
+			}),
+			s(nil, {
+				t { '\\begin{enumerate}', '\t\\item ' },
+				i(1),
+				d(2, rec_list, {}),
+				t { '', '\\end{enumerate}' }
+			})
+		})
 	})
 }
 
