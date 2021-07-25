@@ -32,7 +32,8 @@
 	### Icons ###
 	icon_position = left
 	max_icon_size = 80
-	icon_path = /usr/share/icons/Papirus-Dark/22x22/status/:/usr/share/icons/Papirus-Dark/22x22/devices/:/usr/share/icons/Papirus-Dark/22x22/categories/:/usr/share/icons/Papirus-Dark/22x22/apps/:/usr/share/icons/Papirus-Dark/22x22/actions/
+	icon_path = /usr/share/icons/Papirus-Dark/symbolic/status:/usr/share/icons/Papirus-Dark/symbolic/apps:/usr/share/icons/Papirus-Dark/symbolic/devices:/usr/share/icons/Papirus-Dark/symbolic/categories:/usr/share/icons/Papirus-Dark/symbolic/actions:/usr/share/icons/Papirus-Dark/symbolic/emblems:/usr/share/icons/Papirus-Dark/symbolic/emotes:/usr/share/icons/Papirus-Dark/symbolic/mimetypes:/usr/share/icons/Papirus-Dark/symbolic/places:/usr/share/icons/Papirus-Dark/22x22/status:/usr/share/icons/Papirus-Dark/22x22/apps:/usr/share/icons/Papirus-Dark/22x22/devices:/usr/share/icons/Papirus-Dark/22x22/categories:/usr/share/icons/Papirus-Dark/22x22/actions:/usr/share/icons/Papirus-Dark/22x22/emblems:/usr/share/icons/Papirus-Dark/22x22/emotes:/usr/share/icons/Papirus-Dark/22x22/mimetypes:/usr/share/icons/Papirus-Dark/22x22/places
+
 
 	### History ###
 	sticky_history = yes
