@@ -6,10 +6,10 @@ augroup END
 
 augroup firevim_rules
 	au!
-	au BufEnter www.overleaf.com_project-* set textwidth=100 spell
+	au BufEnter www.overleaf.com_project-* setlocal textwidth=100 spell
 augroup END
 
 augroup writing_rules
 	au!
-	au FileType mail,tex,pandoc set textwidth=100 spell
+	au FileType mail,tex,pandoc setlocal textwidth=100 spell
 augroup END
