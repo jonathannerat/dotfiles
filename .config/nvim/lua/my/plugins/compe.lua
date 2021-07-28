@@ -13,16 +13,23 @@ M.setup_config = {
 	max_kind_width   = 100,
 	max_menu_width   = 100,
 	source = {
-		path = true,
+		luasnip = {
+			enable = true,
+			priority = 20,
+		},
+		nvim_lsp = {
+			enable = true,
+			priority = 10,
+		},
 		buffer = {
 			enable = true,
 			priority = 1,
 		},
-		nvim_lsp = {
+		spell = {
 			enable = true,
-			priority = 999,
+			filetypes = { 'text', 'tex', 'mail', 'gitcommit' },
 		},
-		luasnip = true,
+		path = true,
 		neorg = true,
 	}
 }

@@ -12,6 +12,7 @@ colorscheme base16-gruvbox-dark-hard
 
 set searchurls.1337x https://1337x.to/search/%s/1/
 set searchurls.aur https://aur.archlinux.org/packages/?K=%s
+set searchurls.arch https://wiki.archlinux.org/index.php?search=%s&go=Go
 set searchurls.nyaa https://nyaa.si/?q=%s
 set searchurls.man https://man.archlinux.org/search?q=%s&go=Go
 set searchurls.img https://www.google.com/search?tbm=isch&q=%s
@@ -25,12 +26,14 @@ set searchurls.img https://www.google.com/search?tbm=isch&q=%s
 " JS_ARGS[0] is empty for some reason, so we use JS_ARGS[1]
 command getsearchparam js -d| (function(param) {let u=document.location.href,i=u.indexOf('?'),p; return i!=-1?(p=new URLSearchParams(u.substr(i+1)),p.has(param)?p.get(param):''):''})(JS_ARGS[1]) |
 
+command reopenincontainer js -d@ (function(url, container) { console.log(url);tri.webext.activeTab().then(tab => { tri.excmds.tabopen( "-w", "-c", container, url); tri.excmds.tabclose(( tab.index - 2 ).toString()); }) })(document.location.href, JS_ARGS[1]) @
+
 
 
 " BINDS
 " =====
 
-bind e bmarks
+bind e fillcmdline bmarks
 bind j scrollline 5
 bind k scrollline -5
 bind / fillcmdline find
@@ -52,6 +55,8 @@ bind gr composite hint -pipe a href | jsb -p tri.excmds.tabopen("about:reader?ur
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD composite tabduplicate; tabdetach
+
+bind \w composite tabopen https://web.whatsapp.com; pin
 "
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
@@ -89,15 +94,17 @@ bindurl duckduckgo\.com           gG composite getsearchparam q | open google
 " From https://github.com/jeremiahlee/page-translator
 command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
 
-autocontain trading\.portfoliopersonal\.com personal
-
 
 
 " AUTOCMDS
 " ========
 
+autocontain -s reddit\.com weeb
+autocontain trading\.portfoliopersonal\.com personal
 " New reddit is bad
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" Use RES bindings
+autocmd DocStart ^http(s?)://old.reddit.com mode ignore
 " Redirect to wikiwand instead
 autocmd DocStart ^http(s?)://[^.]*\.(m\.)?wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https?:\/\/([^.]*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
 " send all keys here, since we're probably using firenvim
