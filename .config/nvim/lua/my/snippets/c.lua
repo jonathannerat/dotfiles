@@ -4,8 +4,7 @@ local S, c, d, f, i, s, t = ls.s, ls.c, ls.d, ls.f, ls.i, ls.sn, ls.t
 
 local function get_defguard()
 	local filename = vim.fn.expand('%:t')
-	filename = filename:gsub('%.(%w+)$', '_%1')
-	filename = filename:upper()
+	filename = filename:gsub('-', '_'):gsub('%.(%w+)$', '_%1'):upper()
 
 	return s(nil, { i(1), i(2, filename) })
 end
@@ -25,7 +24,7 @@ local c_snippets = {
 	skel = [[#include <stdio.h>
 
 int main(int argc, char** arv) {
-	${1:printf("Hello world!\n")}
+	${1:printf("Hello world!\n");}
 	return 0;
 }]],
 }
