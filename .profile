@@ -81,6 +81,9 @@ export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 
+export C_INCLUDE_PATH="$HOME/.local/include:$C_INCLUDE_PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+
 add_to_path() {
 	local dir="$1"
 
