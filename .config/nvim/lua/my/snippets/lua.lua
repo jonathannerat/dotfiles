@@ -42,7 +42,14 @@ local snippets = {
 				t { '', "}," },
 			})
 		}),
-	})
+	}),
+	S('snip', {
+		t 'S(', c(1, {
+			s(nil, { t "'", i(1, "trigger"), t { "', {", '\t' }, i(2), t { '', '}'} }),
+			s(nil, { t "{ trig='", i(1, 'trigger'), t"', ", t { 'wordTrig=true }, {', '\t' }, i(2), t '}' }),
+			s(nil, { t "{ trig='", i(1, 'trigger'), t"', ", t { 'regTrig=true }, {', '\t' }, i(2), t { '', '}' } }),
+		}), t ')'
+	}),
 }
 
 for trigger, snippet_def in pairs(lua_snippets) do

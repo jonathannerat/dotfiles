@@ -27,6 +27,9 @@ int main(int argc, char** arv) {
 	${1:printf("Hello world!\n");}
 	return 0;
 }]],
+	["while"] = [[while (${1:condition}) {
+	${2:// code}
+}]],
 }
 
 local snippets = {
@@ -50,6 +53,13 @@ local snippets = {
 	S('case', {
 			t { 'case ' }, i(2, 'value'), t { ':',
 			'\t\t' }, i(3, '// code'), d(4, rec_case, {}),
+	}),
+	S('printf', {
+		t 'printf(', c(1, {
+			s(nil, { t '"', i(1), t '\\n", ', i(2) }),
+			s(nil, { t '"', i(1), t '\\n"' }),
+			s(nil, { t '"', i(1), t '"' }),
+		}), t ');'
 	})
 }
 

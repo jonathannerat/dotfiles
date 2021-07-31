@@ -87,20 +87,9 @@ local snippets = {
 		t '}'
 	}),
 	S('list', {
-		c(1, {
-			s(nil, {
-				t { '\\begin{itemize}', '\t\\item ' },
-				i(1),
-				d(2, rec_list, {}),
-				t { '', '\\end{itemize}' }
-			}),
-			s(nil, {
-				t { '\\begin{enumerate}', '\t\\item ' },
-				i(1),
-				d(2, rec_list, {}),
-				t { '', '\\end{enumerate}' }
-			})
-		})
+		t '\\begin{', c(1, { t 'enumerate', t 'itemize' }), t { '}',
+			'\t\\item ' }, i(2), d(3, rec_list, {}), t { '',
+			'\\end{' }, f(u.copy, 1), t '}'
 	}),
 	S('-', {
 		t '\\item ', i(1), d(2, rec_list, {}, false)
@@ -111,14 +100,14 @@ local snippets = {
 	S({ trig='ssec', wordTrig=true }, {
 		t {'\\subsection{' }, i(1, 'Subsection'), t '}'
 	}),
-	S({ trig='bf', wordTrig=true }, {
-		d(1, text_faces, {}, "b")
+	S({ trig='b', wordTrig=true }, {
+		t('\\textbf{'), i(1), t('}')
 	}),
-	S({ trig='if', wordTrig=true }, {
-		d(1, text_faces, {}, "i")
+	S({ trig='i', wordTrig=true }, {
+		t('\\textit{'), i(1), t('}')
 	}),
-	S({ trig='tf', wordTrig=true }, {
-		d(1, text_faces, {}, "t")
+	S({ trig='tt', wordTrig=true }, {
+		t('\\texttt{'), i(1), t('}')
 	}),
 	S({ trig='mi', wordTrig=true, description='Inline math' }, {
 		t '$', i(1), t'$'
