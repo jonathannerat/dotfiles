@@ -2,7 +2,6 @@ local M = {}
 
 local packages = {
 	'asciidoc/vim-asciidoc',
-	'cohama/lexima.vim',
 	'eddyekofo94/gruvbox-flat.nvim',
 	'editorconfig/editorconfig-vim',
 	'folke/lua-dev.nvim',
@@ -17,7 +16,6 @@ local packages = {
 	'tpope/vim-fugitive',
 	'tpope/vim-surround',
 	'tridactyl/vim-tridactyl',
-	'tversteeg/registers.nvim',
 	'vhyrro/tree-sitter-norg',
 	'vim-pandoc/vim-pandoc',
 
