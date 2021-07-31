@@ -2,7 +2,7 @@
 " =======
 
 set smoothscroll true
-
+set newtab http://hp14.home/newtab
 colorscheme base16-gruvbox-dark-hard
 
 
