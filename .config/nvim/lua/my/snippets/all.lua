@@ -3,7 +3,7 @@ local u = require 'my.util.snippets'
 local S, c, d, f, w, s, t, i = ls.s, ls.c, ls.d, ls.f, ls.w, ls.sn, ls.t, ls.i
 
 local function pairs(l, r)
-	return S(l, {
+	return S({ trig=l, wordTrig=false }, {
 		c(1, {
 			s(nil, { t(l), i(1), t(r) }),
 			s(nil, { t(l..' '), i(1), t(' '..r)}),
