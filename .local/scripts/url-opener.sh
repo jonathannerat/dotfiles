@@ -38,6 +38,10 @@ viewtext() {
 	"${TERMINAL:-st}" -e /bin/sh -c "curl -sL \"$1\" | less"
 }
 
+viewmd() {
+	"${TERMINAL:-st}" -n floating-st -e /bin/sh -c "curl -sL \"$1\" | bat -l markdown --paging=always"
+}
+
 url="$1"
 tmpfolder="$HOME/.cache/url-opener"
 tmp=$(mktemp --dry-run -p "$tmpfolder")
@@ -45,6 +49,8 @@ tmp=$(mktemp --dry-run -p "$tmpfolder")
 case "$url" in
 	*https://libera.ems.host/_matrix/media/*/image.png)
 		viewimage "$url" ;;
+	*https://libera.ems.host/_matrix/media/*/message.txt)
+		viewmd "$url" ;;
 	*)
 		mimetype=$(getheader "$url" "content-type") ;;
 esac
