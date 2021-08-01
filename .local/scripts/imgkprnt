@@ -79,12 +79,13 @@ esac
 if [ -n "$file" ]; then
 	mv "$tmpfile" "$file"
 else
-	size="$(identify -format "%wx%h" "$file")"
+	size="$(identify -format "%wx%h" "$tmpfile")"
 	file="$ssdir/${timestamp}_${size}.png"
 	[ -d "$ssdir" ] || mkdir -p "$ssdir"
 	mv "$tmpfile" "$file"
 fi
 
 if [ "$copy" = 1 ]; then 
+	[ "$dontsave" = 1 ] && file="$tmpfile"
 	xclip -selection clipboard -target "$(file -b --mime-type "$file")" "$file"
 fi
