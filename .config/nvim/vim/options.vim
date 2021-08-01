@@ -12,7 +12,7 @@ set listchars=eol:↵,tab:│\ ,trail:·,extends:…,precedes:…,nbsp:☠
 set noshowmode
 set number relativenumber
 set scrolloff=5
-set shortmess+=c
+set shortmess+=ac
 set showmatch
 set splitbelow splitright
 set termguicolors
