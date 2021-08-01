@@ -6,7 +6,7 @@ local mappings = {
 	['c|n|<c-j>']       = m.raw('<down>'),
 	['c|n|<c-k>']       = m.raw('<up>'),
 
-	["i|ens|<cr>"]      = m.raw("compe#confirm( lexima#expand('<lt>cr>', 'i') )"),
+	["i|ens|<cr>"]      = m.raw("compe#confirm('<cr>')"),
 	["i|es|<c-e>"]      = m.raw("luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<c-e>'"),
 	["i|es|<c-space>"]  = m.raw("luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-space>'"),
 	["i|es|<s-tab>"]    = m.raw("v:lua.require'my.functions'.s_tab_complete()"),

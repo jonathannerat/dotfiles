@@ -8,6 +8,7 @@ function M.setup()
 	})
 
 	ls.snippets = {
+		all = require'my.snippets.all',
 		html = require'my.snippets.html',
 		tex  = require'my.snippets.tex',
 		lua  = require'my.snippets.lua',

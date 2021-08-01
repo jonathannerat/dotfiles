@@ -16,6 +16,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export TERMINAL=st
 export EDITOR=nvim
 
+export TERMCAP="$XDG_CONFIG_HOME/termcap"
+
 # nnn config
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
 export NNN_TRASH=1

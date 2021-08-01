@@ -13,7 +13,6 @@ local packages = {
 	'tpope/vim-commentary',
 	'tpope/vim-fugitive',
 	'tpope/vim-surround',
-	'tversteeg/registers.nvim',
 	'vim-pandoc/vim-pandoc',
 
 	['arrufat/vala.vim']           = { ft = 'vala' },
