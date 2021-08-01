@@ -44,8 +44,8 @@ bind <space>h nohlsearch
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
 
-" Git{Hub,Lab} git clone via SSH yank
-bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" GitHub yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\/github.com\/(.*)\/(.*)/, (url, user, repo)=>user==='jonathannerat'?'github:'+user+'/'+repo:url) | clipboard yank
 
 " make t open the selection with tabopen
 bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
@@ -100,7 +100,7 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 " ========
 
 autocontain -s reddit\.com weeb
-autocontain trading\.portfoliopersonal\.com personal
+autocontain -s trading\.portfoliopersonal\.com personal
 " New reddit is bad
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " Use RES bindings
