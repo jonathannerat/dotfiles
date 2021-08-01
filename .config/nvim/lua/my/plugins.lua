@@ -1,8 +1,6 @@
 local M = {}
 
 local packages = {
-	'asciidoc/vim-asciidoc',
-	'cohama/lexima.vim',
 	'eddyekofo94/gruvbox-flat.nvim',
 	'editorconfig/editorconfig-vim',
 	'folke/lua-dev.nvim',
@@ -11,18 +9,15 @@ local packages = {
 	'lervag/vimtex',
 	'mcchrish/nnn.vim',
 	'nvim-treesitter/nvim-treesitter-textobjects',
-	'rafamadriz/neon',
 	'ray-x/lsp_signature.nvim',
 	'tpope/vim-commentary',
 	'tpope/vim-fugitive',
 	'tpope/vim-surround',
-	'tridactyl/vim-tridactyl',
 	'tversteeg/registers.nvim',
-	'vhyrro/tree-sitter-norg',
 	'vim-pandoc/vim-pandoc',
 
-	[ 'wbthomason/packer.nvim' ]   = { opt = true },
 	['arrufat/vala.vim']           = { ft = 'vala' },
+	['asciidoc/vim-asciidoc']      = { ft = { 'adoc', 'asciidoc' } },
 	['cakebaker/scss-syntax.vim']  = { ft = 'scss' },
 	['cespare/vim-toml']           = { ft = 'toml' },
 	['embark-theme/vim']           = { as = 'embark-theme' },
@@ -33,7 +28,10 @@ local packages = {
 	['nvim-telescope/telescope-fzf-native.nvim'] = { run = 'make' },
 	['nvim-treesitter/playground'] = { run = ':TSUpdate query' },
 	['tbastos/vim-lua']            = { ft = 'lua' },
+	['tridactyl/vim-tridactyl']    = { ft = 'tridactyl' },
+	['vhyrro/tree-sitter-norg']    = { ft = 'norg' },
 	['vim-pandoc/vim-pandoc-syntax'] = { ft = 'pandoc' },
+	['wbthomason/packer.nvim']     = { opt = true },
 
 	['neovim/nvim-lspconfig'] = {
 		config = function() require'my.plugins.lspconfig'.config() end
@@ -90,13 +88,8 @@ local packages = {
 	},
 
 	['vhyrro/neorg'] = {
-		config = function() require'my.plugins.neorg'.config() end
-	},
-
-	['folke/persistence.nvim'] = {
-		config = function()
-			require'my.plugins.persistence'.config()
-		end
+		config = function() require'my.plugins.neorg'.config() end,
+		ft = 'norg'
 	},
 }
 
