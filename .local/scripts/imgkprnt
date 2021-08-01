@@ -82,10 +82,13 @@ else
 	size="$(identify -format "%wx%h" "$tmpfile")"
 	file="$ssdir/${timestamp}_${size}.png"
 	[ -d "$ssdir" ] || mkdir -p "$ssdir"
-	mv "$tmpfile" "$file"
+
+	if [ "$dontsave" = 1 ]; then
+		file="$tmpfile"
+	else
+		mv "$tmpfile" "$file"
+	fi
+
 fi
 
-if [ "$copy" = 1 ]; then 
-	[ "$dontsave" = 1 ] && file="$tmpfile"
-	xclip -selection clipboard -target "$(file -b --mime-type "$file")" "$file"
-fi
+[ "$copy" = 1 ] && xclip -selection clipboard -target "$(file -b --mime-type "$file")" "$file"
