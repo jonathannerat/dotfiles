@@ -12,6 +12,23 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# XDG directories (for scripts and stuff)
+if ! command -v xdg-user-dir >/dev/null; then
+	export XDG_DESKTOP_DIR="$HOME/Desktop"
+	export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+	export XDG_DOCUMENTS_DIR="$HOME/Documents"
+	export XDG_MUSIC_DIR="$HOME/Music"
+	export XDG_PICTURES_DIR="$HOME/Pictures"
+	export XDG_VIDEOS_DIR="$HOME/Videos"
+else
+	export XDG_DESKTOP_DIR="$(xdg-user-dir DESKTOP)"
+	export XDG_DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD)"
+	export XDG_DOCUMENTS_DIR="$(xdg-user-dir DOCUMENTS)"
+	export XDG_MUSIC_DIR="$(xdg-user-dir MUSIC)"
+	export XDG_PICTURES_DIR="$(xdg-user-dir PICTURES)"
+	export XDG_VIDEOS_DIR="$(xdg-user-dir VIDEOS)"
+fi
+
 # default apps
 export TERMINAL=st
 export EDITOR=nvim
