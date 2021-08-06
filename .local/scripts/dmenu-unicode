@@ -9,8 +9,6 @@
 # [*] Only caveat is that some characters can't be displayed because of GNU's
 # printf. See comments below
 
-# Optional parameter, an X window id which will contain dmenu's instance
-_wid=$1
 # File containing unicode data
 _data_file="${XDG_DATA_HOME:-$HOME/.local/share}/UnicodeData.txt"
 # Cache with preprocessed data
@@ -34,7 +32,7 @@ input() {
 		echo -n "$_prompt"
 		read -r _input
 	else
-		_input=$(dmenu -vp 0 -hp 0 ${_wid:+-W $_wid} -p "$_prompt")
+		_input=$(dmenu -p "$_prompt")
 	fi
 
 	echo "$_input"
@@ -82,7 +80,7 @@ if ! [ -f "$_cache_data" ]; then
 	exit 0
 fi
 
-_selected=$(dmenu -vp 0 -hp 0 -i -l 5 ${_wid:+-W $_wid} < "$_cache_data")
+_selected=$(dmenu -i "$@" < "$_cache_data")
 
 if [ "$_selected" ]; then
 	# delete everything after the character

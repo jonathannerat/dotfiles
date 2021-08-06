@@ -2,7 +2,7 @@
 
 # imgkprnt: ImageMagick based screenshot script
 
-ssdir="$HOME/pics/screenshots"
+ssdir="$XDG_PICTURES_DIR"
 tmpfile=$(mktemp /tmp/imkgprnt.XXXXXX.png)
 type=root
 timestamp="$(date "+%Y-%m-%d_%H:%M:%S")"
