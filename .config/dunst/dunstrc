@@ -32,7 +32,7 @@
 	### Icons ###
 	icon_position = left
 	max_icon_size = 80
-	icon_path = /usr/share/icons/la-capitaine-icon-theme/actions/22x22-dark:/usr/share/icons/la-capitaine-icon-theme/animations/22x22:/usr/share/icons/la-capitaine-icon-theme/apps/scalable:/usr/share/icons/la-capitaine-icon-theme/devices/scalable-dark:/usr/share/icons/la-capitaine-icon-theme/emblems/scalable:/usr/share/icons/la-capitaine-icon-theme/emotes/scalable:/usr/share/icons/la-capitaine-icon-theme/mimetypes/scalable:/usr/share/icons/la-capitaine-icon-theme/panel/24-dark:/usr/share/icons/la-capitaine-icon-theme/places/16x16-dark:/usr/share/icons/la-capitaine-icon-theme/status/scalable-dark
+	icon_path = /usr/share/icons/Tela-manjaro-dark/22/actions:/usr/share/icons/Tela-manjaro-dark/22/devices:/usr/share/icons/Tela-manjaro-dark/22/emblems:/usr/share/icons/Tela-manjaro-dark/22/mimetypes:/usr/share/icons/Tela-manjaro-dark/22/panel:/usr/share/icons/Tela-manjaro-dark/22/places:/usr/share/icons/Tela-manjaro-dark/symbolic/apps:/usr/share/icons/Tela-manjaro-dark/symbolic/categories:/usr/share/icons/Tela-manjaro-dark/symbolic/emotes:/usr/share/icons/Tela-manjaro-dark/symbolic/status
 
 	### History ###
 	sticky_history = yes
@@ -64,12 +64,12 @@
 
 [urgency_normal]
 	timeout = 10
-	background = "#89b482"
+	background = "#7daea3"
 	foreground = "#1d2021"
-	frame_color = "#1d2021"
+	frame_color = "#20433b"
 
 [urgency_critical]
 	timeout = 0
 	background = "#ea6962"
 	foreground = "#1d2021"
-	frame_color = "#1d2021"
+	frame_color = "#7e241f"
