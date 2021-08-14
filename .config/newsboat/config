@@ -61,5 +61,5 @@ itemview-title-format       "%T [%F]"
 
 podlist-format "%3i [%4dM/%4tM] (%4k) | %-11S (%4p) | %b"
 download-path ~/files/audio/podcasts/%n/
-download-filename-format "%N - %t.%e"
+download-filename-format "%Y%m%d - %N - %t.%e"
 player "mpv --no-video"
