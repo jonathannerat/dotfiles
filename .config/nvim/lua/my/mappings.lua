@@ -19,6 +19,7 @@ local mappings = {
 	["i|n|kk"]          = m.raw('<esc>'),
 
 	["n|ns|<c-t>"]      = m.cmd('tabnew'),
+	["n|ns|<c-n>"]      = m.cmd('NvimTreeToggle'),
 	["n|ns|<leader>N"]  = m.cmd([[call nnn#pick('',{'layout':{'window':{'width': 0.9, 'height': 0.6}}})]]),
 	["n|ns|<leader>Q"]  = m.cmd('q!'),
 	["n|ns|<leader>Qa"] = m.cmd('qa!'),
@@ -48,7 +49,8 @@ local mappings = {
 	["n|ns|<leader>ht"] = m.colon([[/\s\+$]]),
 	["n|ns|<leader>mP"] = m.cmd('MarkdownPreviewStop'),
 	["n|ns|<leader>mp"] = m.cmd('MarkdownPreview'),
-	["n|ns|<leader>n"]  = m.cmd('NnnPicker'),
+	["n|ns|<leader>n"]  = m.cmd('NvimTreeFindFile'),
+	["n|ns|<leader>nr"] = m.cmd('NvimTreeRefresh'),
 	["n|ns|<leader>pc"] = m.cmd('PackerClean'),
 	["n|ns|<leader>pi"] = m.cmd('PackerInstall'),
 	["n|ns|<leader>pp"] = m.cmd('PackerCompile profile=true'),
