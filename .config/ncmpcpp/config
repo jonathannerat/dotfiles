@@ -62,3 +62,4 @@ external_editor = nvim
 use_console_editor = yes
 
 execute_on_song_change = "pkill -RTMIN+1 dwmstatus"
+execute_on_player_state_change = "pkill -RTMIN+1 dwmstatus"
