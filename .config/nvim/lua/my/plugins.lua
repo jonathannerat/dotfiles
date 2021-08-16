@@ -5,6 +5,7 @@ local packages = {
 	'editorconfig/editorconfig-vim',
 	'folke/lua-dev.nvim',
 	'folke/tokyonight.nvim',
+	'kyazdani42/nvim-tree.lua',
 	'lambdalisue/suda.vim',
 	'lervag/vimtex',
 	'kyazdani42/nvim-tree.lua',

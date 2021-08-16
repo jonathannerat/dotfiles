@@ -58,4 +58,4 @@ rm $_fifo
 _channelname=$(echo $_channels | tr ";" "\n" | cut -d: -f1 | dmenu -i -p "Choose a channel:")
 _channel=$(echo $_channels | tr ";" "\n" | grep -F "$_channelname" | cut -d: -f2)
 
-exec mpv --no-terminal --title="Camera: $_channelname" "rtsp://${_user:-admin}:${_pass:-admin}@$_host:${_port:-554}/cam/realmonitor?channel=$_channel&subtype=0"
+exec mpv --cache-secs=120 --title="Camera: $_channelname" "rtsp://${_user:-admin}:${_pass:-admin}@$_host:${_port:-554}/cam/realmonitor?channel=$_channel&subtype=0"

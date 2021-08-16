@@ -50,6 +50,8 @@ local mappings = {
 	["n|ns|<leader>ht"] = m.colon([[/\s\+$]]),
 	["n|ns|<leader>mP"] = m.cmd('MarkdownPreviewStop'),
 	["n|ns|<leader>mp"] = m.cmd('MarkdownPreview'),
+	["n|ns|<leader>n"]  = m.cmd('NvimTreeFindFile'),
+	["n|ns|<leader>nr"] = m.cmd('NvimTreeRefresh'),
 	["n|ns|<leader>pc"] = m.cmd('PackerClean'),
 	["n|ns|<leader>pi"] = m.cmd('PackerInstall'),
 	["n|ns|<leader>pp"] = m.cmd('PackerCompile profile=true'),

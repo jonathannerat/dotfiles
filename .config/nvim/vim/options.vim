@@ -35,7 +35,7 @@ set undofile
 set noautoindent copyindent preserveindent
 set noexpandtab
 set shiftwidth=2 tabstop=2
-set spelllang=en,es
+set spelllang=es,en
 set linebreak
 
 
