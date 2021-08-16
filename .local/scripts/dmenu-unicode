@@ -16,6 +16,10 @@ _cache_data="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-unicode"
 # UnicodeData file url
 _url="http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt"
 
+while getopts "C" o; do case "$o" in
+	C) usecode=1 ; shift ;;
+esac; done
+
 dialog() {
 	if [ -t 0 ]; then
 		echo "$*"
@@ -70,9 +74,9 @@ if ! [ -f "$_cache_data" ]; then
 		# use original unicode 1.0 name for control characters that don't have a very
 		# descriptive name (not that we'll ever need to copy those)
 		elif [ "$name" = "<control>" ]; then
-			env printf "\u$code : $altname\n"
+			env printf "\u$code : $altname : $code\n"
 		else
-			env printf "\u$code : $name\n"
+			env printf "\u$code : $name : $code\n"
 		fi
 	done > "$_cache_data"
 
@@ -83,10 +87,11 @@ fi
 _selected=$(dmenu -i "$@" < "$_cache_data")
 
 if [ "$_selected" ]; then
-	# delete everything after the character
-	_code=${_selected% :*}
-	>&2 echo "debug: copying $_code to system clipboard"
-	echo -n "$_code" | xclip -selection clipboard
-	>&2 echo "debug: writing $_code to X"
-	xdotool type "$_code"
+	if [ "$usecode" = 1 ]; then
+		text=${_selected##*: }
+	else
+		text=${_selected%% :*}
+	fi
+	echo -n "$text" | xclip -selection clipboard
+	xdotool type "$text"
 fi
