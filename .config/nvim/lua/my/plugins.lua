@@ -7,7 +7,7 @@ local packages = {
 	'folke/tokyonight.nvim',
 	'lambdalisue/suda.vim',
 	'lervag/vimtex',
-	'mcchrish/nnn.vim',
+	'kyazdani42/nvim-tree.lua',
 	'nvim-treesitter/nvim-treesitter-textobjects',
 	'ray-x/lsp_signature.nvim',
 	'tpope/vim-commentary',
