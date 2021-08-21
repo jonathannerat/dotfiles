@@ -34,6 +34,7 @@ command reopenincontainer js -d@ (function(url, container) { tri.webext.activeTa
 " =====
 
 bind e fillcmdline bmarks
+bind E fillcmdline bmarks -t
 bind j scrollline 5
 bind k scrollline -5
 bind / fillcmdline find
