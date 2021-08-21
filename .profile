@@ -32,6 +32,7 @@ fi
 # default apps
 export TERMINAL=st
 export EDITOR=nvim
+export PAGER=less
 
 export TERMCAP="$XDG_CONFIG_HOME/termcap"
 
