@@ -8,6 +8,7 @@ local packages = {
 	'kyazdani42/nvim-tree.lua',
 	'lambdalisue/suda.vim',
 	'lervag/vimtex',
+	'kyazdani42/nvim-tree.lua',
 	'nvim-treesitter/nvim-treesitter-textobjects',
 	'ray-x/lsp_signature.nvim',
 	'tpope/vim-commentary',

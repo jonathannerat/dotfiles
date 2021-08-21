@@ -32,8 +32,7 @@
 	### Icons ###
 	icon_position = left
 	max_icon_size = 80
-	icon_path = /usr/share/icons/Papirus-Dark/symbolic/status:/usr/share/icons/Papirus-Dark/symbolic/apps:/usr/share/icons/Papirus-Dark/symbolic/devices:/usr/share/icons/Papirus-Dark/symbolic/categories:/usr/share/icons/Papirus-Dark/symbolic/actions:/usr/share/icons/Papirus-Dark/symbolic/emblems:/usr/share/icons/Papirus-Dark/symbolic/emotes:/usr/share/icons/Papirus-Dark/symbolic/mimetypes:/usr/share/icons/Papirus-Dark/symbolic/places:/usr/share/icons/Papirus-Dark/22x22/status:/usr/share/icons/Papirus-Dark/22x22/apps:/usr/share/icons/Papirus-Dark/22x22/devices:/usr/share/icons/Papirus-Dark/22x22/categories:/usr/share/icons/Papirus-Dark/22x22/actions:/usr/share/icons/Papirus-Dark/22x22/emblems:/usr/share/icons/Papirus-Dark/22x22/emotes:/usr/share/icons/Papirus-Dark/22x22/mimetypes:/usr/share/icons/Papirus-Dark/22x22/places
-
+	icon_path = /usr/share/icons/Tela-manjaro-dark/22/actions:/usr/share/icons/Tela-manjaro-dark/22/devices:/usr/share/icons/Tela-manjaro-dark/22/emblems:/usr/share/icons/Tela-manjaro-dark/22/mimetypes:/usr/share/icons/Tela-manjaro-dark/22/panel:/usr/share/icons/Tela-manjaro-dark/22/places:/usr/share/icons/Tela-manjaro-dark/symbolic/apps:/usr/share/icons/Tela-manjaro-dark/symbolic/categories:/usr/share/icons/Tela-manjaro-dark/symbolic/emotes:/usr/share/icons/Tela-manjaro-dark/symbolic/status
 
 	### History ###
 	sticky_history = yes
@@ -65,12 +64,12 @@
 
 [urgency_normal]
 	timeout = 10
-	background = "#89b482"
+	background = "#7daea3"
 	foreground = "#1d2021"
-	frame_color = "#1d2021"
+	frame_color = "#20433b"
 
 [urgency_critical]
 	timeout = 0
 	background = "#ea6962"
 	foreground = "#1d2021"
-	frame_color = "#1d2021"
+	frame_color = "#7e241f"

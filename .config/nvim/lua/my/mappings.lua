@@ -20,7 +20,8 @@ local mappings = {
 
 	["n|ns|<c-t>"]      = m.cmd('tabnew'),
 	["n|ns|<c-n>"]      = m.cmd('NvimTreeToggle'),
-	["n|ns|<leader>N"]  = m.cmd([[call nnn#pick('',{'layout':{'window':{'width': 0.9, 'height': 0.6}}})]]),
+	["n|ns|<leader>n"]  = m.cmd('NvimTreeFindFile'),
+	["n|ns|<leader>N"]  = m.cmd('NvimTreeRefresh'),
 	["n|ns|<leader>Q"]  = m.cmd('q!'),
 	["n|ns|<leader>Qa"] = m.cmd('qa!'),
 	["n|ns|<leader>S"]  = m.cmd('Startify'),
