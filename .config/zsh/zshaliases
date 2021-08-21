@@ -28,6 +28,7 @@ alias ll='ls -aalg'
 alias sysu='systemctl --user'
 alias tl="tldr --list | fzf --preview 'tldr {} --color always' | xargs tldr"
 alias tree='ls -T'
+alias mpvoice="mpv --af=lavfi='[ladspa=librnnoise_ladspa:p=noise_suppressor_stereo]'"
 alias tt='tmux new -A -s'
 alias v='nvim'
 alias yv='youtube-viewer'
