@@ -102,5 +102,16 @@ pyenvinit() {
 # compress a directory into a tar.xz with the same name
 # source: https://old.reddit.com/r/archlinux/comments/o2bfha/h265fe2/
 txz() {
-	tar cf - "$1" | xz -T 0 -zevc > "${1%/}.tar.xz"
+	tar cf - "$1" | xz -T 0 -zevc > "${1%/}.tar.xz"jh
+}
+
+# shows webcam using special mpv demuxer
+campv(){
+	local dev="/dev/video${1:-0}"
+	if [ -c "$dev" ]; then
+		mpv --demuxer-lavf-format=video4linux2 "av://v4l2:$dev"
+	else
+		>&2 echo "No device found at $dev"
+		return 1
+	fi
 }
