@@ -26,7 +26,7 @@ set searchurls.img https://www.google.com/search?tbm=isch&q=%s
 " JS_ARGS[0] is empty for some reason, so we use JS_ARGS[1]
 command getsearchparam js -d| (function(param) {let u=document.location.href,i=u.indexOf('?'),p; return i!=-1?(p=new URLSearchParams(u.substr(i+1)),p.has(param)?p.get(param):''):''})(JS_ARGS[1]) |
 
-command reopenincontainer js -d@ (function(url, container) { tri.webext.activeTab().then(tab => { tri.excmds.tabclose(( tab.index - 1 ).toString()); tri.excmds.tabopen( "-w", "-c", container, url); }) })(document.location.href, JS_ARGS[1]) @
+command reopenincontainer js -d@ (function(url, container) { tri.webext.activeTab().then(tab => { tri.excmds.tabopen( "-w", "-c", container, url); tri.excmds.tabclose((tab.index + 1).toString()) }) })(document.location.href, JS_ARGS[1]) @
 
 
 
