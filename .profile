@@ -7,6 +7,9 @@ fi
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
 
+# to use my build of zathura
+export ZATHURA_PLUGINS_PATH=/usr/lib/zathura
+
 # XDG specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -47,6 +50,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
 # tuir config
 export TUIR_BROWSER=url-opener.sh
+
+# zk config
+export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/zk"
 
 # home cleaning
 # these variables keep many programs from creating dot-{files/folders} in
