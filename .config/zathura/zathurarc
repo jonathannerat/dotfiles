@@ -5,3 +5,4 @@ set statusbar-home-tilde true
 set selection-clipboard "clipboard"
 
 map <C-h> nohlsearch
+map I exec "pdf-current-images.sh $FILE $PAGE"

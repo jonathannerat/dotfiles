@@ -47,11 +47,19 @@ case "$1" in
 	"R")  rotate 270 ;;
 	# copy to new location
 	"c")
-		oldfile=$(head -1 | cat -)
-		mimetype=$(file --mime-type "$oldfile" | cut -d' ' -f2)
-		newfile=$(prompt "Copy ($mimetype) to:" -it "$oldfile")
+		oldfile="$(head -1 | cat -)"
+		mimetype="$(file --mime-type -b "$oldfile")"
+
+		# replace leading home with ~
+		if [ "$SXIV_SAVE_DIR" ]; then
+			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$SXIV_SAVE_DIR/${oldfile##*/}" | sed s:"^$HOME":~:)")"
+		else
+			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$oldfile" | sed s:"^$HOME":~:)")"
+		fi
 
 		if [ "$newfile" ]; then
+			# expand leading ~
+			newfile="$(echo "$newfile" | sed s:^~:"$HOME":)"
 			[ -d "${newfile%/*}" ] || mkdir -p "${newfile%/*}"
 			cp "$oldfile" "$newfile"
 		fi ;;
