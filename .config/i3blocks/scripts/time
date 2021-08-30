@@ -1,7 +1,0 @@
-#!/bin/sh
-
-echo " $(date '+%H:%M')"
-
-if [ "$(date '+%H%M')" = "0000" ]; then
-	pkill -SIGRTMIN+3 i3blocks
-fi
