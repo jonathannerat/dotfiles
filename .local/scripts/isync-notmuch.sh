@@ -71,13 +71,24 @@ done
 # remove first "or"
 from_me_query=${from_me_query# or }
 
-echo $from_me_query
-echo "$account"
 if [ -n "$account" ]; then
-	notmuch tag +sent -- tag:new and from:"$(notmuch config get accounts."$account")"
+	filter="and tag:account/$account"
+else
+	filter=""
+fi
+
+notmuch search --output=summary --format=json tag:new $filter \
+| jq -r 'map({ account: .tags[0][8:], from: .authors, subject: .subject, id: .query[0][3:] }) | .[] | [.account,.from,.subject,.id] | @tsv' \
+| while IFS='	' read -r account from subject id; do
+	notify-send.sh -i mail-unread -a neomutt -d "notmuch tag -new -- id:$id" "[$account] $from" "$subject"
+done
+
+if [ -n "$account" ]; then
+	# shellcheck disable=SC2086
+	notmuch tag +sent -- tag:new and $from
 	notmuch tag -new -- tag:account/"$account" tag:new
 else
 	# shellcheck disable=SC2086
-	notmuch tag +sent -- tag:new and \( $from_me_query \)
+	notmuch tag +sent -- tag:new and $from
 	notmuch tag -new -- tag:new
 fi
