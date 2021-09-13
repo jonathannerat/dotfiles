@@ -128,6 +128,8 @@ add_to_path "$GOPATH/bin"
 add_to_path "$CARGO_HOME/bin"
 # npm binaries
 add_to_path "$XDG_DATA_HOME/npm/bin"
+# composer binaries
+add_to_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
