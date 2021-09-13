@@ -5,6 +5,7 @@ alias gpg="gpg --homedir $HOME/.local/share/gnupg"
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
 alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
+alias rclonesync="rclonesync -w $XDG_DATA_HOME/rclonesyncwd"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # overrides
