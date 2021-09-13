@@ -14,47 +14,57 @@
 
 rotate() {
 	degree="$1"
-	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read file; do
+	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read -r file; do
 	# use imagemagick
-	convert "$file" -rotate $degree "$file"
+	convert "$file" -rotate "$degree" "$file"
 	done
 }
 
 # usage: prompt PROMPT [DMENU_OPTION, ...]
 prompt() {
 	# get window id
-	local wid="0x$( (echo 'obase=16;' ; xdotool getwindowfocus) | bc )"
-	local prompt="$1"
+	wid="0x$( (echo 'obase=16;' ; xdotool getwindowfocus) | bc )"
+	prompt="$1"
 	shift 1
-	dmenu -W "$wid" -vp 0 -hp 0 -p "$prompt" $* </dev/null
+	dmenu -W "$wid" -vp 0 -hp 0 -p "$prompt" "$@"
 }
+
+open_with() {
+	program="$1"
+	[ "$program" ] && setsid "$program" "$(head -1)"
+}
+
 
 case "$1" in
 	# copy list of paths
 	"Y")  xclip -in -selection clipboard ;;
 	# copy first image to clipboard
-	"y")  head -1 | xclip -selection clipboard -target image/png "$(cat -)" ;;
+	"y")  xclip -selection clipboard -target image/png "$(head -1)" ;;
+	# delete the current file
+	"d")  rm "$(head -1)";;
+	# delete selected files
+	"D")  tr '\n' '\0' | xargs -0 rm ;;
 	# set image as wallpaper
 	"s")
-		bgs -z "$(head -1 | cat -)" ;;
+		bgs -z "$(head -1)" ;;
 	# set image as wallpaper permanently
 	"S")
 		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
-		head -1 | ln -rfs "$(cat -)" "$wall" && bgs -z "$wall" ;;
+		ln -rfs "$(head -1)" "$wall" && bgs -z "$wall" ;;
 	# rotate clockwise all images
 	"r")  rotate 90 ;;
 	# rotate anti-clockwise all images
 	"R")  rotate 270 ;;
 	# copy to new location
 	"c")
-		oldfile="$(head -1 | cat -)"
+		oldfile="$(head -1)"
 		mimetype="$(file --mime-type -b "$oldfile")"
 
 		# replace leading home with ~
 		if [ "$SXIV_SAVE_DIR" ]; then
-			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$SXIV_SAVE_DIR/${oldfile##*/}" | sed s:"^$HOME":~:)")"
+			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$SXIV_SAVE_DIR/${oldfile##*/}" | sed s:"^$HOME":~:)" </dev/null)"
 		else
-			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$oldfile" | sed s:"^$HOME":~:)")"
+			newfile="$(prompt "Copy ($mimetype) to:" -it "$(echo "$oldfile" | sed s:"^$HOME":~:)" </dev/null)"
 		fi
 
 		if [ "$newfile" ]; then
@@ -63,5 +73,15 @@ case "$1" in
 			[ -d "${newfile%/*}" ] || mkdir -p "${newfile%/*}"
 			cp "$oldfile" "$newfile"
 		fi ;;
+	"o")
+		open_with "$(dmenu_path | prompt "Open with:")" ;;
+	"e")
+		editors="pinta gimp krita"
+		for editor in $editors; do
+			if command -v "$editor" >/dev/null; then
+				open_with "$editor"
+				break
+			fi
+		done ;;
 esac
 

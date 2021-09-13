@@ -5,7 +5,7 @@
 # Sources:
 # - get current window geometry: https://unix.stackexchange.com/questions/14159/how-do-i-find-the-window-dimensions-and-position-accurately-including-decoration/14170
 
-vids_folder="$HOME/vids/screenrecords"
+vids_folder="$XDG_VIDEOS_DIR/screenrecords"
 unset x y w h
 eval $(xwininfo -id $(xdotool getactivewindow) |
 sed -n -e "s/^ \+Absolute upper-left X: \+\([0-9]\+\).*/x=\1/p" \
