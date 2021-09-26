@@ -80,7 +80,7 @@ fi
 notmuch search --output=summary --format=json tag:new $filter \
 | jq -r 'map({ account: .tags[0][8:], from: .authors, subject: .subject, id: .query[0][3:] }) | .[] | [.account,.from,.subject,.id] | @tsv' \
 | while IFS='	' read -r account from subject id; do
-	notify-send.sh -i mail-unread -a neomutt -d "notmuch tag -new -- id:$id" "[$account] $from" "$subject"
+	notify-send.sh -i mail-unread -a neomutt -o "Mark read":"notmuch tag -new -- id:$id" "[$account] $from" "$subject"
 done
 
 if [ -n "$account" ]; then
