@@ -2,7 +2,7 @@
 " =======
 
 set smoothscroll true
-set newtab http://hp14.home/newtab
+set newtab http://deskpc.home/newtab
 colorscheme base16-gruvbox-dark-hard
 
 
@@ -84,6 +84,16 @@ bindurl github\.com/search        T composite getsearchparam q | fillcmdline tab
 " retry with google
 bindurl duckduckgo\.com           gG composite getsearchparam q | open google
 
+" zoom web client bindings
+" toggle mic
+bindurl zoom\.us\/wc\/.*\/join  <space>m js document.getElementsByClassName('join-audio-container__btn')[0].click()
+" toggle video
+bindurl zoom\.us\/wc\/.*\/join  <space>v js document.getElementsByClassName('send-video-container__btn')[0].click()
+" toggle chat
+bindurl zoom\.us\/wc\/.*\/join  <space>c js let chatIcon = document.getElementsByClassName('footer-button__chat-icon')[0]; chatIcon.parentElement.parentElement.click();
+" toggle participants
+bindurl zoom\.us\/wc\/.*\/join  <space>p js let participantsIcon = document.getElementsByClassName('footer-button__participants-icon')[0]; participantsIcon.parentElement.parentElement.click();
+
 
 
 " MISC
@@ -102,6 +112,7 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 
 autocontain -s reddit\.com weeb
 autocontain -s trading\.portfoliopersonal\.com personal
+autocontain -s (instagram|facebook)\.com facebook
 " New reddit is bad
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " Use RES bindings
