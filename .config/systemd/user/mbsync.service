@@ -5,7 +5,7 @@ Description=Mailbox synchronization service
 Type=oneshot
 Environment=NOTMUCH_CONFIG=/home/jonathan/.config/notmuch/config
 ExecStart=/usr/bin/mbsync -c /home/jonathan/.config/isync/mbsyncrc -Va
-ExecStartPost=%h/.local/scripts/isync-notmuch.sh
+ExecStartPost=/usr/local/bin/isync-notmuch.sh
 
 [Install]
 WantedBy=default.target
