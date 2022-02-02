@@ -80,7 +80,6 @@ export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
-export GEM_HOME="$XDG_DATA_HOME/gem"
 export GEM_PATH="$XDG_DATA_HOME/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
@@ -121,7 +120,7 @@ add_to_path "$HOME/.local/scripts"
 # local programs
 add_to_path "$HOME/.local/bin"
 # gem binaries
-add_to_path "$GEM_HOME/bin"
+add_to_path "$GEM_DATA/bin"
 # go binaries
 add_to_path "$GOPATH/bin"
 # cargo binaries
@@ -133,3 +132,11 @@ add_to_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
