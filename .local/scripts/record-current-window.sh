@@ -18,6 +18,9 @@ sed -n -e "s/^ \+Absolute upper-left X: \+\([0-9]\+\).*/x=\1/p" \
 audiosink=$(pactl info | grep -F "Default Sink:" )
 audiosink="${audiosink#*: }".monitor
 
+audiosource=$(pactl info | grep -F "Default Source:" )
+audiosource="${audiosource#*: }"
+
 [ -d "$vids_folder" ] || mkdir "$vids_folder"
 
 
@@ -25,6 +28,17 @@ audiosink="${audiosink#*: }".monitor
 # right now the only way to stop this is to C-c or pkill it
 # in the future we could do a screenrecord manager using dmenu that would name each recording
 # and save pids to a temporary file, that way we can stop a recording by searching its name
-echo ffmpeg -video_size "$((w-2))x$((h-2))" -f x11grab -i :0.0+$((x+4)),+$((y+4)) -f pulse -i "$audiosink" "$vids_folder/$(date +%F_%H%M%S_$((w-2))x$((h-2))).mp4"
-exec ffmpeg -video_size "$((w-2))x$((h-2))" -f x11grab -i :0.0+$((x+4)),+$((y+4)) -f pulse -i "$audiosink" "$vids_folder/$(date +%F_%H%M%S_$((w-2))x$((h-2))).mp4"
+echo ffmpeg -video_size "$((w-2))x$((h-2))" \
+	-f x11grab -i :0.0+$((x+4)),+$((y+4)) \
+	-f pulse -i "$audiosink" \
+	-f pulse -i "$audiosource" \
+	"$vids_folder/$(date +%F_%H%M%S_$((w-2))x$((h-2))).mp4"
+
+exec ffmpeg \
+	-f pulse -i "$audiosink" \
+	-f pulse -i "$audiosource" \
+	-filter_complex amix=inputs=2:duration=longest \
+	-video_size "$((w-2))x$((h-2))" \
+	-f x11grab -i :0.0+$((x+4)),+$((y+4)) \
+	"$vids_folder/$(date +%F_%H%M%S_$((w-2))x$((h-2))).mp4"
 
