@@ -115,3 +115,15 @@ campv(){
 		return 1
 	fi
 }
+
+v() {
+	if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+		nvr -cc split --remote-wait "$@"
+	else
+		nvim "$@"
+	fi
+}
+
+trr() {
+	env TR_AUTH="$USER:$(rbw get Transmission)" transmission-remote localhost:9091 --authenv "$@"
+}

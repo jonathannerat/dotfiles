@@ -1,6 +1,6 @@
 # no X server => we're probably sshing
 if ! xset q &>/dev/null; then
-	source ~/.profile
+  source ~/.profile
 fi
 
 # shut up
@@ -29,33 +29,33 @@ zle -N edit-command-line
 
 # run when zsh vi mode is changed shows different indicators for each mode
 zle-keymap-select() {
-	case $KEYMAP in
-		vicmd)      echo -ne "\e[2 q";; # block cursor
-		viins|main) echo -ne "\e[6 q";; # pipe cursor
-	esac
+  case $KEYMAP in
+  vicmd) echo -ne "\e[2 q" ;;        # block cursor
+  viins | main) echo -ne "\e[6 q" ;; # pipe cursor
+  esac
 }
 zle -N zle-keymap-select
 
 # default to insert mode on start
 zle-line-init() {
-	zle -K viins
-	echo -ne "\e[6 q"
+  zle -K viins
+  echo -ne "\e[6 q"
 }
 zle -N zle-line-init
 
 # start only one ssh-agent
 agent_env="$XDG_RUNTIME_DIR/ssh-agent.env"
-if ! pgrep -u "$USER" ssh-agent > /dev/null \
-   && [ -w "$(dirname "$agent_env")" ]; then
-  ssh-agent > "$agent_env"
+if ! pgrep -u "$USER" ssh-agent >/dev/null &&
+  [ -w "$(dirname "$agent_env")" ]; then
+  ssh-agent >"$agent_env"
 fi
 if [ ! "$SSH_AUTH_SOCK" -a -r "$agent_env" ]; then
-  eval "$(<"$agent_env")" > /dev/null
+  eval "$(<"$agent_env")" >/dev/null
 fi
 
 # z to jump between directories (with zoxide)
 if command -v zoxide >/dev/null; then
-	eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh)"
 fi
 
 # for aliases
@@ -68,9 +68,10 @@ fi
 [ -f "$ZDOTDIR"/zshkeybinds ] && source "$ZDOTDIR"/zshkeybinds
 
 plugdir="/usr/share/zsh/plugins"
-plugins=("zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-	       "fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh")
+plugins=("zsh-autosuggestions" "fast-syntax-highlighting")
 
 for p in $plugins; do
-	[ -f "$plugdir/$p" ] && source "$plugdir/$p"
+  [ -f "$plugdir/$p/$p.plugin.zsh" ] && source "$plugdir/$p/$p.plugin.zsh"
 done
+
+[ -f "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
