@@ -45,7 +45,7 @@ organize_account() {
 
 maildir=$(notmuch config get database.path)
 account="$1"
-accounts=$(find "$maildir" -mindepth 1 -maxdepth 1 -type d -not -name .notmuch -printf "%P ")
+accounts="$(find "$maildir" -mindepth 1 -maxdepth 1 -type d -not -name .notmuch -printf "%P ")"
 # remove trailing space
 accounts="${accounts% }"
 
@@ -63,32 +63,23 @@ else
 	done
 fi
 
-# tag mails from my emails as +sent
-for a in $accounts; do
-	my_email=$(notmuch config get accounts."$a")
-	from_me_query="$from_me_query or from:$my_email"
-done
-# remove first "or"
-from_me_query=${from_me_query# or }
-
-if [ -n "$account" ]; then
-	filter="and tag:account/$account"
-else
-	filter=""
-fi
-
 notmuch search --output=summary --format=json tag:new $filter \
 | jq -r 'map({ account: .tags[0][8:], from: .authors, subject: .subject, id: .query[0][3:] }) | .[] | [.account,.from,.subject,.id] | @tsv' \
 | while IFS='	' read -r account from subject id; do
 	notify-send.sh -i mail-unread -a neomutt -o "Mark read":"notmuch tag -new -- id:$id" "[$account] $from" "$subject"
 done
 
+# tag mails from my emails as +sent
 if [ -n "$account" ]; then
-	# shellcheck disable=SC2086
-	notmuch tag +sent -- tag:new and $from
-	notmuch tag -new -- tag:account/"$account" tag:new
+	account_mail="$(notmuch config get accounts."$account")"
+
+	notmuch tag +sent -- tag:new and tag:account/"$account" and from:"$account_mail"
+	notmuch tag -new  -- tag:new and tag:account/"$account"
 else
-	# shellcheck disable=SC2086
-	notmuch tag +sent -- tag:new and $from
-	notmuch tag -new -- tag:new
+	for a in $accounts; do
+		account_mail=$(notmuch config get accounts."$a")
+		notmuch tag +sent -- tag:new and tag:account/"$a" and from:"$account_mail"
+	done
+
+	notmuch tag -new  -- tag:new
 fi
