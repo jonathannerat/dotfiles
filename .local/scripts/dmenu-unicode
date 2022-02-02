@@ -16,9 +16,10 @@ _cache_data="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-unicode"
 # UnicodeData file url
 _url="http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt"
 
-while getopts "C" o; do case "$o" in
-	C) usecode=1 ; shift ;;
-esac; done
+if [ "$1" = "-C" ]; then 
+	usecode=1
+	shift
+fi
 
 dialog() {
 	if [ -t 0 ]; then
