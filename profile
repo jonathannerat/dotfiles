@@ -1,3 +1,4 @@
+# vi: ft=sh
 if [ -z "$PROFILED" ]; then
 	export PROFILED=1
 else
