@@ -19,7 +19,7 @@
 	sort = yes
 	idle_threshold = 120
 
-	font = Iosevka Nerd Font 10
+	font = SFMono Nerd Font 10
 	line_height = 0
 
 	markup = full
