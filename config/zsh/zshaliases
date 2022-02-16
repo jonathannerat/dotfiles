@@ -20,7 +20,7 @@ alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
 
 # convinient aliases
-alias V='SUDO_EDITOR="nvim" sudo -e'
+alias V='EDITOR="nvim" doasedit'
 alias c='xclip'
 alias cx='xclip -selection clipboard'
 alias dot='/usr/bin/git --git-dir=$HOME/.local/src/dotrepo --work-tree=$HOME'
