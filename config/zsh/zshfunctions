@@ -127,3 +127,8 @@ v() {
 trr() {
 	env TR_AUTH="$USER:$(rbw get Transmission)" transmission-remote localhost:9091 --authenv "$@"
 }
+
+rvminit() {
+	# Load RVM into a shell session *as a function*
+	[ -s "$RVM_HOME/scripts/rvm" ] && source "$RVM_HOME/scripts/rvm"
+}

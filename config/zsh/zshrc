@@ -73,5 +73,3 @@ plugins=("zsh-autosuggestions" "fast-syntax-highlighting")
 for p in $plugins; do
   [ -f "$plugdir/$p/$p.plugin.zsh" ] && source "$plugdir/$p/$p.plugin.zsh"
 done
-
-[ -f "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
