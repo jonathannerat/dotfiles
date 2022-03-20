@@ -1,14 +1,16 @@
-paths = {
-	["/"] = { order = 1, label = " ROOT" },
-	["/home"] = { order = 2, label = " HOME" },
-	["/srv/media"] = { order = 3, label = " MEDIA" },
+local paths = {
+    { path = "/", label = " ROOT" },
+    { path = "/home", label = " HOME" },
+    { path = "/srv/media", label = " MEDIA" },
 }
 
-keys = function(t)
+local curpath = 1
+
+local function get_paths(t)
 	local res = {}
 
-	for k, _ in pairs(t) do
-		table.insert(res, k)
+	for _, v in pairs(t) do
+		table.insert(res, v.path)
 	end
 
 	return res
@@ -17,13 +19,15 @@ end
 widget = {
 	plugin = "fs",
 	opts = {
-		paths = keys(paths),
+		paths = get_paths(paths),
+		period = 60,
 	},
 	cb = function(t)
-		local res = {}
-		for k, v in pairs(t) do
-			res[paths[k].order] = string.format("%s %.0f%%", paths[k].label, (1 - v.avail / v.total) * 100)
-		end
-		return res
+		local info = t[paths[curpath].path]
+		local str = string.format("%s %.0f%%", paths[curpath].label, (1 - info.avail / info.total) * 100)
+
+		curpath = curpath % 3 + 1
+
+		return str
 	end,
 }
