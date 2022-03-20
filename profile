@@ -45,7 +45,7 @@ export NNN_FIFO="$HOME/.cache/nnn.fifo"
 export NNN_TRASH=1
 export NNN_COLORS=1234
 export NNN_FCOLORS=c103042e006006f7c6d60501
-export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;z:autojump;k:kdeconnect'
+export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;z:autojump;m:mconnect'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
