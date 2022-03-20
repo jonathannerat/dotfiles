@@ -23,7 +23,11 @@ widget = {
 			return string.format("%s %s", ({ play = "喇 ", pause = " ", stop = "ﭥ " })[t.status.state], title)
 		else
 			-- 'connecting' or 'error'
-			return t.what
+			local msgs = {
+			    connecting = "羽Connecting",
+			    error = " Error"
+			}
+			return msgs[t.what] or t.what
 		end
 	end,
 }
