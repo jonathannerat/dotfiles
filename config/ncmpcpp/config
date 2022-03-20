@@ -20,6 +20,12 @@ visualizer_look = ●▮
 visualizer_color = 118,154,148,184,178,214,208,209,203,204,198,199,163,164,128,129,93,99,63,69,33,39,1,1,1,1,1
 visualizer_fps = 30
 
+# spectrum visualizer settings
+visualizer_spectrum_smooth_look = no
+visualizer_spectrum_dft_size = 3
+visualizer_spectrum_gain = 5
+visualizer_spectrum_hz_min = 20
+visualizer_spectrum_hz_max = 20000
 
 
 ## formats
