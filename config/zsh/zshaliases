@@ -21,6 +21,7 @@ alias vimdiff='nvim -d'
 
 # convinient aliases
 alias V='EDITOR="nvim" doasedit'
+alias b='buku --suggest'
 alias c='xclip'
 alias cx='xclip -selection clipboard'
 alias dot='/usr/bin/git --git-dir=$HOME/.local/src/dotrepo --work-tree=$HOME'
