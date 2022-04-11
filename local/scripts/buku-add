@@ -1,0 +1,11 @@
+#!/bin/sh
+
+url="$(xclip -selection clipboard -o)"
+wid="0x$(echo "obase=16;$WINDOWID" | bc)"
+title="$(dmenu -w "$wid" -p " Title: " </dev/null)"
+tags="$(dmenu -w "$wid" -p " Tags: " </dev/null)"
+
+if [ "$title" ] || [ "$tags" ] || [ "$(dmenu -p "Add bookmark (y/N)? " </dev/null)" = "y" ]; then
+  buku -a "$url" $tags ${title:+--title "$title"}
+  notify-send -i bookmark "Bookmark added" "$url"
+fi
