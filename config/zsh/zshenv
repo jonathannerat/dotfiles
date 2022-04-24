@@ -1,5 +1,5 @@
 # enable git on prompt
-[ -r /usr/share/git/git-prompt.sh ] && source /usr/share/git/git-prompt.sh
+[ -r $HOME/.git-prompt.sh ] && source $HOME/.git-prompt.sh
 
 __get_venv() {
 	format="$1"
