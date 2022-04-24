@@ -133,11 +133,3 @@ add_to_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
