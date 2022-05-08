@@ -5,6 +5,9 @@ else
 	return 0
 fi
 
+# ssh askpass
+export SSH_ASKPASS=ssh-askpass
+
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
 
