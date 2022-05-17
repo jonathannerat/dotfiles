@@ -26,7 +26,7 @@ widget = {
 		local info = t[paths[curpath].path]
 		local str = string.format("%s %.0f%%", paths[curpath].label, (1 - info.avail / info.total) * 100)
 
-		curpath = curpath % 3 + 1
+		curpath = (curpath % #paths) + 1
 
 		return str
 	end,
