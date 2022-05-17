@@ -1,3 +1,8 @@
+# vi:ft=sh
+
+# source ~/.profile
+[ -f ~/.profile ] && . ~/.profile
+
 # enable git on prompt
 [ -r /usr/share/git/git-prompt.sh ] && source /usr/share/git/git-prompt.sh
 
