@@ -63,10 +63,37 @@ else
 	done
 fi
 
-notmuch search --output=summary --format=json tag:new $filter \
-| jq -r 'map({ account: .tags[0][8:], from: .authors, subject: .subject, id: .query[0][3:] }) | .[] | [.account,.from,.subject,.id] | @tsv' \
-| while IFS='	' read -r account from subject id; do
-	notify-send.sh -i mail-unread -a neomutt -o "Mark read":"notmuch tag -new -- id:$id" "[$account] $from" "$subject"
+lua_parse_json=$(cat <<END
+local json = require "json.decode"
+local parsed = json.decode(io.read "*a")
+
+for _, mail in ipairs(parsed) do
+	local data = {}
+
+	for k, v in pairs(mail) do
+		if k == "authors" or k == "subject" then
+			data[k] = v
+		elseif k == "query" then
+			data.id = string.sub(v[1], 4)
+		elseif k == "tags" then
+			for _, t in ipairs(v) do
+				if string.match(t, "account/") then
+					data.account = string.sub(t, 9)
+					break
+				end
+			end
+		end
+	end
+
+	print(string.format("%s\t%s\t%s\t%s", data.account, data.authors, data.subject, data.id))
+end
+END
+)
+
+notmuch search --output=summary --format=json tag:new \
+| lua5.2 -e "$lua_parse_json" \
+| while IFS='	' read -r account authors subject id; do
+	notify-send.sh -i mail-unread -a neomutt "[$account] $authors" "$subject"
 done
 
 # tag mails from my emails as +sent
