@@ -11,9 +11,6 @@ export SSH_ASKPASS=ssh-askpass
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
 
-# to use my build of zathura
-export ZATHURA_PLUGINS_PATH=/usr/lib/zathura
-
 # XDG specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
