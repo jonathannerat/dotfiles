@@ -1,6 +1,6 @@
 # vi:ft=sh
 
-# source ~/.profile
+# source .profile since normal zsh doesn't source it unless it's a login shell
 [ -f ~/.profile ] && . ~/.profile
 
 # enable git on prompt
