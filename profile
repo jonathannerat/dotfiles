@@ -66,6 +66,7 @@ export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
+export GHCUP_USE_XDG_DIRS=true
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
