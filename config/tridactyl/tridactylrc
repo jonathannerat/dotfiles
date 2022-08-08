@@ -46,7 +46,7 @@ bind gd tabdetach
 bind gD composite tabduplicate; tabdetach
 
 bind \w composite tabopen https://web.whatsapp.com; pin
-"
+
 bind ZZ composite sanitise tridactyllocal; qall
 
 bind c1 fillcmdline tabopen -c google
@@ -62,12 +62,18 @@ bindurl www.google.com F hint -Jbc div:not(.action-menu) > a
 " pull up a new searchbox with the current search autocompleted
 bindurl www\.google\.com/search   O composite getsearchparam q | fillcmdline open google
 bindurl www\.youtube\.com/results O composite getsearchparam search_query | fillcmdline open youtube
-bindurl duckduckgo\.com           O composite getsearchparam q | fillcmdline open
+bindurl search\.ononoki\.org      O composite getsearchparam q | fillcmdline open
 bindurl github\.com/search        O composite getsearchparam q | fillcmdline open github
 bindurl search\.ononoki\.org/search O composite getsearchparam q | fillcmdline open search
 
 " retry with google
 bindurl search\.ononoki\.org       gG composite getsearchparam q | open google
+
+" same but tabopen
+bindurl www\.google\.com/search   T composite getsearchparam q | fillcmdline tabopen google
+bindurl www\.youtube\.com/results T composite getsearchparam search_query | fillcmdline tabopen youtube
+bindurl search\.ononoki\.org      T composite getsearchparam q | fillcmdline tabopen
+bindurl github\.com/search        T composite getsearchparam q | fillcmdline tabopen github
 
 " zoom web client bindings
 " toggle mic
@@ -99,18 +105,19 @@ autocontain -s google\.com google
 autocontain -s youtube\.com google
 autocontain -s app\.diagrams\.net google
 autocontain -s (facebook|instagram|whatsapp)\.com meta
+autocontain -s mercadolibre\.com(|\.ar) shopping
+autocontain -s bookdepository\.com shopping
 
 " New reddit is bad
-autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-" Use RES bindings
-autocmd DocStart old.reddit.com mode ignore
+autocmd DocStart www\.reddit\.com urlmodify -t www old
 " Redirect to wikiwand instead
-autocmd DocStart [^.]*\.(m\.)?wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https?:\/\/([^.]*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
-" send all keys here, since we're probably using firenvim
-autocmd DocStart www\.overleaf\.com/project/ mode ignore
-" use confluence keybinds
-autocmd DocStart iatros\.atlassian\.net/wiki/ mode ignore
-" use searx keybinds
-autocmd DocStart search\.ononoki\.org/ mode ignore
-" use 4chan-x keybinds
-autocmd DocStart boards\.4channel\.org/ mode ignore
+autocmd DocStart .*\.wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https:\/\/(.*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
+
+autocmd DocStart app\.diagrams\.net mode ignore
+autocmd DocStart boards\.4channel\.org mode ignore
+autocmd DocStart github\.com mode ignore
+autocmd DocStart iatros\.atlassian\.net/wiki mode ignore
+autocmd DocStart old\.reddit\.com mode ignore
+autocmd DocStart search\.ononoki\.org mode ignore
+autocmd DocStart www\.overleaf\.com/project mode ignore
+autocmd DocStart www\.youtube\.com mode ignore
