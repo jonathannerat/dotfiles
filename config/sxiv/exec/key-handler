@@ -45,12 +45,11 @@ case "$1" in
 	# delete selected files
 	"D")  tr '\n' '\0' | xargs -0 rm ;;
 	# set image as wallpaper
-	"s")
-		bgs -z "$(head -1)" ;;
+	"w")
+		nitrogen --set-zoom-fill "$(head -1)" ;;
 	# set image as wallpaper permanently
-	"S")
-		wall="${XDG_DATA_HOME:-$HOME/.local/share}/wallpaper"
-		ln -rfs "$(head -1)" "$wall" && bgs -z "$wall" ;;
+	"W")
+		nitrogen --save --set-zoom-fill "$(head -1)" ;;
 	# rotate clockwise all images
 	"r")  rotate 90 ;;
 	# rotate anti-clockwise all images
