@@ -2,14 +2,13 @@
 
 # wol file. syntax: "<name> <mac>"
 _wolf="${XDG_CONFIG_HOME:-$HOME/.config}/dwol.list"
-_subnet="192.168.0.0"
 
 # choose device by name
 _devn=$(cut -d" " -f1 "$_wolf" | dmenu -i)
 
 if [ -n "$_devn" ]; then
 	_devi=$(grep -F "$_devn" "$_wolf" | cut -d" " -f2) # get mac address filtering by name
-	_msg=$(wol -h "$_subnet" "$_devi" 2>&1)
+	_msg=$(wol "$_devi" 2>&1)
 
 	notify-send -u low WakeOnLan "$_msg"
 fi
