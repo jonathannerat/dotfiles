@@ -18,7 +18,7 @@ trap cleanup EXIT
 pdfimages -f "$page" -l "$page" -png "$file" "$tmpdir/$template"
 
 if [ "$dest" ]; then
-	env sxiv SXIV_SAVE_DIR="$dest" "$tmpdir"
+	env SXIV_SAVE_DIR="$dest" sxiv "$tmpdir"
 else
 	sxiv "$tmpdir"
 fi
