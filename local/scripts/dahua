@@ -1,19 +1,19 @@
 #!/bin/sh
 
 # dahua servers folder
-_dahuaf="$HOME/.config/ddahua"
+_dahuaf="$HOME/.config/dahua"
 
 errcho() {
 	if [ -t 0 ]; then
 		>&2 echo "$*"
 	else
-		notify-send -u low "dmount" "$*"
+		notify-send -u low "dahua" "$*"
 	fi
 
 	exit 1
 }
 
-_fifo="${XDG_CACHE_HOME:-$HOME/.cache}/ddahua.fifo"
+_fifo="${XDG_CACHE_HOME:-$HOME/.cache}/dahua.fifo"
 
 if ! command -v mpv >/dev/null; then
 	errcho "mpv not found"
@@ -23,8 +23,8 @@ elif [ $(ls -1 "$_dahuaf" | wc -l) -eq 0 ]; then
 	errcho "No dahua servers found in $_dahuaf"
 fi
 
-if [ "$(find "$_dahuaf" -type f | wc -l)" = "1" ]; then
-	_dahua="$(find "$_dahuaf" -type f -printf "%P")"
+if [ "$(find -L "$_dahuaf" -type f | wc -l)" = "1" ]; then
+	_dahua="$(find -L "$_dahuaf" -type f -printf "%P")"
 else
 	_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server:")"
 fi
