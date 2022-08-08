@@ -141,3 +141,17 @@ rvminit() {
 	# Load RVM into a shell session *as a function*
 	[ -s "$RVM_HOME/scripts/rvm" ] && source "$RVM_HOME/scripts/rvm"
 }
+
+iatros() {
+    tmux new-session -c ~/projects/iatros -s iatros -n code nvim \; \
+    new-window -n tasks \; \
+    split-window 'php artisan serve' \; \
+    split-window 'php artisan queue:work' \; \
+    split-window 'npm run watch' \; \
+    split-window 'tail -f storage/logs/laravel.log | grep UserNotification -A5' \; \
+    select-layout tiled \; \
+    split-window \; \
+    select-layout main-vertical \; \
+    swap-pane -t 0 \; \
+    select-pane -t 0
+}
