@@ -117,7 +117,7 @@ campv(){
 }
 
 v() {
-	if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+	if [ -n "$NVIM" ]; then
 		nvr -cc split --remote-wait "$@"
 	else
 		nvim "$@"
