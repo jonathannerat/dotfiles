@@ -7,6 +7,11 @@ fi
 
 # ssh askpass
 export SSH_ASKPASS=ssh-askpass
+export GIT_ASKPASS=ssh-askpass
+
+# ssh agent
+keychain --quiet
+[ -f "~/.keychain/$HOST-sh" ] && . "~/.keychain/$HOST-sh" 2>/dev/null
 
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
@@ -37,6 +42,7 @@ fi
 export TERMINAL=st
 export EDITOR=nvim
 export PAGER=less
+export BROWSER=librewolf
 
 export TERMCAP="$XDG_CONFIG_HOME/termcap"
 
@@ -88,7 +94,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export LESSKEY="$XDG_DATA_HOME/less/lesskey"
-export MPD_HOST="$XDG_DATA_HOME/mopidy/socket"
+export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
@@ -123,8 +129,6 @@ add_to_path() {
 add_to_path "$HOME/.local/scripts"
 # local programs
 add_to_path "$HOME/.local/bin"
-# gem binaries
-add_to_path "$GEM_DATA/bin"
 # go binaries
 add_to_path "$GOPATH/bin"
 # cargo binaries
@@ -136,11 +140,3 @@ add_to_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
