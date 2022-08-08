@@ -1,8 +1,9 @@
-set font "Iosevka Nerd Font Mono 9"
+set font "TerminessTTF Nerd Font 11"
 
 set window-title-basename true
 set statusbar-home-tilde true
 set selection-clipboard "clipboard"
+set guioptions "sv"
 
 map <C-h> nohlsearch
 map I exec "pdf-current-images.sh $FILE $PAGE"
