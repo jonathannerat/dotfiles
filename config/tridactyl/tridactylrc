@@ -1,21 +1,12 @@
-" GENERAL
-" =======
-
-set smoothscroll true
-set newtab http://deskpc.home/newtab
-colorscheme base16-gruvbox-dark-hard
-
-
-
 " SEARCH ENGINES
 " ==============
 
-set searchurls.1337x https://1337x.to/search/%s/1/
-set searchurls.aur https://aur.archlinux.org/packages/?K=%s
-set searchurls.arch https://wiki.archlinux.org/index.php?search=%s&go=Go
-set searchurls.nyaa https://nyaa.si/?q=%s
-set searchurls.man https://man.archlinux.org/search?q=%s&go=Go
-set searchurls.img https://www.google.com/search?tbm=isch&q=%s
+set searchurls.1337x    https://1337x.to/search/%s/1/
+set searchurls.aur      https://aur.archlinux.org/packages/?K=%s
+set searchurls.arch     https://wiki.archlinux.org/index.php?search=%s&go=Go
+set searchurls.nyaa     https://nyaa.si/?q=%s
+set searchurls.man      https://man.archlinux.org/search?q=%s&go=Go
+set searchurls.img      https://www.google.com/search?tbm=isch&q=%s
 
 
 
@@ -42,9 +33,6 @@ bind n findnext
 bind N findnext -1
 bind <space>h nohlsearch
 
-" Comment toggler for Reddit, Hacker News and Lobste.rs
-bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
-
 " GitHub yank
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\/github.com\/(.*)\/(.*)/, (url, user, repo)=>user==='jonathannerat'?'github:'+user+'/'+repo:url) | clipboard yank
 
@@ -59,10 +47,10 @@ bind gD composite tabduplicate; tabdetach
 
 bind \w composite tabopen https://web.whatsapp.com; pin
 "
-" Open right click menu on links
-bind ;C composite hint_focus; !s xdotool key Menu
-
 bind ZZ composite sanitise tridactyllocal; qall
+
+bind c1 fillcmdline tabopen -c google
+bind C1 composite echo google | reopenincontainer
 
 " I like wikiwand but I don't like the way it changes URLs
 bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
@@ -76,13 +64,10 @@ bindurl www\.google\.com/search   O composite getsearchparam q | fillcmdline ope
 bindurl www\.youtube\.com/results O composite getsearchparam search_query | fillcmdline open youtube
 bindurl duckduckgo\.com           O composite getsearchparam q | fillcmdline open
 bindurl github\.com/search        O composite getsearchparam q | fillcmdline open github
-bindurl www\.google\.com/search   T composite getsearchparam q | fillcmdline tabopen google
-bindurl www\.youtube\.com/results T composite getsearchparam search_query | fillcmdline tabopen youtube
-bindurl duckduckgo\.com           T composite getsearchparam q | fillcmdline tabopen
-bindurl github\.com/search        T composite getsearchparam q | fillcmdline tabopen github
+bindurl search\.ononoki\.org/search O composite getsearchparam q | fillcmdline open search
 
 " retry with google
-bindurl duckduckgo\.com           gG composite getsearchparam q | open google
+bindurl search\.ononoki\.org       gG composite getsearchparam q | open google
 
 " zoom web client bindings
 " toggle mic
@@ -110,19 +95,22 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 " AUTOCMDS
 " ========
 
-autocontain -s reddit\.com weeb
-autocontain -s trading\.portfoliopersonal\.com personal
-autocontain -s (instagram|facebook)\.com facebook
+autocontain -s google\.com google
+autocontain -s youtube\.com google
+autocontain -s app\.diagrams\.net google
+autocontain -s (facebook|instagram|whatsapp)\.com meta
+
 " New reddit is bad
-autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 " Use RES bindings
-autocmd DocStart ^http(s?)://old.reddit.com mode ignore
+autocmd DocStart old.reddit.com mode ignore
 " Redirect to wikiwand instead
-autocmd DocStart ^http(s?)://[^.]*\.(m\.)?wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https?:\/\/([^.]*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
+autocmd DocStart [^.]*\.(m\.)?wikipedia.org js let u = document.location.href; window.location.replace(u.replace(/^https?:\/\/([^.]*)\.(m\.)?wikipedia\.org\/wiki/, "https://www.wikiwand.com/$1"))
 " send all keys here, since we're probably using firenvim
-autocmd DocStart ^http(s?)://www\.overleaf\.com/project/ mode ignore
-
-
-
-""
-source ~/.config/tridactyl/hiddenrc
+autocmd DocStart www\.overleaf\.com/project/ mode ignore
+" use confluence keybinds
+autocmd DocStart iatros\.atlassian\.net/wiki/ mode ignore
+" use searx keybinds
+autocmd DocStart search\.ononoki\.org/ mode ignore
+" use 4chan-x keybinds
+autocmd DocStart boards\.4channel\.org/ mode ignore
