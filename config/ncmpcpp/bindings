@@ -94,6 +94,14 @@ def_key "n"
 def_key "n"
 	move_sort_order_down
 
+def_key "L"
+	run_external_command "mpc sendmessage mpdas love"
+	run_external_command "notify-send -u low -i apple-music -a ncmpcpp 'Added to Loved  ' \"$(mpc status | head -n1)\""
+
+def_key "H"
+	run_external_command "mpc sendmessage mpdas unlove"
+	run_external_command "notify-send -u low -i apple-music -a ncmpcpp 'Removed from Loved  ' \"$(mpc status | head -n1)\""
+
 def_key "N"
 	previous_found_item
 
