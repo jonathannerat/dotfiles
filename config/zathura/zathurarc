@@ -8,3 +8,5 @@ map <C-h> nohlsearch
 map I exec "pdf-current-images.sh $FILE $PAGE"
 map A feedkeys ":bmark "
 map B feedkeys ":blist <Tab>"
+
+include default_theme
