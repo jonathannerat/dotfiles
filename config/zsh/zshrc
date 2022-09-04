@@ -49,13 +49,13 @@ if command -v zoxide >/dev/null; then
 fi
 
 # for aliases
-[ -f "$ZDOTDIR"/zshaliases ] && source "$ZDOTDIR"/zshaliases
+[ -f "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
 
 # for functions
-[ -f "$ZDOTDIR"/zshfunctions ] && source "$ZDOTDIR"/zshfunctions
+[ -f "$ZDOTDIR/functions" ] && source "$ZDOTDIR/functions"
 
 # for key bindings
-[ -f "$ZDOTDIR"/zshkeybinds ] && source "$ZDOTDIR"/zshkeybinds
+[ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 
 plugdir="/usr/share/zsh/plugins"
 plugins=("zsh-autosuggestions" "fast-syntax-highlighting")

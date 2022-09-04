@@ -5,6 +5,7 @@ alias gpg="gpg --homedir $HOME/.local/share/gnupg"
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
 alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
+alias mycli="mycli -l $XDG_DATA_HOME/mycli.log --myclirc $XDG_CONFIG_HOME/myclirc"
 alias rclonesync="rclonesync -w $XDG_DATA_HOME/rclonesyncwd"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
@@ -20,7 +21,7 @@ alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
 
 # convinient aliases
-alias V='EDITOR="nvim" doasedit'
+alias V='env EDITOR="nvim" sudo -e'
 alias b='buku --suggest'
 alias c='xclip'
 alias cx='xclip -selection clipboard'

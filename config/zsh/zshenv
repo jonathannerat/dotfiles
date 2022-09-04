@@ -6,38 +6,7 @@
 # enable git on prompt
 [ -r /usr/share/git/git-prompt.sh ] && source /usr/share/git/git-prompt.sh
 
-__get_venv() {
-	format="$1"
-
-	if [ -n "$VIRTUAL_ENV" ]; then
-		venv=$(basename "$VIRTUAL_ENV")
-		printf "$format" "$venv"
-	fi
-}
-
-make-ps1() {
-	prompt='%B┌─%F{green}%n%F{white}@%F{blue}%m %F{magenta}%2~'
-
-	while [ "$#" -gt 0 ]; do
-		if [ "$1" = "--nogit" ]; then
-			nogit=1
-		elif [ "$1" = "--novenv" ]; then
-			novenv=1
-		fi
-		shift
-	done
-
-	if typeset -f __git_ps1 >/dev/null && [ "x$nogit" = x ]; then
-		prompt="$prompt"'$(__git_ps1 "%%F{white} (%s)")'
-	fi
-	if typeset -f __get_venv >/dev/null && [ "x$novenv" = x ]; then
-		prompt="$prompt"'$(__get_venv "%%F{yellow} ( %s)")'
-	fi
-	prompt="$prompt"'\n%F{white}└─%f%b '
-	echo "$prompt"
-}
-
-export PROMPT="$(make-ps1)"
+export PROMPT="%F{blue}%2~"'$(__git_ps1 " %%F{yellow}(%s)")'"%F{white}: "
 
 export HISTFILE="$HOME/.local/share/zsh/histfile"
 export HISTSIZE=1000

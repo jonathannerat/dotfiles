@@ -125,7 +125,16 @@ v() {
 }
 
 trr() {
-	env TR_AUTH="$USER:$(rbw get Transmission)" transmission-remote localhost:9091 --authenv "$@"
+	if [ -z "$_TRPASS" ]; then
+		export _TRUSER=tr
+		export _TRPASS="$(rbw get Transmission)"
+	fi
+
+	if [ -n "$_TRPASS" ]; then
+		env TR_AUTH="$_TRUSER:$_TRPASS" transmission-remote localhost:9091 --authenv "$@"
+	else
+		>&2 echo "Failed to get transmission password"
+	fi
 }
 
 rvminit() {
