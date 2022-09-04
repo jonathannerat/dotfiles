@@ -1,6 +1,8 @@
 import:
   - ~/.config/alacritty/themes/default.yml
 
+env:
+  TERM: xterm-256color
 window:
   dimensions:
     columns: 100
@@ -12,7 +14,7 @@ scrolling:
 
 font:
   normal:
-    family: TerminessTTF Nerd Font Mono
+    family: TerminessTTF Nerd Font
   size: 12
 
 cursor:
