@@ -11,7 +11,8 @@ export GIT_ASKPASS=ssh-askpass
 
 # ssh agent
 keychain --quiet
-[ -f "~/.keychain/$HOST-sh" ] && . "~/.keychain/$HOST-sh" 2>/dev/null
+HOST="${HOST:-$(cat /etc/hostname)}"
+[ -f ~/.keychain/$HOST-sh ] && . ~/.keychain/$HOST-sh 2>/dev/null
 
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
