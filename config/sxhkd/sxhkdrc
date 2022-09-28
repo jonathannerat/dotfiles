@@ -1,5 +1,8 @@
 # vi: fdm=marker
 # === MEDIA === {{{
+XF86MonBrightness{Up,Down}
+	light -{A,U} 10
+
 XF86Audio{Lower,Raise}Volume
 	pamixer --max-volume 50 -{d,i} 5
 
@@ -10,16 +13,16 @@ XF86AudioMute
 	pamixer -t
 
 XF86Audio{Play,Prev,Next}
-	mpc {toggle,prev,next}
+	autoplayerctl {play-pause,previous,next}
 
 ctrl + shift + XF86AudioPrev
-	mpc seek 0
+	autoplayerctl position 0
 
 ctrl + XF86Audio{Prev,Next}
-	mpc seek {-,+}10
+	autoplayerctl position 10{-,+}
 
 shift + XF86Audio{Prev,Next}
-	mpc seek {-,+}1:00
+	autoplayerctl position 60{-,+}
 #}}}
 
 # === APPS === {{{
