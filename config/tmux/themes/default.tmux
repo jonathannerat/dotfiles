@@ -1,5 +1,3 @@
-# vi: ft=tmux
-
 set -g set-titles-string '#{pane_current_command}'
 set -g visual-activity on
 set -g status-position top
