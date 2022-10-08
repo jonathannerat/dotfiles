@@ -118,7 +118,7 @@ campv(){
 
 v() {
 	if [ -n "$NVIM" ]; then
-		nvr -cc split --remote-wait "$@"
+		nvim --server "$NVIM" --remote-tab "$@"
 	else
 		nvim "$@"
 	fi
