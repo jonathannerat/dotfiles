@@ -76,7 +76,6 @@ export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GHCUP_USE_XDG_DIRS=true
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/jupyter"
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export KAGGLE_CONFIG_DIR="$XDG_CONFIG_HOME/kaggle"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
