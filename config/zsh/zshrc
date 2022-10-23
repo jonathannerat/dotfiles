@@ -1,52 +1,35 @@
-# no X server => we're probably sshing
-if ! xset q &>/dev/null; then
-  source ~/.profile
-fi
-
-# shut up
-unsetopt beep
-# for gitbranch on prompt
-setopt prompt_subst
 # zsh history
 setopt appendhistory
 
-# enable ./ ../ completion
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' completer _expand _complete
-# find new executables in PATH after installation
-zstyle ':completion:*' rehash true
-eval $(dircolors)
-zstyle ':completion:*' list-colors $LS_COLORS
-
-# awesome completion
-autoload -Uz compinit
-zle -N compinit
-compinit
-
-# edit command in vim
-autoload -z edit-command-line
-zle -N edit-command-line
-
-# run when zsh vi mode is changed shows different indicators for each mode
-zle-keymap-select() {
-  case $KEYMAP in
-  vicmd) echo -ne "\e[2 q" ;;        # block cursor
-  viins | main) echo -ne "\e[6 q" ;; # pipe cursor
-  esac
+function zvm_after_init() {
+  zvm_bindkey viins '^@' autosuggest-accept
 }
-zle -N zle-keymap-select
-
-# default to insert mode on start
-zle-line-init() {
-  zle -K viins
-  echo -ne "\e[6 q"
-}
-zle -N zle-line-init
 
 # z to jump between directories (with zoxide)
 if command -v zoxide >/dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
+# ==== ZIM ==== {{{
+zstyle ':zim:zmodule' use 'degit'
+zstyle ':zim:prompt-pwd:tail' length 2
+zstyle ':zim' disable-version-check yes
+
+ZIM_HOME=${XDG_CACHE_HOME}/zim
+
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+source ${ZIM_HOME}/init.zsh
+# }}}
 
 # for aliases
 [ -f "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
@@ -56,10 +39,3 @@ fi
 
 # for key bindings
 [ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
-
-plugdir="/usr/share/zsh/plugins"
-plugins=("zsh-autosuggestions" "fast-syntax-highlighting")
-
-for p in $plugins; do
-  [ -f "$plugdir/$p/$p.plugin.zsh" ] && source "$plugdir/$p/$p.plugin.zsh"
-done

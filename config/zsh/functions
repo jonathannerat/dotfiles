@@ -143,15 +143,21 @@ rvminit() {
 }
 
 iatros() {
-    tmux new-session -c ~/projects/iatros -s iatros -n code nvim \; \
-    new-window -n tasks \; \
-    split-window 'php artisan serve' \; \
-    split-window 'php artisan queue:work' \; \
-    split-window 'npm run watch' \; \
-    split-window 'tail -f storage/logs/laravel.log | grep UserNotification -A5' \; \
-    select-layout tiled \; \
-    split-window \; \
-    select-layout main-vertical \; \
-    swap-pane -t 0 \; \
-    select-pane -t 0
+    if tmux has-session -t iatros ; then
+        tmux attach -t iatros
+    else
+        tmux new -c ~/projects/iatros -s iatros -n code nvim \; \
+        neww -n tasks \; \
+        splitw -h 'php artisan serve' \; selectp -T 'Laravel Server' \; \
+        splitw 'if ! systemctl is-active --quiet mariadb ; then sudo systemctl start mariadb ; fi ; php artisan queue:work' \; selectp -T 'Queue worker' \; \
+        splitw 'npm run watch' \; selectp -T 'npm watch' \; \
+        selectp -t 2 \; \
+        splitw 'tail -f storage/logs/laravel.log | grep UserNotification -A5' \; selectp -T 'Notifications' \; \
+        selectl main-vertical \; \
+        selectp -t 1
+    fi
+}
+
+autoremove() {
+    pacman -Qdtq | doas pacman -Rs -
 }

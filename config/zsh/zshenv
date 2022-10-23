@@ -1,20 +1,14 @@
 # vi:ft=sh
 
-# source .profile since normal zsh doesn't source it unless it's a login shell
-[ -f ~/.profile ] && . ~/.profile
-
-# enable git on prompt
-[ -r /usr/share/git/git-prompt.sh ] && source /usr/share/git/git-prompt.sh
-
-export PROMPT="%F{blue}%2~"'$(__git_ps1 " %%F{yellow}(%s)")'"%F{white}: "
+# source .profile since normal zsh doesn't source it unless
+# it's a login shell
+! xset q &>/dev/null && source ~/.profile
 
 export HISTFILE="$HOME/.local/share/zsh/histfile"
 export HISTSIZE=1000
 export HIST_IGNORE_DUPS=1
 export SAVEHIST=1000
 export WORDCHARS=${WORDCHARS/\/}
-
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # colorful man-pages
 # color codes:
@@ -47,8 +41,3 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd|ls) *"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#434647"
-
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-	export GIT_EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-fi

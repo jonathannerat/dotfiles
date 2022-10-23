@@ -25,12 +25,12 @@ alias c='xclip'
 alias cx='xclip -selection clipboard'
 alias la='ls -aa'
 alias ll='ls -aalg'
-alias sysu='systemctl --user'
 alias mpvoice="mpv --af=lavfi='[ladspa=librnnoise_ladspa:p=noise_suppressor_stereo]'"
+alias myip="curl icanhazip.com"
+alias sysu='systemctl --user'
 alias tt='tmux new -A -s'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
-
 
 if command -v megatools > /dev/null; then
   _megarc="$XDG_CONFIG_HOME/megatools/megarc"
