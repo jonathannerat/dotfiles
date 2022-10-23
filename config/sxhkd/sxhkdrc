@@ -45,13 +45,13 @@ super + alt + {u,i,o,p}
 # === OTHER === {{{
 # Helper dmenus
 super + shift + {ctrl + u, u, o}
-	dmenu-{unicode -C,unicode,kaomojis} -bw 2 -l 20 -fn "Noto Sans:style=Regular:pixelsize=16:autohint=true:antialias=true"
+	dmenu-{unicode -C,unicode,kaomojis} -W 700 -bw 2 -l 20 -fn "Noto Sans:style=Regular:pixelsize=16:autohint=true:antialias=true"
 
 super + shift + i
-	dmenu-nficons -bw 2 -l 20 -fn "TerminessTTF Nerd Font:style=Regular:pixelsize=16:autohint=true:antialias=true"
+	dmenu-nficons -W 500 -bw 2 -l 20 -fn "TerminessTTF Nerd Font:style=Regular:pixelsize=16:autohint=true:antialias=true"
 
 super + shift + b
-	passmenu -bw 2 -l 20
+	passmenu -W 500 -bw 2 -l 20
 
 # Screenshots
 {,super,shift,ctrl,shift+ctrl} + @Print
