@@ -56,4 +56,11 @@ super + shift + b
 # Screenshots
 {,super,shift,ctrl,shift+ctrl} + @Print
 	imgkprnt -{c,cm,cw,caO,ca}
+
+# View a screenshot
+super + @s
+    image="$(mktemp --suffix=.png)" ; \
+    imgkprnt -a -o "$image" ; \
+    size="$(identify -format '%wx%h' "$image")" ; \
+    sxiv -g "$size" -b "$image" && rm "$image"
 #}}}
