@@ -101,6 +101,7 @@ export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
+export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
 export _Z_DATA="$XDG_DATA_HOME/z"
 
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
