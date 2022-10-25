@@ -1,18 +1,17 @@
 # zsh history
 setopt appendhistory
 
-function zvm_after_init() {
-  zvm_bindkey viins '^@' autosuggest-accept
-}
-
 # z to jump between directories (with zoxide)
 if command -v zoxide >/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+if command -v starship >/dev/null; then
+    eval "$(starship init zsh)"
+fi
+
 # ==== ZIM ==== {{{
 zstyle ':zim:zmodule' use 'degit'
-zstyle ':zim:prompt-pwd:tail' length 2
 zstyle ':zim' disable-version-check yes
 
 ZIM_HOME=${XDG_CACHE_HOME}/zim

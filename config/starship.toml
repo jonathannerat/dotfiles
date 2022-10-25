@@ -1,0 +1,30 @@
+add_newline = false
+format = "$username$hostname$directory$character"
+right_format = "$git_branch$cmd_duration"
+
+[username]
+format = "[$user]($style)@"
+show_always = true
+style_user = "bold green"
+
+[hostname]
+format = "[$ssh_symbol$hostname]($style):"
+style = "bold blue"
+ssh_only = false
+ssh_symbol = " "
+
+[directory]
+truncation_length = 2
+style = "bold yellow"
+
+[character]
+success_symbol = "[→](bold green)"
+error_symbol = "[✗](bold red)"
+vimcmd_symbol = "[V](bold blue)"
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style)"
+
+[cmd_duration]
+format = "[\\[$duration\\]](bold)"
+min_time = 5_000
