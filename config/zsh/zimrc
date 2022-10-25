@@ -1,5 +1,5 @@
 # prompt theme
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
-zmodule zsh-users/zsh-syntax-highlighting
+zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
