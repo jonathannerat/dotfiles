@@ -10,6 +10,24 @@ if command -v starship >/dev/null; then
     eval "$(starship init zsh)"
 fi
 
+# run when zsh vi mode is changed shows different indicators for each mode
+zle-keymap-select() {
+  case $KEYMAP in
+  vicmd) echo -ne "\e[2 q" ;;        # block cursor
+  viins | main) echo -ne "\e[6 q" ;; # pipe cursor
+  esac
+}
+
+# default to insert mode
+zle-line-init() {
+  zle -K viins
+  echo -ne "\e[6 q"
+}
+
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+
 # ==== ZIM ==== {{{
 zstyle ':zim:zmodule' use 'degit'
 zstyle ':zim' disable-version-check yes
