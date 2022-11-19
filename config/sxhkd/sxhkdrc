@@ -4,7 +4,7 @@ XF86MonBrightness{Up,Down}
 	light -{A,U} 10
 
 XF86Audio{Lower,Raise}Volume
-	pamixer --max-volume 50 -{d,i} 5
+	pamixercap -{d,i} 5
 
 shift + XF86Audio{Lower,Raise}Volume
 	pamixer -{d,i} 5

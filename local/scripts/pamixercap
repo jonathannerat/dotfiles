@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pamixer "$@"
+
+if [ "$(pamixer --get-volume)" -gt 50 ]; then
+    pamixer --set-volume 50
+fi
