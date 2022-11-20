@@ -142,22 +142,6 @@ rvminit() {
 	[ -s "$RVM_HOME/scripts/rvm" ] && source "$RVM_HOME/scripts/rvm"
 }
 
-iatros() {
-    if tmux has-session -t iatros ; then
-        tmux attach -t iatros
-    else
-        tmux new -c ~/projects/iatros -s iatros -n code nvim \; \
-        neww -n tasks \; \
-        splitw -h 'php artisan serve' \; selectp -T 'Laravel Server' \; \
-        splitw 'if ! systemctl is-active --quiet mariadb ; then sudo systemctl start mariadb ; fi ; php artisan queue:work' \; selectp -T 'Queue worker' \; \
-        splitw 'npm run watch' \; selectp -T 'npm watch' \; \
-        selectp -t 2 \; \
-        splitw 'tail -f storage/logs/laravel.log | grep UserNotification -A5' \; selectp -T 'Notifications' \; \
-        selectl main-vertical \; \
-        selectp -t 1
-    fi
-}
-
 autoremove() {
     pacman -Qdtq | doas pacman -Rs -
 }
