@@ -14,8 +14,8 @@ scrolling:
 
 font:
   normal:
-    family: TerminessTTF Nerd Font
-  size: 12
+    family: FantasqueSansMono Nerd Font
+  size: 11
 
 cursor:
   vi_mode_style: Block
