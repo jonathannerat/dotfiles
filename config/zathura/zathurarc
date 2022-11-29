@@ -1,4 +1,4 @@
-set font "TerminessTTF Nerd Font 11"
+set font "FantasqueSansMono Nerd Font 10"
 
 set window-title-basename true
 set statusbar-home-tilde true
