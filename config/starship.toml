@@ -20,7 +20,6 @@ style = "bold yellow"
 [character]
 success_symbol = "[→](bold green)"
 error_symbol = "[✗](bold red)"
-vimcmd_symbol = "[ ](bold blue)"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style)"
