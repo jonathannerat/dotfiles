@@ -10,9 +10,10 @@ export SSH_ASKPASS=ssh-askpass
 export GIT_ASKPASS=ssh-askpass
 
 # ssh agent
-keychain --quiet
 HOST="${HOST:-$(cat /etc/hostname)}"
-[ -f ~/.keychain/$HOST-sh ] && . ~/.keychain/$HOST-sh 2>/dev/null
+KEYCHAIN_ENV="$XDG_DATA_HOME/keychain/$HOST-sh"
+keychain --quiet --absolute --dir "$(dirname "$KEYCHAIN_ENV")"
+[ -r "$KEYCHAIN_ENV" ] && source "$KEYCHAIN_ENV" 2>/dev/null
 
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
@@ -40,7 +41,7 @@ else
 fi
 
 # default apps
-export TERMINAL=st
+export TERMINAL=alacritty
 export EDITOR=nvim
 export PAGER=less
 export BROWSER=librewolf
