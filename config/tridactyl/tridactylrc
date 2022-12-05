@@ -17,7 +17,7 @@ bind j scrollline 5
 bind k scrollline -5
 bind / fillcmdline find
 bind n findnext
-bind N findnext -1
+bind N findnext --reverse 1
 bind <space>h nohlsearch
 bind gs tabnew about:preferences
 
