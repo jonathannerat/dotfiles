@@ -9,12 +9,6 @@ fi
 export SSH_ASKPASS=ssh-askpass
 export GIT_ASKPASS=ssh-askpass
 
-# ssh agent
-HOST="${HOST:-$(cat /etc/hostname)}"
-KEYCHAIN_ENV="$XDG_DATA_HOME/keychain/$HOST-sh"
-keychain --quiet --absolute --dir "$(dirname "$KEYCHAIN_ENV")"
-[ -r "$KEYCHAIN_ENV" ] && source "$KEYCHAIN_ENV" 2>/dev/null
-
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
 
@@ -120,6 +114,11 @@ export QT_IM_MODULE=ibus
 
 export C_INCLUDE_PATH="$HOME/.local/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+
+# ssh agent
+KEYCHAIN_ENV="$XDG_DATA_HOME/keychain/$HOSTNAME-sh"
+keychain --quiet --absolute --dir "$(dirname "$KEYCHAIN_ENV")"
+[ -r "$KEYCHAIN_ENV" ] && source "$KEYCHAIN_ENV" 2>/dev/null
 
 add_to_path() {
 	local dir="$1"
