@@ -67,6 +67,7 @@ export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
+export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 export GHCUP_USE_XDG_DIRS=true
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
