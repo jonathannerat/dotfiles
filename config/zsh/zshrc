@@ -10,6 +10,11 @@ zstyle ':completion:*' rehash true
 eval $(dircolors)
 zstyle ':completion:*' list-colors $LS_COLORS
 
+[ -r "$XDG_DATA_HOME/asdf/asdf.sh" ] && source "$XDG_DATA_HOME/asdf/asdf.sh"
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+
 # awesome completion
 autoload -Uz compinit
 zle -N compinit
