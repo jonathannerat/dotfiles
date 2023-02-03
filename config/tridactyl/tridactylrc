@@ -1,4 +1,4 @@
-colourscheme midnight
+colourscheme dark
 
 
 set browser             librewolf
@@ -17,7 +17,7 @@ bind j scrollline 5
 bind k scrollline -5
 bind / fillcmdline find
 bind n findnext
-bind N findnext --reverse 1
+bind N findnext -?
 bind <space>h nohlsearch
 bind gs tabnew about:preferences
 
@@ -94,14 +94,16 @@ autocontain -s (facebook|instagram|whatsapp)\.com meta
 autocontain -s mercadolibre\.com(|\.ar) shopping
 autocontain -s bookdepository\.com shopping
 
-autocmd DocStart www\.reddit\.com urlmodify -t www old
 autocmd DocStart app\.diagrams\.net mode ignore
 autocmd DocStart boards\.4channel\.org mode ignore
 autocmd DocStart github\.com mode ignore
 autocmd DocStart iatros\.atlassian\.net/wiki mode ignore
+autocmd DocStart localhost mode ignore
+autocmd DocStart localhost mode ignore
+autocmd DocStart monkeytype\.com mode ignore
 autocmd DocStart old\.reddit\.com mode ignore
 autocmd DocStart search\.ononoki\.org mode ignore
+autocmd DocStart www\.notion\.so mode ignore
 autocmd DocStart www\.overleaf\.com/project mode ignore
-autocmd DocStart www\.youtube\.com mode ignore
-autocmd DocStart monkeytype\.com mode ignore
-autocmd DocStart localhost mode ignore
+autocmd DocStart www\.reddit\.com urlmodify -t www old
+autocmd DocStart youtube\.com mode ignore
