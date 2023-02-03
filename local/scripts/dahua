@@ -1,11 +1,12 @@
 #!/bin/sh
 
 # dahua servers folder
-_dahuaf="$HOME/.config/dahua"
+conf="${XDG_CONFIG_HOME:-$HOME/.config}/dahua.conf"
+fifo="${XDG_CACHE_HOME:-$HOME/.cache}/dahua.fifo"
 
-errcho() {
+die() {
 	if [ -t 0 ]; then
-		>&2 echo "$*"
+		>&2 echo "$@"
 	else
 		notify-send -u low "dahua" "$*"
 	fi
@@ -13,49 +14,22 @@ errcho() {
 	exit 1
 }
 
-_fifo="${XDG_CACHE_HOME:-$HOME/.cache}/dahua.fifo"
+while getopts "c" o; do case "$o" in
+    h) die "Usage: dahua [-c CONF]" ;;
+    c) conf="$OPTARG" ;;
+    *) die "Invalid option; -$o" ;;
+esac done
 
 if ! command -v mpv >/dev/null; then
-	errcho "mpv not found"
-elif [ ! -d "$_dahuaf" ]; then
-	errcho "No dahua servers folder found at $_dahuaf"
-elif [ $(ls -1 "$_dahuaf" | wc -l) -eq 0 ]; then
-	errcho "No dahua servers found in $_dahuaf"
+	die "mpv not found"
+elif [ ! -r "$conf" ]; then
+	die "Configuration not found: $conf"
 fi
 
-if [ "$(find -L "$_dahuaf" -type f | wc -l)" = "1" ]; then
-	_dahua="$(find -L "$_dahuaf" -type f -printf "%P")"
-else
-	_dahua="$(ls -1 "$_dahuaf" | dmenu -i -p "Choose a server:")"
-fi
+source "$conf"
 
-# check if selected connection exists
-if [ -z "$_dahua" ]; then
-	exit 0;
-elif [ ! -f "$_dahuaf/$_dahua" ]; then
-	errcho "No dahua server with name \"$_dahua\" found"
-fi
+channelname=$(echo $channels | tr ";" "\n" | cut -d: -f1 | dmenu -i -p "Choose a channel:")
+channel=$(echo $channels | tr ";" "\n" | grep -F "$channelname" | cut -d: -f2)
+stream="rtsp://${user:-admin}:${pass:-admin}@$host:${port:-554}/cam/realmonitor?channel=$channel&subtype=0"
 
-mkfifo "$_fifo"
-trim-conf "$_dahuaf/$_dahua" > "$_fifo" &
-
-while IFS='=' read -r prop value; do
-	case "$prop" in
-		host)
-			_host=$value ;;
-		port)
-			_port=$value ;;
-		user|username)
-			_user=$value ;;
-		pass|password)
-			_pass=$value ;;
-		channels)
-			_channels=$value ;;
-	esac
-done < "$_fifo"
-rm $_fifo
-
-_channelname=$(echo $_channels | tr ";" "\n" | cut -d: -f1 | dmenu -i -p "Choose a channel:")
-_channel=$(echo $_channels | tr ";" "\n" | grep -F "$_channelname" | cut -d: -f2)
-
-exec mpv --aid=no --cache-secs=120 --title="Camera: $_channelname" "rtsp://${_user:-admin}:${_pass:-admin}@$_host:${_port:-554}/cam/realmonitor?channel=$_channel&subtype=0"
+exec mpv --aid=no --title="Camera: $channelname" "$stream"
