@@ -47,29 +47,6 @@ def() {
 	dict -d gcide "$@" 2>&1 | colorit | less
 }
 
-# open my usual programs in tmux
-t() {
-	session="${1:-home}"
-	if tmux has-session -t "$session" 2>/dev/null; then
-		if [ -z "$TMUX" ]; then
-			tmux attach-session -t "$session"
-		else
-			>&2 echo "Already inside session [$session]"
-		fi
-		return
-	fi
-
-	tmux new-session -d -s "$session"
-	tmux new-window -t "$session"
-	tmux new-window -t "$session"
-	tmux rename-window -t "$session:0" "mail"
-	tmux rename-window -t "$session:1" "music"
-	tmux rename-window -t "$session:2" "work"
-	tmux send-keys -t "$session:mail" "neomutt" Enter
-	tmux send-keys -t "$session:music" "ncmpcpp" Enter
-	tmux attach-session -t "$session:work"
-}
-
 # edit script: lists file in scriptsfolder using fzf, and opens them in $EDITOR
 es() {
 	# also search for plain files
