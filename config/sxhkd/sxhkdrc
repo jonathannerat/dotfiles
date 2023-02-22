@@ -39,7 +39,7 @@ super + ctrl + e
 	alacritty --class=floating-alacritty -e n
 
 super + alt + {u,i,o,p}
-	{browser,zattab,xournalpp,pavucontrol}
+	{browser,zathura,xournalpp,pavucontrol}
 #}}}
 
 # === OTHER === {{{
