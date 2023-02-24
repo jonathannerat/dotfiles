@@ -1,0 +1,32 @@
+gui:
+  showIcons: true
+  theme:
+    activeBorderColor:
+      - magenta
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - yellow
+      - bold
+    selectedLineBgColor:
+      - default
+    unstagedChangesColor:
+      - white
+keybinding:
+  universal:
+    # show help menu
+    optionMenu: '?'
+    optionMenu-alt1: null
+    openFile: '<enter>'
+    goInto: 'o'
+    select: '-'
+    gotoTop: 'g'
+    gotoBottom: 'G'
+  files:
+    amendLastCommit: null
+    toggleStagedAll: 'A' # stage/unstage all
+  commits:
+    viewResetOptions: 'D'
+os:
+  editCommandTemplate: '{{editor}} +{{line}} --remote-tab {{filename}}'
