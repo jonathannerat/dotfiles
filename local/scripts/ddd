@@ -1,0 +1,68 @@
+#!/bin/sh
+
+_errorf="$(mktemp -u)"
+_files="$(mktemp -u)"
+
+cleanup() {
+  [ -p "$_errorf" ] && rm "$_errorf"
+  [ -f "$_files" ] && rm "$_files"
+}
+
+die() {
+  echo >&2 "$@"
+  exit 1
+}
+
+diehelp() {
+  die -e "Usage: $0 [ -M MAX_ATTEMPS ] ...DOAS_OPTIONS\n\
+       $0 [ -M MAX_ATTEMPS ] -e ...FILES\n"
+}
+
+trap cleanup EXIT
+
+maxattemps=3
+mode="doas"
+
+while getopts "heM:" o; do case "$o" in
+  h) diehelp ;;
+  e)
+    mode="edit"
+    shift
+    ;;
+  M)
+    maxattemps="$OPTARG"
+    shift 2
+    ;;
+  esac done
+
+[ "$#" = 0 ] && diehelp
+
+attemps=0
+
+if [ "$mode" = doas ]; then
+
+  while [ "$attemps" -lt "$maxattemps" ] && [ -z "$done" ]; do
+    doas "$@" 2>"$_errorf"
+    exitst="$?"
+
+    if [ "$exitst" -gt 0 ]; then
+      if grep -q "Authentication failed" "$_errorf"; then
+        printf >&2 "[ddd] Authentication failed (%d/%d)\n" "$((attemps+1))" "$maxattemps"
+        attemps="$((attemps + 1))"
+      else
+        cat >&2 "$_errorf"
+        exit "$exitst"
+      fi
+    else
+      done=1
+    fi
+  done
+elif [ "$mode" = edit ]; then
+    die "not yet"
+else
+  die "[ddd] invalid mode: $mode"
+fi
+
+if [ "$attemps" = "$maxattemps" ]; then
+  die "[ddd] Max. attemps reached"
+fi
