@@ -6,7 +6,6 @@ alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share
 alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc"
 alias mycli="mycli -l $XDG_DATA_HOME/mycli.log --myclirc $XDG_CONFIG_HOME/myclirc"
-alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # overrides
 alias ffmpeg='ffmpeg -hide_banner'
@@ -31,6 +30,8 @@ alias sysu='systemctl --user'
 alias tt='tmux new -A -s'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
+alias p='pacman'
+alias P='ddd pacman'
 
 if command -v megatools > /dev/null; then
   _megarc="$XDG_CONFIG_HOME/megatools/megarc"
