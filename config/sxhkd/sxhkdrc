@@ -32,9 +32,6 @@ super + shift + p
 super + shift + Return
 	alacritty
 
-super + ctrl + Return
-	alacritty --class=floating-alacritty
-
 super + ctrl + e
 	alacritty --class=floating-alacritty -e n
 
