@@ -1,8 +1,7 @@
 # vi:ft=sh
 
-# source .profile since normal zsh doesn't source it unless
-# it's a login shell
-! xset q &>/dev/null && source ~/.profile
+# source .profile since zsh usually sources ~/.zprofile
+[ -r "$HOME/.profile" ] && source "$HOME/.profile"
 
 export HISTFILE="$HOME/.local/share/zsh/histfile"
 export HISTSIZE=1000
