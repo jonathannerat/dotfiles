@@ -1,0 +1,5 @@
+[Unit]
+Description=cbatticon
+
+[Service]
+ExecStart=/usr/bin/cbatticon

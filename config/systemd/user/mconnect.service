@@ -4,8 +4,4 @@ Wants=network-online.target
 After=network-online.target graphical.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/mconnect -d
-
-[Install]
-WantedBy=default.target
