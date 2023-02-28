@@ -31,7 +31,7 @@ alias tt='tmux new -A -s'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
 alias p='pacman'
-alias P='ddd pacman'
+alias P='doas pacman'
 
 if command -v megatools > /dev/null; then
   _megarc="$XDG_CONFIG_HOME/megatools/megarc"
