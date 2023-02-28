@@ -1,5 +1,0 @@
-[Unit]
-Description=Certificate and Key Storage
-
-[Service]
-ExecStart=/usr/bin/gnome-keyring-daemon --start --components=pkcs11

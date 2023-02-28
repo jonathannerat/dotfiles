@@ -1,5 +1,0 @@
-[Unit]
-Description=SSH Key Agent
-
-[Service]
-ExecStart=/usr/bin/gnome-keyring-daemon --start --components=ssh
