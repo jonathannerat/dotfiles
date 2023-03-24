@@ -1,14 +1,47 @@
-#!/bin/sh
+#!/usr/bin/env luajit
 
-# wol file. syntax: "<name> <mac>"
-_wolf="${XDG_CONFIG_HOME:-$HOME/.config}/dwol.list"
+local local_path = os.getenv "HOME" .. "/.local/lib/lua/?.lua"
+package.path = local_path .. ";" .. package.path
 
-# choose device by name
-_devn=$(cut -d" " -f1 "$_wolf" | dmenu -i)
+local mode = "notty"
 
-if [ -n "$_devn" ]; then
-	_devi=$(grep -F "$_devn" "$_wolf" | cut -d" " -f2) # get mac address filtering by name
-	_msg=$(wol "$_devi" 2>&1)
+-- Check if running from tty
+if os.execute "test -t 1" == 0 then
+   mode = "tty"
+end
 
-	notify-send -u low WakeOnLan "$_msg"
-fi
+local mac
+local csv = os.getenv "XDG_CONFIG_HOME" .. "/wol-devices.csv"
+
+if mode == "tty" then
+   local select = require "select"
+
+   mac = select(csv, {
+      headers = true,
+      label = "name",
+      value = "mac",
+   })
+else
+   -- Pick device name with dmenu
+   local cmd = ("sh -c 'tail -n+2 %s | cut -d, -f1 | dmenu -c -z 100 -l 5'"):format(csv)
+   local name = io.popen(cmd, "r"):read "*l"
+
+   if name ~= "" then
+      -- Grep it's mac address
+      cmd = ("sh -c 'grep %s %s | cut -d, -f2'"):format(name, csv)
+      mac = io.popen(cmd):read "*l"
+   end
+end
+
+if mac == "" then
+   error "empty mac address"
+end
+
+local cmd = ("wol '%s'"):format(mac)
+local msg = io.popen(cmd, "r"):read "*l"
+
+if mode == "tty" then
+   print(msg)
+else
+   os.execute(("notify-send -a dwol -i network-wireless 'WakeOnLan' '%s'"):format(msg))
+end
