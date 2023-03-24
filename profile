@@ -103,9 +103,9 @@ export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NugetPackages"
 
 # use ibus as IM
-export XMODIFIERS=@im=ibus
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 
 export C_INCLUDE_PATH="$HOME/.local/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
