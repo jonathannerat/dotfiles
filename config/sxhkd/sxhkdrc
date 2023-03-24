@@ -26,9 +26,6 @@ shift + XF86Audio{Prev,Next}
 #}}}
 
 # === APPS === {{{
-super + shift + p
-	rofi -show drun
-
 super + shift + Return
 	alacritty
 
