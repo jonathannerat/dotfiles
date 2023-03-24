@@ -28,7 +28,7 @@ fi
 
 source "$conf"
 
-channelname=$(echo $channels | tr ";" "\n" | cut -d: -f1 | dmenu -i -p "Choose a channel:")
+channelname=$(echo $channels | tr ";" "\n" | cut -d: -f1 | dmenu -l 5 -z 300 -c -i -p "Choose a channel:")
 channel=$(echo $channels | tr ";" "\n" | grep -F "$channelname" | cut -d: -f2)
 stream="rtsp://${user:-admin}:${pass:-admin}@$host:${port:-554}/cam/realmonitor?channel=$channel&subtype=0"
 
