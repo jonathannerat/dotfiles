@@ -1,5 +1,0 @@
-[Unit]
-Description=GNOME Keyring Components
-
-[Service]
-ExecStart=/usr/bin/gnome-keyring-daemon --start --foreground

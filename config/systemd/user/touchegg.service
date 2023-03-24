@@ -1,5 +1,6 @@
 [Unit]
 Description=Touchégg
+After=graphical.target
 
 [Service]
 ExecStart=/usr/bin/touchegg
