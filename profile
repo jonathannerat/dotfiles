@@ -39,10 +39,10 @@ export TERMCAP="$XDG_CONFIG_HOME/termcap"
 
 # nnn config
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
-export NNN_TRASH=1
+export NNN_TRASH=2 # 2="gio trash"
 export NNN_COLORS=1234
 export NNN_FCOLORS=c103042e006006f7c6d60501
-export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;z:autojump;m:mconnect;a:!zoxide add $nnn*;y:!sh -c "echo \"$(realpath \"$1\")\" | xclip -selection clipboard" -- $nnn*'
+export NNN_PLUG='o:nuke;d:dragdrop;p:preview-tui;z:autojump;f:fzopen;m:mconnect;a:!zoxide add $nnn*;y:!sh -c "echo \"$(realpath \"$1\")\" | xclip -selection clipboard" -- $nnn*'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
