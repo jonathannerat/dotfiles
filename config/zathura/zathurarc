@@ -1,13 +1,11 @@
-set font "FantasqueSansMono Nerd Font 10"
-
 set window-title-basename true
 set statusbar-home-tilde true
 set selection-clipboard "clipboard"
-set guioptions "sv"
+set guioptions "s"
 
 map <C-h> nohlsearch
 map I exec "pdf-current-images.sh $FILE $PAGE"
 map A feedkeys ":bmark "
 map B feedkeys ":blist <Tab>"
 
-include themes/default
+include custom
