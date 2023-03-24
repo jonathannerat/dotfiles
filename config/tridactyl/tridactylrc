@@ -90,6 +90,7 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 
 autocontain -s google\.com google
 autocontain -s youtube\.com google
+autocontain -s onefootball\.com google
 autocontain -s app\.diagrams\.net google
 autocontain -s (facebook|instagram|whatsapp)\.com meta
 autocontain -s mercadolibre\.com(|\.ar) shopping
@@ -106,5 +107,4 @@ autocmd DocStart old\.reddit\.com mode ignore
 autocmd DocStart search\.ononoki\.org mode ignore
 autocmd DocStart www\.notion\.so mode ignore
 autocmd DocStart www\.overleaf\.com/project mode ignore
-autocmd DocStart www\.reddit\.com urlmodify -t www old
 autocmd DocStart youtube\.com mode ignore
