@@ -110,24 +110,29 @@ export QT_IM_MODULE=ibus
 export C_INCLUDE_PATH="$HOME/.local/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
-add_to_path() {
-	local dir="$1"
-
-	[ -d "$dir" ] && export PATH="$dir:$PATH"
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="$1${PATH:+:$PATH}"
+    esac
 }
 
 # custom scripts
-add_to_path "$HOME/.local/scripts"
+append_path "$HOME/.local/scripts"
 # local programs
-add_to_path "$HOME/.local/bin"
+append_path "$HOME/.local/bin"
 # go binaries
-add_to_path "$GOPATH/bin"
+append_path "$GOPATH/bin"
 # cargo binaries
-add_to_path "$CARGO_HOME/bin"
+append_path "$CARGO_HOME/bin"
 # npm binaries
-add_to_path "$XDG_DATA_HOME/npm/bin"
+append_path "$XDG_DATA_HOME/npm/bin"
 # composer binaries
-add_to_path "$XDG_CONFIG_HOME/composer/vendor/bin"
+append_path "$XDG_CONFIG_HOME/composer/vendor/bin"
+
+export PATH
 
 # untracked overrides for this profile
 [ -f "$XDG_CONFIG_HOME/custom.profile" ] && source "$XDG_CONFIG_HOME/custom.profile"
