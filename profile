@@ -2,6 +2,7 @@
 # ssh askpass
 export SSH_ASKPASS=ssh-askpass
 export GIT_ASKPASS=ssh-askpass
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
