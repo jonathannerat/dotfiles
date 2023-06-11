@@ -9,7 +9,7 @@ timestamp="$(date "+%Y-%m-%d_%H:%M:%S")"
 file=""
 
 die() {
-	>&2 echo "$@"
+	>&2 echo -e "$@"
 	exit 1
 }
 
@@ -58,6 +58,8 @@ case "$type" in
 	window) import -screen "$tmpfile" ;;
 	area) import "$tmpfile" ;;
 	monitor)
+        command -v xdotool || die "xdotool not installed."
+        command -v xwininfo || die "xdotool not installed."
 		wid=$(xdotool getactivewindow)
 		tmp=$(xwininfo -id "$wid" | grep -- -geometry)
 		parse_geometry "${tmp#*geometry }"
