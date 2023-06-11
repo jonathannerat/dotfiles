@@ -112,6 +112,8 @@ export C_INCLUDE_PATH="$HOME/.local/include:$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 append_path () {
+    if ! [ -d "$1" ]; then return; fi
+
     case ":$PATH:" in
         *:"$1":*)
             ;;
@@ -132,6 +134,10 @@ append_path "$CARGO_HOME/bin"
 append_path "$XDG_DATA_HOME/npm/bin"
 # composer binaries
 append_path "$XDG_CONFIG_HOME/composer/vendor/bin"
+
+# GHCUP binaries
+append_path "$XDG_DATA_HOME/ghcup/ghc/9.2.7/bin"
+append_path "$XDG_DATA_HOME/ghcup/hls/1.10.0.0/bin"
 
 export PATH
 
