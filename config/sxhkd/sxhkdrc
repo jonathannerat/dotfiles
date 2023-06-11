@@ -29,9 +29,6 @@ shift + XF86Audio{Prev,Next}
 super + shift + Return
 	alacritty
 
-super + ctrl + e
-	alacritty --class=floating-alacritty -e n
-
 super + alt + {u,i,o,p}
 	{browser,zathura,xournalpp,pavucontrol}
 #}}}
@@ -48,8 +45,11 @@ super + shift + b
 	passmenu -c -z 500 -l 20
 
 # Screenshots
-{,super,shift,ctrl,shift+ctrl} + @Print
-	imgkprnt -{c,cm,cw,caO,ca}
+@Print
+	imgkprnt -c
+
+{super,shift,ctrl,shift+ctrl} + @Print
+	imgkprnt -{cm,cw,caO,ca} >> /tmp/imgkprnt.log
 
 # View a screenshot
 super + @s
