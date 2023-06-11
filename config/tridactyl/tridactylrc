@@ -2,7 +2,6 @@ colourscheme dark
 
 
 set browser             librewolf
-set newtab              http://localhost/tilde/
 set searchurls.1337x    https://1337x.to/search/%s/1/
 set searchurls.aur      https://aur.archlinux.org/packages/?K=%s
 set searchurls.arch     https://wiki.archlinux.org/index.php?search=%s&go=Go
@@ -88,8 +87,7 @@ command reopenincontainer js -d@ (function(url, container) { tri.webext.activeTa
 command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
 
 
-autocontain -s google\.com google
-autocontain -s youtube\.com google
+set autocontainmode relaxed
 autocontain -s onefootball\.com google
 autocontain -s app\.diagrams\.net google
 autocontain -s (facebook|instagram|whatsapp)\.com meta
@@ -108,3 +106,4 @@ autocmd DocStart search\.ononoki\.org mode ignore
 autocmd DocStart www\.notion\.so mode ignore
 autocmd DocStart www\.overleaf\.com/project mode ignore
 autocmd DocStart youtube\.com mode ignore
+autocmd DocStart hackmd\.io mode ignore
