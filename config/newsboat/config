@@ -1,15 +1,14 @@
 # General
-browser "xdg-open"
+browser "url-opener.sh"
+include themes/dark
 
 # Key-bindings
 unbind-key j
 unbind-key J
 unbind-key k
 unbind-key K
-unbind-key A
-unbind-key C
-unbind-key ^K
 
+bind-key ^U pageup
 bind-key ^D pagedown
 
 bind-key g home
@@ -30,21 +29,6 @@ bind-key K prev-unread articlelist
 
 bind-key l open feedlist
 bind-key l open articlelist 
-
-bind-key ^U pageup
-
-bind-key ^R random-unread
-
-# Colors
-
-#     element             foreground     background
-color listnormal          color7         color0
-color listnormal_unread   color3         color0
-color listfocus           color0         color7
-color listfocus_unread    color0         color3
-color info                color0         color14
-color background          color7         color0
-color article             color15        color0
 
 # Formats
 
