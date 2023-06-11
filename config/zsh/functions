@@ -104,7 +104,7 @@ v() {
 trr() {
 	if [ -z "$_TRPASS" ]; then
 		export _TRUSER=tr
-		export _TRPASS="$(rbw get Transmission)"
+		export _TRPASS="$(pass show transmission_web | head -n1)"
 	fi
 
 	if [ -n "$_TRPASS" ]; then
