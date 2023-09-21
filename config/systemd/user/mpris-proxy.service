@@ -1,9 +1,0 @@
-[Unit]
-Description=Bluetooth Media Control through MPRIS2
-After=bluetooth.target
-
-[Service]
-ExecStart=/usr/bin/mpris-proxy
-
-[Install]
-WantedBy=default.target

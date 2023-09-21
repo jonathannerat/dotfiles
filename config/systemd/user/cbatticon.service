@@ -1,5 +1,0 @@
-[Unit]
-Description=cbatticon
-
-[Service]
-ExecStart=/usr/bin/cbatticon --critical-level 10 --command-critical-level 'notify-send -i battery-empty "Critical battery level" "The system will hibernate in a moment..."'

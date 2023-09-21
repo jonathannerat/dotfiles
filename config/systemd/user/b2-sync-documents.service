@@ -1,0 +1,8 @@
+[Unit]
+Description=B2 Sync Documents
+
+[Service]
+Type=simple
+PassEnvironment=XDG_DOCUMENTS_DIR
+Environment=B2_BUCKET=documents-DwFtJl2V
+ExecStart=/bin/sh -c '/usr/bin/rclone bisync --verbose --fast-list --filters-file="$XDG_DOCUMENTS_DIR/.rclonefilters" $XDG_DOCUMENTS_DIR b2:$B2_BUCKET/'

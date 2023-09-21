@@ -1,0 +1,9 @@
+[Unit]
+Description=B2 Sync Documents Timer
+
+[Timer]
+Unit=b2-sync-documents.service
+OnCalendar=00/2:00
+
+[Install]
+WantedBy=timers.target
