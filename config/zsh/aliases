@@ -14,7 +14,6 @@ alias grep='grep --color=auto'
 alias info="info --vi-keys --init-file $XDG_CONFIG_HOME/info/infokey"
 alias ip='ip -color=auto'
 alias less='less -FRi'
-alias ls='env LC_COLLATE=C ls --group-directories-first --color=auto'
 alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
 
@@ -22,7 +21,8 @@ alias vimdiff='nvim -d'
 alias V='sudo -e'
 alias c='xclip'
 alias cx='xclip -selection clipboard'
-alias la='ls -aa'
+alias hx='helix'
+alias ls='exa --group-directories-first'
 alias ll='ls -aalg'
 alias mpvoice="mpv --af=lavfi='[ladspa=librnnoise_ladspa:p=noise_suppressor_stereo]'"
 alias myip="curl icanhazip.com"
@@ -31,7 +31,7 @@ alias tt='tmux new -A -s'
 alias yv='youtube-viewer'
 alias yvn='youtube-viewer -n --autoplay'
 alias p='pacman'
-alias P='doas pacman'
+alias P='sudo pacman'
 
 if command -v megatools > /dev/null; then
   _megarc="$XDG_CONFIG_HOME/megatools/megarc"
