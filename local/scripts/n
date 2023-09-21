@@ -19,7 +19,7 @@ stty stop undef
 # stty lwrap undef
 stty lnext undef
 # Add the command line options you want to combine with cd on quit here, then run nnn with just "n"
-/usr/bin/nnn ${NNN_OPTS:--A} "$@"
+/usr/bin/nnn "$@"
 
 if [ -f "$NNN_TMPFILE" ]; then
 	. "$NNN_TMPFILE"
