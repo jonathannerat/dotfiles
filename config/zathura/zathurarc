@@ -4,7 +4,7 @@ set selection-clipboard "clipboard"
 set guioptions "s"
 
 map <C-h> nohlsearch
-map I exec "pdf-current-images.sh $FILE $PAGE"
+map I exec "pdf-current-images.sh '$FILE' '$PAGE'"
 map A feedkeys ":bmark "
 map B feedkeys ":blist <Tab>"
 
