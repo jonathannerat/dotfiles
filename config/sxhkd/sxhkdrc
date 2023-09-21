@@ -4,25 +4,22 @@ XF86MonBrightness{Up,Down}
 	light -{A,U} 10
 
 XF86Audio{Lower,Raise}Volume
-	pamixercap -{d,i} 5
-
-shift + XF86Audio{Lower,Raise}Volume
 	pamixer -{d,i} 5
 
 XF86AudioMute
 	pamixer -t
 
 XF86Audio{Play,Prev,Next}
-	autoplayerctl {play-pause,previous,next}
+	playerctl {play-pause,previous,next}
 
 ctrl + shift + XF86AudioPrev
-	autoplayerctl position 0
+	playerctl position 0
 
 ctrl + XF86Audio{Prev,Next}
-	autoplayerctl position 10{-,+}
+	playerctl position 10{-,+}
 
 shift + XF86Audio{Prev,Next}
-	autoplayerctl position 60{-,+}
+	playerctl position 60{-,+}
 #}}}
 
 # === APPS === {{{
@@ -41,15 +38,12 @@ super + shift + {ctrl + u, u, o}
 super + shift + i
 	dmenu-nficons -c -z 500 -l 20 -fn "TerminessTTF Nerd Font:style=Regular:pixelsize=16:autohint=true:antialias=true"
 
-super + shift + b
-	passmenu -c -z 500 -l 20
-
 # Screenshots
 @Print
 	imgkprnt -c
 
 {super,shift,ctrl,shift+ctrl} + @Print
-	imgkprnt -{cm,cw,caO,ca} >> /tmp/imgkprnt.log
+	imgkprnt -{cm,cw,caO,ca}
 
 # View a screenshot
 super + @s
