@@ -1,8 +1,0 @@
-#!/bin/sh
-# fzf chooser for irc hosts to connect with catgirl
-
-hostsfolder="${XDG_CONFIG_HOME:-$HOME/.config}/catgirl/hosts"
-user="deskpc"
-host=$(find "$hostsfolder" -type f -printf "%f\n" | fzf)
-
-[ -n "$host" ] && exec catgirl -h $host -t certs/deskpc.home.crt -u $user -O url-opener.sh -s $host

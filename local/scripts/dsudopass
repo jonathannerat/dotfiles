@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# dmenu prompt for sudo password
-# usage:
-# 	$ SUDO_ASKPASS='/path/to/dsudopass' sudo -A command...
-
-# needs password patch for dmenu to hide password
-dmenu -P -p "sudo password: "
