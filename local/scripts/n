@@ -18,6 +18,10 @@ stty start undef
 stty stop undef
 # stty lwrap undef
 stty lnext undef
+
+# sort hidden files first
+export LC_COLLATE=C
+
 # Add the command line options you want to combine with cd on quit here, then run nnn with just "n"
 /usr/bin/nnn "$@"
 
