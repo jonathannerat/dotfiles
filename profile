@@ -1,6 +1,7 @@
 # vi: ft=sh
 # ssh askpass
 export SSH_ASKPASS=/usr/lib/seahorse/ssh-askpass
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 # for artix
 export SVDIR="$HOME/.config/runit/runsvdir"
@@ -34,6 +35,10 @@ export PAGER=less
 export BROWSER=brave
 
 export TERMCAP="$XDG_CONFIG_HOME/termcap"
+
+# man config
+export MANPAGER="less -R --use-color -w -Dd+r -Du+b -DS+ky -DP+kW"
+export MANROFFOPT="-P -c"
 
 # nnn config
 export NNN_FIFO="$HOME/.cache/nnn.fifo"
@@ -82,9 +87,9 @@ export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
 export GEM_PATH="$XDG_DATA_HOME/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 export LESSKEY="$XDG_DATA_HOME/less/lesskey"
-export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
@@ -137,6 +142,9 @@ append_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 # GHCUP binaries
 append_path "$XDG_DATA_HOME/ghcup/ghc/9.2.7/bin"
 append_path "$XDG_DATA_HOME/ghcup/hls/1.10.0.0/bin"
+
+# idea binaries
+append_path "/opt/intellij-idea-ultimate-edition/bin"
 
 export PATH
 
