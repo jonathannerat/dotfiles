@@ -8,4 +8,6 @@ map I exec "pdf-current-images.sh '$FILE' '$PAGE'"
 map A feedkeys ":bmark "
 map B feedkeys ":blist <Tab>"
 
+set sandbox none
+
 include custom
