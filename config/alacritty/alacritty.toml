@@ -1,0 +1,38 @@
+import = ["/home/jt/.config/alacritty/custom_pre.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[cursor]
+vi_mode_style = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[[hints.enabled]]
+command = "xdg-open"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "Y"
+mods = "Control|Shift"
+
+[scrolling]
+multiplier = 5
+
+[window]
+dynamic_padding = true
+
+[window.dimensions]
+columns = 100
+lines = 28
