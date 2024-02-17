@@ -31,8 +31,6 @@ fi
 # default apps
 export TERMINAL=alacritty
 export EDITOR=nvim
-export PAGER=less
-export BROWSER=brave
 
 export TERMCAP="$XDG_CONFIG_HOME/termcap"
 
