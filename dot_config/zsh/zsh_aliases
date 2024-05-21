@@ -1,6 +1,29 @@
-alias E="sudo -e"
-alias e="$EDITOR"
-alias cz=chezmoi
+# force XDG compliance
+alias colorit="colorit --config $XDG_CONFIG_HOME/colorit.conf"
+alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
+alias luarocks="luarocks --tree $XDG_DATA_HOME/luarocks"
+
+# overrides
+alias ffmpeg='ffmpeg -hide_banner'
+alias fzf='fzf --color=16'
 alias grep="grep --color=auto"
-alias ll="ls -al"
-alias ls="LC_COLLATE=C ls -v --color=auto --group-directories-first"
+alias info="info --vi-keys"
+alias ip='ip -color=auto'
+alias less='less -FRi'
+alias mkdir='mkdir -p'
+
+# convinient aliases
+alias E="sudo -e"
+alias cz=chezmoi
+alias e="$EDITOR"
+alias c='xclip'
+alias cx='xclip -selection clipboard'
+alias ls='ls -v --color=auto --group-directories-first'
+alias ll='ls -aalg'
+alias myip="curl icanhazip.com"
+alias sysu='systemctl --user'
+alias tt='tmux new -A -s'
+alias yv='youtube-viewer'
+alias yvn='youtube-viewer -n --autoplay'
+alias p='pacman'
+alias P='sudo pacman'
