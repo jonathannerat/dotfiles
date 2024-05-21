@@ -1,0 +1,2 @@
+# zsh-autosuggestions
+bindkey '^e' autosuggest-accept

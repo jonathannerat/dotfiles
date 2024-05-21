@@ -27,6 +27,7 @@ fi
 zshdir="${ZDOTDIR:-$HOME/.zsh}"
 source_if "$zshdir/zsh_aliases"
 source_if "$zshdir/zsh_functions"
+source_if "$zshdir/zsh_keybinds"
 # }}}
 
 # Use vim keybindings
