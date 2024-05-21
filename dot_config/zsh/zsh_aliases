@@ -1,0 +1,6 @@
+alias E="sudo -e"
+alias e="$EDITOR"
+alias cz=chezmoi
+alias grep="grep --color=auto"
+alias ll="ls -al"
+alias ls="LC_COLLATE=C ls -v --color=auto --group-directories-first"

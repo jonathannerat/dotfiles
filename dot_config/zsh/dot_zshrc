@@ -1,0 +1,92 @@
+# vi: fdm=marker
+source_if() {
+	if [ -f "$1" ]; then
+		. "$1"
+	fi
+}
+
+# Prompt setup {{{
+source_if /usr/lib/git-core/git-sh-prompt
+
+PROMPT_BEFORE_GIT="%B%F{cyan}%n%F@%F{green}%m%F:%F{yellow}%~%F%F{magenta}"
+PROMPT_AFTER_GIT="%F%B"$'\n'"$ "
+
+# check if __git_ps1 exists before using it
+if type __git_ps1 >/dev/null; then
+	# use precmd for better performance
+	precmd() {
+		__git_ps1 "$PROMPT_BEFORE_GIT" "$PROMPT_AFTER_GIT" " (%s)"
+	}
+else
+	# use regular prompt otherwise
+	PROMPT="$PROMPT_BEFORE_GIT$PROMPT_AFTER_GIT"
+fi
+# }}}
+
+# Split zsh config files {{{
+zshdir="${ZDOTDIR:-$HOME/.zsh}"
+source_if "$zshdir/zsh_aliases"
+source_if "$zshdir/zsh_functions"
+# }}}
+
+# Use vim keybindings
+bindkey -v
+
+# Change cursor shape for different vi modes {{{
+zle-block-cursor() { echo -ne '\e[1 q' }
+zle-beam-cursor() { echo -ne '\e[5 q' }
+zle-keymap-select() {
+  if [ "$KEYMAP" = vicmd ] ||
+     [ "$1" = block ]; then
+    zle-block-cursor
+  elif [ "$KEYMAP" = main ] ||
+       [ "$KEYMAP" = viins ] ||
+       [ -z "$KEYMAP" ] ||
+       [ "$1" = beam ]; then
+    zle-beam-cursor
+  fi
+}
+
+zle-line-init() { zle-beam-cursor }
+
+zle -N zle-keymap-select
+zle -N zle-line-init
+# }}}
+
+# History {{{
+# Keep 1000 lines of history within the shell
+setopt histignorealldups sharehistory
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE="$XDG_DATA_HOME/zsh/history"
+# }}}
+
+# Use modern completion system {{{
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# }}}
+
+# Plugins {{{
+source_if /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# enable zsh (fast) syntax highlighting (MUST BE AT THE END)
+source_if ~/Source/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# }}}
