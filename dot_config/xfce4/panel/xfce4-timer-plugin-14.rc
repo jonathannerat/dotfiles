@@ -1,0 +1,16 @@
+[G0]
+timername=Ravioles
+time=360
+timercommand=
+timerinfo=6m 0s
+is_countdown=true
+autostart=false
+
+[others]
+nowin_if_alarm=false
+use_global_command=true
+global_command=mpv /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga
+repeat_alarm=false
+repetitions=1
+repeat_interval=10
+
