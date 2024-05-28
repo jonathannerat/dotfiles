@@ -1,0 +1,25 @@
+swipe:
+  3:
+    begin:
+      command: xdotool keydown Alt
+    left:
+      update:
+        command: xdotool key ctrl+Left # Workspace Left
+        interval: 5
+    right:
+      update:
+        command: xdotool key ctrl+Right # Workspace Right
+        interval: 5
+    up:
+      update:
+        command: xdotool key shift+Tab # Cycle windows (reverse)
+        interval: 5
+    down:
+      update:
+        command: xdotool key Tab # Cycle windows
+        interval: 5
+    end:
+      command: xdotool keyup Alt
+hold:
+  4:
+    command: "xdotool key super" # Activity
