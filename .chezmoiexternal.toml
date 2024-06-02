@@ -1,0 +1,7 @@
+[".config/nvim"]
+type = "git-repo"
+url = "file:///home/jt/Projects/nvim-config/.git"
+
+[".local/scripts"]
+type = "git-repo"
+url = "file:///home/jt/Projects/scripts/.git"

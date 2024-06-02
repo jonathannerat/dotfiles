@@ -4,12 +4,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-# default apps
-export EDITOR=nvim
-
-# man config
-export MANPAGER='nvim +Man!'
-
 # home cleaning
 # these variables keep many programs from creating dot-{files/folders} in
 # $HOME. Taken from XDG_Base_Directory's article at ArchWiki
@@ -60,34 +54,3 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NugetPackages"
-
-## use ibus as IM
-#export XMODIFIERS=@im=fcitx
-#export GTK_IM_MODULE=fcitx
-#export QT_IM_MODULE=fcitx
-
-append_path () {
-    if ! [ -d "$1" ]; then return; fi
-
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="$1${PATH:+:$PATH}"
-    esac
-}
-
-# local programs
-append_path "$HOME/.local/bin"
-
-# go binaries
-append_path "$GOPATH/bin"
-
-# cargo binaries
-append_path "$CARGO_HOME/bin"
-
-# npm binaries
-append_path "$XDG_DATA_HOME/npm/bin"
-
-# composer binaries
-append_path "$XDG_CONFIG_HOME/composer/vendor/bin"

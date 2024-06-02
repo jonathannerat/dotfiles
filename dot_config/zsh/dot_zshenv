@@ -1,0 +1,38 @@
+# default apps
+export EDITOR=nvim
+
+# man config
+export MANPAGER='nvim +Man!'
+
+# append directories to PATH without repeating, only if it exists
+append_path () {
+    if ! [ -d "$1" ]; then return; fi
+
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="$1${PATH:+:$PATH}"
+    esac
+}
+
+# local binaries
+append_path "$HOME/.local/bin"
+
+# local scripts
+append_path "$HOME/.local/scripts"
+
+# go binaries
+append_path "$GOPATH/bin"
+
+# cargo binaries
+append_path "$CARGO_HOME/bin"
+
+# npm binaries
+append_path "$XDG_DATA_HOME/npm/bin"
+
+# composer binaries
+append_path "$XDG_CONFIG_HOME/composer/vendor/bin"
+
+# load NVM if it's available
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
