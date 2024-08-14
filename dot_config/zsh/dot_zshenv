@@ -40,3 +40,7 @@ if [ -d "$FNM_PATH" ]; then
     append_path "$FNM_PATH"
     eval "`fnm env`"
 fi
+
+export DENO_INSTALL="$HOME/.deno"
+
+append_path "$DENO_INSTALL/bin"
