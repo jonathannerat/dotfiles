@@ -95,4 +95,6 @@ source_if /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # enable zsh (fast) syntax highlighting (MUST BE AT THE END)
 source_if ~/Source/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+source_if /etc/zsh_command_not_found
 # }}}
