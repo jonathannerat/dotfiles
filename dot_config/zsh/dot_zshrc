@@ -9,7 +9,7 @@ source_if() {
 source_if /usr/lib/git-core/git-sh-prompt
 
 PROMPT_BEFORE_GIT="%B%F{cyan}%n%F{white}@%F{green}%m%F{white}:%F{yellow}%~%F{magenta}"
-PROMPT_AFTER_GIT="%B%F{white}"$'\n'"$ "
+PROMPT_AFTER_GIT="%F{white}%B"$'\n'"$ "
 
 # check if __git_ps1 exists before using it
 if type __git_ps1 >/dev/null; then
