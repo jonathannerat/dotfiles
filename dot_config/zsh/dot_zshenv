@@ -34,11 +34,9 @@ append_path "$XDG_DATA_HOME/npm/bin"
 # composer binaries
 append_path "$XDG_CONFIG_HOME/composer/vendor/bin"
 
-# load NVM if it's available
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
+# fnm binaries
 FNM_PATH="$XDG_DATA_HOME/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
+    append_path "$FNM_PATH"
+    eval "`fnm env`"
 fi
