@@ -18,6 +18,7 @@ alias cz=chezmoi
 alias e="$EDITOR"
 alias c='xclip'
 alias cx='xclip -selection clipboard'
+alias vx='xclip -selection clipboard -out'
 alias ls='ls -v --color=auto --group-directories-first'
 alias ll='ls -aalg'
 alias myip="curl icanhazip.com"
