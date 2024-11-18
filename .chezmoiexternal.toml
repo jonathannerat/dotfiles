@@ -5,3 +5,7 @@ url = "https://github.com/jonathannerat/nvim-config"
 [".local/scripts"]
 type = "git-repo"
 url = "https://github.com/jonathannerat/scripts"
+
+[".config/tmux/plugins/tpm"]
+type = "git-repo"
+url = "https://github.com/tmux-plugins/tpm"
