@@ -1,3 +1,6 @@
+# source .profile since zsh usually sources ~/.zprofile
+[ -r "$HOME/.profile" -a -z "$PROFILED" ] && source "$HOME/.profile"
+
 # default apps
 export EDITOR=nvim
 

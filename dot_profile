@@ -1,4 +1,11 @@
 # vi: ft=sh
+
+if [ "$PROFILED" ]; then
+    return
+else
+    export PROFILED=1
+fi
+
 # XDG specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
