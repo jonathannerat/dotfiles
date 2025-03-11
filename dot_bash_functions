@@ -1,0 +1,8 @@
+tt() {
+    s="$1"
+    if tmux has-session -t "$s" 2>/dev/null; then
+        tmux attach-session -t "$s"
+    else
+        tmux new-session -s "$s"
+    fi
+}
