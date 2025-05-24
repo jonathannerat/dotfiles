@@ -9,3 +9,7 @@ url = "https://github.com/jonathannerat/scripts"
 [".config/tmux/plugins/tpm"]
 type = "git-repo"
 url = "https://github.com/tmux-plugins/tpm"
+
+[".config/alacritty/themes"]
+type = "git-repo"
+url = "https://github.com/alacritty/alacritty-theme"
